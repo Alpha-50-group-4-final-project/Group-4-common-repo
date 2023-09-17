@@ -1,22 +1,40 @@
-package com.telerikacademy.testframework;
+package com.telerikacademy.testframework.test.data;
 
 import java.util.Random;
 
-public class RandomPasswordGenerator {
+import static com.telerikacademy.testframework.Utils.LOGGER;
+
+public class RandomUsernamePasswordGenerator {
     public static String randomPassword() {
-        int min = 8; // Minimum password length
-        int max = 20; // Maximum   password length
+        int minPasswordLength = 8; // Minimum password length
+        int maxPasswordLength = 20; // Maximum   password length
 
         // Generate random int value from min to max
-        int random_int = (int)Math.floor(Math.random() * (max - min + 1) + min);
+        int random_int = (int)Math.floor(Math.random() * (maxPasswordLength - minPasswordLength + 1) + minPasswordLength);
 
         String pattern = "Aa0!"; // Define your pattern here
 
-        String password = generatePassword(pattern, random_int); // Adjust the length as needed
-        System.out.println("Generated Password: " + password);
+        String password = generateString(pattern, random_int); // Adjust the length as needed
+        LOGGER.info("Random password was generated : " + password);
+
     return  password;}
 
-    public static String generatePassword(String pattern, int length) {
+    public static String randomUsername() {
+        int minUsernameLength = 2; // Minimum password length
+        int maxUsernameLength = 20; // Maximum   password length
+
+        // Generate random int value from min to max
+        int random_int = (int)Math.floor(Math.random() * (maxUsernameLength - minUsernameLength + 1) + minUsernameLength);
+
+        String pattern = "Aa"; // Define your pattern here
+
+        String userName = generateString(pattern, random_int); // Adjust the length as needed
+        LOGGER.info("Random username was generated : " + userName);
+
+        return  userName;}
+
+
+    public static String generateString(String pattern, int length) {
         StringBuilder password = new StringBuilder();
         Random random = new Random();
 
