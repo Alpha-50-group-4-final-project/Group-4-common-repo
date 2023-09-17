@@ -5,13 +5,5 @@ import pages.WEare.WEareHomePage;
 
 public class WEareTests extends BaseTest {
 
-
-
-
-    @Test
-    public void test(){
-        WEareHomePage homePage=new WEareHomePage(actions.getDriver());
-        homePage.registerNewUser();
-    }
 }
 
