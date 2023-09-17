@@ -1,3 +1,7 @@
-2023-09-17 16:59:10,839 INFO  [main] Initializing WebDriver
-2023-09-17 16:59:14,564 INFO  [main] Initializing WebDriver
-2023-09-17 16:59:15,279 INFO  [main] Quitting WebDriver
+2023-09-17 18:01:42,488 INFO  [main] Initializing WebDriver
+2023-09-17 18:01:44,461 INFO  [main] Initializing WebDriver
+2023-09-17 18:01:48,039 INFO  [main] Initializing WebDriver
+2023-09-17 18:01:48,057 INFO  [main] Clicking on element WEare.homepageRegisterButton
+2023-09-17 18:01:52,665 INFO  [main] Clicking on element WEare.registrationFormProfessionalCategoryButton
+2023-09-17 18:01:52,755 INFO  [main] Clicking on element WEare.registrationFOrmProfessionalCategoryDropDown
+2023-09-17 18:01:52,812 INFO  [main] Clicking on element WEare.registrationFormRegisterButton
