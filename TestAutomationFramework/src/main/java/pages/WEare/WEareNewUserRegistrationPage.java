@@ -2,6 +2,8 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
+import static com.telerikacademy.testframework.RandomPasswordGenerator.randomPassword;
+
 public class WEareNewUserRegistrationPage extends WEareBasePAge{
 
     public WEareNewUserRegistrationPage(WebDriver driver){
@@ -19,7 +21,7 @@ public class WEareNewUserRegistrationPage extends WEareBasePAge{
         actions.typeValueInField("gosho@abv.bg","WEare.registrationForEmailField");
 
         actions.waitForElementPresent("WEare.registrationPasswordField","WEare.registrationPasswordField");
-        actions.typeValueInField("123Pass2","WEare.registrationPasswordField");
+        actions.typeValueInField(randomPassword(),"WEare.registrationPasswordField");
 
         actions.waitForElementPresent("WEare.registrationFormConfirmPasswordField");
         actions.typeValueInField("123Pass2","WEare.registrationFormConfirmPasswordField");
