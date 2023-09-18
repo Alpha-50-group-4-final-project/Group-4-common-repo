@@ -1,10 +1,15 @@
-2023-09-17 21:43:58,897 INFO  [main] Initializing WebDriver
-2023-09-17 21:44:00,974 INFO  [main] Initializing WebDriver
-2023-09-17 21:44:02,705 INFO  [main] Initializing WebDriver
-2023-09-17 21:44:02,714 INFO  [main] Random username was generated : XpZcwbyVMFwOjjFQyEH
-2023-09-17 21:44:02,714 INFO  [main] Random password was generated : x3u(X0a8!ct7u$_S
-2023-09-17 21:44:02,732 INFO  [main] Clicking on element WEare.homepageRegisterButton
-2023-09-17 21:44:03,659 INFO  [main] Clicking on element WEare.registrationFormProfessionalCategoryButton
-2023-09-17 21:44:03,753 INFO  [main] Clicking on element WEare.registrationFOrmProfessionalCategoryDropDown
-2023-09-17 21:44:03,811 INFO  [main] Clicking on element WEare.registrationFormRegisterButton
-2023-09-17 21:44:04,794 INFO  [main] Quitting WebDriver
+2023-09-18 20:22:05,409 INFO  [main] Random username was generated : GKAeTDw
+2023-09-18 20:22:05,413 INFO  [main] Random password was generated : F78x,i/xY82Ta>_(
+2023-09-18 20:22:05,413 INFO  [main] Initializing WebDriver
+2023-09-18 20:22:08,172 INFO  [main] Initializing WebDriver
+2023-09-18 20:22:08,602 INFO  [main] Initializing WebDriver
+2023-09-18 20:22:08,622 INFO  [main] Clicking on element WEare.homepageRegisterButton
+2023-09-18 20:22:09,365 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryButton
+2023-09-18 20:22:09,463 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryDropDown
+2023-09-18 20:22:09,519 INFO  [main] Clicking on element WEare.newuserregistrationpage.RegisterButton
+2023-09-18 20:22:09,869 INFO  [main] Initializing WebDriver
+2023-09-18 20:22:10,114 INFO  [main] Clicking on element WEare.homepage.signInButton
+2023-09-18 20:22:10,575 INFO  [main] Clicking on element WEare.loginpage.LoginButton
+2023-09-18 20:22:10,965 INFO  [main] Initializing WebDriver
+2023-09-18 20:22:11,112 INFO  [main] Clicking on element WEare.homepage.AddNewPostButton
+2023-09-18 20:22:12,119 INFO  [main] Clicking on element WEare.CreateNewPostPage.SavePostButton

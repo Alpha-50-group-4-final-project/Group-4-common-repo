@@ -19,11 +19,11 @@ public class BaseTest {
         UserActions.loadBrowser("WEare.homePage");
     }
 
-    @AfterClass
-    public static void tearDown() {
-
-        UserActions.quitDriver();
-    }
+//    @AfterClass
+//    public static void tearDown() {
+//
+//        UserActions.quitDriver();
+//    }
 
     public static void login() {
 

@@ -1,0 +1,20 @@
+2023-09-18 18:44:12,463 INFO  [main] Random username was generated : lbovPEHGLcyu
+2023-09-18 18:44:12,467 INFO  [main] Random password was generated : 4mfo2Jl}20ur
+2023-09-18 18:44:12,467 INFO  [main] Initializing WebDriver
+2023-09-18 18:44:14,809 INFO  [main] Initializing WebDriver
+2023-09-18 18:44:15,486 INFO  [main] Initializing WebDriver
+2023-09-18 18:44:15,502 INFO  [main] Clicking on element WEare.homepageRegisterButton
+2023-09-18 18:44:16,070 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryButton
+2023-09-18 18:44:16,161 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryDropDown
+2023-09-18 18:44:16,214 INFO  [main] Clicking on element WEare.newuserregistrationpage.RegisterButton
+2023-09-18 18:44:16,446 INFO  [main] Quitting WebDriver
+2023-09-18 18:45:26,629 INFO  [main] Random username was generated : wlDU
+2023-09-18 18:45:26,632 INFO  [main] Random password was generated : A3hRI4KL+6Xu0iIBG
+2023-09-18 18:45:26,632 INFO  [main] Initializing WebDriver
+2023-09-18 18:45:28,876 INFO  [main] Initializing WebDriver
+2023-09-18 18:45:29,454 INFO  [main] Initializing WebDriver
+2023-09-18 18:45:29,472 INFO  [main] Clicking on element WEare.homepageRegisterButton
+2023-09-18 18:45:30,357 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryButton
+2023-09-18 18:45:30,532 INFO  [main] Clicking on element WEare.newuserregistrationpage.ProfessionalCategoryDropDown
+2023-09-18 18:45:30,588 INFO  [main] Clicking on element WEare.newuserregistrationpage.RegisterButton
+2023-09-18 18:45:30,733 INFO  [main] Quitting WebDriver

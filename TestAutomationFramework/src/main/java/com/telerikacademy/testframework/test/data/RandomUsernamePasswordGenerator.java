@@ -33,7 +33,6 @@ public class RandomUsernamePasswordGenerator {
 
         return  userName;}
 
-
     public static String generateString(String pattern, int length) {
         StringBuilder password = new StringBuilder();
         Random random = new Random();
