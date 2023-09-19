@@ -1,6 +1,6 @@
 package com.telerikacademy.testframework;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -71,8 +71,8 @@ public class UserActions {
     }
 
     public void assertElementPresent(String locator) {
-        Assert.assertNotNull(format("Element with %s doesn't present.", locator),
-            driver.findElement(By.xpath(getUIMappingByKey(locator))));
+        Assertions.assertNotNull(driver.findElement(By.xpath(getUIMappingByKey(locator))),
+                format("Element with %s doesn't present.", locator));
     }
 
     public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
@@ -82,7 +82,7 @@ public class UserActions {
 
         String value = element.getAttribute(attributeName);
 
-        Assert.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
+        Assertions.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
     }
 
     private String getLocatorValueByKey(String locator) {
@@ -100,7 +100,7 @@ public class UserActions {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         } catch (Exception exception) {
-            Assert.fail("Element with locator: '" + xpath + "' was not found.");
+            Assertions.fail("Element with locator: '" + xpath + "' was not found.");
         }
     }
 
@@ -111,7 +111,7 @@ public class UserActions {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         } catch (Exception exception) {
-            Assert.fail("Element with locator: '" + xpath + "' was not found.");
+            Assertions.fail("Element with locator: '" + xpath + "' was not found.");
         }
     }
 
@@ -122,7 +122,7 @@ public class UserActions {
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         } catch (Exception exception) {
-            Assert.fail("Element with locator: '" + xpath + "' was not found.");
+            Assertions.fail("Element with locator: '" + xpath + "' was not found.");
         }
     }
     public void hoverElement(String locator, Object... arguments) {
@@ -157,9 +157,9 @@ public class UserActions {
         Actions actions = new Actions(driver);
 
         Action dragAndDrop = actions.clickAndHold(fromElement)
-                                    .moveToElement(toElement)
-                                    .release(toElement)
-                                    .build();
+                .moveToElement(toElement)
+                .release(toElement)
+                .build();
         dragAndDrop.perform();
     }
 
