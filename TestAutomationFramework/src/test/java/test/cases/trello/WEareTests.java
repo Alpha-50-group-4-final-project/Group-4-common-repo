@@ -1,6 +1,6 @@
 package test.cases.trello;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pages.WEare.WEareCreateNewPostPage;
 import pages.WEare.WEareLoginPage;
 import pages.WEare.WEareNewUserRegistrationPage;
@@ -33,5 +33,7 @@ public class WEareTests extends BaseTest {
         WEareCreateNewPostPage post=new WEareCreateNewPostPage(actions.getDriver());
         post.createNewPost();
     }
+
+//    comment
 }
 
