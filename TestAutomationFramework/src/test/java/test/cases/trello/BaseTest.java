@@ -1,8 +1,8 @@
 package test.cases.trello;
 
 import com.telerikacademy.testframework.UserActions;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 import static com.telerikacademy.testframework.test.data.RandomUsernamePasswordGenerator.randomPassword;
 import static com.telerikacademy.testframework.test.data.RandomUsernamePasswordGenerator.randomUsername;
@@ -14,12 +14,12 @@ public class BaseTest {
 
     static UserActions actions = new UserActions();
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("WEare.homePage");
     }
 
-//    @AfterClass
+//    @AfterAll
 //    public static void tearDown() {
 //
 //        UserActions.quitDriver();
