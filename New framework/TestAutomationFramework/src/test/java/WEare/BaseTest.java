@@ -19,7 +19,7 @@ public class BaseTest {
     static UserActions actions = new UserActions();
     protected UserRegistrationPage registerNewUser;
     protected LoginPage login;
-    protected CreateNewPostPage post;
+    protected CreateNewPostPage createNewPostPage;
 
     @BeforeAll
     public static void setUp() {
@@ -34,7 +34,7 @@ public class BaseTest {
 
         registerNewUser = new UserRegistrationPage(actions.getDriver());
         login =new LoginPage(actions.getDriver());
-        post = new CreateNewPostPage(actions.getDriver());
+        createNewPostPage = new CreateNewPostPage(actions.getDriver());
     }
 
 //    @AfterAll

@@ -1,9 +1,7 @@
 package com.telerikacademy.testframework;
 
+import com.telerikacademy.testframework.enums.BrowserTypes;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CustomWebDriverManager {
 
@@ -26,7 +24,7 @@ public class CustomWebDriverManager {
         }
 
         private WebDriver setupBrowser() {
-            WebDriver driver = new ChromeDriver();
+            WebDriver driver = BrowserTypes.choseBrowser(BrowserTypes.EDGE);
             driver.manage().window().maximize();
             this.driver = driver;
             return driver;
