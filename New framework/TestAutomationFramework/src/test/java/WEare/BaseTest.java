@@ -2,27 +2,38 @@ package WEare;
 
 import com.telerikacademy.testframework.UserActions;
 import org.junit.jupiter.api.BeforeAll;
-import pages.WEare.CreateNewPostPage;
-import pages.WEare.LoginPage;
-import pages.WEare.UserRegistrationPage;
+import org.junit.jupiter.api.BeforeEach;
+import pages.WEare.WEareCreateNewPostPage;
+import pages.WEare.WEareLoginPage;
+import pages.WEare.WEareNewUserRegistrationPage;
 
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomPassword;
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomUsername;
 
-
 public class BaseTest {
 
-    public static   String username=randomUsername();
-    public static String passsword =randomPassword();
+    public static   String usernameRandom;
+    public static String passwordRandom;
 
     static UserActions actions = new UserActions();
-    protected UserRegistrationPage registerNewUser = new UserRegistrationPage(actions.getDriver());
-    protected LoginPage login =new LoginPage(actions.getDriver());
-    protected CreateNewPostPage post=new CreateNewPostPage(actions.getDriver());
+    protected WEareNewUserRegistrationPage registerNewUser;
+    protected WEareLoginPage login;
+    protected WEareCreateNewPostPage post;
 
     @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("WEare.homePage");
+    }
+
+    @BeforeEach
+    public void beforeTests(){
+        usernameRandom = randomUsername();
+        passwordRandom = randomPassword();
+
+
+        registerNewUser = new WEareNewUserRegistrationPage(actions.getDriver());
+        login =new WEareLoginPage(actions.getDriver());
+        post = new WEareCreateNewPostPage(actions.getDriver());
     }
 
 //    @AfterAll
