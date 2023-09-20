@@ -12,10 +12,10 @@ import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenera
 
 public class BaseTest {
 
-    public static   String username;
-    public static String passsword;
+    public static   String usernameRandom;
+    public static String passwordRandom;
 
-    static UserActions actions;
+    static UserActions actions = new UserActions();
     protected WEareNewUserRegistrationPage registerNewUser;
     protected WEareLoginPage login;
     protected WEareCreateNewPostPage post;
@@ -27,10 +27,10 @@ public class BaseTest {
 
     @BeforeEach
     public void beforeTests(){
-        username = randomUsername();
-        passsword = randomPassword();
+        usernameRandom = randomUsername();
+        passwordRandom = randomPassword();
 
-        actions = new UserActions();
+
         registerNewUser = new WEareNewUserRegistrationPage(actions.getDriver());
         login =new WEareLoginPage(actions.getDriver());
         post = new WEareCreateNewPostPage(actions.getDriver());
