@@ -3,9 +3,10 @@ package WEare;
 import com.telerikacademy.testframework.UserActions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import pages.WEare.WEareCreateNewPostPage;
-import pages.WEare.WEareLoginPage;
-import pages.WEare.WEareNewUserRegistrationPage;
+import pages.WEare.CreateNewPostPage;
+import pages.WEare.LoginPage;
+import pages.WEare.UserRegistrationPage;
+
 
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomPassword;
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomUsername;
@@ -16,9 +17,9 @@ public class BaseTest {
     public static String passwordRandom;
 
     static UserActions actions = new UserActions();
-    protected WEareNewUserRegistrationPage registerNewUser;
-    protected WEareLoginPage login;
-    protected WEareCreateNewPostPage post;
+    protected UserRegistrationPage registerNewUser;
+    protected LoginPage login;
+    protected CreateNewPostPage post;
 
     @BeforeAll
     public static void setUp() {
@@ -31,9 +32,9 @@ public class BaseTest {
         passwordRandom = randomPassword();
 
 
-        registerNewUser = new WEareNewUserRegistrationPage(actions.getDriver());
-        login =new WEareLoginPage(actions.getDriver());
-        post = new WEareCreateNewPostPage(actions.getDriver());
+        registerNewUser = new UserRegistrationPage(actions.getDriver());
+        login =new LoginPage(actions.getDriver());
+        post = new CreateNewPostPage(actions.getDriver());
     }
 
 //    @AfterAll
