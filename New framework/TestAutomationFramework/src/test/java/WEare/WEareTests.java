@@ -19,7 +19,7 @@ public class WEareTests extends BaseTest {
 
         login.login(usernameRandom,passwordRandom);
 
-        post.createNewPost();
+        createNewPostPage.createNewPost();
     }
 
 

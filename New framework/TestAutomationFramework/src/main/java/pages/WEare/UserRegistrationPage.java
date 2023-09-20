@@ -15,7 +15,7 @@ public class UserRegistrationPage extends WEareBasePаge {
 
         String email=username+"@abv.bg";
 
-        actions.waitForElementPresent("WEare.homepageRegisterButton");
+        actions.waitForElementClickable("WEare.homepageRegisterButton");
         actions.clickElement("WEare.homepageRegisterButton");
 
         actions.waitForElementPresent("WEare.newuserregistrationpage.UsernameField");
