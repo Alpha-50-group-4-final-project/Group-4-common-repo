@@ -10,7 +10,7 @@ import pages.WEare.WEareLoginPage;
 import pages.WEare.WEareNewUserRegistrationPage;
 
 public class WEareTests extends BaseTest {
-    
+
 
     @Test
     public void loginS() {
