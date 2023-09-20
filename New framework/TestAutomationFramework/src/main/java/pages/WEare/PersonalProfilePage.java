@@ -38,4 +38,18 @@ public class PersonalProfilePage extends WEareBasePаge {
         actions.waitForElementPresent("Eare.PersonalProfilePageGenderButton",genderType);
         actions.clickElement("Eare.PersonalProfilePageGenderButton",genderType);
     }
+    public  void clickPersonalInformationUpdateButton(){
+        actions.waitForElementClickable("WEare.homePage.PersonalProfileUpdateProfileButton");
+        actions.clickElement("WEare.homePage.PersonalProfileUpdateProfileButton");
+    }
+    public void cleanAllFields(){
+        actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
+        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+
+        actions.waitForElementPresent("WEare.PersonalProfilePageLastNameField");
+        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+
+        actions.waitForElementPresent("Eare.PersonalProfilePageBirthdayField");
+        actions.clearingFiled("Eare.PersonalProfilePageBirthdayField");
+    }
 }

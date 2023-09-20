@@ -1,6 +1,7 @@
 package WEare;
 
 import com.telerikacademy.testframework.UserActions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import pages.WEare.CreateNewPostPage;
@@ -41,11 +42,11 @@ public class BaseTest {
         profileEdit=new PersonalProfilePage(actions.getDriver());
     }
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void tearDown() {
+
+        UserActions.quitDriver();
+    }
 
     public static void login() {
 

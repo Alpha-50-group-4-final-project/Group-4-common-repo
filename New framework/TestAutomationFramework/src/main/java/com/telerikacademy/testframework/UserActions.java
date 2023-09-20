@@ -92,8 +92,8 @@ public class UserActions {
     }
 
     public void assertElementPresent(String locator, Object... arguments ) {
-        Assertions.assertNotNull(driver.findElement(By.xpath(getUIMappingByKey(locator))),
-                format("Element with %s doesn't present.", locator));
+
+        Assertions.assertNotNull((driver.findElement(By.xpath(getUIMappingByKey(locator)))),"Element is not presenting");
     }
 
     public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
@@ -160,5 +160,11 @@ public class UserActions {
     public void assertElementText(String locator,String message, Object... arguments ) {
             Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
             LOGGER.error("Wrong or not existing error message");
+    }
+    public void  clearingFiled(String key, Object... arguments) {
+        String locator = getLocatorValueByKey(key, arguments);
+        LOGGER.info( key+"was cleaned" );
+        WebElement element = driver.findElement(By.xpath(locator));
+        element.clear();
     }
 }
