@@ -17,6 +17,16 @@ public class PersonalProfilePage extends WEareBasePаge {
         actions.clickElement("WEare.PersonalProfilePageEditButton");
     }
 
+    public void cleanAllFields(){
+        actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
+        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+
+        actions.waitForElementPresent("WEare.PersonalProfilePageLastNameField");
+        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+
+    }
+
+
     public void fillUpFirstNameField(String name){
         actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
         actions.typeValueInField(name,"WEare.PersonalProfilePageFirstNameField");
@@ -42,14 +52,14 @@ public class PersonalProfilePage extends WEareBasePаge {
         actions.waitForElementClickable("WEare.homePage.PersonalProfileUpdateProfileButton");
         actions.clickElement("WEare.homePage.PersonalProfileUpdateProfileButton");
     }
-    public void cleanAllFields(){
-        actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
 
-        actions.waitForElementPresent("WEare.PersonalProfilePageLastNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
 
-        actions.waitForElementPresent("Eare.PersonalProfilePageBirthdayField");
-        actions.clearingFiled("Eare.PersonalProfilePageBirthdayField");
+    public void addPicture(){
+        actions.waitForElementPresent("WEare.PersonalProfilePagePersonalInfoPhotoField");
+        actions.typeValueInField("K:\\Group-4-common-repo\\New framework\\TestAutomationFramework\\src\\test\\resources\\Patkan.jpg","WEare.PersonalProfilePagePersonalInfoPhotoField");
+    }
+    public void personalInfoUpdateButton(){
+        actions.waitForElementClickable("WEare.PersonalProfilePagePersonalInfoUpdateButton");
+        actions.clickElement("WEare.PersonalProfilePagePersonalInfoUpdateButton");
     }
 }

@@ -35,7 +35,7 @@ public class EditProfileTests extends BaseTest {
     public void cleanfields() {
         actions.goToHomePage();
         profileEdit.navigateToEditProfileMenu();
-        profileEdit.cleanAllFields();
+
     }
 
     @Test
@@ -59,13 +59,14 @@ public class EditProfileTests extends BaseTest {
         profileEdit.fillBirtdayField("01", "15", "2023");
         profileEdit.clickPersonalInformationUpdateButton();
 
-        actions.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
+//        actions.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
         actions.assertElementText("WEare.PersonalProfilePageEditErrorMessage", "first name must have at least 3 symbols!");
     }
 
     @ParameterizedTest
     @CsvSource({"Patkan,''", "Patkan,Pa"})
     public void editFirstnameLastNameBirthday_when_invalidLastNameISprovided(String firstName, String lastName) {
+//        profileEdit.cleanAllFields();
         profileEdit.fillUpFirstNameField(firstName);
         profileEdit.fillUpLastNameField(lastName);
         profileEdit.fillBirtdayField("01", "15", "2023");
@@ -73,6 +74,12 @@ public class EditProfileTests extends BaseTest {
 
         actions.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
         actions.assertElementText("WEare.PersonalProfilePageEditErrorMessage", "last name must have at least 3 symbols!");
+        profileEdit.cleanAllFields();
     }
+@Test
+    public void addPicture(){
+        profileEdit.addPicture();
+        profileEdit.personalInfoUpdateButton();
+}
 
 }
