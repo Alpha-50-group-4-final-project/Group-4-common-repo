@@ -1,5 +1,6 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class WEareNewUserRegistrationPage extends WEareBasePAge{
@@ -37,6 +38,15 @@ public class WEareNewUserRegistrationPage extends WEareBasePAge{
 
         actions.waitForElementVisible("WEare.newuserregistrationpage.RegisterButton");
         actions.clickElement("WEare.newuserregistrationpage.RegisterButton");
+    }
+
+    public void assertUserCreated(){
+        try{
+        actions.assertElementPresent("WEare.RegisterLoginSuccessMessage");
+        } catch (Exception e) {
+            Assertions.fail("Registration was not successful.");
+
+        }
     }
 
 }
