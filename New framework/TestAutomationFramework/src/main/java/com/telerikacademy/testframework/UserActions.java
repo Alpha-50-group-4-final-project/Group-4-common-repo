@@ -150,4 +150,15 @@ public class UserActions {
     public  void  goToHomePage(){
         driver.get("http://localhost:8081/");
     }
+
+    private String elementText(String key, Object... arguments) {
+        String locator = getLocatorValueByKey(key, arguments);
+        LOGGER.info("Clicking on element " + key);
+        WebElement element = driver.findElement(By.xpath(locator));
+
+        return element.getText();
+    }
+    public void assertElementText(String locator,String message, Object... arguments ) {
+        Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
+    }
 }
