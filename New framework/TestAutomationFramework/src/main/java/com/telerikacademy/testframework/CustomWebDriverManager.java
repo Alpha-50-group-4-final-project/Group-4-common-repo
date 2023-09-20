@@ -24,7 +24,7 @@ public class CustomWebDriverManager {
         }
 
         private WebDriver setupBrowser() {
-            WebDriver driver = BrowserTypes.choseBrowser(BrowserTypes.EDGE);
+            WebDriver driver = BrowserTypes.choseBrowser(BrowserTypes.CHROME);
             driver.manage().window().maximize();
             this.driver = driver;
             return driver;

@@ -147,4 +147,7 @@ public class UserActions {
             Assertions.fail("Element with locator: '" + xpath + "' was not found.");
         }
     }
+    public  void  goToHomePage(){
+        driver.get("http://localhost:8081/");
+    }
 }
