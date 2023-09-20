@@ -3,12 +3,6 @@ package WEare;
 
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import pages.WEare.WEareCreateNewPostPage;
-import pages.WEare.WEareLoginPage;
-import pages.WEare.WEareNewUserRegistrationPage;
-
 public class WEareTests extends BaseTest {
     
 
@@ -27,6 +21,8 @@ public class WEareTests extends BaseTest {
 
         post.createNewPost();
     }
+
+
 
 //    comment
 }

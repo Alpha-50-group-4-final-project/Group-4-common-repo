@@ -3,9 +3,9 @@ package pages.WEare;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
-public class WEareNewUserRegistrationPage extends WEareBasePAge{
+public class UserRegistrationPage extends WEareBasePаge {
 
-    public WEareNewUserRegistrationPage(WebDriver driver){
+    public UserRegistrationPage(WebDriver driver){
         super(driver,"");
     }
 

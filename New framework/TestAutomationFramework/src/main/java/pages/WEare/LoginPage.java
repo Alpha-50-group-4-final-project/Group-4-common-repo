@@ -2,8 +2,8 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
-public class WEareLoginPage extends WEareBasePAge {
-    public WEareLoginPage(WebDriver driver) {
+public class LoginPage extends WEareBasePаge {
+    public LoginPage(WebDriver driver) {
         super(driver, "");
     }
 
