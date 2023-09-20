@@ -96,10 +96,10 @@ public class UserActions {
         Assertions.assertNotNull((driver.findElement(By.xpath(getUIMappingByKey(locator)))),"Element is not presenting");
     }
 
-    public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
+    public void assertElementAttribute(String locator, String attributeName, String attributeValue,Object... arguments) {
         // TODO: Implement the method
         // 1. Find Element using the locator value from Properties
-        String xpath = getLocatorValueByKey(locator);
+        String xpath = getLocatorValueByKey(locator,arguments);
         WebElement element = driver.findElement(By.xpath(xpath));
         // 2. Get the element attribute
         String value = element.getAttribute(attributeName);

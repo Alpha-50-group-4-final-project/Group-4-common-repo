@@ -42,11 +42,11 @@ public class BaseTest {
         profileEdit=new PersonalProfilePage(actions.getDriver());
     }
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void tearDown() {
+
+        UserActions.quitDriver();
+    }
 
     public static void login() {
 
