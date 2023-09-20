@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import pages.WEare.CreateNewPostPage;
 import pages.WEare.LoginPage;
+import pages.WEare.PersonalProfilePage;
 import pages.WEare.UserRegistrationPage;
 
 
@@ -21,6 +22,8 @@ public class BaseTest {
     protected LoginPage login;
     protected CreateNewPostPage createNewPostPage;
 
+    protected PersonalProfilePage profileEdit;
+
     @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("WEare.homePage");
@@ -35,6 +38,7 @@ public class BaseTest {
         registerNewUser = new UserRegistrationPage(actions.getDriver());
         login =new LoginPage(actions.getDriver());
         createNewPostPage = new CreateNewPostPage(actions.getDriver());
+        profileEdit=new PersonalProfilePage(actions.getDriver());
     }
 
 //    @AfterAll

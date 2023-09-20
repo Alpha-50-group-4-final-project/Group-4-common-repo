@@ -104,7 +104,7 @@ public class UserActions {
         // 2. Get the element attribute
         String value = element.getAttribute(attributeName);
         // 3. Assert equality with expected value
-        Assertions.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
+        Assertions.assertEquals(value,attributeValue,"Attribute value is not corresponding with expected.");
     }
 
     private String getLocatorValueByKey(String locator) {
@@ -153,12 +153,12 @@ public class UserActions {
 
     private String elementText(String key, Object... arguments) {
         String locator = getLocatorValueByKey(key, arguments);
-        LOGGER.info("Clicking on element " + key);
         WebElement element = driver.findElement(By.xpath(locator));
-
+        LOGGER.info(format("%s is the reponse text from %s",element.getText(),key));
         return element.getText();
     }
     public void assertElementText(String locator,String message, Object... arguments ) {
-        Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
+            Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
+            LOGGER.error("Wrong or not existing error message");
     }
 }

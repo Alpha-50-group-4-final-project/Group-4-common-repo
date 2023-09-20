@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pages.WEare.UserRegistrationPage;
 
+import static com.telerikacademy.testframework.Utils.LOGGER;
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.*;
 
 public class LoginTests extends BaseTest {
@@ -20,8 +21,6 @@ public class LoginTests extends BaseTest {
        UserRegistrationPage register=new UserRegistrationPage(actions.getDriver());
        register.registerNewUser(testName,testPass);
    }
-
-
     @BeforeEach
     public  void navigateToTheHomePage(){
         actions.goToHomePage();
@@ -35,6 +34,7 @@ public class LoginTests extends BaseTest {
         login.clickOnCreateButton();
 
         actions.assertElementPresent("WEare.homePage.LogoutButton");
+        LOGGER.info("User successfully logged in when provided valid credentials.");
         login.clickOnLogOutButton();
     }
 
@@ -45,5 +45,6 @@ public class LoginTests extends BaseTest {
         login.fillPasswordField(password);
         login.clickOnCreateButton();
         actions.assertElementText("WEare.RegisterLoginErrorMessage","Wrong username or password.");
+        LOGGER.info("Correct error message is shown.");
     }
 }
