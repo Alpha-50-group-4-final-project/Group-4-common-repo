@@ -2,6 +2,7 @@ package com.telerikacademy.testframework;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -66,6 +67,18 @@ public class UserActions {
                 .release(toElement)
                 .build();
         dragAndDrop.perform();
+    }
+    public void pressKey(Keys key) {
+        Actions action = new Actions(driver);
+        action.sendKeys(key).perform();
+    }
+
+    public void pressKeyCopyAll() {
+        Actions actions = new Actions(driver);
+        actions.keyDown(Keys.CONTROL);
+        actions.sendKeys("a");
+        actions.keyUp(Keys.CONTROL);
+        actions.build().perform();
     }
 
     //############# WAITS #########
@@ -148,7 +161,7 @@ public class UserActions {
         }
     }
     public  void  goToHomePage(){
-        driver.get("http://localhost:8081/");
+        driver.get("WEare.homePage");
     }
 
     private String elementText(String key, Object... arguments) {
