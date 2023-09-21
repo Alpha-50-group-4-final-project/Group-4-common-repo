@@ -12,10 +12,11 @@ import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenera
 
 public class LoginTests extends BaseTest {
 
-
+//these two we already have at the base test - named usernameRandom and passwordRandom
  private static  final    String testName=randomUsername();
   private static final   String testPass=randomPassword();
 
+  //the previous initialization of the page below will not work as the method is static
    @BeforeAll
    public  static  void  registerUser(){
        UserRegistrationPage register=new UserRegistrationPage(actions.getDriver());

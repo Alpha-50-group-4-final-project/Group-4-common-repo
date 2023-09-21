@@ -19,7 +19,7 @@ public class BaseTest {
     public static String passwordRandom;
 
     static UserActions actions = new UserActions();
-    protected UserRegistrationPage registerNewUser;
+    protected UserRegistrationPage registerUser;
     protected LoginPage login;
     protected CreateNewPostPage createNewPostPage;
 
@@ -35,8 +35,7 @@ public class BaseTest {
         usernameRandom = randomUsername();
         passwordRandom = randomPassword();
 
-
-        registerNewUser = new UserRegistrationPage(actions.getDriver());
+        registerUser = new UserRegistrationPage(actions.getDriver());
         login =new LoginPage(actions.getDriver());
         createNewPostPage = new CreateNewPostPage(actions.getDriver());
         profileEdit=new PersonalProfilePage(actions.getDriver());
