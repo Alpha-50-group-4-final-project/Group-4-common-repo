@@ -8,20 +8,20 @@ public class RegistrationTests extends  BaseTest {
 
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
-        registerNewUser.registerNewUser(usernameRandom, passwordRandom);
-        registerNewUser.assertUserCreated();
+        registerUser.registerNewUser(usernameRandom, passwordRandom);
+        registerUser.assertUserCreated();
     }
     @ParameterizedTest
     @CsvSource({ "а", "aa", "itIsBoundryUpperlevel"})
     public void registerNewUser_when_invalidUsernamePassed(String username){
-        registerNewUser.registerNewUser(username, passwordRandom);
-        registerNewUser.assertUserCreated();
+        registerUser.registerNewUser(username, passwordRandom);
+        registerUser.assertUserCreated();
 
     }
     @Test
     public void registerNewUser_when_emptyUsernamePassed(){
-        registerNewUser.registerNewUser("",passwordRandom);
-        registerNewUser.assertUserCreated();
+        registerUser.registerNewUser("",passwordRandom);
+        registerUser.assertUserCreated();
     }
     @Test
     public void registerNewUser_when_invalidEmailPassed(String email){
@@ -33,11 +33,13 @@ public class RegistrationTests extends  BaseTest {
     @ParameterizedTest
     @CsvSource({ "12345", "aa", "itIsBoundryUpperlevel"})
     public void registerNewUser_when_invalidPasswordPassed(String password){
+        registerUser.registerNewUser(usernameRandom, password);
+        registerUser.assertUserCreated();
     }
     @Test
     public void registerNewUser_when_emptyPasswordPassed(){
-        registerNewUser.registerNewUser(usernameRandom, "");
-        registerNewUser.assertUserCreated();
+        registerUser.registerNewUser(usernameRandom, "");
+        registerUser.assertUserCreated();
     }
 
     //invalid dropdown? could it be?
