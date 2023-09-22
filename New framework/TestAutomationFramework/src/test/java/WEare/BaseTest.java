@@ -19,6 +19,7 @@ public class BaseTest {
     protected static LoginPage loginPage;
     protected static CreateNewPostPage createNewPostPage;
     protected static PersonalProfilePage editProfilePage;
+    protected static LatestPostPage latestPostPage;
 
 
     @BeforeAll
@@ -33,6 +34,7 @@ public class BaseTest {
         loginPage =new LoginPage(actions.getDriver());
         createNewPostPage = new CreateNewPostPage(actions.getDriver());
         editProfilePage =new PersonalProfilePage(actions.getDriver());
+        latestPostPage =new LatestPostPage(actions.getDriver());
     }
 
 //    @BeforeEach

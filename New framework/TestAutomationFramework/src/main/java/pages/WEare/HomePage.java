@@ -23,6 +23,7 @@ public class HomePage extends WEareBasePage {
         actions.waitForElementClickable("WEare.homepage.latestPostsButton");
         actions.clickElement("WEare.homepage.latestPostsButton");
     }
+
     public void navigateToAboutUs(){
         actions.waitForElementClickable("WEare.homepage.aboutUsButton");
         actions.clickElement("WEare.homepage.aboutUsButton");
