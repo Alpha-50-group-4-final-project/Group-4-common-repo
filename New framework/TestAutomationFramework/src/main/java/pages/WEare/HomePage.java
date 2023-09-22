@@ -14,7 +14,7 @@ public class HomePage extends WEareBasePage {
         actions.clickElement("WEare.homepage.RegisterButton");
     }
 
-    public void navigateToSigninPage(){
+    public void navigateToLoginPage(){
         actions.waitForElementClickable("WEare.homepage.signInButton");
         actions.clickElement("WEare.homepage.signInButton");
     }

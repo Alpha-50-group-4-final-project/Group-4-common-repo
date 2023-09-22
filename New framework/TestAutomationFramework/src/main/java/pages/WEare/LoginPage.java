@@ -4,10 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends WEareBasePage {
     public LoginPage(WebDriver driver) {
-        super(driver, "");
+        super(driver, "WEare.loginPage");
     }
-
-
 
     public void clickOnLoginButton(){
         actions.waitForElementVisible("WEare.homepage.signInButton");
