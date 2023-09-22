@@ -1,5 +1,6 @@
-package WEare;
+package WEare.publicpart;
 
+import WEare.BaseTest;
 import org.junit.jupiter.api.Test;
 
 public class AnonymousUserTests extends BaseTest {

@@ -1,10 +1,11 @@
-package WEare;
+package WEare.publicpart;
 
+import WEare.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class RegistrationTests extends  BaseTest {
+public class RegistrationTests extends BaseTest {
 
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {

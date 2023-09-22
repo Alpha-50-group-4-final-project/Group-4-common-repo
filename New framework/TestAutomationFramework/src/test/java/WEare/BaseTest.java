@@ -12,14 +12,14 @@ public class BaseTest {
 
     public static   String usernameRandom;
     public static String passwordRandom;
-    protected static HomePage homePage;
+    public static HomePage homePage;
     static UserActions actions = new UserActions();
 
-    protected static UserRegistrationPage registrationPage;
-    protected static LoginPage loginPage;
-    protected static CreateNewPostPage createNewPostPage;
-    protected static PersonalProfilePage editProfilePage;
-    protected static LatestPostPage latestPostPage;
+    public static UserRegistrationPage registrationPage;
+    public static LoginPage loginPage;
+    public static CreateNewPostPage createNewPostPage;
+    public static PersonalProfilePage editProfilePage;
+    public static LatestPostPage latestPostPage;
 
 
     @BeforeAll
@@ -48,9 +48,6 @@ public class BaseTest {
 //        UserActions.quitDriver();
 //    }
 
-    public static void login() {
-
-    }
 
 
 }

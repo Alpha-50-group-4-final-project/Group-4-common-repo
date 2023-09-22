@@ -12,10 +12,6 @@ import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenera
 
 public class EditProfileTests extends BaseTest {
 
-
-    private static final String testName = randomUsername();
-    private static final String testPass = randomPassword();
-
     @BeforeAll
     public static void testSetup() {
         homePage.navigateToRegisterPage();
@@ -25,11 +21,11 @@ public class EditProfileTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         actions.goToHomePage();
-        LoginPage login = new LoginPage(actions.getDriver());
-        login.clickOnLoginButton();
-        login.fillUsernameField(testName);
-        login.fillPasswordField(testPass);
-        login.clickOnCreateButton();
+       // LoginPage login = new LoginPage(actions.getDriver());
+        loginPage.clickOnLoginButton();
+        loginPage.fillUsernameField(usernameRandom);
+        loginPage.fillPasswordField(passwordRandom);
+        loginPage.clickOnCreateButton();
         actions.assertElementPresent("WEare.homePage.LogoutButton");
     }
 
@@ -45,12 +41,12 @@ public class EditProfileTests extends BaseTest {
 
         editProfilePage.fillUpFirstNameField("Boris");
         editProfilePage.fillUpLastNameField("Yurukov");
-        editProfilePage.fillBirtdayField("01", "15", "2023");
+        editProfilePage.fillBirtdayField("01", "01", "2023");
         editProfilePage.clickPersonalInformationUpdateButton();
 
         actions.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", "Boris");
         actions.assertElementAttribute("WEare.PersonalProfilePageLastNameField", "value", "Yurukov");
-        actions.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value", "2023-01-15");
+        actions.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value", "2023-01-01");
     }
 
     @Test
