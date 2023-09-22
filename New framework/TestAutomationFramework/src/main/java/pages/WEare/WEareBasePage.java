@@ -3,9 +3,9 @@ package pages.WEare;
 import com.telerikacademy.testframework.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class WEareBasePаge extends BasePage {
+public abstract class WEareBasePage extends BasePage {
 
-    public WEareBasePаge(WebDriver driver, String pageUrlKey) {
+    public WEareBasePage(WebDriver driver, String pageUrlKey) {
         super(driver, pageUrlKey);
     }
 }

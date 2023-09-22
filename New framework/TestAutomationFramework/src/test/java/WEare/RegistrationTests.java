@@ -38,9 +38,17 @@ public class RegistrationTests extends  BaseTest {
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotDoneForEmptyField();
     }
+
+    //notReadY:
     @Test
-    public void registerNewUser_when_invalidEmailPassed(String email){
+    public void registerNewUser_when_invalidEmailPassed(){
         homePage.navigateToRegisterPage();
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField("");
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateRegistryNotDoneForEmptyField();
     }
     @Test
     public void registerNewUser_when_emptyEmailPassed(){
@@ -53,7 +61,7 @@ public class RegistrationTests extends  BaseTest {
         registrationPage.validateRegistryNotDoneForEmptyField();
     }
     @ParameterizedTest
-    @CsvSource({ "12345", "aa", "itIsBoundryUpperlevel"})
+    @CsvSource({ "12345", "aa", "itIsBoundryUpperlevelTest12345"})
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -76,13 +84,12 @@ public class RegistrationTests extends  BaseTest {
 
     //invalid dropdown? optional field
     @Test
-    public void registerNewUser_when_invalidDropdownPassed(){
+    public void registerNewUser_when_emptyDropdownPassed(){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
         registrationPage.fillEmailField(usernameRandom);
         registrationPage.fillPasswordFields(usernameRandom);
-        registrationPage.selectCategoryField(); //amend select
         registrationPage.clickRegistryButton();
-        //assert
+        registrationPage.validateRegistryNotDoneForEmptyField();
     }
 }

@@ -15,7 +15,6 @@ public class LoginTests extends BaseTest {
 
    @BeforeAll
    public  static  void  registerUser(){
-       //UserRegistrationPage register=new UserRegistrationPage(actions.getDriver());
        homePage.navigateToRegisterPage();
        registrationPage.fillUsernameField(usernameRandom);
        registrationPage.fillEmailField(usernameRandom);

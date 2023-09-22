@@ -4,35 +4,35 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebElement;
+
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
 import static com.telerikacademy.testframework.Utils.getConfigPropertyByKey;
 
-public class UserRegistrationPage extends WEareBasePаge {
+public class UserRegistrationPage extends WEareBasePage {
 
-    public UserRegistrationPage(WebDriver driver){
-        super(driver,"WEare.registerPage");
+    public UserRegistrationPage(WebDriver driver) {
+        super(driver, "WEare.registerPage");
     }
 
-    public void fillUsernameField(String username){
+    public void fillUsernameField(String username) {
         actions.waitForElementPresent("WEare.userRegistrationPage.UsernameField");
         actions.typeValueInField(username, "WEare.userRegistrationPage.UsernameField");
     }
-    public void fillEmailField(String username){
-        String email=username+"@abv.bg";
+
+    public void fillEmailField(String username) {
+        String email = username + "@abv.bg";
         actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
     }
 
-    public void fillPasswordFields(String password){
+    public void fillPasswordFields(String password) {
         actions.typeValueInField(password, "WEare.userRegistrationPage.PasswordField");
         actions.typeValueInField(password, "WEare.userRegistrationPage.ConfirmPasswordField");
     }
 
-    public void selectCategoryField(){
+    public void selectCategoryField() {
         actions.clickElement("WEare.userRegistrationPage.ProfessionalCategoryButton");
         List<WebElement> itemsDropDown = driver.findElements(By.xpath("//option"));
         int maxSize = itemsDropDown.size();
@@ -41,12 +41,12 @@ public class UserRegistrationPage extends WEareBasePаge {
         itemsDropDown.get(randomCategory).click();
     }
 
-    public void clickRegistryButton(){
+    public void clickRegistryButton() {
         actions.clickElement("WEare.userRegistrationPage.RegisterButton");
     }
 
-    public void assertUserCreatedWithWelcomeText(){
-        try{
+    public void assertUserCreatedWithWelcomeText() {
+        try {
             actions.assertElementPresent("WEare.RegisterLoginSuccessMessage");
             LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
         } catch (Exception e) {
@@ -54,13 +54,19 @@ public class UserRegistrationPage extends WEareBasePаge {
         }
 
     }
-    public void validateRegistryNotDoneForEmptyField(){
-        actions.assertElementAttribute("WEare.userRegistrationPage.RegisterButton", "value", "Register");
-        LOGGER.info("User was not registered when a field was left empty.");
+
+    public void validateRegistryNotDoneForEmptyField() {
+        try {
+            actions.assertElementAttribute("WEare.userRegistrationPage.RegisterButton", "value", "Register");
+            LOGGER.info("User was not registered when a field was left empty.");
+        } catch (Exception e) {
+            Assertions.fail("Registration was successful although a field was left empty");
+        }
         //getElementByID("username").value==null
     }
-    public void validateErrorMessageForInvalidUsername(){
-        try{
+
+    public void validateErrorMessageForInvalidUsername() {
+        try {
             actions.assertElementPresent("WEare.RegisterErrorMessage.Username");
             LOGGER.info("User was not registered: username requires no whitespaces, only character");
         } catch (Exception e) {
@@ -72,7 +78,6 @@ public class UserRegistrationPage extends WEareBasePаge {
         //String actualErrorMsg = exp.getText();
         //Assertions.assertEquals(actualErrorMsg, expectedErrorMsg);
     }
-
 
 
 }

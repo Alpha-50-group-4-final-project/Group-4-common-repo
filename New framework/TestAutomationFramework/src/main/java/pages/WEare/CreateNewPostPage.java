@@ -2,7 +2,7 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
-public class CreateNewPostPage extends WEareBasePаge {
+public class CreateNewPostPage extends WEareBasePage {
 
     public CreateNewPostPage(WebDriver driver) {
         super(driver, "");
