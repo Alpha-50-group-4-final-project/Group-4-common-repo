@@ -14,17 +14,17 @@ public class LoginPage extends WEareBasePаge {
         actions.clickElement("WEare.homepage.signInButton");
     }
     public  void  fillUsernameField(String username){
-        actions.waitForElementPresent("WEare.loginpage.UsernameField");
-        actions.typeValueInField(username, "WEare.loginpage.UsernameField");
+        actions.waitForElementPresent("WEare.loginPage.UsernameField");
+        actions.typeValueInField(username, "WEare.loginPage.UsernameField");
     }
     public  void  fillPasswordField(String password){
-        actions.waitForElementPresent("Weare.loginpage.PasswordField");
-        actions.typeValueInField(password, "Weare.loginpage.PasswordField");
+        actions.waitForElementPresent("Weare.loginPage.PasswordField");
+        actions.typeValueInField(password, "Weare.loginPage.PasswordField");
     }
 
     public void  clickOnCreateButton(){
-        actions.waitForElementClickable("WEare.loginpage.LoginButton");
-        actions.clickElement("WEare.loginpage.LoginButton");
+        actions.waitForElementClickable("WEare.loginPage.LoginButton");
+        actions.clickElement("WEare.loginPage.LoginButton");
     }
     public void clickOnLogOutButton(){
         actions.waitForElementClickable("WEare.homePage.LogoutButton");

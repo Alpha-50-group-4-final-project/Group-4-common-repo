@@ -1,7 +1,14 @@
 package pages.WEare;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import static com.telerikacademy.testframework.Utils.LOGGER;
 import static com.telerikacademy.testframework.Utils.getConfigPropertyByKey;
 
@@ -11,42 +18,51 @@ public class UserRegistrationPage extends WEareBasePаge {
         super(driver,"WEare.registerPage");
     }
 
-    public void registerNewUser(String username,String password){
-        //driver.get(url);
-        String email=username+"anjibon@abv.bg";
-        actions.waitForElementPresent("WEare.newuserregistrationpage.UsernameField");
-        actions.typeValueInField(username,"WEare.newuserregistrationpage.UsernameField");
-        actions.typeValueInField(email,"WEare.newuserregistrationpage.EmailField");
-        actions.typeValueInField(password,"WEare.newuserregistrationpage.PasswordField");
-        actions.typeValueInField(password,"WEare.newuserregistrationpage.ConfirmPasswordField");
-        actions.clickElement("WEare.newuserregistrationpage.ProfessionalCategoryButton");
-        actions.clickElement("WEare.newuserregistrationpage.ProfessionalCategoryDropDown","Baker");
-        actions.clickElement("WEare.newuserregistrationpage.RegisterButton");
+    public void fillUsernameField(String username){
+        actions.waitForElementPresent("WEare.userRegistrationPage.UsernameField");
+        actions.typeValueInField(username, "WEare.userRegistrationPage.UsernameField");
+    }
+    public void fillEmailField(String username){
+        String email=username+"@abv.bg";
+        actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
+    }
+
+    public void fillPasswordFields(String password){
+        actions.typeValueInField(password, "WEare.userRegistrationPage.PasswordField");
+        actions.typeValueInField(password, "WEare.userRegistrationPage.ConfirmPasswordField");
+    }
+
+    public void selectCategoryField(){
+        actions.clickElement("WEare.userRegistrationPage.ProfessionalCategoryButton");
+        List<WebElement> itemsDropDown = driver.findElements(By.xpath("//option"));
+        int maxSize = itemsDropDown.size();
+        Random random = new Random();
+        int randomCategory = random.nextInt(maxSize);
+        itemsDropDown.get(randomCategory).click();
+    }
+
+    public void clickRegistryButton(){
+        actions.clickElement("WEare.userRegistrationPage.RegisterButton");
     }
 
     public void assertUserCreatedWithWelcomeText(){
         try{
             actions.assertElementPresent("WEare.RegisterLoginSuccessMessage");
-            LOGGER.info(getConfigPropertyByKey("WEare.RegisterLoginSuccessMessage"));
+            LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
         } catch (Exception e) {
             Assertions.fail("Registration was not successful.");
         }
 
     }
-    public void validateErrorMessageForEmptyField(){
-        try{
-            actions.assertElementPresent("");
-            LOGGER.info(getConfigPropertyByKey(""));
-        } catch (Exception e) {
-            Assertions.fail("Proper error message not presented when empty field provided");
-        }
-
+    public void validateRegistryNotDoneForEmptyField(){
+        actions.assertElementAttribute("WEare.userRegistrationPage.RegisterButton", "value", "Register");
+        LOGGER.info("User was not registered when a field was left empty.");
         //getElementByID("username").value==null
     }
     public void validateErrorMessageForInvalidUsername(){
         try{
             actions.assertElementPresent("WEare.RegisterErrorMessage.Username");
-            LOGGER.info("username requires no whitespaces, only character");
+            LOGGER.info("User was not registered: username requires no whitespaces, only character");
         } catch (Exception e) {
             Assertions.fail("Proper error message not presented when invalid username provided");
         }

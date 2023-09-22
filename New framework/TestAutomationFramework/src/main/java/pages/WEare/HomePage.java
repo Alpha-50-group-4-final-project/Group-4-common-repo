@@ -10,14 +10,22 @@ public class HomePage extends WEareBasePаge {
 
     public void navigateToRegisterPage(){
         navigateToPage();
-        actions.waitForElementClickable("WEare.homepageRegisterButton");
-        actions.clickElement("WEare.homepageRegisterButton");
+        actions.waitForElementClickable("WEare.homepage.RegisterButton");
+        actions.clickElement("WEare.homepage.RegisterButton");
     }
 
     public void navigateToSigninPage(){
-        actions.waitForElementClickable("");
-        actions.clickElement("");
+        actions.waitForElementClickable("WEare.homepage.signInButton");
+        actions.clickElement("WEare.homepage.signInButton");
     }
 
+    public void navigateToLatestPosts(){
+        actions.waitForElementClickable("WEare.homepage.latestPostsButton");
+        actions.clickElement("WEare.homepage.latestPostsButton");
+    }
+    public void navigateToAboutUs(){
+        actions.waitForElementClickable("WEare.homepage.aboutUsButton");
+        actions.clickElement("WEare.homepage.aboutUsButton");
+    }
 
 }

@@ -1,9 +1,7 @@
 package WEare;
 
 import com.telerikacademy.testframework.UserActions;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import pages.WEare.*;
 
 
@@ -17,10 +15,10 @@ public class BaseTest {
     protected static HomePage homePage;
     static UserActions actions = new UserActions();
 
-    protected static UserRegistrationPage registerUser;
-    protected static LoginPage login;
+    protected static UserRegistrationPage registrationPage;
+    protected static LoginPage loginPage;
     protected static CreateNewPostPage createNewPostPage;
-    protected static PersonalProfilePage profileEdit;
+    protected static PersonalProfilePage editProfilePage;
 
 
     @BeforeAll
@@ -31,10 +29,10 @@ public class BaseTest {
         passwordRandom = randomPassword();
 
         homePage = new HomePage(actions.getDriver());
-        registerUser = new UserRegistrationPage(actions.getDriver());
-        login =new LoginPage(actions.getDriver());
+        registrationPage = new UserRegistrationPage(actions.getDriver());
+        loginPage =new LoginPage(actions.getDriver());
         createNewPostPage = new CreateNewPostPage(actions.getDriver());
-        profileEdit=new PersonalProfilePage(actions.getDriver());
+        editProfilePage =new PersonalProfilePage(actions.getDriver());
     }
 
 //    @BeforeEach

@@ -9,21 +9,34 @@ public class RegistrationTests extends  BaseTest {
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();
-        registerUser.registerNewUser(usernameRandom, passwordRandom);
-        registerUser.assertUserCreatedWithWelcomeText();
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.assertUserCreatedWithWelcomeText();
     }
+
     @ParameterizedTest
     @CsvSource({ "а", "itIsBoundryUpperleveltest"})
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
-        registerUser.registerNewUser(username, passwordRandom);
-        registerUser.validateErrorMessageForInvalidUsername();
+        registrationPage.fillUsernameField(username);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateErrorMessageForInvalidUsername();
     }
     @Test
     public void registerNewUser_when_emptyUsernamePassed(){
         homePage.navigateToRegisterPage();
-        registerUser.registerNewUser("",passwordRandom);
-        //assertion
+        registrationPage.fillUsernameField("");
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateRegistryNotDoneForEmptyField();
     }
     @Test
     public void registerNewUser_when_invalidEmailPassed(String email){
@@ -32,26 +45,44 @@ public class RegistrationTests extends  BaseTest {
     @Test
     public void registerNewUser_when_emptyEmailPassed(){
         homePage.navigateToRegisterPage();
-
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField("");
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateRegistryNotDoneForEmptyField();
     }
     @ParameterizedTest
     @CsvSource({ "12345", "aa", "itIsBoundryUpperlevel"})
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
-        registerUser.registerNewUser(usernameRandom, password);
-        registerUser.assertUserCreatedWithWelcomeText();
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(password);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateErrorMessageForInvalidUsername();
     }
     @Test
     public void registerNewUser_when_emptyPasswordPassed(){
         homePage.navigateToRegisterPage();
-        registerUser.registerNewUser(usernameRandom, "");
-        //assertion
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields("");
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateRegistryNotDoneForEmptyField();
     }
 
     //invalid dropdown? optional field
     @Test
     public void registerNewUser_when_invalidDropdownPassed(){
         homePage.navigateToRegisterPage();
-
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(usernameRandom);
+        registrationPage.selectCategoryField(); //amend select
+        registrationPage.clickRegistryButton();
+        //assert
     }
 }
