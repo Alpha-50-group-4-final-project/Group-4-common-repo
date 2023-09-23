@@ -40,7 +40,7 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.typeValueInField(lastName, "WEare.PersonalProfilePageLastNameField");
     }
 
-    public void fillBirtdayField(String month, String day, String year) {
+    public void fillBirthdayField(String month, String day, String year) {
         actions.waitForElementPresent("WEare.PersonalProfilePageBirthdayField");
         actions.clearingFiled("WEare.PersonalProfilePageBirthdayField");
         actions.typeValueInField(month, "WEare.PersonalProfilePageBirthdayField");

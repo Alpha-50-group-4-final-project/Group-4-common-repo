@@ -26,8 +26,7 @@ public class EditProfileTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-//        loginPage.navigateToHomePage();
-        // LoginPage login = new LoginPage(actions.getDriver());
+
         loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);
@@ -47,7 +46,7 @@ public class EditProfileTests extends BaseTest {
 
         editProfilePage.fillUpFirstNameField("Boris");
         editProfilePage.fillUpLastNameField("Yurukov");
-        editProfilePage.fillBirtdayField("01", "01", "2023");
+        editProfilePage.fillBirthdayField("01", "01", "2023");
         editProfilePage.clickPersonalInformationUpdateButton();
 
         editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", "Boris");
@@ -60,7 +59,7 @@ public class EditProfileTests extends BaseTest {
     public void editFirstnameLastNameBirthday_when_invalidLastNameISprovided(String firstName, String lastName) {
         editProfilePage.fillUpFirstNameField(firstName);
         editProfilePage.fillUpLastNameField(lastName);
-        editProfilePage.fillBirtdayField("01", "15", "2023");
+        editProfilePage.fillBirthdayField("01", "15", "2023");
         editProfilePage.clickPersonalInformationUpdateButton();
 
         editProfilePage.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
@@ -118,7 +117,7 @@ public class EditProfileTests extends BaseTest {
     public void editFirstnameLastNameBirthday_when_invalidFirstNameISprovided(String firstName, String lastName) {
         editProfilePage.fillUpFirstNameField(firstName);
         editProfilePage.fillUpLastNameField(lastName);
-        editProfilePage.fillBirtdayField("01", "15", "2023");
+        editProfilePage.fillBirthdayField("01", "15", "2023");
         editProfilePage.clickPersonalInformationUpdateButton();
 
         editProfilePage.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");

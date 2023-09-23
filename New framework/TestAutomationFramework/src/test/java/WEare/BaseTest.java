@@ -52,7 +52,7 @@ public class BaseTest {
     public static void userSetUP(String firstName,String lastName) {
         editProfilePage.fillUpFirstNameField(firstName);
         editProfilePage.fillUpLastNameField(lastName);
-        editProfilePage.fillBirtdayField("01", "15", "2023");
+        editProfilePage.fillBirthdayField("01", "15", "2023");
         editProfilePage.clickPersonalInformationUpdateButton();
     }
 
