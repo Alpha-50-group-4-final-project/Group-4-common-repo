@@ -29,4 +29,17 @@ public class HomePage extends WEareBasePage {
         actions.clickElement("WEare.homepage.aboutUsButton");
     }
 
+    public  void typeIntoNameSearchBox(String name){
+        actions.waitForElementPresent("HomePage.NameField");
+        actions.typeValueInField(name,"HomePage.NameField");
+    }
+    public  void typeIntoProfessionSearchBox(String profession){
+        actions.waitForElementPresent("HomePage.ProfessionField");
+        actions.typeValueInField(profession,"HomePage.ProfessionField");
+    }
+    public void clickOnSearchButton(){
+        actions.waitForElementClickable("HomePage.SearchButton");
+        actions.clickElement("HomePage.SearchButton");
+    }
+
 }
