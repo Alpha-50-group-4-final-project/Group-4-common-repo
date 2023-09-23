@@ -29,4 +29,20 @@ public class LoginPage extends WEareBasePage {
         actions.clickElement("WEare.homePage.LogoutButton");
     }
 
+    public void navigateToHomePage() {
+        driver.get("http://localhost:8081/");
+    }
+
+    public void assertErrorMessage(String message) {
+        actions.assertElementText("WEare.RegisterLoginErrorMessage", message);
+    }
+
+    public void assertElementPresent(String locator) {
+        actions.assertElementPresent(locator);
+    }
+
+    public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
+        actions.assertElementAttribute(locator, attributeName, attributeValue);
+    }
+
 }

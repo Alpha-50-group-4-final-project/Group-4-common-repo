@@ -1,5 +1,7 @@
-package WEare;
+package WEare.publicpart;
 
+import WEare.BaseTest;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +12,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.*;
 
 public class LoginTests extends BaseTest {
- private static  final    String testName=randomUsername();
-  private static final   String testPass=randomPassword();
+
 
    @BeforeAll
    public  static  void  registerUser(){
@@ -22,20 +23,16 @@ public class LoginTests extends BaseTest {
        registrationPage.selectCategoryField();
        registrationPage.clickRegistryButton();
    }
-    @BeforeEach
-    public  void navigateToTheHomePage(){
-        actions.goToHomePage();
-        loginPage.clickOnLoginButton();
-    }
+
+
 
     @Test
     public  void  loginWithValidCredentials(){
-        loginPage.fillUsernameField(testName);
-        loginPage.fillPasswordField(testPass);
+       loginPage.clickOnLoginButton();
+        loginPage.fillUsernameField(usernameRandom);
+        loginPage.fillPasswordField(passwordRandom);
         loginPage.clickOnCreateButton();
-
-        actions.assertElementPresent("WEare.homePage.LogoutButton");
-        LOGGER.info("User successfully logged in when provided valid credentials.");
+        loginPage.assertElementPresent("WEare.homePage.LogoutButton");
         loginPage.clickOnLogOutButton();
     }
 
@@ -45,7 +42,6 @@ public class LoginTests extends BaseTest {
         loginPage.fillUsernameField(username);
         loginPage.fillPasswordField(password);
         loginPage.clickOnCreateButton();
-        actions.assertElementText("WEare.RegisterLoginErrorMessage","Wrong username or password.");
-        LOGGER.info("Correct error message is shown.");
+        loginPage.assertErrorMessage("Wrong username or password.");
     }
 }

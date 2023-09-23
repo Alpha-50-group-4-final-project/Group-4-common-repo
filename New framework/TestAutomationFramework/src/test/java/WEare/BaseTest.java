@@ -1,6 +1,7 @@
 package WEare;
 
 import com.telerikacademy.testframework.UserActions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
@@ -42,12 +43,17 @@ public class BaseTest {
 //
 //    }
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void tearDown() {
 
+        UserActions.quitDriver();
+    }
 
+    public static void userSetUP(String firstName,String lastName) {
+        editProfilePage.fillUpFirstNameField(firstName);
+        editProfilePage.fillUpLastNameField(lastName);
+        editProfilePage.fillBirtdayField("01", "15", "2023");
+        editProfilePage.clickPersonalInformationUpdateButton();
+    }
 
 }

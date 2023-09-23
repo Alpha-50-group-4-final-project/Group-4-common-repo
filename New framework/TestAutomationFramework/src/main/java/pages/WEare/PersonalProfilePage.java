@@ -67,11 +67,38 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.waitForElementPresent("WEare.PersonalProfilePageSelfDescriptionField");
         actions.typeValueInField(description, "WEare.PersonalProfilePageSelfDescriptionField");
     }
+    public void clickOnCityButon(){
+        actions.waitForElementPresent("WEare.PersonalProfile.PersonalProfileCityButton");
+        actions.clickElement("WEare.PersonalProfile.PersonalProfileCityButton");
+    }
+    public void selectCity(String city){
+        actions.waitForElementPresent("WEare.PersonalProfilePageChooseCity",city);
+        actions.clickElement("WEare.PersonalProfilePageChooseCity",city);
+    }
 
 
     public void clickPersonalInformationUpdateButton() {
         actions.waitForElementClickable("WEare.homePage.PersonalProfileUpdateProfileButton");
         actions.clickElement("WEare.homePage.PersonalProfileUpdateProfileButton");
+    }
+
+    public void changeProfessionalCategory(String profession){
+        actions.waitForElementPresent("WEare.PersonalProfileUpdatePageProfessionalCategoryButton");
+        actions.clickElement("WEare.PersonalProfileUpdatePageProfessionalCategoryButton");
+        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
+        actions.clickElement("WEare.PersonalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
+        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
+        actions.clickElement("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
+    }
+
+    public void changeServices(String service,String weeklyAvailability){
+        actions.waitForElementVisible("WEare.PersonalProfilePageUpdateServiceField1");
+        actions.typeValueInField(service,"WEare.PersonalProfilePageUpdateServiceField1");
+        actions.waitForElementVisible("WEare.PersonalProfilePageWeeklyAvailabilityField");
+        actions.typeValueInField(weeklyAvailability,"WEare.PersonalProfilePageWeeklyAvailabilityField");
+
+        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateServiceButton");
+        actions.clickElement("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateServiceButton");
     }
 
 
@@ -84,4 +111,21 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.waitForElementClickable("WEare.PersonalProfilePagePersonalInfoUpdateButton");
         actions.clickElement("WEare.PersonalProfilePagePersonalInfoUpdateButton");
     }
+
+    public void navigateToHomePage() {
+        driver.get("http://localhost:8081/");
+    }
+
+    public void assertErrorMessage(String locator,String message,Object... arguments) {
+        actions.assertElementText(locator, message);
+    }
+
+    public void assertElementPresent(String locator) {
+        actions.assertElementPresent(locator);
+    }
+
+    public void assertElementAttribute(String locator, String attributeName, String attributeValue,Object... arguments) {
+        actions.assertElementAttribute(locator, attributeName, attributeValue,arguments);
+    }
+
 }
