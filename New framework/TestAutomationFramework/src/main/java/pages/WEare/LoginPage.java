@@ -8,7 +8,7 @@ public class LoginPage extends WEareBasePage {
     }
 
     public void clickOnLoginButton(){
-        actions.waitForElementVisible("WEare.homepage.signInButton");
+        actions.waitForElementClickable("WEare.homepage.signInButton");
         actions.clickElement("WEare.homepage.signInButton");
     }
     public  void  fillUsernameField(String username){

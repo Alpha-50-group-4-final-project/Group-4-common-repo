@@ -16,8 +16,13 @@ public class SearchingPage extends WEareBasePage{
         actions.waitForElementClickable("ProfileConnectionPageConnectButton");
         actions.clickElement("ProfileConnectionPageConnectButton");
     }
+    public void clickOnDisconnectButton(){
+        actions.waitForElementClickable("PersonalProfilePageDisconnectButton");
+        actions.clickElement("PersonalProfilePageDisconnectButton");
+    }
 
     public void assertRequestIsSend(){
+        actions.waitForElementVisible("ProfileConnectionPageConnectAssert");
         actions.assertElementText("ProfileConnectionPageConnectAssert","Good job! You have send friend request!");
     }
 

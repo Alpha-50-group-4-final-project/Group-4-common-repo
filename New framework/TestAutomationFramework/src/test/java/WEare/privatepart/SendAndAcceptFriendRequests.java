@@ -2,12 +2,11 @@ package WEare.privatepart;
 
 import WEare.BaseTest;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import javax.swing.plaf.PanelUI;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SendAndAcceptFriendRequests extends BaseTest {
 
     public static String FIRST_USER;
@@ -18,14 +17,28 @@ public class SendAndAcceptFriendRequests extends BaseTest {
 
     public static final String USERS_PASSWORD = "pass_123";
 
+
+
+    public String firstUser(){
+        return faker.name().firstName();
+    }
+
     @BeforeAll
     public static void testSetUp() {
         FIRST_USER = faker.name().firstName();
         SECOND_USER = faker.name().firstName();
-        firstUserFirstName = faker.name().firstName();
-        secondUserFirstName = faker.name().firstName();
+
         registerUser(FIRST_USER, USERS_PASSWORD);
         registerUser(SECOND_USER, USERS_PASSWORD);
+
+    }
+
+    @BeforeEach
+    public void usersFirstNameSetUps() {
+        firstUserFirstName = firstUser();
+        secondUserFirstName = firstUser();
+        System.out.println(firstUserFirstName);
+        System.out.println(secondUserFirstName);
         login(FIRST_USER, USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
@@ -35,14 +48,16 @@ public class SendAndAcceptFriendRequests extends BaseTest {
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
         userSetUP(secondUserFirstName, "Stark", "01-01-1970");
+
     }
 
-    @AfterAll
-    public static void clean() {
+    @AfterEach
+    public  void clean() {
         loginPage.clickOnLogOutButton();
     }
 
     @Test
+    @Order(1)
     public void sendConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
@@ -50,9 +65,11 @@ public class SendAndAcceptFriendRequests extends BaseTest {
         searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
+
     }
 
     @Test
+    @Order(2)
     public void acceptConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
