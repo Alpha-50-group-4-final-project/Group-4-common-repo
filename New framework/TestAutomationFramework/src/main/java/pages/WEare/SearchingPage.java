@@ -34,4 +34,7 @@ public class SearchingPage extends WEareBasePage{
         actions.waitForElementClickable("PersonalProfileFriendRequestAcceptButton",name);
         actions.clickElement("PersonalProfileFriendRequestAcceptButton",name);
     }
+    public void assertElementPresent(String locator) {
+        actions.assertElementPresent(locator);
+    }
 }

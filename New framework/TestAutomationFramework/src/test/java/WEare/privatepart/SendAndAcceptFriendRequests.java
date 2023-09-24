@@ -57,7 +57,7 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     }
 
     @Test
-    @Order(1)
+    @Order(2)
     public void sendConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
@@ -69,7 +69,7 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void acceptConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
@@ -83,6 +83,29 @@ public class SendAndAcceptFriendRequests extends BaseTest {
         homePage.navigateToPersonalProfileButton();
         searchingPage.clickOnNewFriendRequestButton();
         searchingPage.approveRequestByUserFirstName(secondUserFirstName);
+    }
 
+    @Test
+    @Order(1)
+    public void disconnectAcceptedFriendShip(){
+        editProfilePage.navigateToHomePage();
+        homePage.typeIntoNameSearchBox(firstUserFirstName);
+        homePage.clickOnSearchButton();
+        searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
+        searchingPage.clickOnConnectButton();
+        searchingPage.assertRequestIsSend();
+        loginPage.clickOnLogOutButton();
+        login(FIRST_USER, USERS_PASSWORD);
+        editProfilePage.navigateToHomePage();
+        homePage.navigateToPersonalProfileButton();
+        searchingPage.clickOnNewFriendRequestButton();
+        searchingPage.approveRequestByUserFirstName(secondUserFirstName);
+
+        editProfilePage.navigateToHomePage();
+        homePage.typeIntoNameSearchBox(secondUserFirstName);
+        homePage.clickOnSearchButton();
+        searchingPage.seeCurrentUserProfileByName(secondUserFirstName);
+        searchingPage.clickOnDisconnectButton();
+        searchingPage.assertElementPresent("ProfileConnectionPageConnectButton");
     }
 }
