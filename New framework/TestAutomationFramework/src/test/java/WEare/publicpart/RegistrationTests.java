@@ -18,7 +18,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.assertUserCreatedWithWelcomeText();
     }
     @ParameterizedTest
-    @CsvSource({ "а", "UserTest", "UserTest", "itIsBoundryUpperleveltest"})
+    @CsvSource({ "а", "thisUserNameShouldBeTooLongToCreateAUser"})
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -26,7 +26,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        //registrationPage.validateErrorMessageForInvalidUsername();
+        registrationPage.validateRegistryNotSuccessful();
     }
     @Test
     public void registerNewUser_when_emptyUsernamePassed(){
@@ -36,7 +36,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        registrationPage.validateRegistryNotDoneForEmptyField();
+        registrationPage.validateRegistryNotSuccessful();
     }
     //notReadY:
     @Test
@@ -47,20 +47,20 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        registrationPage.validateRegistryNotDoneForEmptyField();
+        registrationPage.validateRegistryNotSuccessful();
     }
     @Test
     public void registerNewUser_when_emptyEmailPassed(){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
-        registrationPage.fillEmailField("");
+        registrationPage.leaveEmailEmpty("");
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        registrationPage.validateRegistryNotDoneForEmptyField();
+        registrationPage.validateRegistryNotSuccessful();
     }
     @ParameterizedTest
-    @CsvSource({ "12345", "123456", "12345678","123456789"})
+    @CsvSource({ "12345", "01234567891011121314"})
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -68,7 +68,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(password);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        //registrationPage.validateErrorMessageForInvalidUsername();
+        registrationPage.validateRegistryNotSuccessful();
     }
     @Test
     public void registerNewUser_when_emptyPasswordPassed(){
@@ -78,14 +78,14 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields("");
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
-        registrationPage.validateRegistryNotDoneForEmptyField();
+        registrationPage.validateRegistryNotSuccessful();
     }
     @Test
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
         registrationPage.fillEmailField(usernameRandom);
-        registrationPage.fillPasswordFields(usernameRandom);
+        registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
     }

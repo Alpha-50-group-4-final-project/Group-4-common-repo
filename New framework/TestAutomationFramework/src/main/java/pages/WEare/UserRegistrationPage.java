@@ -26,6 +26,9 @@ public class UserRegistrationPage extends WEareBasePage {
         String email = username + "@abv.bg";
         actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
     }
+    public void leaveEmailEmpty(String email){
+        actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
+    }
 
     public void fillPasswordFields(String password) {
         actions.typeValueInField(password, "WEare.userRegistrationPage.PasswordField");
@@ -55,17 +58,17 @@ public class UserRegistrationPage extends WEareBasePage {
 
     }
 
-    public void validateRegistryNotDoneForEmptyField() {
+    public void validateRegistryNotSuccessful() {
         try {
             actions.assertElementAttribute("WEare.userRegistrationPage.RegisterButton", "value", "Register");
             LOGGER.info("User was not registered when a field was left empty.");
         } catch (Exception e) {
-            Assertions.fail("Registration was successful although a field was left empty");
+            Assertions.fail("Registration was successful although criterials were not met.");
         }
         //getElementByID("username").value==null
     }
 
-    public void validateErrorMessageForInvalidUsername() {
+    public void validateErrorMessageForInvalidData() {
         try {
             actions.assertElementPresent("WEare.RegisterErrorMessage.Username");
             LOGGER.info("User was not registered: username requires no whitespaces, only character");
