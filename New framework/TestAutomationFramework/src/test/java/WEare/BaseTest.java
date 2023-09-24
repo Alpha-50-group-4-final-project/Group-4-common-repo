@@ -15,7 +15,7 @@ public class BaseTest {
     public static   String usernameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    static UserActions actions = new UserActions();
+    protected static UserActions actions = new UserActions();
 
     public static UserRegistrationPage registrationPage;
     public static LoginPage loginPage;
@@ -48,11 +48,11 @@ public class BaseTest {
 //
 //    }
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void tearDown() {
+
+        UserActions.quitDriver();
+    }
 
     public static void userSetUP(String firstName,String lastName,String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
