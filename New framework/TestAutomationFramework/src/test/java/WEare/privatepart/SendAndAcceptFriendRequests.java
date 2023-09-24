@@ -21,12 +21,12 @@ public class SendAndAcceptFriendRequests extends BaseTest {
         login(FIRST_USER,USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
-        userSetUP("JonYBoy","Snow","01-01-1970");
+        userSetUP("JonYBoy","Snow","1970-01-01");
         loginPage.clickOnLogOutButton();
         login(SECOND_USER,USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
-        userSetUP("Arya","Stark","01-01-1970");
+        userSetUP("Arya","Stark","1970-01-01");
     }
     @AfterAll
     public static void  clean(){
@@ -36,9 +36,9 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     @Test
     public void sendConnectRequest(){
         editProfilePage.navigateToHomePage();
-        homePage.typeIntoNameSearchBox("Jon");
+        homePage.typeIntoNameSearchBox("JonYBoy");
         homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName("Jon");
+        searchingPage.seeCurrentUserProfileByName("JonYBoy");
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
     }

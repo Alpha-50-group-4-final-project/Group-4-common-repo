@@ -20,28 +20,29 @@ public class PostsAndCommentsTests extends BaseTest {
     PostsAndCommentsPage homePage;
     LoginPage loginPage;
 
+    String username = "dinko";
+    String password = "pass123";
+
 
     @BeforeAll
     public void init() throws IOException {
-        Properties properties = new Properties();
-        FileInputStream in = new FileInputStream("src/test/resources/config.properties");
-        properties.load(in);
-        in.close();
-
-        String username = properties.getProperty("valid.username.dinko");
-        String password = properties.getProperty("valid.password.dinko");
-
+//
+//        FileInputStream in = new FileInputStream("src/test/resources/config.properties");
+//        properties.load(in);
+//        in.close();
+//
+//
+//
         homePage = new PostsAndCommentsPage(actions.getDriver());
         loginPage = new LoginPage(actions.getDriver());
-
-        loginUser(username, password);
+        login(username, password);
     }
 
     public void loginUser(String username, String password) {
         loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(username);
         loginPage.fillPasswordField(password);
-        loginPage.clickOnCreateButton();
+        loginPage.clickOnSubmitButton();
     }
 
     @AfterAll
