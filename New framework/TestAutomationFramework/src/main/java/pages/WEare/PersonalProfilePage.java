@@ -17,6 +17,7 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.clickElement("WEare.PersonalProfilePageEditButton");
     }
 
+
     public void cleanAllFields() {
         actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
         actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
@@ -40,12 +41,11 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.typeValueInField(lastName, "WEare.PersonalProfilePageLastNameField");
     }
 
-    public void fillBirthdayField(String month, String day, String year) {
+    public void fillBirthdayField(String date) {
         actions.waitForElementPresent("WEare.PersonalProfilePageBirthdayField");
         actions.clearingFiled("WEare.PersonalProfilePageBirthdayField");
-        actions.typeValueInField(month, "WEare.PersonalProfilePageBirthdayField");
-        actions.typeValueInField(day, "WEare.PersonalProfilePageBirthdayField");
-        actions.typeValueInField(year, "WEare.PersonalProfilePageBirthdayField");
+        actions.typeValueInField(date, "WEare.PersonalProfilePageBirthdayField");
+
     }
 
     public void changeGender(String genderType) {

@@ -27,6 +27,6 @@ public class SearchingPage extends WEareBasePage{
     }
     public void approveRequestByUserFirstName(String name){
         actions.waitForElementClickable("PersonalProfileFriendRequestAcceptButton",name);
-        actions.clickElement("PersonalProfileFriendRequestAcceptButton");
+        actions.clickElement("PersonalProfileFriendRequestAcceptButton",name);
     }
 }

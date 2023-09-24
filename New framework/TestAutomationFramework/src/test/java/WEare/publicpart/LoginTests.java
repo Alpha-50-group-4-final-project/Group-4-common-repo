@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
        loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);
-        loginPage.clickOnCreateButton();
+        loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("WEare.homePage.LogoutButton");
         loginPage.clickOnLogOutButton();
     }
@@ -41,7 +41,7 @@ public class LoginTests extends BaseTest {
     public void login_When_InvalidCredentialsArePassed(String username,String password){
         loginPage.fillUsernameField(username);
         loginPage.fillPasswordField(password);
-        loginPage.clickOnCreateButton();
+        loginPage.clickOnSubmitButton();
         loginPage.assertErrorMessage("Wrong username or password.");
     }
 }
