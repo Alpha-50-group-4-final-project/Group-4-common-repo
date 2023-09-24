@@ -32,12 +32,8 @@ public class HomePage extends WEareBasePage {
     }
 
     public  void typeIntoNameSearchBox(String name){
-<<<<<<< Updated upstream
-       actions.waitForElementVisible("HomePage.NameField");
-        actions.clickElement("HomePage.NameField");
-=======
+
         actions.waitForElementVisible("HomePage.NameField");
->>>>>>> Stashed changes
         actions.typeValueInField(name,"HomePage.NameField");
     }
     public  void typeIntoProfessionSearchBox(String profession){
