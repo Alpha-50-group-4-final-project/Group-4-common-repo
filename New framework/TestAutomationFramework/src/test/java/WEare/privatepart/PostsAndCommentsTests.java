@@ -17,8 +17,8 @@ import java.util.Random;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostsAndCommentsTests extends BaseTest {
-    PostsAndCommentsPage homePage;
-    LoginPage loginPage;
+
+
 
     String username = "dinko";
     String password = "pass123";
@@ -26,23 +26,7 @@ public class PostsAndCommentsTests extends BaseTest {
 
     @BeforeAll
     public void init() throws IOException {
-//
-//        FileInputStream in = new FileInputStream("src/test/resources/config.properties");
-//        properties.load(in);
-//        in.close();
-//
-//
-//
-        homePage = new PostsAndCommentsPage(actions.getDriver());
-        loginPage = new LoginPage(actions.getDriver());
         login(username, password);
-    }
-
-    public void loginUser(String username, String password) {
-        loginPage.clickOnLoginButton();
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
-        loginPage.clickOnSubmitButton();
     }
 
     @AfterAll
@@ -56,7 +40,7 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(1)
     @Description("Create a new public post")
     public void createPublicPost() {
-        homePage.createPost();
+        postsAndCommentsPage.createPost();
         actions.assertElementPresent(POST_EXIST);
         actions.assertElementPresent(POST_IS_PUBLIC);
     }
@@ -65,7 +49,7 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(2)
     @Description("Validate the user can edit his public post")
     public void editPublicPost() {
-        homePage.editPost();
+        postsAndCommentsPage.editPost();
         actions.assertElementPresent(POST_EDITED_EXIST);
     }
 
@@ -73,7 +57,7 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(3)
     @Description("Validate user can like a post")
     public void likePublicPost() {
-        homePage.likePost();
+        postsAndCommentsPage.likePost();
         actions.assertElementPresent(DISLIKE_POST_BUTTON);
     }
 
@@ -81,7 +65,7 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(4)
     @Description("Validate user can dislike a post")
     public void dislikePublicPost() {
-        homePage.dislikePost();
+        postsAndCommentsPage.dislikePost();
         actions.assertElementPresent(LIKE_POST_BUTTON);
     }
 
@@ -89,7 +73,7 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(5)
     @Description("Validate registered user is able to add a valid comment to a post")
     public void addValidComment() {
-        homePage.addComment(VALID_COMMENT_MESSAGE);
+        postsAndCommentsPage.addComment(VALID_COMMENT_MESSAGE);
         actions.assertElementPresent(DELETE_COMMENT_BUTTON);
     }
 
@@ -97,10 +81,10 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(6)
     @Description("Validate user can delete his post")
     public void deletePublicPost() {
-        homePage.goToLatestPosts();
+        postsAndCommentsPage.goToLatestPosts();
         actions.waitForElementClickable(EXPLORE_PUBLIC_POSTS);
         actions.clickElement(EXPLORE_PUBLIC_POSTS);
-        homePage.deletePost();
+        postsAndCommentsPage.deletePost();
         actions.assertElementPresent(DELETE_MESSAGE);
     }
 }

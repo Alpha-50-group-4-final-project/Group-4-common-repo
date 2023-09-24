@@ -24,6 +24,7 @@ public class BaseTest {
     public static LatestPostPage latestPostPage;
     public static SearchingPage searchingPage;
     public static Faker faker;
+    public static PostsAndCommentsPage postsAndCommentsPage;
 
 
     @BeforeAll
@@ -41,6 +42,7 @@ public class BaseTest {
         latestPostPage =new LatestPostPage(actions.getDriver());
        searchingPage=new SearchingPage(actions.getDriver());
        faker=new Faker();
+       postsAndCommentsPage = new PostsAndCommentsPage(actions.getDriver());
     }
 
 //    @BeforeEach
