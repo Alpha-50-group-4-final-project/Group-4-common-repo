@@ -3,29 +3,17 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Keys;
-import pages.WEare.LoginPage;
-import pages.WEare.PostsAndCommentsPage;
 import static pages.WEare.Constants.*;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.Random;
-
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostsAndCommentsTests extends BaseTest {
-
-
-
-    String username = "dinko";
-    String password = "pass123";
+    static String username = "dinko";
+    static String password = "pass123";
 
 
     @BeforeAll
-    public void init() throws IOException {
+    public static void testSetup(){
         login(username, password);
     }
 
