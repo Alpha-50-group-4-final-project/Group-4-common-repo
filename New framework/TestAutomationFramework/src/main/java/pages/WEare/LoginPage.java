@@ -20,7 +20,7 @@ public class LoginPage extends WEareBasePage {
         actions.typeValueInField(password, "Weare.loginPage.PasswordField");
     }
 
-    public void  clickOnCreateButton(){
+    public void  clickOnSubmitButton(){
         actions.waitForElementClickable("WEare.loginPage.LoginButton");
         actions.clickElement("WEare.loginPage.LoginButton");
     }

@@ -30,7 +30,8 @@ public class HomePage extends WEareBasePage {
     }
 
     public  void typeIntoNameSearchBox(String name){
-        actions.waitForElementPresent("HomePage.NameField");
+       actions.waitForElementVisible("HomePage.NameField");
+        actions.clickElement("HomePage.NameField");
         actions.typeValueInField(name,"HomePage.NameField");
     }
     public  void typeIntoProfessionSearchBox(String profession){
@@ -40,6 +41,10 @@ public class HomePage extends WEareBasePage {
     public void clickOnSearchButton(){
         actions.waitForElementClickable("HomePage.SearchButton");
         actions.clickElement("HomePage.SearchButton");
+    }
+    public void navigateToPersonalProfileButton(){
+        actions.waitForElementPresent("WEare.homePage.PersonalProfileButton");
+        actions.clickElement("WEare.homePage.PersonalProfileButton");
     }
 
 }

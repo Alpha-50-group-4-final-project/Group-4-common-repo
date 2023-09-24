@@ -1,5 +1,6 @@
 package WEare;
 
+import com.github.javafaker.Faker;
 import com.telerikacademy.testframework.UserActions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,6 +22,8 @@ public class BaseTest {
     public static CreateNewPostPage createNewPostPage;
     public static PersonalProfilePage editProfilePage;
     public static LatestPostPage latestPostPage;
+    public static SearchingPage searchingPage;
+    public static Faker faker;
 
 
     @BeforeAll
@@ -36,6 +39,8 @@ public class BaseTest {
         createNewPostPage = new CreateNewPostPage(actions.getDriver());
         editProfilePage =new PersonalProfilePage(actions.getDriver());
         latestPostPage =new LatestPostPage(actions.getDriver());
+       searchingPage=new SearchingPage(actions.getDriver());
+       faker=new Faker();
     }
 
 //    @BeforeEach
@@ -43,17 +48,33 @@ public class BaseTest {
 //
 //    }
 
-    @AfterAll
-    public static void tearDown() {
+//    @AfterAll
+//    public static void tearDown() {
+//
+//        UserActions.quitDriver();
+//    }
 
-        UserActions.quitDriver();
-    }
-
-    public static void userSetUP(String firstName,String lastName) {
+    public static void userSetUP(String firstName,String lastName,String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
         editProfilePage.fillUpLastNameField(lastName);
-        editProfilePage.fillBirthdayField("01", "15", "2023");
+        editProfilePage.fillBirthdayField(birthdayDate);
         editProfilePage.clickPersonalInformationUpdateButton();
+    }
+    public static void registerUser(String username,String password){
+        homePage.navigateToRegisterPage();
+        registrationPage.fillUsernameField(username);
+        registrationPage.fillEmailField(password);
+        registrationPage.fillPasswordFields(password);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.assertUserCreatedWithWelcomeText();
+    }
+    public  static void login(String username,String password){
+        loginPage.clickOnLoginButton();
+        loginPage.fillUsernameField(username);
+        loginPage.fillPasswordField(password);
+        loginPage.clickOnSubmitButton();
+        loginPage.assertElementPresent("WEare.homePage.LogoutButton");
     }
 
 }
