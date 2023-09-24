@@ -14,7 +14,7 @@ public class BaseTest {
     public static   String usernameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    static UserActions actions = new UserActions();
+    protected static UserActions actions = new UserActions();
 
     public static UserRegistrationPage registrationPage;
     public static LoginPage loginPage;
