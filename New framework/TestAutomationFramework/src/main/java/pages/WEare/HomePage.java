@@ -2,6 +2,8 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
+import static com.telerikacademy.testframework.Utils.LOGGER;
+
 public class HomePage extends WEareBasePage {
 
     public HomePage(WebDriver driver) {
@@ -30,8 +32,12 @@ public class HomePage extends WEareBasePage {
     }
 
     public  void typeIntoNameSearchBox(String name){
+<<<<<<< Updated upstream
        actions.waitForElementVisible("HomePage.NameField");
         actions.clickElement("HomePage.NameField");
+=======
+        actions.waitForElementVisible("HomePage.NameField");
+>>>>>>> Stashed changes
         actions.typeValueInField(name,"HomePage.NameField");
     }
     public  void typeIntoProfessionSearchBox(String profession){
@@ -45,6 +51,11 @@ public class HomePage extends WEareBasePage {
     public void navigateToPersonalProfileButton(){
         actions.waitForElementPresent("WEare.homePage.PersonalProfileButton");
         actions.clickElement("WEare.homePage.PersonalProfileButton");
+    }
+
+    public void validateSearchResult(String name){
+        actions.assertElementAttribute("Weare.homePage.nameInputField", "value", name);
+        LOGGER.info("Search result validated.");
     }
 
 }

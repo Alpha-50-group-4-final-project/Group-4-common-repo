@@ -8,33 +8,43 @@ public class AnonymousUserTests extends BaseTest {
     public void viewRegisterPage_when_registerButtonClicked() {
         homePage.navigateToRegisterPage();
         registrationPage.assertPageNavigated();
-        //assert header?
+        registrationPage.validateHeader("Join our community");
     }
     @Test
     public void viewLoginPage_when_signInButtonClicked() {
         homePage.navigateToLoginPage();
         loginPage.assertPageNavigated();
-        //assert header?
+        loginPage.validateHeader("Login Page");
     }
     @Test
     public void viewPublicPosts_when_latestPostsClicked() {
         homePage.navigateToLatestPosts();
         latestPostPage.assertPageNavigated();
-        latestPostPage.assertPublicPostShown();
-        //assert header
-        //assert latest post?
+        latestPostPage.validateHeader("Explore all posts");
+    }
+    @Test
+    public void postOrderedChronologically_when_latestPostsClicked(){
+        //api create profile and public posts?
+
+        homePage.navigateToLatestPosts();
+        latestPostPage.assertPageNavigated();
+        latestPostPage.assertPublicPostOrdered();
     }
 
     @Test
-    public void viewPublicProfiles_when_searchPublicProfilesPerformed() {
+    public void viewPublicProfiles_when_searchByNamePerformed() {
+        homePage.navigateToPage();
+        homePage.typeIntoNameSearchBox("Ann");
+        homePage.clickOnSearchButton();
+        homePage.validateSearchResult("Ann");
     }
 
-    @Test
-    public void errorMessage_when_searchPrivateProfilePerformed(){
-
-    }
-    @Test
-    public void errorMessage_when_searchUnexistingProfilePerformed(){
-
-    }
+//    @Test
+//    public void errorMessage_when_searchPrivateProfilePerformed(){
+//
+//    }
+//    @Test
+//    public void errorMessage_when_searchUnexistingProfilePerformed(){
+//
+//    }
 }

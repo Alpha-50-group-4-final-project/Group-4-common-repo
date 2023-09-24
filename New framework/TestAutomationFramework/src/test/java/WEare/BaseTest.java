@@ -50,11 +50,11 @@ public class BaseTest {
 //
 //    }
 
-    @AfterAll
-    public static void tearDown() {
-
-        UserActions.quitDriver();
-    }
+//    @AfterAll
+//    public static void tearDown() {
+//
+//        UserActions.quitDriver();
+//    }
 
     public static void userSetUP(String firstName,String lastName,String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
