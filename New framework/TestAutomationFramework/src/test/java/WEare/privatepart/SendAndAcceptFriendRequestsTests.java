@@ -1,13 +1,13 @@
 package WEare.privatepart;
 
 import WEare.BaseTest;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.*;
 
-import javax.swing.plaf.PanelUI;
+import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomUserFirstName;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SendAndAcceptFriendRequests extends BaseTest {
+public class SendAndAcceptFriendRequestsTests extends BaseTest {
 
     public static String FIRST_USER;
     public static String SECOND_USER;
@@ -18,36 +18,29 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     public static final String USERS_PASSWORD = "pass_123";
 
 
-
-    public String firstUser(){
-        return faker.name().firstName();
-    }
-
-    @BeforeAll
-    public static void testSetUp() {
-        FIRST_USER = faker.name().firstName();
-        SECOND_USER = faker.name().firstName();
-
-        registerUser(FIRST_USER, USERS_PASSWORD);
-        registerUser(SECOND_USER, USERS_PASSWORD);
-
-    }
-
     @BeforeEach
     public void usersFirstNameSetUps() {
-        firstUserFirstName = firstUser();
-        secondUserFirstName = firstUser();
+        FIRST_USER = faker.name().firstName();
+        SECOND_USER = faker.name().firstName();
+        registerUser(FIRST_USER, USERS_PASSWORD);
+        registerUser(SECOND_USER, USERS_PASSWORD);
+        firstUserFirstName = faker.name().firstName();
+        LOGGER.info(firstUserFirstName + " was generated");
+        secondUserFirstName = faker.name().firstName();
+        LOGGER.info(secondUserFirstName + " was generated");
+        String lastNameFirstUser=randomUserFirstName();
+        String lastNameSecondUser=randomUserFirstName();
         System.out.println(firstUserFirstName);
         System.out.println(secondUserFirstName);
         login(FIRST_USER, USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
-        userSetUP(firstUserFirstName, "Snow", "01-01-1970");
+        userSetUP(firstUserFirstName, lastNameFirstUser, "01-01-1970");
         loginPage.clickOnLogOutButton();
         login(SECOND_USER, USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
-        userSetUP(secondUserFirstName, "Stark", "01-01-1970");
+        userSetUP(secondUserFirstName, lastNameSecondUser, "01-01-1970");
 
     }
 
@@ -57,7 +50,6 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     }
 
     @Test
-    @Order(2)
     public void sendConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
@@ -65,11 +57,11 @@ public class SendAndAcceptFriendRequests extends BaseTest {
         searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
+        searchingPage.clickOnDisconnectButton();
 
     }
 
     @Test
-    @Order(3)
     public void acceptConnectRequest() {
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);
@@ -86,7 +78,6 @@ public class SendAndAcceptFriendRequests extends BaseTest {
     }
 
     @Test
-    @Order(1)
     public void disconnectAcceptedFriendShip(){
         editProfilePage.navigateToHomePage();
         homePage.typeIntoNameSearchBox(firstUserFirstName);

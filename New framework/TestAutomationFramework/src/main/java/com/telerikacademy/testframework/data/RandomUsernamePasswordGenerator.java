@@ -60,4 +60,18 @@ public class RandomUsernamePasswordGenerator {
         }
         return password.toString();
     }
+    public static String randomUserFirstName() {
+        int minUsernameLength = 3; // Minimum password length
+        int maxUsernameLength = 25; // Maximum   password length
+
+        // Generate random int value from min to max
+        int random_int = (int)Math.floor(Math.random() * (maxUsernameLength - minUsernameLength + 1) + minUsernameLength);
+
+        String pattern = "Aa"; // Define your pattern here
+
+        String userName = generateString(pattern, random_int); // Adjust the length as needed
+        LOGGER.info("Random username was generated : " + userName);
+
+        return  userName;}
+
 }
