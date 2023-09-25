@@ -13,6 +13,9 @@ public class SearchingPage extends WEareBasePage{
         actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
     }
     public void clickOnConnectButton(){
+        if (actions.isElementVisible("PersonalProfilePageDisconnectButton")) {
+            actions.clickElement("PersonalProfilePageDisconnectButton");
+        }
         actions.waitForElementClickable("ProfileConnectionPageConnectButton");
         actions.clickElement("ProfileConnectionPageConnectButton");
     }

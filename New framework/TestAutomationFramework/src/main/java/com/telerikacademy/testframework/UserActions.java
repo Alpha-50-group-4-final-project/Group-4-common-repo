@@ -180,4 +180,17 @@ public class UserActions {
         WebElement element = driver.findElement(By.xpath(locator));
         element.clear();
     }
+    public boolean isElementVisible(String locator, Object... arguments) {
+        int defaultTimeout = Integer.parseInt(getConfigPropertyByKey("config.defaultTimeoutSeconds"));
+        Duration timeout = Duration.ofSeconds(defaultTimeout);
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        String xpath = getLocatorValueByKey(locator, arguments);
+
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(xpath)));
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
 }

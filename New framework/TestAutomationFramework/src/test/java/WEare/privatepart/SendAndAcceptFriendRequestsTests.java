@@ -3,9 +3,6 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import org.junit.jupiter.api.*;
 
-import static com.telerikacademy.testframework.Utils.LOGGER;
-import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomUserFirstName;
-
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SendAndAcceptFriendRequestsTests extends BaseTest {
 
@@ -18,85 +15,78 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     public static final String USERS_PASSWORD = "pass_123";
 
 
-    @BeforeEach
-    public void usersFirstNameSetUps() {
+    @BeforeAll
+    public static void initialSetUp() {
         FIRST_USER = faker.name().firstName();
         SECOND_USER = faker.name().firstName();
         registerUser(FIRST_USER, USERS_PASSWORD);
         registerUser(SECOND_USER, USERS_PASSWORD);
-        firstUserFirstName = faker.name().firstName();
-        LOGGER.info(firstUserFirstName + " was generated");
-        secondUserFirstName = faker.name().firstName();
-        LOGGER.info(secondUserFirstName + " was generated");
-        String lastNameFirstUser=randomUserFirstName();
-        String lastNameSecondUser=randomUserFirstName();
-        System.out.println(firstUserFirstName);
-        System.out.println(secondUserFirstName);
-        login(FIRST_USER, USERS_PASSWORD);
-        editProfilePage.navigateToHomePage();
-        editProfilePage.navigateToEditProfileMenu();
-        userSetUP(firstUserFirstName, lastNameFirstUser, "01-01-1970");
-        loginPage.clickOnLogOutButton();
-        login(SECOND_USER, USERS_PASSWORD);
-        editProfilePage.navigateToHomePage();
-        editProfilePage.navigateToEditProfileMenu();
-        userSetUP(secondUserFirstName, lastNameSecondUser, "01-01-1970");
 
     }
 
+    @BeforeEach
+    public void usersFirstNameSetUps() {
+        firstUserFirstName = faker.name().firstName();
+        secondUserFirstName = faker.name().firstName();
+        String lastNameFirstUser = faker.name().firstName();
+        String lastNameSecondUser = faker.name().firstName();
+        loginAndSetupUsers(FIRST_USER, USERS_PASSWORD, firstUserFirstName, lastNameFirstUser);
+        loginPage.clickOnLogOutButton();
+        loginAndSetupUsers(SECOND_USER, USERS_PASSWORD, secondUserFirstName, lastNameSecondUser);
+    }
+
+
     @AfterEach
-    public  void clean() {
+    public void clean() {
         loginPage.clickOnLogOutButton();
     }
 
     @Test
     public void sendConnectRequest() {
-        editProfilePage.navigateToHomePage();
-        homePage.typeIntoNameSearchBox(firstUserFirstName);
-        homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
+        searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
-        searchingPage.clickOnDisconnectButton();
-
     }
 
     @Test
     public void acceptConnectRequest() {
-        editProfilePage.navigateToHomePage();
-        homePage.typeIntoNameSearchBox(firstUserFirstName);
-        homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
+        searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
-        loginPage.clickOnLogOutButton();
-        login(FIRST_USER, USERS_PASSWORD);
-        editProfilePage.navigateToHomePage();
-        homePage.navigateToPersonalProfileButton();
-        searchingPage.clickOnNewFriendRequestButton();
-        searchingPage.approveRequestByUserFirstName(secondUserFirstName);
+        loginSendsApproveRequests(FIRST_USER, secondUserFirstName);
     }
 
     @Test
-    public void disconnectAcceptedFriendShip(){
-        editProfilePage.navigateToHomePage();
-        homePage.typeIntoNameSearchBox(firstUserFirstName);
-        homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName(firstUserFirstName);
+    public void disconnectAcceptedFriendShip() {
+        searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
+        loginSendsApproveRequests(FIRST_USER, secondUserFirstName);
+        searchAndFindCurrentProfileByName(secondUserFirstName);
+        searchingPage.clickOnDisconnectButton();
+        searchingPage.assertElementPresent("ProfileConnectionPageConnectButton");
+    }
+
+    private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();
-        login(FIRST_USER, USERS_PASSWORD);
+        login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         homePage.navigateToPersonalProfileButton();
         searchingPage.clickOnNewFriendRequestButton();
-        searchingPage.approveRequestByUserFirstName(secondUserFirstName);
+        searchingPage.approveRequestByUserFirstName(userFirstName);
+    }
 
+    private static void searchAndFindCurrentProfileByName(String userName) {
         editProfilePage.navigateToHomePage();
-        homePage.typeIntoNameSearchBox(secondUserFirstName);
+        homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName(secondUserFirstName);
-        searchingPage.clickOnDisconnectButton();
-        searchingPage.assertElementPresent("ProfileConnectionPageConnectButton");
+        searchingPage.seeCurrentUserProfileByName(userName);
+    }
+
+    private static void loginAndSetupUsers(String username, String password, String userFirstname, String userLastname) {
+        login(username, password);
+        editProfilePage.navigateToHomePage();
+        editProfilePage.navigateToEditProfileMenu();
+        userSetUP(userFirstname, userLastname, "01-01-1970");
     }
 }
