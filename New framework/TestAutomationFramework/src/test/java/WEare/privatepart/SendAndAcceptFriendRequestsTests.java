@@ -30,9 +30,9 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         secondUserFirstName = faker.name().firstName();
         String lastNameFirstUser = faker.name().firstName();
         String lastNameSecondUser = faker.name().firstName();
-        loginAndSetupUsers(FIRST_USER, USERS_PASSWORD, firstUserFirstName, lastNameFirstUser);
+        loginAndSetupUsers(FIRST_USER, firstUserFirstName, lastNameFirstUser);
         loginPage.clickOnLogOutButton();
-        loginAndSetupUsers(SECOND_USER, USERS_PASSWORD, secondUserFirstName, lastNameSecondUser);
+        loginAndSetupUsers(SECOND_USER, secondUserFirstName, lastNameSecondUser);
     }
 
 
@@ -83,8 +83,8 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         searchingPage.seeCurrentUserProfileByName(userName);
     }
 
-    private static void loginAndSetupUsers(String username, String password, String userFirstname, String userLastname) {
-        login(username, password);
+    private static void loginAndSetupUsers(String username, String userFirstname, String userLastname) {
+        login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
         editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
         userSetUP(userFirstname, userLastname, "01-01-1970");
