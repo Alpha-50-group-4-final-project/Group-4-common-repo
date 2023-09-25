@@ -23,6 +23,7 @@ public class BaseTest {
     public static PersonalProfilePage editProfilePage;
     public static LatestPostPage latestPostPage;
     public static SearchingPage searchingPage;
+    public static AdminPage adminPage;
     public static Faker faker;
     public static PostsAndCommentsPage postsAndCommentsPage;
 
@@ -41,6 +42,7 @@ public class BaseTest {
         editProfilePage =new PersonalProfilePage(actions.getDriver());
         latestPostPage =new LatestPostPage(actions.getDriver());
        searchingPage=new SearchingPage(actions.getDriver());
+        adminPage = new AdminPage(actions.getDriver());
        faker=new Faker();
        postsAndCommentsPage = new PostsAndCommentsPage(actions.getDriver());
     }
@@ -78,5 +80,6 @@ public class BaseTest {
         loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("WEare.homePage.LogoutButton");
     }
+
 
 }
