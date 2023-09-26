@@ -15,7 +15,7 @@ public class LoginTests extends BaseTest {
 
 
     @BeforeAll
-    public static void registerUser() {
+    public static void registerUser_when_ValidCredentialsArePassed() {
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
         registrationPage.fillEmailField(usernameRandom);
@@ -26,7 +26,7 @@ public class LoginTests extends BaseTest {
 
 
     @Test
-    public void loginWithValidCredentials() {
+    public void login_when_ValidCredentialsArePassed() {
         loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);

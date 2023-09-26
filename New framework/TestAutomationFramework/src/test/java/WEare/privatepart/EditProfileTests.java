@@ -105,11 +105,10 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeEmail() {
+    public void changeEmail_when_ValidNewEmailIsProvided() {
         userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeEmail("peshakaa@abv.bg");
         editProfilePage.clickPersonalInformationUpdateButton();
-
 
         editProfilePage.assertElementAttribute("WEare.PersonalProfilePageEmailField", "value", "peshakaa@abv.bg");
         editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);

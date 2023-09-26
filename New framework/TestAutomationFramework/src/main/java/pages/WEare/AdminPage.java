@@ -61,4 +61,23 @@ public class AdminPage extends WEareBasePage {
                 "Page message doesn't match. Expected: " + deletedMessage + ". Actual: " + pageMessage.getText());
         LOGGER.info("Item deleted successfully.");
     }
+
+    public void clickGOTOadminzoneButton(){
+        actions.waitForElementClickable("WEare.adminPage.adminZoneButton");
+        actions.clickElement("WEare.adminPage.adminZoneButton");
+    }
+
+    public void clickOnViewUsersButton(){
+        actions.waitForElementClickable("adminPage.ViewUsersButton");
+        actions.clickElement("adminPage.ViewUsersButton");
+    }
+    public void clickDisableButton(){
+        actions.waitForElementClickable("adminPage.disableButton");
+        actions.clickElement("adminPage.disableButton");
+    }
+
+    public void clickOnEnableButton(){
+        actions.waitForElementClickable("adminPage.enableButton");
+        actions.clickElement("adminPage.enableButton");
+    }
 }
