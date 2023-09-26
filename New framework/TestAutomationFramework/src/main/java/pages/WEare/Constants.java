@@ -6,7 +6,7 @@ public class Constants {
     public static final String ADD_NEW_POST_BUTTON = "posts.addNewPost";
     public static final String VISIBILITY_BUTTON = "posts.visibility";
     public static final String VISIBILITY_PUBLIC = "posts.publicVisibility";
-    public static final String POST_MESSAGE_FIELD = "posts.messageField";
+    public static final String POST_MESSAGE_FIELD = "Weare.commentsPage.messageField";
     public static final String POST_MESSAGE = "This post was made by Selenium WebDriver";
     public static final String VALID_COMMENT_MESSAGE = "This is a valid comment made by Selenium WebDriver";
     public static final String COMMENTS_MESSAGE_FIELD = "posts.commentField";

@@ -12,7 +12,8 @@ public class AdminTests extends BaseTest {
     public void adminLogIn() {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
-        //create a post for edition/deletion
+       // postsAndCommentsPage.createPost();
+       // postsAndCommentsPage.addComment("Automated comment by selenium driver");
     }
 
     @Test
@@ -31,6 +32,27 @@ public class AdminTests extends BaseTest {
         latestPostPage.clickExplorePost();
         adminPage.clickDeleteButton();
         adminPage.deletePost();
-        //adminPage.validatePostDeleted();
+        adminPage.validateDeletion();
     }
+
+    @Test
+    public void editLatestComment_when_editCommentClicked(){
+        homePage.navigateToLatestPosts();
+        latestPostPage.clickExplorePost();
+        postsAndCommentsPage.clickShowComments();
+        postsAndCommentsPage.clickEditComment();
+        postsAndCommentsPage.editComment();
+       // postsAndCommentsPage.validateCommentEdited();
+    }
+
+
+    @Test
+    public void deleteLatestComment_when_deleteCommentClicked(){ homePage.navigateToLatestPosts();
+        latestPostPage.clickExplorePost();
+        postsAndCommentsPage.clickShowComments();
+        postsAndCommentsPage.clickDeleteComment();
+        postsAndCommentsPage.deleteComment();
+        //validation
+        }
+
 }

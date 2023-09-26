@@ -1,6 +1,9 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
 
@@ -31,9 +34,10 @@ public class AdminPage extends WEareBasePage {
         actions.clickElement("WEare.adminPage.postVisibility");
         actions.typeValueInField(postVisibilityPublic, "WEare.adminPage.postVisibility");
         actions.typeValueInField(updatedMessage, "WEare.adminPage.editMessage");
-        actions.clickElement("WEare.adminPage.saveButton");
+        actions.clickElement("WEare.adminPage.submitButton");
     }
-    public void validatePostEdited(){
+
+    public void validatePostEdited() {
         actions.assertElementAttribute("WEare.adminPage.editedPostMessage", "innerText", updatedMessage);
         LOGGER.info("Admin edited post successfully.");
     }
@@ -44,14 +48,17 @@ public class AdminPage extends WEareBasePage {
         validateHeader("Delete post");
     }
 
-    public void deletePost(){
-        actions.clickElement("WEare.adminPage.deleteConfimration");
-        actions.typeValueInField(deleteConfirmation, "WEare.adminPage.deleteConfimration");
-        actions.clickElement("WEare.adminPage.saveButton");
+    public void deletePost() {
+        actions.clickElement("WEare.adminPage.deleteConfirmation");
+        actions.typeValueInField(deleteConfirmation, "WEare.adminPage.deleteConfirmation");
+        actions.clickElement("WEare.adminPage.submitButton");
     }
 
-    public void validatePostDeleted(){
-        actions.assertElementAttribute("WEare.adminPage.successDeletionHeader", "value", deletedMessage);
-        LOGGER.info("Admin deleted post successfully.");
+    public void validateDeletion() {
+        WebElement pageMessage = driver.findElement(By.xpath("//h1[@class='mb-3 bread']"));
+        actions.waitForElementVisible("WEare.adminPage.successDeletionHeader");
+        Assertions.assertEquals(deletedMessage, pageMessage.getText(),
+                "Page message doesn't match. Expected: " + deletedMessage + ". Actual: " + pageMessage.getText());
+        LOGGER.info("Item deleted successfully.");
     }
 }

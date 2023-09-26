@@ -36,4 +36,6 @@ public class LatestPostPage extends WEareBasePage {
     public void clickSeeProfile(){
         actions.clickElement("Weare.latestPosts.seeProfile");
     }
+
+
 }
