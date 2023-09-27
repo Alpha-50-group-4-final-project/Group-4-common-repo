@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test;
 
 public class AdminTests extends BaseTest {
 
-    public String adminUsername = "Ann";
+    public String adminUsername = "adminTeam";
     public String adminPassword = "123456";
 
     @BeforeEach
     public void adminLogIn() {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
-        // postsAndCommentsPage.createPost();
-        // postsAndCommentsPage.addComment("Automated comment by selenium driver");
+        postsAndCommentsPage.createPost();
+        postsAndCommentsPage.addComment("Automated comment by selenium driver");
     }
 
     @Test

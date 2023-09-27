@@ -9,7 +9,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 
 public class AdminPage extends WEareBasePage {
 
-    public String updatedMessage = "my edited post";
+    public String updatedMessage = "my automation edited post by Selenium Driver";
     public String deletedMessage = "Post deleted successfully";
     public String postVisibilityPublic = "public";
     public String deleteConfirmation = "delete";
@@ -25,8 +25,8 @@ public class AdminPage extends WEareBasePage {
     }
 
     public void clickEditButton() {
-        actions.waitForElementClickable("WEare.adminPage.editPost");
-        actions.clickElement("WEare.adminPage.editPost");
+        actions.waitForElementClickable("WEare.adminPage.editPostButton");
+        actions.clickElement("WEare.adminPage.editPostButton");
         validateHeader("Edit post");
     }
 
@@ -43,8 +43,8 @@ public class AdminPage extends WEareBasePage {
     }
 
     public void clickDeleteButton() {
-        actions.waitForElementClickable("WEare.adminPage.deletePost");
-        actions.clickElement("WEare.adminPage.deletePost");
+        actions.waitForElementClickable("WEare.adminPage.deletePostButton");
+        actions.clickElement("WEare.adminPage.deletePostButton");
         validateHeader("Delete post");
     }
 
