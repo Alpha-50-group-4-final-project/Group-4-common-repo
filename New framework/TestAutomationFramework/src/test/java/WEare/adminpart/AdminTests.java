@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class AdminTests extends BaseTest {
 
-    public String adminUsername = "Ann";
-    public String adminPassword = "123456";
+    public String adminUsername = "Adminpatkan";
+    public String adminPassword = "pass123";
 
     @BeforeEach
     public void adminLogIn() {
@@ -61,7 +61,7 @@ public class AdminTests extends BaseTest {
     public void disableAnotherUserAccount() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("");
+        searchingPage.seeCurrentUserProfileByName("Tyrion");
         searchingPage.assertElementPresent("adminPage.disableButton");
         adminPage.clickDisableButton();
         searchingPage.assertElementPresent("adminPage.enableButton");
@@ -70,7 +70,7 @@ public class AdminTests extends BaseTest {
     public void enableAnotherUserAccount() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("");
+        searchingPage.seeCurrentUserProfileByName("Tyrion");
         searchingPage.assertElementPresent("adminPage.enableButton");
         adminPage.clickOnEnableButton();
         searchingPage.assertElementPresent("adminPage.disableButton");

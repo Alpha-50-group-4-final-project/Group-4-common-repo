@@ -72,11 +72,17 @@ public class AdminPage extends WEareBasePage {
         actions.clickElement("adminPage.ViewUsersButton");
     }
     public void clickDisableButton(){
+        if (actions.isElementVisible("adminPage.enableButton")) {
+            actions.clickElement("adminPage.enableButton");
+        }
         actions.waitForElementClickable("adminPage.disableButton");
         actions.clickElement("adminPage.disableButton");
     }
 
     public void clickOnEnableButton(){
+        if (actions.isElementVisible("adminPage.disableButton")) {
+            actions.clickElement("adminPage.disableButton");
+        }
         actions.waitForElementClickable("adminPage.enableButton");
         actions.clickElement("adminPage.enableButton");
     }
