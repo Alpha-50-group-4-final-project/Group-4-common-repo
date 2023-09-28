@@ -14,7 +14,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 
 public class LatestPostPage extends WEareBasePage {
     public LatestPostPage(WebDriver driver){
-        super(driver,"WEare.latestPostsPage");
+        super(driver,"latestPostsPage");
     }
 
     public void assertPublicPostOrdered() {
@@ -30,11 +30,11 @@ public class LatestPostPage extends WEareBasePage {
     }
 
     public void clickExplorePost(){
-        actions.clickElement("Weare.latestPosts.exploreThisPost");
+        actions.clickElement("latestPosts.exploreThisPost");
     }
 
     public void clickSeeProfile(){
-        actions.clickElement("Weare.latestPosts.seeProfile");
+        actions.clickElement("latestPosts.seeProfile");
     }
 
 

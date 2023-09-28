@@ -38,7 +38,7 @@ public class EditProfileTests extends BaseTest {
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);
         loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("WEare.homePage.LogoutButton");
+        loginPage.assertElementPresent("homePage.LogoutButton");
 
 
     }
@@ -57,9 +57,9 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value",SET_UP_BIRTHDAY_DATE );
+        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value",SET_UP_BIRTHDAY_DATE );
     }
 
     @ParameterizedTest
@@ -70,8 +70,8 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
-        editProfilePage.assertErrorMessage("WEare.PersonalProfilePageEditErrorMessage", "last name must have at least 3 symbols!");
+        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
+        editProfilePage.assertErrorMessage("personalProfilePageEditErrorMessage", "last name must have at least 3 symbols!");
     }
 
 
@@ -83,10 +83,10 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.clickPersonalInformationUpdateButton();
 
 
-        editProfilePage.assertErrorMessage("WEare.PersonalProfilePageSelfDescriptionField", SELF_DESCRIPTION);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+        editProfilePage.assertErrorMessage("personalProfilePageSelfDescriptionField", SELF_DESCRIPTION);
+        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
     }
 
@@ -97,10 +97,10 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.clickPersonalInformationUpdateButton();
 
 
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageGenderButton", "value", "FEMALE", "FEMALE");
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+        editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", "FEMALE", "FEMALE");
+        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
     }
 
@@ -110,10 +110,10 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.changeEmail("peshakaa@abv.bg");
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageEmailField", "value", "peshakaa@abv.bg");
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("WEare.PersonalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+        editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", "peshakaa@abv.bg");
+        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
 
     }
@@ -127,8 +127,8 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertElementPresent("WEare.PersonalProfilePageEditErrorMessage");
-        editProfilePage.assertErrorMessage("WEare.PersonalProfilePageEditErrorMessage", "first name must have at least 3 symbols!");
+        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
+        editProfilePage.assertErrorMessage("personalProfilePageEditErrorMessage", "first name must have at least 3 symbols!");
     }
 
 
@@ -141,11 +141,11 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeCity() {
         userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
-        editProfilePage.clickOnCityButon();
+        editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertErrorMessage("PersonalProfilePageCityAssert", CITY);
+        editProfilePage.assertErrorMessage("personalProfilePageCityAssert", CITY);
     }
 
     @Test

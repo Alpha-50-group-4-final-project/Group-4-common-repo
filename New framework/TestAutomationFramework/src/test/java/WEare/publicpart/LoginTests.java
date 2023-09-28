@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);
         loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("WEare.homePage.LogoutButton");
+        loginPage.assertElementPresent("homePage.LogoutButton");
         loginPage.clickOnLogOutButton();
     }
 

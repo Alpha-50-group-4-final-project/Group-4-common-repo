@@ -4,29 +4,29 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends WEareBasePage {
     public LoginPage(WebDriver driver) {
-        super(driver, "WEare.loginPage");
+        super(driver, "loginPage");
     }
 
     public void clickOnLoginButton(){
-        actions.waitForElementClickable("WEare.homepage.signInButton");
-        actions.clickElement("WEare.homepage.signInButton");
+        actions.waitForElementClickable("homepage.signInButton");
+        actions.clickElement("homepage.signInButton");
     }
     public  void  fillUsernameField(String username){
-        actions.waitForElementPresent("WEare.loginPage.UsernameField");
-        actions.typeValueInField(username, "WEare.loginPage.UsernameField");
+        actions.waitForElementPresent("loginPage.UsernameField");
+        actions.typeValueInField(username, "loginPage.UsernameField");
     }
     public  void  fillPasswordField(String password){
-        actions.waitForElementPresent("Weare.loginPage.PasswordField");
-        actions.typeValueInField(password, "Weare.loginPage.PasswordField");
+        actions.waitForElementPresent("loginPage.PasswordField");
+        actions.typeValueInField(password, "loginPage.PasswordField");
     }
 
     public void  clickOnSubmitButton(){
-        actions.waitForElementClickable("WEare.loginPage.LoginButton");
-        actions.clickElement("WEare.loginPage.LoginButton");
+        actions.waitForElementClickable("loginPage.LoginButton");
+        actions.clickElement("loginPage.LoginButton");
     }
     public void clickOnLogOutButton(){
-        actions.waitForElementClickable("WEare.homePage.LogoutButton");
-        actions.clickElement("WEare.homePage.LogoutButton");
+        actions.waitForElementClickable("homePage.LogoutButton");
+        actions.clickElement("homePage.LogoutButton");
     }
 
     public void navigateToHomePage() {
@@ -34,7 +34,7 @@ public class LoginPage extends WEareBasePage {
     }
 
     public void assertErrorMessage(String message) {
-        actions.assertElementText("WEare.RegisterLoginErrorMessage", message);
+        actions.assertElementText("RegisterLoginErrorMessage", message);
     }
 
     public void assertElementPresent(String locator) {

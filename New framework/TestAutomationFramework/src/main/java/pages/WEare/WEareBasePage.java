@@ -16,7 +16,7 @@ public abstract class WEareBasePage extends BasePage {
 
     public void validateHeader(String message){
         WebElement pageMessage = driver.findElement(By.xpath("//h1[contains(@class, 'bread')]"));
-        actions.waitForElementVisible("Weare.pageHeaders", message);
+        actions.waitForElementVisible("pageHeaders", message);
         Assertions.assertEquals(message, pageMessage.getAttribute("innerText"), "Page message doesn't match. Expected: " + message + ". Actual: " + pageMessage.getText());
         LOGGER.info("Page accessible and navigated successfully.");
     }

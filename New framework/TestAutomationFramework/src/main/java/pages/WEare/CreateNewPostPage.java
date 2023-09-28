@@ -12,16 +12,16 @@ public class CreateNewPostPage extends WEareBasePage {
 
 
 
-        actions.waitForElementVisible("WEare.homepage.AddNewPostButton");
-        actions.clickElement("WEare.homepage.AddNewPostButton");
+        actions.waitForElementVisible("homepage.AddNewPostButton");
+        actions.clickElement("homepage.AddNewPostButton");
 
-        actions.waitForElementClickable("WEare.CreateNewPostPage.messageField");
-        actions.typeValueInField("This is first post in the system", "WEare.CreateNewPostPage.messageField");
+        actions.waitForElementClickable("createNewPostPage.messageField");
+        actions.typeValueInField("This is first post in the system", "createNewPostPage.messageField");
 
         actions.waitForElementPresent("//input[@id=\"imagefile\"]");
         actions.typeValueInField("K:\\Group-4-common-repo\\TestAutomationFramework\\src\\test\\resources\\Hello.png","//input[@id=\"imagefile\"]");
 
-        actions.waitForElementClickable("WEare.CreateNewPostPage.SavePostButton");
-        actions.clickElement("WEare.CreateNewPostPage.SavePostButton");
+        actions.waitForElementClickable("createNewPostPage.SavePostButton");
+        actions.clickElement("createNewPostPage.SavePostButton");
     }
 }

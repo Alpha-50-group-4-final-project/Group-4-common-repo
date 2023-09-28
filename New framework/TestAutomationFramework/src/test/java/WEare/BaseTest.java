@@ -30,7 +30,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void setUp() {
-        UserActions.loadBrowser("WEare.homePage");
+        UserActions.loadBrowser("homePage");
 
         usernameRandom = randomUsername();
         passwordRandom = randomPassword();
@@ -78,7 +78,7 @@ public class BaseTest {
         loginPage.fillUsernameField(username);
         loginPage.fillPasswordField(password);
         loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("WEare.homePage.LogoutButton");
+        loginPage.assertElementPresent("homePage.LogoutButton");
     }
 
 

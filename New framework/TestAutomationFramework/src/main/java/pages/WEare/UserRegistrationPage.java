@@ -14,7 +14,7 @@ import static com.telerikacademy.testframework.Utils.getConfigPropertyByKey;
 public class UserRegistrationPage extends WEareBasePage {
 
     public UserRegistrationPage(WebDriver driver) {
-        super(driver, "WEare.registerPage");
+        super(driver, "registerPage");
     }
 
     public void fillUsernameField(String username) {

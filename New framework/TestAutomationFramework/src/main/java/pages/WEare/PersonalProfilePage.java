@@ -10,106 +10,106 @@ public class PersonalProfilePage extends WEareBasePage {
 
 
     public void navigateToEditProfileMenu() {
-        actions.waitForElementPresent("WEare.homePage.PersonalProfileButton");
-        actions.clickElement("WEare.homePage.PersonalProfileButton");
+        actions.waitForElementPresent("homePage.PersonalProfileButton");
+        actions.clickElement("homePage.PersonalProfileButton");
 
-        actions.waitForElementPresent("WEare.PersonalProfilePageEditButton");
-        actions.clickElement("WEare.PersonalProfilePageEditButton");
+        actions.waitForElementPresent("personalProfilePageEditButton");
+        actions.clickElement("rsonalProfilePageEditButton");
     }
 
 
     public void cleanAllFields() {
-        actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+        actions.waitForElementPresent("personalProfilePageFirstNameField");
+        actions.clearingFiled("personalProfilePageFirstNameField");
 
-        actions.waitForElementPresent("WEare.PersonalProfilePageLastNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
+        actions.waitForElementPresent("personalProfilePageLastNameField");
+        actions.clearingFiled("personalProfilePageFirstNameField");
 
     }
 
 
     public void fillUpFirstNameField(String name) {
 
-        actions.waitForElementPresent("WEare.PersonalProfilePageFirstNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageFirstNameField");
-        actions.typeValueInField(name, "WEare.PersonalProfilePageFirstNameField");
+        actions.waitForElementPresent("personalProfilePageFirstNameField");
+        actions.clearingFiled("personalProfilePageFirstNameField");
+        actions.typeValueInField(name, "personalProfilePageFirstNameField");
     }
 
     public void fillUpLastNameField(String lastName) {
-        actions.waitForElementPresent("WEare.PersonalProfilePageLastNameField");
-        actions.clearingFiled("WEare.PersonalProfilePageLastNameField");
-        actions.typeValueInField(lastName, "WEare.PersonalProfilePageLastNameField");
+        actions.waitForElementPresent("personalProfilePageLastNameField");
+        actions.clearingFiled("personalProfilePageLastNameField");
+        actions.typeValueInField(lastName, "personalProfilePageLastNameField");
     }
 
     public void fillBirthdayField(String date) {
-        actions.waitForElementPresent("WEare.PersonalProfilePageBirthdayField");
-        actions.clearingFiled("WEare.PersonalProfilePageBirthdayField");
-        actions.typeValueInField(date, "WEare.PersonalProfilePageBirthdayField");
+        actions.waitForElementPresent("personalProfilePageBirthdayField");
+        actions.clearingFiled("personalProfilePageBirthdayField");
+        actions.typeValueInField(date, "personalProfilePageBirthdayField");
 
     }
 
     public void changeGender(String genderType) {
-        actions.waitForElementPresent("WEare.PersonalProfilePageGenderSelectionButton");
-        actions.clickElement("WEare.PersonalProfilePageGenderSelectionButton");
+        actions.waitForElementPresent("personalProfilePageGenderSelectionButton");
+        actions.clickElement("personalProfilePageGenderSelectionButton");
 
-        actions.waitForElementPresent("WEare.PersonalProfilePageGenderButton", genderType);
-        actions.clickElement("WEare.PersonalProfilePageGenderButton", genderType);
+        actions.waitForElementPresent("personalProfilePageGenderButton", genderType);
+        actions.clickElement("personalProfilePageGenderButton", genderType);
     }
 
     public void changeEmail(String newEmail){
-        actions.waitForElementPresent("WEare.PersonalProfilePageEmailField");
-        actions.clearingFiled("WEare.PersonalProfilePageEmailField");
+        actions.waitForElementPresent("personalProfilePageEmailField");
+        actions.clearingFiled("personalProfilePageEmailField");
 
-        actions.typeValueInField(newEmail,"WEare.PersonalProfilePageEmailField");
+        actions.typeValueInField(newEmail,"personalProfilePageEmailField");
     }
 
     public void fillSelfDescriptionField(String description) {
-        actions.waitForElementPresent("WEare.PersonalProfilePageSelfDescriptionField");
-        actions.typeValueInField(description, "WEare.PersonalProfilePageSelfDescriptionField");
+        actions.waitForElementPresent("personalProfilePageSelfDescriptionField");
+        actions.typeValueInField(description, "personalProfilePageSelfDescriptionField");
     }
-    public void clickOnCityButon(){
-        actions.waitForElementPresent("WEare.PersonalProfile.PersonalProfileCityButton");
-        actions.clickElement("WEare.PersonalProfile.PersonalProfileCityButton");
+    public void clickOnCityButton(){
+        actions.waitForElementPresent("personalProfile.PersonalProfileCityButton");
+        actions.clickElement("personalProfile.PersonalProfileCityButton");
     }
     public void selectCity(String city){
-        actions.waitForElementPresent("WEare.PersonalProfilePageChooseCity",city);
-        actions.clickElement("WEare.PersonalProfilePageChooseCity",city);
+        actions.waitForElementPresent("personalProfilePageChooseCity",city);
+        actions.clickElement("personalProfilePageChooseCity",city);
     }
 
 
     public void clickPersonalInformationUpdateButton() {
-        actions.waitForElementClickable("WEare.homePage.PersonalProfileUpdateProfileButton");
-        actions.clickElement("WEare.homePage.PersonalProfileUpdateProfileButton");
+        actions.waitForElementClickable("homePage.PersonalProfileUpdateProfileButton");
+        actions.clickElement("homePage.PersonalProfileUpdateProfileButton");
     }
 
     public void changeProfessionalCategory(String profession){
-        actions.waitForElementPresent("WEare.PersonalProfileUpdatePageProfessionalCategoryButton");
-        actions.clickElement("WEare.PersonalProfileUpdatePageProfessionalCategoryButton");
-        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
-        actions.clickElement("WEare.PersonalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
-        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
-        actions.clickElement("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
+        actions.waitForElementPresent("personalProfileUpdatePageProfessionalCategoryButton");
+        actions.clickElement("personalProfileUpdatePageProfessionalCategoryButton");
+        actions.waitForElementClickable("personalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
+        actions.clickElement("personalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
+        actions.waitForElementClickable("personalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
+        actions.clickElement("personalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
     }
 
     public void changeServices(String service,String weeklyAvailability){
-        actions.waitForElementVisible("WEare.PersonalProfilePageUpdateServiceField1");
-        actions.typeValueInField(service,"WEare.PersonalProfilePageUpdateServiceField1");
-        actions.waitForElementVisible("WEare.PersonalProfilePageWeeklyAvailabilityField");
-        actions.typeValueInField(weeklyAvailability,"WEare.PersonalProfilePageWeeklyAvailabilityField");
+        actions.waitForElementVisible("personalProfilePageUpdateServiceField1");
+        actions.typeValueInField(service,"personalProfilePageUpdateServiceField1");
+        actions.waitForElementVisible("personalProfilePageWeeklyAvailabilityField");
+        actions.typeValueInField(weeklyAvailability,"personalProfilePageWeeklyAvailabilityField");
 
-        actions.waitForElementClickable("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateServiceButton");
-        actions.clickElement("WEare.PersonalProfileUpdatePage.PersonalProfileUpdateServiceButton");
+        actions.waitForElementClickable("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
+        actions.clickElement("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
     }
 
 
     public void addPicture() {
-        actions.waitForElementPresent("WEare.PersonalProfilePagePersonalInfoPhotoField");
-        actions.typeValueInField("K:\\Group-4-common-repo\\New framework\\TestAutomationFramework\\src\\test\\resources\\Patkan.jpg", "WEare.PersonalProfilePagePersonalInfoPhotoField");
+        actions.waitForElementPresent("personalProfilePagePersonalInfoPhotoField");
+        actions.typeValueInField("K:\\Group-4-common-repo\\New framework\\TestAutomationFramework\\src\\test\\resources\\Patkan.jpg", "personalProfilePagePersonalInfoPhotoField");
     }
 
     public void personalInfoUpdateButton() {
-        actions.waitForElementClickable("WEare.PersonalProfilePagePersonalInfoUpdateButton");
-        actions.clickElement("WEare.PersonalProfilePagePersonalInfoUpdateButton");
+        actions.waitForElementClickable("personalProfilePagePersonalInfoUpdateButton");
+        actions.clickElement("personalProfilePagePersonalInfoUpdateButton");
     }
 
     public void navigateToHomePage() {

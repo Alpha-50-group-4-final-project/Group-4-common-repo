@@ -99,40 +99,40 @@ public class PostsAndCommentsPage extends WEareBasePage {
     }
 
     public void clickShowComments() {
-        actions.waitForElementClickable("Weare.latestPosts.showComments");
-        actions.clickElement("Weare.latestPosts.showComments");
+        actions.waitForElementClickable("latestPosts.showComments");
+        actions.clickElement("latestPosts.showComments");
     }
     public void clickEditComment() {
-        actions.waitForElementClickable("Weare.commentsPage.editComment");
-        actions.clickElement("Weare.commentsPage.editComment");
+        actions.waitForElementClickable("commentsPage.editComment");
+        actions.clickElement("commentsPage.editComment");
         validateHeader("Edit comment");
 
     }
     public void editComment() {
 
         // assertPageNavigated();
-        actions.waitForElementClickable("Weare.commentsPage.messageField");
-        actions.clickElement("Weare.commentsPage.messageField");
-        actions.typeValueInField("editedCommentText", "Weare.commentsPage.messageField");
-        actions.clickElement("WEare.adminPage.submitButton");
+        actions.waitForElementClickable("commentsPage.messageField");
+        actions.clickElement("commentsPage.messageField");
+        actions.typeValueInField("editedCommentText", "commentsPage.messageField");
+        actions.clickElement("adminPage.submitButton");
     }
 
     public void validateCommentEdited() {
-        actions.waitForElementClickable("Weare.latestPosts.showComments");
-        actions.clickElement("Weare.latestPosts.showComments");
+        actions.waitForElementClickable("latestPosts.showComments");
+        actions.clickElement("latestPosts.showComments");
 
-        actions.assertElementAttribute("Weare.commentPage.editedText", "innerText", "editedCommentText");
+        actions.assertElementAttribute("commentPage.editedText", "innerText", "editedCommentText");
         LOGGER.info("Comment validated successfully.");
     }
     public void clickDeleteComment() {
-        actions.waitForElementClickable("Weare.commentsPage.deleteComment");
-        actions.clickElement("Weare.commentsPage.deleteComment");
+        actions.waitForElementClickable("commentsPage.deleteComment");
+        actions.clickElement("commentsPage.deleteComment");
         validateHeader("Delete comment");
     }
     public void deleteComment() {
-        actions.clickElement("WEare.adminPage.deleteConfirmation");
-        actions.typeValueInField(deleteConfirmation, "WEare.adminPage.deleteConfirmation");
-        actions.clickElement("WEare.adminPage.submitButton");
+        actions.clickElement("adminPage.deleteConfirmation");
+        actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
+        actions.clickElement("adminPage.submitButton");
     }
 
 
