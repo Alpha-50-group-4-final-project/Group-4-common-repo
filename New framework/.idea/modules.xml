@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/New framework.iml" filepath="$PROJECT_DIR$/.idea/New framework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TestAutomationFramework/test-automation-framework.iml" filepath="$PROJECT_DIR$/TestAutomationFramework/test-automation-framework.iml" />
     </modules>
   </component>
 </project>
