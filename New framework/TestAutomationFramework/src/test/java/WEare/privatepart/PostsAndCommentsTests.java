@@ -5,13 +5,14 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
-import static pages.WEare.Constants.*;
+
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostsAndCommentsTests extends BaseTest {
     static String username = "dinko";
     static String password = "pass123";
+    private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
     private static final String VALID_COMMENT_MESSAGE = "This is a valid comment made by Selenium WebDriver";
 
     @BeforeAll
