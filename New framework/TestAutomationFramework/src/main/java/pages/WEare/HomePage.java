@@ -10,6 +10,12 @@ public class HomePage extends WEareBasePage {
         super(driver, "homePage");
     }
 
+
+
+    public void navigateToHomePage() {
+        actions.navigateToPage("homePage");
+    }
+
     public void navigateToRegisterPage(){
         navigateToPage();
         actions.waitForElementClickable("homepage.RegisterButton");
@@ -17,7 +23,7 @@ public class HomePage extends WEareBasePage {
     }
 
     public void navigateToLoginPage(){
-        actions.waitForElementClickable("Whomepage.signInButton");
+        actions.waitForElementClickable("homepage.signInButton");
         actions.clickElement("homepage.signInButton");
     }
 
@@ -27,25 +33,25 @@ public class HomePage extends WEareBasePage {
     }
 
     public void navigateToAboutUs(){
-        actions.waitForElementClickable(".homepage.aboutUsButton");
+        actions.waitForElementClickable("homepage.aboutUsButton");
         actions.clickElement("homepage.aboutUsButton");
     }
 
     public  void typeIntoNameSearchBox(String name){
 
-        actions.waitForElementVisible("HomePage.NameField");
-        actions.typeValueInField(name,"HomePage.NameField");
+        actions.waitForElementVisible("homePage.NameField");
+        actions.typeValueInField(name,"homePage.NameField");
     }
     public  void typeIntoProfessionSearchBox(String profession){
-        actions.waitForElementPresent("HomePage.ProfessionField");
-        actions.typeValueInField(profession,"HomePage.ProfessionField");
+        actions.waitForElementPresent("homePage.ProfessionField");
+        actions.typeValueInField(profession,"homePage.ProfessionField");
     }
     public void clickOnSearchButton(){
-        actions.waitForElementClickable("HomePage.SearchButton");
-        actions.clickElement("HomePage.SearchButton");
+        actions.waitForElementClickable("homePage.SearchButton");
+        actions.clickElement("homePage.SearchButton");
     }
     public void navigateToPersonalProfileButton(){
-        actions.waitForElementPresent(".homePage.PersonalProfileButton");
+        actions.waitForElementPresent("homePage.PersonalProfileButton");
         actions.clickElement("homePage.PersonalProfileButton");
     }
 

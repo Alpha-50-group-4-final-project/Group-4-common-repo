@@ -1,29 +1,21 @@
 package WEare.publicpart;
 
 import WEare.BaseTest;
-import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static com.telerikacademy.testframework.Utils.LOGGER;
-import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.*;
+
 
 public class LoginTests extends BaseTest {
 
 
     @BeforeAll
     public static void registerUser_when_ValidCredentialsArePassed() {
-        homePage.navigateToRegisterPage();
-        registrationPage.fillUsernameField(usernameRandom);
-        registrationPage.fillEmailField(usernameRandom);
-        registrationPage.fillPasswordFields(passwordRandom);
-        registrationPage.selectCategoryField();
-        registrationPage.clickRegistryButton();
+       registerUser(usernameRandom,passwordRandom);
     }
-
 
     @Test
     public void login_when_ValidCredentialsArePassed() {
@@ -33,6 +25,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("homePage.LogoutButton");
         loginPage.clickOnLogOutButton();
+        System.out.println("Login has been successfull.");
     }
 
     @ParameterizedTest
@@ -42,5 +35,6 @@ public class LoginTests extends BaseTest {
         loginPage.fillPasswordField(password);
         loginPage.clickOnSubmitButton();
         loginPage.assertErrorMessage("Wrong username or password.");
+        System.out.println("Expected error message showed up.");
     }
 }

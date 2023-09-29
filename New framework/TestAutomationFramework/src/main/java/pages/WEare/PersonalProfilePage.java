@@ -2,6 +2,9 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
+import static com.telerikacademy.testframework.Utils.LOGGER;
+import static java.lang.String.format;
+
 public class PersonalProfilePage extends WEareBasePage {
 
     public PersonalProfilePage(WebDriver driver) {
@@ -10,42 +13,34 @@ public class PersonalProfilePage extends WEareBasePage {
 
 
     public void navigateToEditProfileMenu() {
-        actions.waitForElementPresent("homePage.PersonalProfileButton");
+        actions.navigateToPage("http://localhost:8081/");
+
+        actions.waitForElementClickable("homePage.PersonalProfileButton");
         actions.clickElement("homePage.PersonalProfileButton");
 
         actions.waitForElementPresent("personalProfilePageEditButton");
-        actions.clickElement("rsonalProfilePageEditButton");
+        actions.clickElement("personalProfilePageEditButton");
     }
-
-
-    public void cleanAllFields() {
-        actions.waitForElementPresent("personalProfilePageFirstNameField");
-        actions.clearingFiled("personalProfilePageFirstNameField");
-
-        actions.waitForElementPresent("personalProfilePageLastNameField");
-        actions.clearingFiled("personalProfilePageFirstNameField");
-
-    }
-
 
     public void fillUpFirstNameField(String name) {
-
         actions.waitForElementPresent("personalProfilePageFirstNameField");
         actions.clearingFiled("personalProfilePageFirstNameField");
         actions.typeValueInField(name, "personalProfilePageFirstNameField");
+        LOGGER.info(format("First name was set to : \"%s\"",name));
     }
 
     public void fillUpLastNameField(String lastName) {
         actions.waitForElementPresent("personalProfilePageLastNameField");
         actions.clearingFiled("personalProfilePageLastNameField");
         actions.typeValueInField(lastName, "personalProfilePageLastNameField");
+        LOGGER.info(format("Last name was set to : \"%s\"",lastName));
     }
 
     public void fillBirthdayField(String date) {
         actions.waitForElementPresent("personalProfilePageBirthdayField");
         actions.clearingFiled("personalProfilePageBirthdayField");
         actions.typeValueInField(date, "personalProfilePageBirthdayField");
-
+        LOGGER.info(format("Birthday date was set to : \"%s\"",date));
     }
 
     public void changeGender(String genderType) {
@@ -54,26 +49,30 @@ public class PersonalProfilePage extends WEareBasePage {
 
         actions.waitForElementPresent("personalProfilePageGenderButton", genderType);
         actions.clickElement("personalProfilePageGenderButton", genderType);
+        LOGGER.info(format("Gender was changed to : \"%s\"",genderType));
     }
 
-    public void changeEmail(String newEmail){
+    public void changeEmail(String newEmail) {
         actions.waitForElementPresent("personalProfilePageEmailField");
         actions.clearingFiled("personalProfilePageEmailField");
 
-        actions.typeValueInField(newEmail,"personalProfilePageEmailField");
+        actions.typeValueInField(newEmail, "personalProfilePageEmailField");
+        LOGGER.info(format("Email date was changed to : \"%s\"",newEmail));
     }
 
     public void fillSelfDescriptionField(String description) {
         actions.waitForElementPresent("personalProfilePageSelfDescriptionField");
         actions.typeValueInField(description, "personalProfilePageSelfDescriptionField");
     }
-    public void clickOnCityButton(){
+
+    public void clickOnCityButton() {
         actions.waitForElementPresent("personalProfile.PersonalProfileCityButton");
         actions.clickElement("personalProfile.PersonalProfileCityButton");
     }
-    public void selectCity(String city){
-        actions.waitForElementPresent("personalProfilePageChooseCity",city);
-        actions.clickElement("personalProfilePageChooseCity",city);
+
+    public void selectCity(String city) {
+        actions.waitForElementPresent("personalProfilePageChooseCity", city);
+        actions.clickElement("personalProfilePageChooseCity", city);
     }
 
 
@@ -82,50 +81,48 @@ public class PersonalProfilePage extends WEareBasePage {
         actions.clickElement("homePage.PersonalProfileUpdateProfileButton");
     }
 
-    public void changeProfessionalCategory(String profession){
+    public void changeProfessionalCategory(String profession) {
         actions.waitForElementPresent("personalProfileUpdatePageProfessionalCategoryButton");
         actions.clickElement("personalProfileUpdatePageProfessionalCategoryButton");
-        actions.waitForElementClickable("personalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
-        actions.clickElement("personalProfileUpdatePage.ProfessionalCategoryDropDown",profession);
+        actions.waitForElementClickable("personalProfileUpdatePage.ProfessionalCategoryDropDown", profession);
+        actions.clickElement("personalProfileUpdatePage.ProfessionalCategoryDropDown", profession);
         actions.waitForElementClickable("personalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
         actions.clickElement("personalProfileUpdatePage.PersonalProfileUpdateCategoryButton");
+        LOGGER.info(format("Profession was changed to : \"%s\"",profession));
     }
 
-    public void changeServices(String service,String weeklyAvailability){
+    public void changeServices(String service, String weeklyAvailability) {
         actions.waitForElementVisible("personalProfilePageUpdateServiceField1");
-        actions.typeValueInField(service,"personalProfilePageUpdateServiceField1");
+        actions.typeValueInField(service, "personalProfilePageUpdateServiceField1");
         actions.waitForElementVisible("personalProfilePageWeeklyAvailabilityField");
-        actions.typeValueInField(weeklyAvailability,"personalProfilePageWeeklyAvailabilityField");
+        actions.typeValueInField(weeklyAvailability, "personalProfilePageWeeklyAvailabilityField");
 
         actions.waitForElementClickable("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
         actions.clickElement("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
+
     }
 
-
-    public void addPicture() {
-        actions.waitForElementPresent("personalProfilePagePersonalInfoPhotoField");
-        actions.typeValueInField("K:\\Group-4-common-repo\\New framework\\TestAutomationFramework\\src\\test\\resources\\Patkan.jpg", "personalProfilePagePersonalInfoPhotoField");
+    public void assertFirstNameErrorMessage() {
+        actions.assertElementText("personalProfilePageEditErrorMessage", "first name must have at least 3 symbols!");
     }
 
-    public void personalInfoUpdateButton() {
-        actions.waitForElementClickable("personalProfilePagePersonalInfoUpdateButton");
-        actions.clickElement("personalProfilePagePersonalInfoUpdateButton");
+    public void assertLastNameErrorMessage() {
+        actions.assertElementText("personalProfilePageEditErrorMessage", "last name must have at least 3 symbols!");
+    }
+    public void assertSelfDescription(String selfDescriptionText) {
+        actions.assertElementText("personalProfilePageSelfDescriptionField", selfDescriptionText);
     }
 
-    public void navigateToHomePage() {
-        driver.get("http://localhost:8081/");
-    }
-
-    public void assertErrorMessage(String locator,String message,Object... arguments) {
-        actions.assertElementText(locator, message);
+    public void assertCity(String city) {
+        actions.assertElementText("personalProfilePageCityAssert", city);
     }
 
     public void assertElementPresent(String locator) {
         actions.assertElementPresent(locator);
     }
 
-    public void assertElementAttribute(String locator, String attributeName, String attributeValue,Object... arguments) {
-        actions.assertElementAttribute(locator, attributeName, attributeValue,arguments);
+    public void assertElementAttribute(String locator, String attributeName, String attributeValue, Object... arguments) {
+        actions.assertElementAttribute(locator, attributeName, attributeValue, arguments);
     }
 
 }

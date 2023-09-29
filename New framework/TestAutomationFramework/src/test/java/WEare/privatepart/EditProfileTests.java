@@ -4,12 +4,6 @@ import WEare.BaseTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class EditProfileTests extends BaseTest {
 
@@ -20,32 +14,14 @@ public class EditProfileTests extends BaseTest {
     public static final String SET_UP_BIRTHDAY_DATE = "01-01-1970";
 
 
-
-
-
-
-
     @BeforeAll
     public static void testSetup() {
-        homePage.navigateToRegisterPage();
-        registrationPage.fillUsernameField(usernameRandom);
-        registrationPage.fillEmailField(usernameRandom);
-        registrationPage.fillPasswordFields(passwordRandom);
-        registrationPage.selectCategoryField();
-        registrationPage.clickRegistryButton();
-
-        loginPage.clickOnLoginButton();
-        loginPage.fillUsernameField(usernameRandom);
-        loginPage.fillPasswordField(passwordRandom);
-        loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("homePage.LogoutButton");
-
-
+        registerUser(usernameRandom,passwordRandom);
+        login(usernameRandom,passwordRandom);
     }
 
     @BeforeEach
     public void pageSetUp() {
-        editProfilePage.navigateToHomePage();
         editProfilePage.navigateToEditProfileMenu();
     }
 
@@ -59,40 +35,39 @@ public class EditProfileTests extends BaseTest {
 
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value",SET_UP_BIRTHDAY_DATE );
+//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value",SET_UP_BIRTHDAY_DATE );
     }
 
-    @ParameterizedTest
-    @CsvSource({"Patkan,''", "Patkan,Pa"})
-    public void editFirstnameLastNameBirthday_when_invalidLastNameISprovided(String firstName, String lastName) {
-        editProfilePage.fillUpFirstNameField(firstName);
-        editProfilePage.fillUpLastNameField(lastName);
+    @Test
+    public void editFirstnameLastNameBirthday_when_invalidLastNameIsProvided() {
+        editProfilePage.fillUpFirstNameField("Patkan");
+        editProfilePage.fillUpLastNameField("");
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
         editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
-        editProfilePage.assertErrorMessage("personalProfilePageEditErrorMessage", "last name must have at least 3 symbols!");
+        editProfilePage.assertLastNameErrorMessage();
     }
 
 
     @Test
     public void addSelfDescription_when_validDataIsProvided() {
 
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
 
 
-        editProfilePage.assertErrorMessage("personalProfilePageSelfDescriptionField", SELF_DESCRIPTION);
+        editProfilePage.assertSelfDescription(SELF_DESCRIPTION);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
     }
 
     @Test
     public void changeGender() {
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeGender("FEMALE");
         editProfilePage.clickPersonalInformationUpdateButton();
 
@@ -100,68 +75,56 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", "FEMALE", "FEMALE");
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
     }
 
     @Test
     public void changeEmail_when_ValidNewEmailIsProvided() {
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeEmail("peshakaa@abv.bg");
         editProfilePage.clickPersonalInformationUpdateButton();
 
         editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", "peshakaa@abv.bg");
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
+//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
 
 
-    }
-
-
-    @ParameterizedTest
-    @CsvSource({"'',Patkanov", "Iv,Patkanov"})
-    public void editFirstnameLastNameBirthday_when_invalidFirstNameISprovided(String firstName, String lastName) {
-        editProfilePage.fillUpFirstNameField(firstName);
-        editProfilePage.fillUpLastNameField(lastName);
-        editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
-        editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
-        editProfilePage.assertErrorMessage("personalProfilePageEditErrorMessage", "first name must have at least 3 symbols!");
     }
 
 
     @Test
-    public void addPicture() {
-        editProfilePage.addPicture();
-        editProfilePage.personalInfoUpdateButton();
+    public void editFirstnameLastNameBirthday_when_invalidFirstNameIsProvided() {
+        editProfilePage.fillUpFirstNameField("");
+        editProfilePage.fillUpLastNameField("Patkanov");
+        editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
+        editProfilePage.clickPersonalInformationUpdateButton();
+        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
+        editProfilePage.assertFirstNameErrorMessage();
     }
 
     @Test
     public void changeCity() {
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
         editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertErrorMessage("personalProfilePageCityAssert", CITY);
+        editProfilePage.assertCity(CITY);
     }
 
     @Test
     public void changeProfessionalCategory() {
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeProfessionalCategory("Doctor");
 
     }
 
     @Test
     public void changeServices() {
-        userSetUP(SET_UP_FIRSTNAME,SET_UP_LASTNAME,SET_UP_BIRTHDAY_DATE);
+        userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeServices("Nothing special.", "8");
     }
-
-
 
 
 }

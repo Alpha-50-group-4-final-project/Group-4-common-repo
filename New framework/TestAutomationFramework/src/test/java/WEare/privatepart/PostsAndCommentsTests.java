@@ -3,6 +3,8 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+
+import static com.telerikacademy.testframework.Utils.LOGGER;
 import static pages.WEare.Constants.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -10,7 +12,7 @@ import static pages.WEare.Constants.*;
 public class PostsAndCommentsTests extends BaseTest {
     static String username = "dinko";
     static String password = "pass123";
-
+    private static final String VALID_COMMENT_MESSAGE = "This is a valid comment made by Selenium WebDriver";
 
     @BeforeAll
     public static void testSetup(){
@@ -19,8 +21,8 @@ public class PostsAndCommentsTests extends BaseTest {
 
     @AfterAll
     public void returnHome() {
-        actions.waitForElementClickable(HOME_BUTTON);
-        actions.clickElement(HOME_BUTTON);
+        actions.waitForElementClickable("homeButton");
+        actions.clickElement("homeButton");
         loginPage.clickOnLogOutButton();
     }
 
@@ -28,51 +30,75 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(1)
     @Description("Create a new public post")
     public void createPublicPost() {
-        postsAndCommentsPage.createPost();
-        actions.assertElementPresent(POST_EXIST);
-        actions.assertElementPresent(POST_IS_PUBLIC);
+        postsPage. clickOnAddNewPostButton();
+        postsPage. clickOnPostVisibilityButton();
+        postsPage.postPublicVisibilityChoice();
+        postsPage.typeMessageInMessageField(POST_MESSAGE);
+        postsPage. clickOnSavePostButton();
+
+        actions.assertElementPresent("posts.postExist");
+        actions.assertElementPresent("posts.postIsPublic");
+        LOGGER.info("New public post was created successfully.");
     }
 
     @Test
     @Order(2)
     @Description("Validate the user can edit his public post")
     public void editPublicPost() {
-        postsAndCommentsPage.editPost();
-        actions.assertElementPresent(POST_EDITED_EXIST);
+        postsPage.goToLatestPosts();
+        postsPage.clickOnExplorePostButton();
+        postsPage.clickOnEditPostButton();
+        postsPage.clickOnPostVisibilityButton();
+        postsPage.postPublicVisibilityChoice();
+        postsPage.typeMessageInMessageField("This post was edited by Selenium WebDriver");
+        postsPage.clickOnSavePostButton();
+        actions.assertElementPresent("posts.postEditExist");
+        LOGGER.info("Public post was edited successfully.");
     }
 
     @Test
     @Order(3)
     @Description("Validate user can like a post")
     public void likePublicPost() {
-        postsAndCommentsPage.likePost();
-        actions.assertElementPresent(DISLIKE_POST_BUTTON);
+        comments.goToLatestComment();
+
+        postsPage.clickOnLikePostButton();
+        actions.assertElementPresent("posts.dislikePostButton");
+        LOGGER.info("Public post was liked successfully.");
     }
 
     @Test
     @Order(4)
     @Description("Validate user can dislike a post")
     public void dislikePublicPost() {
-        postsAndCommentsPage.dislikePost();
-        actions.assertElementPresent(LIKE_POST_BUTTON);
+        postsPage.goToLatestPosts();
+        postsPage.clickOnDislikePostButton();
+        actions.assertElementPresent("posts.likePost");
+        LOGGER.info("Public post was disliked successfully.");
     }
 
     @Test
     @Order(5)
     @Description("Validate registered user is able to add a valid comment to a post")
     public void addValidComment() {
-        postsAndCommentsPage.addComment(VALID_COMMENT_MESSAGE);
-        actions.assertElementPresent(DELETE_COMMENT_BUTTON);
+        comments.addComment(VALID_COMMENT_MESSAGE);
+        actions.assertElementPresent("posts.deleteCommentButton");
+        LOGGER.info("Comment: "+VALID_COMMENT_MESSAGE +" was successfully added to existing post.");
     }
 
     @Test
     @Order(6)
     @Description("Validate user can delete his post")
     public void deletePublicPost() {
-        postsAndCommentsPage.goToLatestPosts();
-        actions.waitForElementClickable(EXPLORE_PUBLIC_POSTS);
-        actions.clickElement(EXPLORE_PUBLIC_POSTS);
-        postsAndCommentsPage.deletePost();
-        actions.assertElementPresent(DELETE_MESSAGE);
+        postsPage.goToLatestPosts();
+        actions.waitForElementClickable("posts.browsePublicPosts");
+        actions.clickElement("posts.browsePublicPosts");
+        postsPage.goToLatestPosts();
+        postsPage.clickOnExplorePostButton();
+        postsPage.clickOnDeletePostButton();
+        postsPage.choosingDeletePostOption();
+        postsPage.clickPostSubmitButton();
+        actions.assertElementPresent("post.deleteMessage");
+        LOGGER.info("Public post was deleted successfully.");
     }
 }

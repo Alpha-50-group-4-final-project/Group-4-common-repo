@@ -18,25 +18,25 @@ public class UserRegistrationPage extends WEareBasePage {
     }
 
     public void fillUsernameField(String username) {
-        actions.waitForElementPresent("WEare.userRegistrationPage.UsernameField");
-        actions.typeValueInField(username, "WEare.userRegistrationPage.UsernameField");
+        actions.waitForElementPresent("userRegistrationPage.UsernameField");
+        actions.typeValueInField(username, "userRegistrationPage.UsernameField");
     }
 
     public void fillEmailField(String username) {
         String email = username + "@abv.bg";
-        actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
+        actions.typeValueInField(email, "userRegistrationPage.EmailField");
     }
     public void leaveEmailEmpty(String email){
-        actions.typeValueInField(email, "WEare.userRegistrationPage.EmailField");
+        actions.typeValueInField(email, "userRegistrationPage.EmailField");
     }
 
     public void fillPasswordFields(String password) {
-        actions.typeValueInField(password, "WEare.userRegistrationPage.PasswordField");
-        actions.typeValueInField(password, "WEare.userRegistrationPage.ConfirmPasswordField");
+        actions.typeValueInField(password, "userRegistrationPage.PasswordField");
+        actions.typeValueInField(password, "userRegistrationPage.ConfirmPasswordField");
     }
 
     public void selectCategoryField() {
-        actions.clickElement("WEare.userRegistrationPage.ProfessionalCategoryButton");
+        actions.clickElement("userRegistrationPage.ProfessionalCategoryButton");
         List<WebElement> itemsDropDown = driver.findElements(By.xpath("//option"));
         int maxSize = itemsDropDown.size();
         Random random = new Random();
@@ -45,12 +45,12 @@ public class UserRegistrationPage extends WEareBasePage {
     }
 
     public void clickRegistryButton() {
-        actions.clickElement("WEare.userRegistrationPage.RegisterButton");
+        actions.clickElement("userRegistrationPage.RegisterButton");
     }
 
     public void assertUserCreatedWithWelcomeText() {
         try {
-            actions.assertElementPresent("WEare.RegisterLoginSuccessMessage");
+            actions.assertElementPresent("RegisterLoginSuccessMessage");
             LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
         } catch (Exception e) {
             Assertions.fail("Registration was not successful.");
@@ -60,7 +60,7 @@ public class UserRegistrationPage extends WEareBasePage {
 
     public void validateRegistryNotSuccessful() {
         try {
-            actions.assertElementAttribute("WEare.userRegistrationPage.RegisterButton", "value", "Register");
+            actions.assertElementAttribute("userRegistrationPage.RegisterButton", "value", "Register");
             LOGGER.info("User was not registered when a field was left empty.");
         } catch (Exception e) {
             Assertions.fail("Registration was successful although criterials were not met.");
@@ -70,7 +70,7 @@ public class UserRegistrationPage extends WEareBasePage {
 
     public void validateErrorMessageForInvalidData() {
         try {
-            actions.assertElementPresent("WEare.RegisterErrorMessage.Username");
+            actions.assertElementPresent("registerErrorMessage.Username");
             LOGGER.info("User was not registered: username requires no whitespaces, only character");
         } catch (Exception e) {
             Assertions.fail("Proper error message not presented when invalid username provided");

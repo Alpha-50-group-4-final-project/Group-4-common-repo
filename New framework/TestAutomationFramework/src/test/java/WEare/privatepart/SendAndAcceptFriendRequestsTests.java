@@ -70,14 +70,14 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();
         login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
-        editProfilePage.navigateToHomePage();
+
         homePage.navigateToPersonalProfileButton();
         searchingPage.clickOnNewFriendRequestButton();
         searchingPage.approveRequestByUserFirstName(userFirstName);
     }
 
     private static void searchAndFindCurrentProfileByName(String userName) {
-        editProfilePage.navigateToHomePage();
+
         homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
         searchingPage.seeCurrentUserProfileByName(userName);
@@ -85,7 +85,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
 
     private static void loginAndSetupUsers(String username, String userFirstname, String userLastname) {
         login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
-        editProfilePage.navigateToHomePage();
+
         editProfilePage.navigateToEditProfileMenu();
         userSetUP(userFirstname, userLastname, "01-01-1970");
     }

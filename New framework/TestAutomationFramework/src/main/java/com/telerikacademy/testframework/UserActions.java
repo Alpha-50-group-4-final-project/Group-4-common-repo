@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
@@ -50,24 +51,10 @@ public class UserActions {
         String locator = getLocatorValueByKey(field, fieldArguments);
         WebElement element = driver.findElement(By.xpath(locator));
         element.sendKeys(value);
+        LOGGER.info(format("%s was typed into %s.", value, field));
     }
 
-    public void dragAndDropElement(String fromElementLocator, String toElementLocator) {
 
-        String fromLocator = getLocatorValueByKey(fromElementLocator);
-        WebElement fromElement = driver.findElement(By.xpath(fromLocator));
-
-        String toLocator = getLocatorValueByKey(toElementLocator);
-        WebElement toElement = driver.findElement(By.xpath(toLocator));
-
-        Actions actions = new Actions(driver);
-
-        Action dragAndDrop = actions.clickAndHold(fromElement)
-                .moveToElement(toElement)
-                .release(toElement)
-                .build();
-        dragAndDrop.perform();
-    }
     public void pressKey(Keys key) {
         Actions action = new Actions(driver);
         action.sendKeys(key).perform();
@@ -104,20 +91,19 @@ public class UserActions {
         waitForElementPresenceUntilTimeout(locator, defaultTimeout, arguments);
     }
 
-    public void assertElementPresent(String locator, Object... arguments ) {
-
-        Assertions.assertNotNull((driver.findElement(By.xpath(getUIMappingByKey(locator)))),"Element is not presenting");
+    public void assertElementPresent(String locator, Object... arguments) {
+        Assertions.assertNotNull((driver.findElement(By.xpath(getUIMappingByKey(locator)))), "Element is not found.");
     }
 
-    public void assertElementAttribute(String locator, String attributeName, String attributeValue,Object... arguments) {
+    public void assertElementAttribute(String locator, String attributeName, String attributeValue, Object... arguments) {
         // TODO: Implement the method
         // 1. Find Element using the locator value from Properties
-        String xpath = getLocatorValueByKey(locator,arguments);
+        String xpath = getLocatorValueByKey(locator, arguments);
         WebElement element = driver.findElement(By.xpath(xpath));
         // 2. Get the element attribute
         String value = element.getAttribute(attributeName);
         // 3. Assert equality with expected value
-        Assertions.assertEquals(value,attributeValue,"Attribute value is not corresponding with expected.");
+        Assertions.assertEquals(value, attributeValue, "Attribute value is not corresponding with expected.");
     }
 
     private String getLocatorValueByKey(String locator) {
@@ -160,26 +146,30 @@ public class UserActions {
             Assertions.fail("Element with locator: '" + xpath + "' was not found.");
         }
     }
-    public  void  goToHomePage(){
-        driver.get("WEare.homePage");
+
+    public void navigateToPage(String locator) {
+        driver.get(getLocatorValueByKey(locator));
     }
 
     private String elementText(String key, Object... arguments) {
         String locator = getLocatorValueByKey(key, arguments);
         WebElement element = driver.findElement(By.xpath(locator));
-        LOGGER.info(format("%s is the reponse text from %s",element.getText(),key));
+        LOGGER.info(format("%s is the reponse text from %s", element.getText(), key));
         return element.getText();
     }
-    public void assertElementText(String locator,String message, Object... arguments ) {
-            Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
-            LOGGER.error("Wrong or not existing error message");
+
+    public void assertElementText(String locator, String message, Object... arguments) {
+        Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
+
     }
-    public void  clearingFiled(String key, Object... arguments) {
+
+    public void clearingFiled(String key, Object... arguments) {
         String locator = getLocatorValueByKey(key, arguments);
-        LOGGER.info( key+"was cleaned" );
+        LOGGER.info(key + "was cleaned");
         WebElement element = driver.findElement(By.xpath(locator));
         element.clear();
     }
+
     public boolean isElementVisible(String locator, Object... arguments) {
         int defaultTimeout = Integer.parseInt(getConfigPropertyByKey("config.defaultTimeoutSeconds"));
         Duration timeout = Duration.ofSeconds(defaultTimeout);

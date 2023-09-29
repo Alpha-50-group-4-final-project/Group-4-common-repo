@@ -6,79 +6,83 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
+import static com.telerikacademy.testframework.Utils.LOGGER;
 
-import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomPassword;
-import static com.telerikacademy.testframework.data.RandomUsernamePasswordGenerator.randomUsername;
 
 public class BaseTest {
 
-    public static   String usernameRandom;
+    public static String usernameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
     protected static UserActions actions = new UserActions();
 
     public static UserRegistrationPage registrationPage;
     public static LoginPage loginPage;
-    public static CreateNewPostPage createNewPostPage;
+
     public static PersonalProfilePage editProfilePage;
     public static LatestPostPage latestPostPage;
     public static SearchingPage searchingPage;
     public static AdminPage adminPage;
     public static Faker faker;
-    public static PostsAndCommentsPage postsAndCommentsPage;
+    public static PostsPage postsPage;
+
+    public static CommentsPage comments;
+
+
 
 
     @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("homePage");
-
-        usernameRandom = randomUsername();
-        passwordRandom = randomPassword();
+        faker = new Faker();
 
         homePage = new HomePage(actions.getDriver());
         registrationPage = new UserRegistrationPage(actions.getDriver());
-        loginPage =new LoginPage(actions.getDriver());
-        createNewPostPage = new CreateNewPostPage(actions.getDriver());
-        editProfilePage =new PersonalProfilePage(actions.getDriver());
-        latestPostPage =new LatestPostPage(actions.getDriver());
-       searchingPage=new SearchingPage(actions.getDriver());
+        loginPage = new LoginPage(actions.getDriver());
+        editProfilePage = new PersonalProfilePage(actions.getDriver());
+        latestPostPage = new LatestPostPage(actions.getDriver());
+        searchingPage = new SearchingPage(actions.getDriver());
         adminPage = new AdminPage(actions.getDriver());
-       faker=new Faker();
-       postsAndCommentsPage = new PostsAndCommentsPage(actions.getDriver());
+        postsPage = new PostsPage(actions.getDriver());
+        comments = new CommentsPage(actions.getDriver());
+
+        usernameRandom = faker.name().firstName();
+        LOGGER.info("The follow username was generated: "+usernameRandom );
+        passwordRandom = faker.internet().password(8,20,true,true);
+        LOGGER.info("The follow password was generated: "+usernameRandom );
     }
 
-//    @BeforeEach
-//    public void beforeTests(){
-//
-//    }
+    @AfterAll
+    public static void tearDown() {
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+        UserActions.quitDriver();
+    }
 
-    public static void userSetUP(String firstName,String lastName,String birthdayDate) {
+    public static void userSetUP(String firstName, String lastName, String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
         editProfilePage.fillUpLastNameField(lastName);
         editProfilePage.fillBirthdayField(birthdayDate);
         editProfilePage.clickPersonalInformationUpdateButton();
     }
-    public static void registerUser(String username,String password){
+
+    public static void registerUser(String username, String password) {
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
-        registrationPage.fillEmailField(password);
+        registrationPage.fillEmailField(username);
         registrationPage.fillPasswordFields(password);
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
+        LOGGER.info("User with the following user name: "  +username +"and password: "+password +" was registered." );
     }
-    public  static void login(String username,String password){
+
+    public static void login(String username, String password) {
         loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(username);
         loginPage.fillPasswordField(password);
         loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("homePage.LogoutButton");
+        LOGGER.info("User with the following user name: "  +username +"and password: "+password +" has logged in successfully." );
     }
 
 

@@ -4,6 +4,8 @@ import WEare.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static pages.WEare.Constants.POST_MESSAGE;
+
 public class AdminTests extends BaseTest {
 
     public String adminUsername = "adminTeam";
@@ -13,8 +15,8 @@ public class AdminTests extends BaseTest {
     public void adminLogIn() {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
-        postsAndCommentsPage.createPost();
-        postsAndCommentsPage.addComment("Automated comment by selenium driver");
+        createPost();
+        comments.addComment("Automated comment by selenium driver");
     }
 
     @Test
@@ -40,9 +42,9 @@ public class AdminTests extends BaseTest {
     public void editLatestComment_when_editCommentClicked() {
         homePage.navigateToLatestPosts();
         latestPostPage.clickExplorePost();
-        postsAndCommentsPage.clickShowComments();
-        postsAndCommentsPage.clickEditComment();
-        postsAndCommentsPage.editComment();
+        comments.clickShowComments();
+        comments.clickEditComment();
+        comments.editComment();
         // postsAndCommentsPage.validateCommentEdited();
     }
 
@@ -51,9 +53,9 @@ public class AdminTests extends BaseTest {
     public void deleteLatestComment_when_deleteCommentClicked() {
         homePage.navigateToLatestPosts();
         latestPostPage.clickExplorePost();
-        postsAndCommentsPage.clickShowComments();
-        postsAndCommentsPage.clickDeleteComment();
-        postsAndCommentsPage.deleteComment();
+        comments.clickShowComments();
+        comments.clickDeleteComment();
+        comments.deleteComment();
         //validation
     }
 
@@ -74,6 +76,17 @@ public class AdminTests extends BaseTest {
         searchingPage.assertElementPresent("adminPage.enableButton");
         adminPage.clickOnEnableButton();
         searchingPage.assertElementPresent("adminPage.disableButton");
+    }
+
+    private static void createPost(){
+        postsPage. clickOnAddNewPostButton();
+        postsPage. clickOnPostVisibilityButton();
+        postsPage.postPublicVisibilityChoice();
+        postsPage.typeMessageInMessageField(POST_MESSAGE);
+        postsPage. clickOnSavePostButton();
+
+        actions.assertElementPresent("posts.postExist");
+        actions.assertElementPresent("posts.postIsPublic");
     }
 
 }

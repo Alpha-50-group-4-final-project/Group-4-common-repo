@@ -34,7 +34,7 @@ public class LoginPage extends WEareBasePage {
     }
 
     public void assertErrorMessage(String message) {
-        actions.assertElementText("RegisterLoginErrorMessage", message);
+        actions.assertElementText("registerLoginErrorMessage", message);
     }
 
     public void assertElementPresent(String locator) {
