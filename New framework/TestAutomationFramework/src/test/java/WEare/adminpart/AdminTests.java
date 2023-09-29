@@ -4,19 +4,19 @@ import WEare.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static pages.WEare.Constants.POST_MESSAGE;
-
 public class AdminTests extends BaseTest {
 
+    public static final String TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
     public String adminUsername = "adminTeam";
     public String adminPassword = "123456";
+    private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
 
     @BeforeEach
     public void adminLogIn() {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
         createPost();
-        comments.addComment("Automated comment by selenium driver");
+        comments.addComment(TEST_SET_UP_COMMENT);
     }
 
     @Test

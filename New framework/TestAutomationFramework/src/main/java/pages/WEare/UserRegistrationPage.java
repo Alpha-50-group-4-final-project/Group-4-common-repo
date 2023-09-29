@@ -64,6 +64,7 @@ public class UserRegistrationPage extends WEareBasePage {
             LOGGER.info("User was not registered when a field was left empty.");
         } catch (Exception e) {
             Assertions.fail("Registration was successful although criterials were not met.");
+            LOGGER.info("Registration test fails");
         }
         //getElementByID("username").value==null
     }

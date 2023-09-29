@@ -3,6 +3,7 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Keys;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
 
@@ -10,6 +11,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostsAndCommentsTests extends BaseTest {
+    public static final String EDITED_POST_MESSAGE = "This post was edited by Selenium WebDriver";
     static String username = "dinko";
     static String password = "pass123";
     private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
@@ -47,11 +49,12 @@ public class PostsAndCommentsTests extends BaseTest {
     @Description("Validate the user can edit his public post")
     public void editPublicPost() {
         postsPage.goToLatestPosts();
+
         postsPage.clickOnExplorePostButton();
         postsPage.clickOnEditPostButton();
         postsPage.clickOnPostVisibilityButton();
         postsPage.postPublicVisibilityChoice();
-        postsPage.typeMessageInMessageField("This post was edited by Selenium WebDriver");
+        postsPage.typeMessageInMessageField(EDITED_POST_MESSAGE);
         postsPage.clickOnSavePostButton();
         actions.assertElementPresent("posts.postEditExist");
         LOGGER.info("Public post was edited successfully.");
@@ -82,7 +85,12 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(5)
     @Description("Validate registered user is able to add a valid comment to a post")
     public void addValidComment() {
-        comments.addComment(VALID_COMMENT_MESSAGE);
+        comments.clickOnLastPublicPost();
+        comments.writeComment(VALID_COMMENT_MESSAGE);
+        comments.clickOnSubmitCommentButton();
+        actions.pressKey(Keys.PAGE_UP);
+        comments.clickOnShowCommentsButton();
+
         actions.assertElementPresent("posts.deleteCommentButton");
         LOGGER.info("Comment: "+VALID_COMMENT_MESSAGE +" was successfully added to existing post.");
     }

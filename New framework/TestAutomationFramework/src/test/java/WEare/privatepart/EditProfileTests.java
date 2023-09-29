@@ -12,6 +12,13 @@ public class EditProfileTests extends BaseTest {
     public static final String SET_UP_FIRSTNAME = "Jon";
     public static final String SET_UP_LASTNAME = "Snow";
     public static final String SET_UP_BIRTHDAY_DATE = "01-01-1970";
+    public static final String PROFESSION = "Doctor";
+    public static final String SERVICE_PROVIDED = "Nothing special.";
+    public static final String WEEKLY_AVAILABILITY = "8";
+    public static final String NEW_EMAIL = "peshakaa@abv.bg";
+    public static final String GENDER_TYPE = "FEMALE";
+    public static final String VALID_FIRST_NAME = "Patkan";
+    public static final String VALID_LAST_NAME = "Patkanov";
 
 
     @BeforeAll
@@ -40,7 +47,7 @@ public class EditProfileTests extends BaseTest {
 
     @Test
     public void editFirstnameLastNameBirthday_when_invalidLastNameIsProvided() {
-        editProfilePage.fillUpFirstNameField("Patkan");
+        editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
         editProfilePage.fillUpLastNameField("");
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -68,11 +75,11 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeGender() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
-        editProfilePage.changeGender("FEMALE");
+        editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
 
-        editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", "FEMALE", "FEMALE");
+        editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", GENDER_TYPE, GENDER_TYPE);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
 //        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
@@ -82,10 +89,10 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeEmail_when_ValidNewEmailIsProvided() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
-        editProfilePage.changeEmail("peshakaa@abv.bg");
+        editProfilePage.changeEmail(NEW_EMAIL);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-        editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", "peshakaa@abv.bg");
+        editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", NEW_EMAIL);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
 //        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
@@ -97,7 +104,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void editFirstnameLastNameBirthday_when_invalidFirstNameIsProvided() {
         editProfilePage.fillUpFirstNameField("");
-        editProfilePage.fillUpLastNameField("Patkanov");
+        editProfilePage.fillUpLastNameField(VALID_LAST_NAME);
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
@@ -116,15 +123,16 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeProfessionalCategory() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
-        editProfilePage.changeProfessionalCategory("Doctor");
+        editProfilePage.changeProfessionalCategory(PROFESSION);
 
     }
 
     @Test
     public void changeServices() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
-        editProfilePage.changeServices("Nothing special.", "8");
+        editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
     }
+
 
 
 }

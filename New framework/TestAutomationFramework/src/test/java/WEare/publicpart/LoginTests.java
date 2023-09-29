@@ -25,7 +25,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("homePage.LogoutButton");
         loginPage.clickOnLogOutButton();
-        System.out.println("Login has been successfull.");
+        System.out.println("Login has been successful.");
     }
 
     @ParameterizedTest

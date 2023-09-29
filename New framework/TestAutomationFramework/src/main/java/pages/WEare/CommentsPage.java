@@ -8,6 +8,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 public class CommentsPage extends WEareBasePage {
 
     public String deleteConfirmation = "delete";
+
     public CommentsPage(WebDriver driver) {
         super(driver, "");
     }
@@ -15,10 +16,20 @@ public class CommentsPage extends WEareBasePage {
     public void addComment(String commentMessage) {
         clickOnLastPublicPost();
         writeComment(commentMessage);
-        actions.clickElement("posts.submitCommentButton");
+        clickOnSubmitCommentButton();
         actions.pressKey(Keys.PAGE_UP);
+        clickOnShowCommentsButton();
+    }
+
+
+    public void clickOnShowCommentsButton() {
         actions.waitForElementClickable("posts.showCommentsButton");
         actions.clickElement("posts.showCommentsButton");
+    }
+
+    public void clickOnSubmitCommentButton() {
+        actions.waitForElementClickable("posts.submitCommentButton");
+        actions.clickElement("posts.submitCommentButton");
     }
 
     public void writeComment(String commentMessage) {

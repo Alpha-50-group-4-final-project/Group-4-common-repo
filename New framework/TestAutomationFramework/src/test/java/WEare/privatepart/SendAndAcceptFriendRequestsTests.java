@@ -6,22 +6,16 @@ import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SendAndAcceptFriendRequestsTests extends BaseTest {
 
-    public static String FIRST_USER;
     public static String SECOND_USER;
 
     private static String firstUserFirstName;
     private static String secondUserFirstName;
 
-    public static final String USERS_PASSWORD = "pass_123";
-
-
     @BeforeAll
     public static void initialSetUp() {
-        FIRST_USER = faker.name().firstName();
         SECOND_USER = faker.name().firstName();
-        registerUser(FIRST_USER, USERS_PASSWORD);
-        registerUser(SECOND_USER, USERS_PASSWORD);
-
+        registerUser(usernameRandom, passwordRandom);
+        registerUser(SECOND_USER, passwordRandom);
     }
 
     @BeforeEach
@@ -30,7 +24,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         secondUserFirstName = faker.name().firstName();
         String lastNameFirstUser = faker.name().firstName();
         String lastNameSecondUser = faker.name().firstName();
-        loginAndSetupUsers(FIRST_USER, firstUserFirstName, lastNameFirstUser);
+        loginAndSetupUsers(usernameRandom, firstUserFirstName, lastNameFirstUser);
         loginPage.clickOnLogOutButton();
         loginAndSetupUsers(SECOND_USER, secondUserFirstName, lastNameSecondUser);
     }
@@ -53,7 +47,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
-        loginSendsApproveRequests(FIRST_USER, secondUserFirstName);
+        loginSendsApproveRequests(usernameRandom, secondUserFirstName);
     }
 
     @Test
@@ -61,7 +55,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
-        loginSendsApproveRequests(FIRST_USER, secondUserFirstName);
+        loginSendsApproveRequests(usernameRandom, secondUserFirstName);
         searchAndFindCurrentProfileByName(secondUserFirstName);
         searchingPage.clickOnDisconnectButton();
         searchingPage.assertElementPresent("ProfileConnectionPageConnectButton");
@@ -69,7 +63,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
 
     private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();
-        login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
+        login(username, SendAndAcceptFriendRequestsTests.passwordRandom);
 
         homePage.navigateToPersonalProfileButton();
         searchingPage.clickOnNewFriendRequestButton();
@@ -77,15 +71,14 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     }
 
     private static void searchAndFindCurrentProfileByName(String userName) {
-
+        actions.navigateToPage("http://localhost:8081/");
         homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
         searchingPage.seeCurrentUserProfileByName(userName);
     }
 
     private static void loginAndSetupUsers(String username, String userFirstname, String userLastname) {
-        login(username, SendAndAcceptFriendRequestsTests.USERS_PASSWORD);
-
+        login(username, SendAndAcceptFriendRequestsTests.passwordRandom);
         editProfilePage.navigateToEditProfileMenu();
         userSetUP(userFirstname, userLastname, "01-01-1970");
     }

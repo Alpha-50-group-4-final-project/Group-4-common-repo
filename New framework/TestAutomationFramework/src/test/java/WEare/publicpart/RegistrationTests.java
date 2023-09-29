@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static com.telerikacademy.testframework.Utils.LOGGER;
+
 public class RegistrationTests extends BaseTest {
 
     @Test
@@ -16,8 +18,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
-
-        System.out.println("New user was registered successfully.");
+        LOGGER.info("New user was registered successfully.");
     }
     @ParameterizedTest
     @CsvSource({ "а", "thisUserNameShouldBeTooLongToCreateAUser"})
@@ -29,7 +30,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
     @Test
     public void registerNewUser_when_emptyUsernamePassed(){
@@ -40,7 +41,8 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
+        System.out.println();
     }
     //notReadY:
     @Test
@@ -52,7 +54,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
     @Test
     public void registerNewUser_when_emptyEmailPassed(){
@@ -63,7 +65,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
     @ParameterizedTest
     @CsvSource({ "12345", "01234567891011121314"})
@@ -75,7 +77,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
     @Test
     public void registerNewUser_when_emptyPasswordPassed(){
@@ -86,7 +88,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
     @Test
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
@@ -96,6 +98,6 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
-        System.out.println("Expected error message was shown");
+        LOGGER.info("Expected error message was shown");
     }
 }
