@@ -15,7 +15,7 @@ public class AdminPage extends WEareBasePage {
     public String deleteConfirmation = "delete";
 
     public AdminPage(WebDriver driver) {
-        super(driver, "WEare.homePage");
+        super(driver, "homePage");
     }
 
 
@@ -32,7 +32,9 @@ public class AdminPage extends WEareBasePage {
 
     public void editPostInformation() {
         actions.clickElement("adminPage.postVisibility");
+        actions.waitForElementPresent("adminPage.postVisibility");
         actions.typeValueInField(postVisibilityPublic, "adminPage.postVisibility");
+        actions.waitForElementPresent("adminPage.editMessage");
         actions.typeValueInField(updatedMessage, "adminPage.editMessage");
         actions.clickElement("adminPage.submitButton");
     }
@@ -64,7 +66,7 @@ public class AdminPage extends WEareBasePage {
 
     public void clickGOTOadminzoneButton(){
         actions.waitForElementClickable("adminPage.adminZoneButton");
-        actions.clickElement(".adminPage.adminZoneButton");
+        actions.clickElement("adminPage.adminZoneButton");
     }
 
     public void clickOnViewUsersButton(){

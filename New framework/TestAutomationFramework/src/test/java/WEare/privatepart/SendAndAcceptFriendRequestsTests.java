@@ -29,7 +29,6 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         loginAndSetupUsers(SECOND_USER, secondUserFirstName, lastNameSecondUser);
     }
 
-
     @AfterEach
     public void clean() {
         loginPage.clickOnLogOutButton();

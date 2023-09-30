@@ -3,6 +3,7 @@ package WEare.publicpart;
 import WEare.BaseTest;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,10 +17,14 @@ public class LoginTests extends BaseTest {
     public static void registerUser_when_ValidCredentialsArePassed() {
        registerUser(usernameRandom,passwordRandom);
     }
+    @BeforeEach
+    public  void takeMeToHomePage(){
+        actions.navigateToPage("http://localhost:8081/");
+        loginPage.clickOnLoginButton();
+    }
 
     @Test
     public void login_when_ValidCredentialsArePassed() {
-        loginPage.clickOnLoginButton();
         loginPage.fillUsernameField(usernameRandom);
         loginPage.fillPasswordField(passwordRandom);
         loginPage.clickOnSubmitButton();
@@ -37,4 +42,6 @@ public class LoginTests extends BaseTest {
         loginPage.assertErrorMessage("Wrong username or password.");
         System.out.println("Expected error message showed up.");
     }
+
+
 }

@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
+import java.text.SimpleDateFormat;
+
 import static com.telerikacademy.testframework.Utils.LOGGER;
 
 
@@ -27,7 +29,7 @@ public class BaseTest {
     public static PostsPage postsPage;
 
     public static CommentsPage comments;
-
+    public static SimpleDateFormat dtf;
 
 
 
@@ -50,13 +52,14 @@ public class BaseTest {
         LOGGER.info("The follow username was generated: "+usernameRandom );
         passwordRandom = faker.internet().password(8,20,true,true);
         LOGGER.info("The follow password was generated: "+usernameRandom );
+        dtf =new SimpleDateFormat("yyyy/MM/dd");
     }
 
-    @AfterAll
-    public static void tearDown() {
-
-        UserActions.quitDriver();
-    }
+//    @AfterAll
+//    public static void tearDown() {
+//
+//        UserActions.quitDriver();
+//    }
 
     public static void userSetUP(String firstName, String lastName, String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);

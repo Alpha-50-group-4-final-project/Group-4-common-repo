@@ -38,7 +38,7 @@ public class PersonalProfilePage extends WEareBasePage {
 
     public void fillBirthdayField(String date) {
         actions.waitForElementPresent("personalProfilePageBirthdayField");
-        actions.clearingFiled("personalProfilePageBirthdayField");
+//        actions.clearingFiled("personalProfilePageBirthdayField");
         actions.typeValueInField(date, "personalProfilePageBirthdayField");
         LOGGER.info(format("Birthday date was set to : \"%s\"",date));
     }

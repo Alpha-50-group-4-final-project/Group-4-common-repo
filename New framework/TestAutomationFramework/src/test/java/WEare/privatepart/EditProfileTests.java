@@ -11,7 +11,7 @@ public class EditProfileTests extends BaseTest {
     public static final String CITY = "Burgas";
     public static final String SET_UP_FIRSTNAME = "Jon";
     public static final String SET_UP_LASTNAME = "Snow";
-    public static final String SET_UP_BIRTHDAY_DATE = "01-01-1970";
+    public static final String SET_UP_BIRTHDAY_DATE = "07/05/1970";
     public static final String PROFESSION = "Doctor";
     public static final String SERVICE_PROVIDED = "Nothing special.";
     public static final String WEEKLY_AVAILABILITY = "8";
@@ -23,8 +23,8 @@ public class EditProfileTests extends BaseTest {
 
     @BeforeAll
     public static void testSetup() {
-        registerUser(usernameRandom,passwordRandom);
-        login(usernameRandom,passwordRandom);
+        registerUser(usernameRandom, passwordRandom);
+        login(usernameRandom, passwordRandom);
     }
 
     @BeforeEach
@@ -34,7 +34,6 @@ public class EditProfileTests extends BaseTest {
 
     @Test
     public void editFirstnameLastNameBirthday_when_validDataIsProvided() {
-
         editProfilePage.fillUpFirstNameField(SET_UP_FIRSTNAME);
         editProfilePage.fillUpLastNameField(SET_UP_LASTNAME);
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
@@ -42,7 +41,6 @@ public class EditProfileTests extends BaseTest {
 
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value",SET_UP_BIRTHDAY_DATE );
     }
 
     @Test
@@ -56,20 +54,15 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.assertLastNameErrorMessage();
     }
 
-
     @Test
     public void addSelfDescription_when_validDataIsProvided() {
-
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-
         editProfilePage.assertSelfDescription(SELF_DESCRIPTION);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
-
     }
 
     @Test
@@ -78,12 +71,9 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
-
         editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", GENDER_TYPE, GENDER_TYPE);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
-
     }
 
     @Test
@@ -95,11 +85,7 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", NEW_EMAIL);
         editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
         editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-//        editProfilePage.assertElementAttribute("personalProfilePageBirthdayField", "value", SET_UP_BIRTHDAY_DATE);
-
-
     }
-
 
     @Test
     public void editFirstnameLastNameBirthday_when_invalidFirstNameIsProvided() {
@@ -124,7 +110,6 @@ public class EditProfileTests extends BaseTest {
     public void changeProfessionalCategory() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeProfessionalCategory(PROFESSION);
-
     }
 
     @Test
@@ -132,7 +117,4 @@ public class EditProfileTests extends BaseTest {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
     }
-
-
-
 }
