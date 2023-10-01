@@ -6,36 +6,35 @@
   <component name="ChangeListManager">
     <list default="true" id="4ca739b2-da02-40a4-9e86-e7831d937cb2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/AdminPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/AdminPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/LatestPostPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/LatestPostPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsAndCommentsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsAndCommentsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/adminpart/AdminTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/adminpart/AdminTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/mappings/ui_map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/mappings/ui_map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/UserRegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/UserRegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/PostsAndCommentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/PostsAndCommentsTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/CustomWebDriverManager$CustomWebDriverManagerEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/CustomWebDriverManager$CustomWebDriverManagerEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/CustomWebDriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/CustomWebDriverManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/Driver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/PropertiesManager$PropertiesManagerEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/PropertiesManager$PropertiesManagerEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/PropertiesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/PropertiesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/UserActionNonImplemented.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/UserActionNonImplemented.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/UserActions.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/UserActions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/enums/BrowserTypes$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/enums/BrowserTypes$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/enums/BrowserTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/enums/BrowserTypes.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/com/telerikacademy/testframework/pages/BasePage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/AdminPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/AdminPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CreateNewPostPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CreateNewPostPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CommentsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CommentsPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LatestPostPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LatestPostPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LoginPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PersonalProfilePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PersonalProfilePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsAndCommentsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsAndCommentsPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/SearchingPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/SearchingPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/UserRegistrationPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/UserRegistrationPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/WEareBasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/WEareBasePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/BaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/BaseTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/adminpart/AdminTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/adminpart/AdminTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/EditProfileTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/EditProfileTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/PostsAndCommentsTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/PostsAndCommentsTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/SendAndAcceptFriendRequestsTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/SendAndAcceptFriendRequestsTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/mappings/ui_map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/mappings/ui_map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/publicpart/AnonymousUserTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/publicpart/AnonymousUserTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/publicpart/LoginTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/publicpart/LoginTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,25 +60,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Ani/IdeaProjects/REPOS/Final Project/Group-4-common-repo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ani/IdeaProjects/REPOS/Final Project/Group-4-common-repo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.AdminTests.deleteLatestComment_when_deleteCommentClicked">
+}</component>
+  <component name="RunManager" selected="JUnit.PostsAndCommentsTests.likePublicPost">
     <configuration name="AdminTests.deleteLatestComment_when_deleteCommentClicked" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="test-automation-framework" />
       <extension name="coverage">
@@ -96,43 +95,69 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminTests.deleteLatestPost_when_deletePostClicked" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostsAndCommentsTests.dislikePublicPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="test-automation-framework" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WEare.adminpart.*" />
+          <option name="PATTERN" value="WEare.privatepart.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="WEare.adminpart" />
-      <option name="MAIN_CLASS_NAME" value="WEare.adminpart.AdminTests" />
-      <option name="METHOD_NAME" value="deleteLatestPost_when_deletePostClicked" />
+      <option name="PACKAGE_NAME" value="WEare.privatepart" />
+      <option name="MAIN_CLASS_NAME" value="WEare.privatepart.PostsAndCommentsTests" />
+      <option name="METHOD_NAME" value="dislikePublicPost" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminTests.editLatestComment_when_editCommentClicked" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostsAndCommentsTests.likePublicPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="test-automation-framework" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WEare.adminpart.*" />
+          <option name="PATTERN" value="WEare.privatepart.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="WEare.adminpart" />
-      <option name="MAIN_CLASS_NAME" value="WEare.adminpart.AdminTests" />
-      <option name="METHOD_NAME" value="editLatestComment_when_editCommentClicked" />
+      <option name="PACKAGE_NAME" value="WEare.privatepart" />
+      <option name="MAIN_CLASS_NAME" value="WEare.privatepart.PostsAndCommentsTests" />
+      <option name="METHOD_NAME" value="likePublicPost" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistrationTests.registerNewUser_when_optionalField_emptyDropdownPassed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true" repeat_count="5" repeat_mode="N Times">
+      <module name="test-automation-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WEare.publicpart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WEare.publicpart" />
+      <option name="MAIN_CLASS_NAME" value="WEare.publicpart.RegistrationTests" />
+      <option name="METHOD_NAME" value="registerNewUser_when_optionalField_emptyDropdownPassed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WEare in test-automation-framework" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-automation-framework" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostsAndCommentsTests.likePublicPost" />
+        <item itemvalue="JUnit.PostsAndCommentsTests.dislikePublicPost" />
+        <item itemvalue="JUnit.RegistrationTests.registerNewUser_when_optionalField_emptyDropdownPassed" />
+        <item itemvalue="JUnit.WEare in test-automation-framework" />
         <item itemvalue="JUnit.AdminTests.deleteLatestComment_when_deleteCommentClicked" />
-        <item itemvalue="JUnit.AdminTests.editLatestComment_when_editCommentClicked" />
-        <item itemvalue="JUnit.AdminTests.deleteLatestPost_when_deletePostClicked" />
       </list>
     </recent_temporary>
   </component>
@@ -146,6 +171,7 @@
       <updated>1695202044698</updated>
       <workItem from="1695543416265" duration="6000" />
       <workItem from="1695727939622" duration="4984000" />
+      <workItem from="1696177419425" duration="1821000" />
     </task>
     <servers />
   </component>

@@ -22,12 +22,12 @@ public class PostsAndCommentsTests extends BaseTest {
         login(username, password);
     }
 
-    @AfterAll
-    public void returnHome() {
-        actions.waitForElementClickable("homeButton");
-        actions.clickElement("homeButton");
-        loginPage.clickOnLogOutButton();
-    }
+//    @AfterAll
+//    public void returnHome() {
+//        actions.waitForElementClickable("homeButton");
+//        actions.clickElement("homeButton");
+//        loginPage.clickOnLogOutButton();
+//    }
 
     @Test
     @Order(1)

@@ -63,6 +63,7 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void goToLatestPosts() {
+        actions.waitForElementPresent("posts.latestPost");
         actions.waitForElementClickable("posts.latestPost");
         actions.clickElement("posts.latestPost");
     }
