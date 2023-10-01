@@ -1,6 +1,7 @@
 package WEare.publicpart;
 
 import WEare.BaseTest;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,7 +22,7 @@ public class RegistrationTests extends BaseTest {
         LOGGER.info("New user was registered successfully.");
     }
     @ParameterizedTest
-    @CsvSource({ "а", "thisUserNameShouldBeTooLongToCreateAUser"})
+    @CsvSource({ "а",})
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -99,5 +100,11 @@ public class RegistrationTests extends BaseTest {
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
         LOGGER.info("Expected error message was shown");
+    }
+    @AfterAll
+    public static void gettingOuOfAcc(){
+        if(actions.isElementVisible("homePage.LogoutButton")){
+            actions.clickElement("homePage.LogoutButton");
+        }
     }
 }

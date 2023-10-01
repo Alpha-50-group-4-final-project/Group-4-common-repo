@@ -12,11 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.telerikacademy.testframework.Utils.LOGGER;
-import static com.telerikacademy.testframework.Utils.getConfigPropertyByKey;
-import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-import static com.telerikacademy.testframework.Utils.getWebDriver;
-import static com.telerikacademy.testframework.Utils.tearDownWebDriver;
+import static com.telerikacademy.testframework.Utils.*;
 import static java.lang.String.format;
 
 public class UserActions {
@@ -37,6 +33,9 @@ public class UserActions {
 
     public static void quitDriver() {
         tearDownWebDriver();
+    }
+    public static void closeDriver() {
+        closingDownWebDriver();
     }
 
     public void clickElement(String key, Object... arguments) {

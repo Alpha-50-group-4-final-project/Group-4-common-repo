@@ -23,9 +23,9 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("posts.editPost");
     }
 
-    public void clickOnExplorePostButton() {
-        actions.waitForElementClickable("posts.explorePost");
-        actions.clickElement("posts.explorePost");
+    public void clickOnExplorePostButton(String name) {
+        actions.waitForElementClickable("posts.explorePostsByUserName",name);
+        actions.clickElement("posts.explorePostsByUserName",name);
     }
 
     public void clickOnLikePostButton() {

@@ -3,6 +3,7 @@ package WEare;
 import com.github.javafaker.Faker;
 import com.telerikacademy.testframework.UserActions;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
@@ -55,11 +56,10 @@ public class BaseTest {
         dtf =new SimpleDateFormat("yyyy/MM/dd");
     }
 
-//    @AfterAll
-//    public static void tearDown() {
-//
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void tearDown() {
+        UserActions.quitDriver();
+    }
 
     public static void userSetUP(String firstName, String lastName, String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);

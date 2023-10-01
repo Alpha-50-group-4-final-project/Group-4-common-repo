@@ -33,6 +33,12 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     public void clean() {
         loginPage.clickOnLogOutButton();
     }
+    @AfterAll
+    public static void gettingOuOfAcc(){
+        if(actions.isElementVisible("homePage.LogoutButton")){
+            actions.clickElement("homePage.LogoutButton");
+        }
+    }
 
     @Test
     public void sendConnectRequest() {
@@ -81,4 +87,5 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         editProfilePage.navigateToEditProfileMenu();
         userSetUP(userFirstname, userLastname, "01-01-1970");
     }
+
 }

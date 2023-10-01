@@ -65,9 +65,9 @@ public class CommentsPage extends WEareBasePage {
     public void editComment() {
 
         // assertPageNavigated();
-        actions.waitForElementClickable("commentsPage.messageField");
-        actions.clickElement("commentsPage.messageField");
-        actions.typeValueInField("editedCommentText", "commentsPage.messageField");
+        actions.waitForElementClickable("posts.commentField");
+        actions.clickElement("posts.commentField");
+        actions.typeValueInField("editedCommentText", "posts.commentField");
         actions.clickElement("adminPage.submitButton");
     }
 

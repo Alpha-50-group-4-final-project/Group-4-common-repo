@@ -1,6 +1,7 @@
 package WEare.publicpart;
 
 import WEare.BaseTest;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 public class AnonymousUserTests extends BaseTest {
@@ -39,12 +40,10 @@ public class AnonymousUserTests extends BaseTest {
         homePage.validateSearchResult("Ann");
     }
 
-//    @Test
-//    public void errorMessage_when_searchPrivateProfilePerformed(){
-//
-//    }
-//    @Test
-//    public void errorMessage_when_searchUnexistingProfilePerformed(){
-//
-//    }
+    @AfterAll
+    public static void gettingOuOfAcc(){
+        if(actions.isElementVisible("homePage.LogoutButton")){
+            actions.clickElement("homePage.LogoutButton");
+        }
+    }
 }

@@ -2,6 +2,7 @@ package WEare.publicpart;
 
 import WEare.BaseTest;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,11 @@ public class LoginTests extends BaseTest {
         loginPage.assertErrorMessage("Wrong username or password.");
         System.out.println("Expected error message showed up.");
     }
-
+    @AfterAll
+    public static void gettingOuOfAcc(){
+        if(actions.isElementVisible("homePage.LogoutButton")){
+            actions.clickElement("homePage.LogoutButton");
+        }
+    }
 
 }

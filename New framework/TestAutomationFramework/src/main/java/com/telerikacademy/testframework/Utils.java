@@ -20,6 +20,10 @@ public class Utils {
         LOGGER.info("Quitting WebDriver");
         CustomWebDriverManager.CustomWebDriverManagerEnum.INSTANCE.quitDriver();
     }
+    public static void closingDownWebDriver() {
+        LOGGER.info("Closing WebDriver");
+        CustomWebDriverManager.CustomWebDriverManagerEnum.INSTANCE.closeDriver();
+    }
 
     public static String getUIMappingByKey(String key) {
         String value = uiMappings.getProperty(key);

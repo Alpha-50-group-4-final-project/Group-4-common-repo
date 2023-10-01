@@ -15,6 +15,12 @@ public class CustomWebDriverManager {
                 driver = null;
             }
         }
+        public void closeDriver() {
+            if (driver != null) {
+                driver.close();
+                driver = null;
+            }
+        }
 
         public WebDriver getDriver() {
             if (driver == null) {

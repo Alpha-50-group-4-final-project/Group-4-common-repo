@@ -50,7 +50,7 @@ public class PostsAndCommentsTests extends BaseTest {
     public void editPublicPost() {
         postsPage.goToLatestPosts();
 
-        postsPage.clickOnExplorePostButton();
+        postsPage.clickOnExplorePostButton(username);
         postsPage.clickOnEditPostButton();
         postsPage.clickOnPostVisibilityButton();
         postsPage.postPublicVisibilityChoice();
@@ -103,11 +103,17 @@ public class PostsAndCommentsTests extends BaseTest {
         actions.waitForElementClickable("posts.browsePublicPosts");
         actions.clickElement("posts.browsePublicPosts");
         postsPage.goToLatestPosts();
-        postsPage.clickOnExplorePostButton();
+        postsPage.clickOnExplorePostButton(username);
         postsPage.clickOnDeletePostButton();
         postsPage.choosingDeletePostOption();
         postsPage.clickPostSubmitButton();
         actions.assertElementPresent("post.deleteMessage");
         LOGGER.info("Public post was deleted successfully.");
+    }
+    @AfterAll
+    public static void gettingOuOfAcc(){
+        if(actions.isElementVisible("homePage.LogoutButton")){
+            actions.clickElement("homePage.LogoutButton");
+        }
     }
 }

@@ -18,9 +18,6 @@ public class LatestPostPage extends WEareBasePage {
     }
 
     public void assertPublicPostOrdered() {
-        //by date: //span[@class='seen']
-        //by rank://span[contains(@id, 'rank')]
-
            List<WebElement> rankList = driver.findElements(By.xpath("//span[@class='seen']"));
            List<String> ranks = rankList.stream().map(n -> n.getText()).collect(Collectors.toList());
            List<String> unsortedRanks = List.copyOf(ranks);
