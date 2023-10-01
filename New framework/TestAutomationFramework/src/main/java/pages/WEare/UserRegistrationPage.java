@@ -50,6 +50,7 @@ public class UserRegistrationPage extends WEareBasePage {
 
     public void assertUserCreatedWithWelcomeText() {
         try {
+            actions.waitForElementPresent("RegisterLoginSuccessMessage");
             actions.assertElementPresent("RegisterLoginSuccessMessage");
             LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
         } catch (Exception e) {

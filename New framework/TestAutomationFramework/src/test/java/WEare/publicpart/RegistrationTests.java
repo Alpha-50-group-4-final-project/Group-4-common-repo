@@ -99,7 +99,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
-        LOGGER.info("Expected error message was shown");
+        LOGGER.info("User was successfully registered.");
     }
     @AfterAll
     public static void gettingOuOfAcc(){
