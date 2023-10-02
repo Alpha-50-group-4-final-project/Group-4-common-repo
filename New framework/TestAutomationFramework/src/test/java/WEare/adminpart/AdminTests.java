@@ -19,7 +19,7 @@ public class AdminTests extends BaseTest {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
         createPost();
-        comments.addComment(TEST_SET_UP_COMMENT);
+        comments.addComment(TEST_SET_UP_COMMENT,adminUsername);
     }
     @AfterEach
     public  void clean(){

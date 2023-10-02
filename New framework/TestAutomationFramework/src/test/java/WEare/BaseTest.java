@@ -61,10 +61,10 @@ public class BaseTest {
         usernames = new ArrayList<>();
     }
 
-    @AfterAll
-    public static void tearDown() {
-        UserActions.quitDriver();
-    }
+//    @AfterAll
+//    public static void tearDown() {
+//        UserActions.quitDriver();
+//    }
 
     public static void userSetUP(String firstName, String lastName, String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
@@ -127,6 +127,18 @@ public class BaseTest {
                             String sqlDeleteConnectionUsers = format("DELETE FROM `connection_users` WHERE `connection_users`.`user_a` = %d OR `connection_users`.`user_b` = %d", id, id);
                             System.out.println(sqlDeleteConnectionUsers);
                             deleteStatement.executeUpdate(sqlDeleteConnectionUsers);
+
+                            String sqlDeleteLikedComments = format("DELETE FROM `comment_likes_table` WHERE user_id=%d", id);
+                            System.out.println(sqlDeleteLikedComments);
+                            deleteStatement.executeUpdate(sqlDeleteLikedComments);
+
+                            String sqlDeleteCommentsTable = format("DELETE FROM `comments_table` WHERE user_id=%d", id);
+                            System.out.println(sqlDeleteCommentsTable);
+                            deleteStatement.executeUpdate(sqlDeleteCommentsTable);
+
+                            String sqlDeleteLikedPosts = format("DELETE FROM `post_likes_table` WHERE user_id= %d", id);
+                            System.out.println(sqlDeleteLikedPosts);
+                            deleteStatement.executeUpdate(sqlDeleteLikedPosts);
 
                             String sqlDeletePosts = format("DELETE FROM posts_table WHERE posts_table.user_id = %d", id);
                             System.out.println(sqlDeletePosts);

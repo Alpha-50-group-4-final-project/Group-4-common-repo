@@ -35,7 +35,7 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void clickOnDislikePostButton() {
-        actions.waitForElementClickable("posts.dislikePostButton");
+        actions.waitForElementPresent("posts.dislikePostButton");
         actions.clickElement("posts.dislikePostButton");
         actions.waitForElementPresent("posts.likePost");
     }

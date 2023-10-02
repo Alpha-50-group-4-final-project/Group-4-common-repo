@@ -84,10 +84,10 @@ public class PostsAndCommentsTests extends BaseTest {
     @Order(5)
     @Description("Validate registered user is able to add a valid comment to a post")
     public void addValidComment_when_postCommentButtonClicked() {
-        comments.clickOnLastPublicPost();
+        comments.clickOnExploreThisButtonByUsername(usernameRandom);
         comments.writeComment(VALID_COMMENT_MESSAGE);
         comments.clickOnSubmitCommentButton();
-
+        actions.pressKey(Keys.PAGE_UP);
         comments.clickOnShowCommentsButton();
 
         actions.assertElementPresent("posts.deleteCommentButton");
@@ -102,7 +102,7 @@ public class PostsAndCommentsTests extends BaseTest {
         actions.waitForElementClickable("posts.browsePublicPosts");
         actions.clickElement("posts.browsePublicPosts");
         postsPage.goToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
+        comments.clickOnExploreThisButtonByUsername(usernameRandom);
         postsPage.clickOnDeletePostButton();
         postsPage.choosingDeletePostOption();
         postsPage.clickPostSubmitButton();

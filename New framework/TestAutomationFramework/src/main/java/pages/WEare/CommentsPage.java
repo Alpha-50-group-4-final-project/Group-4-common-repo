@@ -13,8 +13,8 @@ public class CommentsPage extends WEareBasePage {
         super(driver, "");
     }
 
-    public void addComment(String commentMessage) {
-        clickOnLastPublicPost();
+    public void addComment(String commentMessage,String userName) {
+        clickOnExploreThisButtonByUsername(userName);
         writeComment(commentMessage);
         clickOnSubmitCommentButton();
         actions.pressKey(Keys.PAGE_UP);
@@ -38,9 +38,9 @@ public class CommentsPage extends WEareBasePage {
     }
 
 
-    public void clickOnLastPublicPost() {
-        actions.waitForElementClickable("posts.lastPublicPost");
-        actions.clickElement("posts.lastPublicPost");
+    public void clickOnExploreThisButtonByUsername(String name) {
+        actions.waitForElementClickable("posts.explorePostsByUserName",name);
+        actions.clickElement("posts.explorePostsByUserName",name);
     }
 
     public void goToLatestComment() {

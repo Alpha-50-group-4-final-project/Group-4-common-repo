@@ -94,14 +94,15 @@ public class RegistrationTests extends BaseTest {
     }
     @Test
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
+        String username=faker.name().firstName();
         homePage.navigateToRegisterPage();
-        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillUsernameField(username);
         registrationPage.fillEmailField(usernameRandom);
         registrationPage.fillPasswordFields(passwordRandom);
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
         LOGGER.info("User was successfully registered.");
-        usernames.add(usernameRandom);
+        usernames.add(username);
     }
 
 }
