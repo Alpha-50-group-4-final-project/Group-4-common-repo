@@ -27,6 +27,7 @@ public class LatestPostPage extends WEareBasePage {
     }
 
     public void clickExplorePost(){
+        actions.waitForElementClickable("latestPosts.exploreThisPost");
         actions.clickElement("latestPosts.exploreThisPost");
     }
 

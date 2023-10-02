@@ -99,7 +99,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeCity() {
+    public void changeCity_when_differentCityIsChosen() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
@@ -108,7 +108,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeProfessionalCategory() {
+    public void changeProfessionalCategory_when_() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeProfessionalCategory(PROFESSION);
     }
@@ -117,11 +117,5 @@ public class EditProfileTests extends BaseTest {
     public void changeServices() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
-    }
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
     }
 }

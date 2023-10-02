@@ -20,6 +20,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
         LOGGER.info("New user was registered successfully.");
+        usernames.add(usernameRandom);
     }
     @ParameterizedTest
     @CsvSource({ "а",})
@@ -100,11 +101,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
         LOGGER.info("User was successfully registered.");
+        usernames.add(usernameRandom);
     }
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+
 }

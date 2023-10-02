@@ -9,7 +9,7 @@ public class SearchingPage extends WEareBasePage{
     }
 
     public void seeCurrentUserProfileByName(String name){
-        actions.waitForElementClickable("ProfileConnectionPageSeeProfileByName",name);
+        actions.waitForElementPresent("ProfileConnectionPageSeeProfileByName",name);
         actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
     }
     public void clickOnConnectButton(){
@@ -38,6 +38,7 @@ public class SearchingPage extends WEareBasePage{
         actions.clickElement("PersonalProfileFriendRequestAcceptButton",name);
     }
     public void assertElementPresent(String locator) {
+        actions.waitForElementVisible(locator);
         actions.assertElementPresent(locator);
     }
 }

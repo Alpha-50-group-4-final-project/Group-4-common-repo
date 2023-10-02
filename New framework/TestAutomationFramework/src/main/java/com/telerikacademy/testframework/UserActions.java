@@ -158,6 +158,7 @@ public class UserActions {
     }
 
     public void assertElementText(String locator, String message, Object... arguments) {
+        waitForElementVisible(locator);
         Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
 
     }

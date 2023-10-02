@@ -50,9 +50,9 @@ public class UserRegistrationPage extends WEareBasePage {
 
     public void assertUserCreatedWithWelcomeText() {
         try {
-            actions.waitForElementPresent("RegisterLoginSuccessMessage");
             actions.waitForElementVisible("RegisterLoginSuccessMessage");
-            actions.assertElementPresent("RegisterLoginSuccessMessage");
+            actions.waitForElementVisible("RegisterLoginSuccessMessage");
+            actions.assertElementText("RegisterLoginSuccessMessage","Welcome to our community.");
             LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
         } catch (Exception e) {
             Assertions.fail("Registration was not successful.");

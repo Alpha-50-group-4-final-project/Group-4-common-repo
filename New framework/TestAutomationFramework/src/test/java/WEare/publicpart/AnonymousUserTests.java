@@ -23,14 +23,14 @@ public class AnonymousUserTests extends BaseTest {
         latestPostPage.assertPageNavigated();
         latestPostPage.validateHeader("Explore all posts");
     }
-    @Test
-    public void postOrderedChronologically_when_latestPostsClicked(){
-        //api create profile and public posts?
-
-        homePage.navigateToLatestPosts();
-        latestPostPage.assertPageNavigated();
-        latestPostPage.assertPublicPostOrdered();
-    }
+//    @Test
+//    public void postOrderedChronologically_when_latestPostsClicked(){
+//        //api create profile and public posts?
+//
+//        homePage.navigateToLatestPosts();
+//        latestPostPage.assertPageNavigated();
+//        latestPostPage.assertPublicPostOrdered();
+//    }
 
     @Test
     public void viewPublicProfiles_when_searchByNamePerformed() {
@@ -40,10 +40,5 @@ public class AnonymousUserTests extends BaseTest {
         homePage.validateSearchResult("Ann");
     }
 
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+
 }

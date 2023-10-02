@@ -33,22 +33,17 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     public void clean() {
         loginPage.clickOnLogOutButton();
     }
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+
 
     @Test
-    public void sendConnectRequest() {
+    public void sendConnectRequest_when_connectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
     }
 
     @Test
-    public void acceptConnectRequest() {
+    public void acceptConnectRequest_when_approveRequestButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();
@@ -56,7 +51,7 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     }
 
     @Test
-    public void disconnectAcceptedFriendShip() {
+    public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchingPage.clickOnConnectButton();
         searchingPage.assertRequestIsSend();

@@ -10,7 +10,7 @@ public class AdminTests extends BaseTest {
 
     public static final String TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
     public String adminUsername = "teamadmin";
-    public String adminPassword = "123456";
+    public String adminPassword = "12345678";
     private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
 
     @BeforeEach
@@ -71,7 +71,7 @@ public class AdminTests extends BaseTest {
     public void disableAnotherUserAccount() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("");
+        searchingPage.seeCurrentUserProfileByName("Ann");
         searchingPage.assertElementPresent("adminPage.disableButton");
         adminPage.clickDisableButton();
         searchingPage.assertElementPresent("adminPage.enableButton");
@@ -81,7 +81,7 @@ public class AdminTests extends BaseTest {
     public void enableAnotherUserAccount() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("");
+        searchingPage.seeCurrentUserProfileByName("Ann");
         adminPage.clickOnEnableButton();
         searchingPage.assertElementPresent("adminPage.disableButton");
     }
@@ -96,11 +96,6 @@ public class AdminTests extends BaseTest {
         actions.assertElementPresent("posts.postExist");
         actions.assertElementPresent("posts.postIsPublic");
     }
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+
 
 }

@@ -51,7 +51,8 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void clickShowComments() {
-        actions.waitForElementClickable("latestPosts.showComments");
+        actions.waitForElementPresent("latestPosts.showComments");
+
         actions.clickElement("latestPosts.showComments");
     }
 

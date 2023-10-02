@@ -43,11 +43,6 @@ public class LoginTests extends BaseTest {
         loginPage.assertErrorMessage("Wrong username or password.");
         System.out.println("Expected error message showed up.");
     }
-    @AfterAll
-    public static void gettingOuOfAcc(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+
 
 }
