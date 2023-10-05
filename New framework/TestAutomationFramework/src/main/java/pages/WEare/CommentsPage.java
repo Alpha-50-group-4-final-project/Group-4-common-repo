@@ -13,48 +13,41 @@ public class CommentsPage extends WEareBasePage {
         super(driver, "");
     }
 
-    public void addComment(String commentMessage,String userName) {
-        clickOnExploreThisButtonByUsername(userName);
-        writeComment(commentMessage);
-        clickOnSubmitCommentButton();
+    public void addComment(String userName) {
+        actions.waitForElementClickable("posts.explorePostsByUserName",userName);
+        actions.clickElement("posts.explorePostsByUserName",userName);
+        writeComment();
+        clickOnPostCommentButton();
         actions.pressKey(Keys.PAGE_UP);
         clickOnShowCommentsButton();
     }
 
 
     public void clickOnShowCommentsButton() {
+        //actions.pressKey(Keys.PAGE_DOWN);
+        actions.waitForElementVisible("posts.showCommentsButton");
         actions.waitForElementClickable("posts.showCommentsButton");
         actions.clickElement("posts.showCommentsButton");
     }
 
-    public void clickOnSubmitCommentButton() {
+    public void clickOnPostCommentButton() {
         actions.waitForElementClickable("posts.submitCommentButton");
         actions.clickElement("posts.submitCommentButton");
     }
 
-    public void writeComment(String commentMessage) {
+    public void writeComment() {
         actions.waitForElementClickable("posts.commentField");
-        actions.typeValueInField(commentMessage, "posts.commentField");
+        actions.typeValueInField("This is a valid comment made by Selenium WebDriver", "posts.commentField");
     }
 
 
-    public void clickOnExploreThisButtonByUsername(String name) {
-        actions.waitForElementClickable("posts.explorePostsByUserName",name);
-        actions.clickElement("posts.explorePostsByUserName",name);
-    }
+//    public void goToLatestComment() {
+//        PostsPage post = new PostsPage(actions.getDriver());
+//        post.goToLatestPosts();
+//        actions.waitForElementClickable("posts.browsePublicPosts");
+//        actions.clickElement("posts.browsePublicPosts");
+//    }
 
-    public void goToLatestComment() {
-        PostsPage post = new PostsPage(actions.getDriver());
-        post.goToLatestPosts();
-        actions.waitForElementClickable("posts.browsePublicPosts");
-        actions.clickElement("posts.browsePublicPosts");
-    }
-
-    public void clickShowComments() {
-        actions.waitForElementPresent("latestPosts.showComments");
-
-        actions.clickElement("latestPosts.showComments");
-    }
 
     public void clickEditComment() {
         actions.waitForElementClickable("commentsPage.editComment");
@@ -64,19 +57,18 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void editComment() {
-
         // assertPageNavigated();
         actions.waitForElementClickable("posts.commentField");
         actions.clickElement("posts.commentField");
-        actions.typeValueInField("editedCommentText", "posts.commentField");
+        actions.typeValueInField("This is edition from automation.", "posts.commentField");
         actions.clickElement("adminPage.submitButton");
     }
 
     public void validateCommentEdited() {
-        actions.waitForElementClickable("latestPosts.showComments");
-        actions.clickElement("latestPosts.showComments");
+        actions.pressKey(Keys.PAGE_UP);
+        clickOnShowCommentsButton();
 
-        actions.assertElementAttribute("commentPage.editedText", "innerText", "editedCommentText");
+        actions.assertElementAttribute("commentPage.editedText", "innerText", "This is edition from automation.");
         LOGGER.info("Comment validated successfully.");
     }
 
@@ -90,5 +82,30 @@ public class CommentsPage extends WEareBasePage {
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");
+    }
+
+    public void validateCommentCreated(){
+        actions.pressKey(Keys.PAGE_UP);
+        clickOnShowCommentsButton();
+        actions.assertElementAttribute("commentsPage.commentContent", "innerText","This is a valid comment made by Selenium WebDriver");
+        actions.assertElementPresent("posts.deleteCommentButton");
+        LOGGER.info("Comment was successfully added to existing post.");
+    }
+
+    public void clickOnLikeButton() {
+        actions.waitForElementClickable("commentsPage.likeComment");
+        actions.clickElement("commentsPage.likeComment");
+    }
+
+    public void validateCommentLiked(){
+        actions.waitForElementVisible("commentsPage.dislikeButton");
+        actions.assertElementPresent("commentsPage.dislikeButton");
+       // actions.assertElementAttribute("commentsPage.likesCount", "value", "1");
+    }
+
+
+    public void validateCommentDeleted() {
+        validateHeader("Comment deleted successfully");
+        LOGGER.info("Comment deleted successfully.");
     }
 }

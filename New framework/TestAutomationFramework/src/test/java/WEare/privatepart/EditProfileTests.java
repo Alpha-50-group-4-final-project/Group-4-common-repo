@@ -67,7 +67,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeGender() {
+    public void changeGender_when_validDataProvided() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -78,7 +78,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeEmail_when_ValidNewEmailIsProvided() {
+    public void changeEmail_when_validNewEmailIsProvided() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeEmail(NEW_EMAIL);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -108,13 +108,13 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void changeProfessionalCategory_when_() {
+    public void changeProfessionalCategory_when_validProfessionProvided() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeProfessionalCategory(PROFESSION);
     }
 
     @Test
-    public void changeServices() {
+    public void changeServices_when_validServiceClicked() {
         userSetUP(SET_UP_FIRSTNAME, SET_UP_LASTNAME, SET_UP_BIRTHDAY_DATE);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
     }

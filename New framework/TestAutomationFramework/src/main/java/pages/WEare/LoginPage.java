@@ -27,6 +27,7 @@ public class LoginPage extends WEareBasePage {
     public void clickOnLogOutButton(){
         actions.waitForElementClickable("homePage.LogoutButton");
         actions.clickElement("homePage.LogoutButton");
+        validateHeader("Login Page");
     }
 
     public void navigateToHomePage() {

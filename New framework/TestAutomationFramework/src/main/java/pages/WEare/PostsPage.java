@@ -1,5 +1,6 @@
 package pages.WEare;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
@@ -21,11 +22,22 @@ public class PostsPage extends WEareBasePage {
     public void clickOnEditPostButton() {
         actions.waitForElementClickable("posts.editPost");
         actions.clickElement("posts.editPost");
+        validateHeader("Edit post");
     }
 
     public void clickOnExplorePostButton(String name) {
         actions.waitForElementClickable("posts.explorePostsByUserName",name);
         actions.clickElement("posts.explorePostsByUserName",name);
+        validateHeader("Explore post");
+    }
+    public void clickExplorePost(){
+        actions.waitForElementClickable("latestPosts.exploreThisPost");
+        actions.clickElement("latestPosts.exploreThisPost");
+    }
+    public void clickShowComments() {
+        actions.pressKey(Keys.PAGE_DOWN);
+        actions.waitForElementClickable("posts.showCommentsButton");
+        actions.clickElement("posts.showCommentsButton");
     }
 
     public void clickOnLikePostButton() {
@@ -62,11 +74,6 @@ public class PostsPage extends WEareBasePage {
         LOGGER.info(format("Comment was set to : \"%s\"",message));
     }
 
-    public void goToLatestPosts() {
-        actions.waitForElementPresent("posts.latestPost");
-        actions.waitForElementClickable("posts.latestPost");
-        actions.clickElement("posts.latestPost");
-    }
     public void clickOnAddNewPostButton() {
         actions.waitForElementClickable("posts.addNewPost");
         actions.clickElement("posts.addNewPost");
@@ -80,5 +87,35 @@ public class PostsPage extends WEareBasePage {
     public void clickOnDeletePostButton() {
         actions.waitForElementClickable("posts.deletePost");
         actions.clickElement("posts.deletePost");
+        validateHeader("Delete post");
+    }
+
+
+    public void validatePostCreated() {
+        actions.assertElementPresent("posts.postExist");
+        actions.assertElementPresent("posts.postIsPublic");
+        LOGGER.info("New public post was created successfully.");
+    }
+
+    public void validatePostEdited() {
+        actions.assertElementPresent("posts.postEditExist");
+        LOGGER.info("Public post was edited successfully.");
+    }
+
+    public void validatePostLiked() {
+        actions.assertElementPresent("posts.dislikePostButton");
+        LOGGER.info("Public post was liked successfully.");
+    }
+
+    public void clickBrowsePublicPost() {
+        actions.waitForElementClickable("posts.browsePublicPosts");
+            actions.clickElement("posts.browsePublicPosts");
+    }
+
+    public void validatePostDeleted() {
+        //actions.assertElementAttribute("post.deleteMessage", "value", "Post deleted successfully");
+        validateHeader("Post deleted successfully");
+        //actions.assertElementPresent("post.deleteMessage");
+        LOGGER.info("Public post was deleted successfully.");
     }
 }

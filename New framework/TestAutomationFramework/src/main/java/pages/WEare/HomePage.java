@@ -13,23 +13,27 @@ public class HomePage extends WEareBasePage {
 
 
     public void navigateToHomePage() {
-        actions.navigateToPage("homePage");
+        actions.waitForElementClickable("homePageButton");
+        actions.clickElement("homePageButton");
     }
 
     public void navigateToRegisterPage(){
         navigateToPage();
         actions.waitForElementClickable("homepage.RegisterButton");
         actions.clickElement("homepage.RegisterButton");
+        validateHeader("Join our community");
     }
 
     public void navigateToLoginPage(){
         actions.waitForElementClickable("homepage.signInButton");
         actions.clickElement("homepage.signInButton");
+        validateHeader("Login Page");
     }
 
     public void navigateToLatestPosts(){
         actions.waitForElementPresent("homepage.latestPostsButton");
         actions.clickElement("homepage.latestPostsButton");
+        validateHeader("Explore all posts");
     }
 
     public void navigateToAboutUs(){

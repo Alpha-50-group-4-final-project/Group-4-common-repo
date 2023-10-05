@@ -34,7 +34,7 @@ public class BaseTest {
     public static Faker faker;
     public static PostsPage postsPage;
 
-    public static CommentsPage comments;
+    public static CommentsPage commentsPage;
     public static SimpleDateFormat dtf;
     public static List<String> usernames;
 
@@ -51,7 +51,7 @@ public class BaseTest {
         searchingPage = new SearchingPage(actions.getDriver());
         adminPage = new AdminPage(actions.getDriver());
         postsPage = new PostsPage(actions.getDriver());
-        comments = new CommentsPage(actions.getDriver());
+        commentsPage = new CommentsPage(actions.getDriver());
 
         usernameRandom = faker.name().firstName();
         LOGGER.info("The follow username was generated: " + usernameRandom);
@@ -61,10 +61,21 @@ public class BaseTest {
         usernames = new ArrayList<>();
     }
 
-//    @AfterAll
+    //    @AfterAll
 //    public static void tearDown() {
 //        UserActions.quitDriver();
 //    }
+    private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
+    protected static void createPost() {
+        postsPage.clickOnAddNewPostButton();
+        postsPage.clickOnPostVisibilityButton();
+        postsPage.postPublicVisibilityChoice();
+        postsPage.typeMessageInMessageField(POST_MESSAGE);
+        postsPage.clickOnSavePostButton();
+
+        actions.assertElementPresent("posts.postExist");
+        actions.assertElementPresent("posts.postIsPublic");
+    }
 
     public static void userSetUP(String firstName, String lastName, String birthdayDate) {
         editProfilePage.fillUpFirstNameField(firstName);
@@ -94,9 +105,10 @@ public class BaseTest {
         loginPage.assertElementPresent("homePage.LogoutButton");
         LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
     }
+
     @AfterAll
-    public static void logOutFromAccount(){
-        if(actions.isElementVisible("homePage.LogoutButton")){
+    public static void logOutFromAccount() {
+        if (actions.isElementVisible("homePage.LogoutButton")) {
             actions.clickElement("homePage.LogoutButton");
         }
     }

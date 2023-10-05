@@ -1,7 +1,6 @@
 package WEare.adminpart;
 
 import WEare.BaseTest;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,9 +8,9 @@ import org.junit.jupiter.api.Test;
 public class AdminTests extends BaseTest {
 
     public static final String TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
-    public String adminUsername = "teamadmin";
+    public String adminUsername = "adminTeam";
     public String adminPassword = "12345678";
-    private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
+
 
     @BeforeEach
     public void adminLogIn() {
@@ -19,7 +18,7 @@ public class AdminTests extends BaseTest {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
         createPost();
-        comments.addComment(TEST_SET_UP_COMMENT,adminUsername);
+        commentsPage.addComment(adminUsername);
     }
     @AfterEach
     public  void clean(){
@@ -30,7 +29,7 @@ public class AdminTests extends BaseTest {
     @Test
     public void editLatestPost_when_editPostClicked() {
         homePage.navigateToLatestPosts();
-        latestPostPage.clickExplorePost();
+        postsPage.clickExplorePost();
         adminPage.clickEditButton();
         adminPage.editPostInformation();
         homePage.navigateToLatestPosts();
@@ -40,7 +39,7 @@ public class AdminTests extends BaseTest {
     @Test
     public void deleteLatestPost_when_deletePostClicked() {
         homePage.navigateToLatestPosts();
-        latestPostPage.clickExplorePost();
+        postsPage.clickExplorePost();
         adminPage.clickDeleteButton();
         adminPage.deletePost();
         adminPage.validateDeletion();
@@ -49,10 +48,10 @@ public class AdminTests extends BaseTest {
     @Test
     public void editLatestComment_when_editCommentClicked() {
         homePage.navigateToLatestPosts();
-        latestPostPage.clickExplorePost();
-        comments.clickShowComments();
-        comments.clickEditComment();
-        comments.editComment();
+        postsPage.clickExplorePost();
+        postsPage.clickShowComments();
+        commentsPage.clickEditComment();
+        commentsPage.editComment();
         // postsAndCommentsPage.validateCommentEdited();
     }
 
@@ -60,15 +59,15 @@ public class AdminTests extends BaseTest {
     @Test
     public void deleteLatestComment_when_deleteCommentClicked() {
         homePage.navigateToLatestPosts();
-        latestPostPage.clickExplorePost();
-        comments.clickShowComments();
-        comments.clickDeleteComment();
-        comments.deleteComment();
+        postsPage.clickExplorePost();
+        postsPage.clickShowComments();
+        commentsPage.clickDeleteComment();
+        commentsPage.deleteComment();
         //validation
     }
 
     @Test
-    public void disableAnotherUserAccount() {
+    public void disableAnotherUserAccount_when_disableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
         searchingPage.seeCurrentUserProfileByName("Ann");
@@ -78,7 +77,7 @@ public class AdminTests extends BaseTest {
         adminPage.clickOnEnableButton();
     }
     @Test
-    public void enableAnotherUserAccount() {
+    public void enableDisabledUserAccount_when_enableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
         searchingPage.seeCurrentUserProfileByName("Ann");
@@ -86,16 +85,8 @@ public class AdminTests extends BaseTest {
         searchingPage.assertElementPresent("adminPage.disableButton");
     }
 
-    private static void createPost(){
-        postsPage. clickOnAddNewPostButton();
-        postsPage. clickOnPostVisibilityButton();
-        postsPage.postPublicVisibilityChoice();
-        postsPage.typeMessageInMessageField(POST_MESSAGE);
-        postsPage. clickOnSavePostButton();
 
-        actions.assertElementPresent("posts.postExist");
-        actions.assertElementPresent("posts.postIsPublic");
-    }
+
 
 
 }
