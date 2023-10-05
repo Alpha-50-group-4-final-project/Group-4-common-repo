@@ -127,7 +127,7 @@ public class RegisterUserTest extends BaseTest {
     }
 
     @Test
-    public void upgradeExpertiseProfile() {
+    public void upgradePersonalProfile() {
 
         if(regularUserId==null){
           registerNewUserTest();
