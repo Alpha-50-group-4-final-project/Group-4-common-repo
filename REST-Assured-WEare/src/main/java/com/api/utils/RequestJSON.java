@@ -86,5 +86,11 @@ public class RequestJSON {
             "  \"picture\": \"No picture\",\n" +
             "  \"public\": true\n" +
             "}";
+
+    public static final String EDIT_POST_BODY="{\n" +
+            "  \"content\": \"%s\",\n" +
+            "  \"picture\": \"%s\",\n" +
+            "  \"public\": true\n" +
+            "}";
 }
 

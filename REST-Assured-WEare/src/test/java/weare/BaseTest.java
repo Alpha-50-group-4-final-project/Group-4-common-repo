@@ -25,20 +25,22 @@ public class BaseTest {
     public static String adminUserId;
     public static String expertiseProfileId;
 
-//    public static Cookies cookie;
+    public static String postId;
+
+    public static Cookies cookies;
     public static List<String> usernames = new ArrayList<>();
 
-//    @BeforeEach
-//    public void takeCookiesTests() {
-//        baseURI = format("%s%s", BASE_URL, LOGIN_USER);
-//
-//        cookie = given()
-//                .when().
-//                post(baseURI).
-//                then().statusCode(302).
-//                extract().response().
-//                getDetailedCookies();
-//    }
+    @BeforeEach
+    public void takeCookiesTests() {
+        baseURI = format("%s%s", BASE_URL, LOGIN_USER);
+
+        cookies = given()
+                .when().
+                post(baseURI).
+                then().statusCode(302).
+                extract().response().
+                getDetailedCookies();
+    }
 
     @AfterAll
     public static void deleteDataBase() {

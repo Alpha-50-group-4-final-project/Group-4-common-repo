@@ -142,7 +142,7 @@ public class RegisterUserTest extends BaseTest {
 
         baseURI = (format("%s%s", BASE_URL, format(UPGRADE_PERSONAL_PROFILE, regularUserId)));
 
-        String requestBody = format(UPGRADE_PERSONAL_PROFILE_BODY, BIRTHDAY, FIRSTNAME, regularUserId, LAST_NAME, CITY_ID, PERSONAL_REVIEW);
+        String requestBody = format(UPGRADE_PERSONAL_PROFILE_BODY, TODAY_DATE, FIRSTNAME, regularUserId, LAST_NAME, CITY_ID, PERSONAL_REVIEW);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         Response response = given()
