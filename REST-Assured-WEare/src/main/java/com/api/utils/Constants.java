@@ -10,6 +10,8 @@ public class Constants {
     public static final String USERNAME = faker.name().firstName();  // Generate a simple first name
     public static final String PASSWORD = faker.internet().password();
     public static final String BASE_URL = "http://localhost:8081/";
-
+    public  static  final String CATEGORY_ID="100";
+    public  static final String CATEGORY_NAME="All";
+    public static String ADMIN_USERNAME=faker.name().firstName()+"admin";
 }
 
