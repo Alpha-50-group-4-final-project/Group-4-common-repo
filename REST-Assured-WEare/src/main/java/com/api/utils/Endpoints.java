@@ -6,7 +6,7 @@ public class Endpoints {
     public static final String GET_REGISTER_USERS = "api/users";
     public static final String LOGIN_USER = "authenticate";
 
-    public static String UPGRADE_EXPERTISE_PROFILE="/api/users/auth/%s/expertise";
+    public static String UPGRADE_EXPERTISE_PROFILE="api/users/auth/%s/expertise";
 
     public static String UPGRADE_PERSONAL_PROFILE="api/users/auth/%s/personal";
 

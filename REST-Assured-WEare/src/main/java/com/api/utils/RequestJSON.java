@@ -42,7 +42,7 @@ public class RequestJSON {
             "}";
 
     public static final String UPGRADE_PERSONAL_PROFILE_BODY="{\n" +
-            "  \"birthYear\": \"1970-05-05\",\n" +
+            "  \"birthYear\": \"%s\",\n" +
             "  \"firstName\": \"%s\",\n" +
             "  \"id\": %s,\n" +
             "  \"lastName\": \"%s\",\n" +
@@ -60,6 +60,26 @@ public class RequestJSON {
             "  \"picturePrivacy\": true,\n" +
             "  \"sex\": \"MALE\"\n" +
             "}";
+
+
+    public static final String UPGRADE_EXPERTISE_PROFILE_BODY="{\n" +
+            "  \"availability\": %s,\n" +
+            "  \"category\": {\n" +
+            "    \"id\": %s,\n" +
+            "    \"name\": \"%s\"\n" +
+            "  },\n" +
+            "  \"id\": %s,\n" +
+            "  \"skill1\": \"%s\",\n" +
+            "  \"skill2\": \"%s\",\n" +
+            "  \"skill3\": \"%s\",\n" +
+            "  \"skill4\": \"%s\",\n" +
+            "  \"skill5\": \"%s\",\n" +
+            "  \"skills\": [\n" +
+            "    \"%s\"\n" +
+            "  ]\n" +
+            "}";
+
+
 
     public static final String CREATE_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +

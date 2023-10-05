@@ -1,12 +1,20 @@
 package weare;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Cookie;
+import io.restassured.http.Cookies;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.LOGIN_USER;
+import static com.api.utils.Endpoints.authenticate;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
@@ -15,26 +23,74 @@ public class BaseTest {
 
     public static String regularUserId;
     public static String adminUserId;
+    public static String expertiseProfileId;
 
-    @BeforeAll
-    public static void takeCookiesTests() {
-        baseURI = format("%s%s", BASE_URL, LOGIN_USER);
+//    public static Cookies cookie;
+    public static List<String> usernames = new ArrayList<>();
 
-        RestAssured.given()
-                .when()
-                .post(baseURI)
-                .then()
-                .statusCode(302)
-                .extract()
-                .response()
-                .getDetailedCookies();
+//    @BeforeEach
+//    public void takeCookiesTests() {
+//        baseURI = format("%s%s", BASE_URL, LOGIN_USER);
+//
+//        cookie = given()
+//                .when().
+//                post(baseURI).
+//                then().statusCode(302).
+//                extract().response().
+//                getDetailedCookies();
+//    }
 
-    }
+    @AfterAll
+    public static void deleteDataBase() {
+        String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11651330?useSSL=false&serverTimezone=UTC";
+        String username = "sql11651330";
+        String password = "GhyP5jmfiK";
+        System.out.println(usernames.size());
 
-    public RequestSpecification getApplicationAuthentication() {
-        return given()
-                .param("username", "Dumbo")
-                .param("password", "12345678").when()
-                .log().all();
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
+            for (String name : usernames) {
+                try (Statement statement = connection.createStatement()) {
+                    System.out.println(name);
+                    String userIdQuery = format("SELECT user_id FROM users WHERE users.username='%s'", name);
+                    ResultSet rs = statement.executeQuery(userIdQuery);
+
+                    while (rs.next()) {
+                        int id = rs.getInt("user_id");
+                        System.out.println(id);
+
+                        try (Statement deleteStatement = connection.createStatement()) {
+                            String sqlDeleteConnections = format("DELETE FROM `requests` WHERE `requests`.`sender_user_id` = %d OR `requests`.`receiver_user_id`=%d", id, id);
+                            System.out.println(sqlDeleteConnections);
+                            deleteStatement.executeUpdate(sqlDeleteConnections);
+
+                            String sqlDeleteConnectionUsers = format("DELETE FROM `connection_users` WHERE `connection_users`.`user_a` = %d OR `connection_users`.`user_b` = %d", id, id);
+                            System.out.println(sqlDeleteConnectionUsers);
+                            deleteStatement.executeUpdate(sqlDeleteConnectionUsers);
+
+                            String sqlDeleteLikedComments = format("DELETE FROM `comment_likes_table` WHERE user_id=%d", id);
+                            System.out.println(sqlDeleteLikedComments);
+                            deleteStatement.executeUpdate(sqlDeleteLikedComments);
+
+                            String sqlDeleteCommentsTable = format("DELETE FROM `comments_table` WHERE user_id=%d", id);
+                            System.out.println(sqlDeleteCommentsTable);
+                            deleteStatement.executeUpdate(sqlDeleteCommentsTable);
+
+                            String sqlDeleteLikedPosts = format("DELETE FROM `post_likes_table` WHERE user_id= %d", id);
+                            System.out.println(sqlDeleteLikedPosts);
+                            deleteStatement.executeUpdate(sqlDeleteLikedPosts);
+
+                            String sqlDeletePosts = format("DELETE FROM posts_table WHERE posts_table.user_id = %d", id);
+                            System.out.println(sqlDeletePosts);
+                            deleteStatement.executeUpdate(sqlDeletePosts);
+
+                            String sqlQuery = format("DELETE FROM `users` WHERE `users`.`username` = '%s'", name);
+                            deleteStatement.executeUpdate(sqlQuery);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

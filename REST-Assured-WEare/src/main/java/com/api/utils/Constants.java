@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Constants {
 
-    private static final Faker faker = new Faker();
+    public static final Faker faker = new Faker();
 
     public static final String EMAIL = faker.internet().emailAddress();
     public static final String USERNAME = faker.name().firstName();  // Generate a simple first name
@@ -23,6 +23,8 @@ public class Constants {
     public static String CITY_ID=faker.random().nextInt(1,25).toString();
 
     public static String PERSONAL_REVIEW=faker.lorem().sentence(6);
+
+    public static String AVAILABILITY=faker.random().nextInt(1,20).toString();
 
 }
 

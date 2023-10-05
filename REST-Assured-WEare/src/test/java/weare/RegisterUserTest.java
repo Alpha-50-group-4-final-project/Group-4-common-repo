@@ -64,7 +64,9 @@ public class RegisterUserTest extends BaseTest {
 
         String[] responseBody = response.asString().split(" ");
         regularUserId = responseBody[6];
+        expertiseProfileId=regularUserId;
         System.out.println(regularUserId);
+        usernames.add(registeredUsername);
 
     }
 
@@ -85,7 +87,7 @@ public class RegisterUserTest extends BaseTest {
                 .when()
                 .post();
 
-        response.print();
+//        response.print();
 
         String userId = String.valueOf(response.getBody().jsonPath().getInt("userId[0]"));
         System.out.println(userId);
@@ -93,7 +95,10 @@ public class RegisterUserTest extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
 
-        System.out.println(response.getBody().jsonPath().prettify());
+//        System.out.println(response.getBody().jsonPath().prettify());
+
+        expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
+        System.out.println(expertiseProfileId);
 
     }
 
@@ -128,26 +133,20 @@ public class RegisterUserTest extends BaseTest {
 
     @Test
     public void upgradePersonalProfile() {
-
-        if(regularUserId==null){
-          registerNewUserTest();
+        if (regularUserId == null) {
+            registerNewUserTest();
         }
-        Cookies cookiesJar=given().queryParam("username",USERNAME)
-                .queryParam("password",PASSWORD)
+        Cookies cookie = given().queryParam("username", USERNAME)
+                .queryParam("password", PASSWORD)
                 .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
-        System.out.println(cookiesJar);
-
-
 
         baseURI = (format("%s%s", BASE_URL, format(UPGRADE_PERSONAL_PROFILE, regularUserId)));
-        System.out.println(baseURI);
 
-        String requestBody=format(UPGRADE_PERSONAL_PROFILE_BODY,FIRSTNAME,regularUserId,LAST_NAME,CITY_ID,PERSONAL_REVIEW);
+        String requestBody = format(UPGRADE_PERSONAL_PROFILE_BODY, BIRTHDAY, FIRSTNAME, regularUserId, LAST_NAME, CITY_ID, PERSONAL_REVIEW);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
-        System.out.println(requestBody);
 
         Response response = given()
-                .cookies(cookiesJar)
+                .cookies(cookie)
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
@@ -155,9 +154,56 @@ public class RegisterUserTest extends BaseTest {
 
         response.print();
 
+        int statusCode = response.getStatusCode();
+
+        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        Assertions.assertEquals(response.getBody().jsonPath().get("firstName"), FIRSTNAME, "Provided first name is not equal to response.");
+        Assertions.assertEquals(response.getBody().jsonPath().get("lastName"), LAST_NAME, "Provided last name is not equal to response.");
+        Assertions.assertEquals(response.getBody().jsonPath().get("personalReview"), PERSONAL_REVIEW, "Provided personal review is not equal to response.");
+        Assertions.assertEquals(response.getBody().jsonPath().get("id").toString(), regularUserId, "User id is not correct.");
+        System.out.printf("\nPersonal profile of user with id %s was updated successfully\n", regularUserId);
+    }
+
+    @Test
+    public void upgradeExpertiseProfileTest() {
+        if (expertiseProfileId == null) {
+            registerNewUserTest();
+        }
+        Cookies cookie = given().queryParam("username",registeredUsername)
+                .queryParam("password", registeredPassword)
+                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
+
+        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_EXPERTISE_PROFILE, expertiseProfileId)));
+        System.out.println(baseURI);
+
+        String requestBody = format(UPGRADE_EXPERTISE_PROFILE_BODY,
+                AVAILABILITY,
+                CATEGORY_ID,
+                CATEGORY_NAME,
+                expertiseProfileId,
+                faker.lorem().word(),
+                faker.lorem().word(),
+                faker.lorem().word(),
+                faker.lorem().word(),
+                faker.lorem().word(),
+                faker.lorem().word()
+                );
+        System.out.println(requestBody);
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        Response response = given()
+                .cookies(cookie)
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(baseURI);
+
+        System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
-        System.out.println(statusCode);
+
+        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+
     }
 
 
