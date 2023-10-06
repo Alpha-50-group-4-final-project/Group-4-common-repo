@@ -26,4 +26,10 @@ public class Endpoints {
     public static final String CREATE_COMMENTS="/auth/creator";
 
     public static final String EDIT_COMMENT="api/comment/auth/editor";
+    public static final String LIKE_COMMENT="api/comment/auth/likesUp";
+    public static final String GET_COMMENTS_BY_POST="api/comment/byPost";
+    public static final String GET_ONE_COMMENT="api/comment/single";
+
+    public static final String DELETE_COMMENT="api/comment/auth/manager";
+
 }
