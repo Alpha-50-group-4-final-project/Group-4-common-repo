@@ -2,8 +2,9 @@ package weare;
 
 import io.restassured.http.Cookies;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class BaseTest {
     public static Cookies cookies;
     public static List<String> usernames = new ArrayList<>();
 
-    @BeforeEach
+    @BeforeMethod
     public void takeCookiesTests() {
         cookies = given().queryParam("username", EXISTING_USER)
                 .queryParam("password", EXISTING_USER_PASSWORD)
@@ -36,7 +37,7 @@ public class BaseTest {
                 getDetailedCookies();
     }
 
-    @AfterAll
+    @AfterClass
     public static void deleteDataBase() {
         String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11651330?useSSL=false&serverTimezone=UTC";
         String username = "sql11651330";

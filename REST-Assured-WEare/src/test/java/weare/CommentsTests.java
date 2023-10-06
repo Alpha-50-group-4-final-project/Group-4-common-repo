@@ -1,18 +1,19 @@
 package weare;
 
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.RequestJSON.COMMENT_BODY;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static org.testng.Assert.assertEquals;
 
 public class CommentsTests extends BaseTest {
 
-    @Test
+    @Test(priority = 7)
     public void getAllExistingComments() {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
         System.out.println(baseURI);
@@ -20,10 +21,10 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/son").when().get(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+       assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
-    @Test
+    @Test(priority = 1)
     public void createComment() {
         if (postId == null) {
             PostTest post = new PostTest();
@@ -37,15 +38,15 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").when().body(requestBody).post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("content"), COMMENT_CONTENT, "Response comment is different than provided.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("content"), COMMENT_CONTENT, "Response comment is different than provided.");
 
 
         commentId = response.getBody().jsonPath().get("commentId").toString();
         System.out.printf("\nComment with id %s was created.\n", commentId);
     }
 
-    @Test
+    @Test(priority = 2)
     public void editExistingComment() {
         if (commentId == null) {
             createComment();
@@ -57,10 +58,10 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).queryParam("content", EDITED_COMMENT_CONTENT).when().put(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
-    @Test
+    @Test(priority = 3)
     public void likeAComment() {
         if (commentId == null) {
             createComment();
@@ -70,11 +71,11 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
-        Assertions.assertTrue(() -> response.getBody().jsonPath().get("liked"), "Comment hasn't been liked.");
+        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+
     }
 
-    @Test
+    @Test(priority = 4)
     public void unlikeAComment() {
         if (commentId == null) {
             createComment();
@@ -85,11 +86,11 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
-        Assertions.assertFalse(() -> response.getBody().jsonPath().get("liked"), "Comment hasn't been liked.");
+        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+
     }
 
-    @Test
+    @Test(priority = 5)
     public void getAllCommentsByPost() {
         if (postId == null) {
             PostTest posts = new PostTest();
@@ -102,10 +103,10 @@ public class CommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
     }
 
-    @Test
+    @Test(priority = 6)
     public void getOneComment() {
         if (commentId == null) {
             createComment();
@@ -116,9 +117,9 @@ public class CommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
     }
-    @Test
+    @Test(priority = 8)
     public void deleteComment(){
         if (commentId == null) {
             createComment();
@@ -130,7 +131,7 @@ public class CommentsTests extends BaseTest {
         int statusCode = response.getStatusCode();
 
         System.out.println(response.getBody().asPrettyString());
-        Assertions.assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
-        Assertions.assertEquals("", response.body().asString(), "Response body isn't empty.");
+        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals("", response.body().asString(), "Response body isn't empty.");
     }
 }

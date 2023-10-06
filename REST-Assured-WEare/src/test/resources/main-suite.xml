@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Main Suite">
+    <test name="JIRA API Homework">
+        <classes>
+            <class name="weare.RegisterUserTest"/>
+            <class name="weare.LoginUserTest"/>
+            <class name="weare.CommentsTests"/>
+            <class name="weare.PostTest"/>
+        </classes>
+    </test>
+</suite>

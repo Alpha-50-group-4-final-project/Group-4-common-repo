@@ -2,8 +2,8 @@ package weare;
 
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
+
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
@@ -19,7 +19,7 @@ import static org.testng.Assert.assertTrue;
 public class PostTest extends BaseTest {
 
 
-    @Test
+    @Test(priority = 1)
     public void createPost() {
         Cookies cookiesJar = given().queryParam("username", "Dumbo")
                 .queryParam("password", "12345678")
@@ -44,14 +44,14 @@ public class PostTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("content"), POST_CONTENT, "Response post content is different than provided.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("content"), POST_CONTENT, "Response post content is different than provided.");
         postId = response.getBody().jsonPath().get("postId").toString();
         System.out.println(postId);
         System.out.println("New post was successfully created.");
     }
 
-    @Test
+    @Test(priority = 5)
     public void findAllPostsTest() {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
         System.out.println(baseURI);
@@ -67,7 +67,7 @@ public class PostTest extends BaseTest {
         }
     }
 
-    @Test
+    @Test(priority = 2)
     public void editExistingPostTest() {
         if (postId == null) {
             createPost();
@@ -95,11 +95,11 @@ public class PostTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+       assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
 
     }
 
-    @Test
+    @Test(priority = 3)
     public void likeExistingPost() {
 
         if (postId == null) {
@@ -115,10 +115,10 @@ public class PostTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
-    @Test
+    @Test(priority = 4)
     public void showCommentsOnPost() {
         if (postId == null) {
             createPost();
@@ -128,9 +128,9 @@ public class PostTest extends BaseTest {
         Response response = given().contentType("application/json").when().get(baseURI);
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+     assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
-    @Test
+    @Test(priority = 6)
     public void deletePost(){
         if (postId == null) {
             createPost();
@@ -143,7 +143,7 @@ public class PostTest extends BaseTest {
         Response response=given().cookies(cookiesJar).contentType("application/json").when().delete(baseURI);
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
 
     }
 }

@@ -6,8 +6,8 @@ import io.restassured.RestAssured;
 
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
@@ -19,20 +19,15 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
-
-@TestMethodOrder(OrderAnnotation.class)
 public class RegisterUserTest extends BaseTest {
 
 
     public static String registeredUsername;
     public static String registeredPassword;
 
-    @Test
-    @Order(1)
+    @Test(priority = 1)
+
     public void registerNewUserTest() {
 
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
@@ -49,11 +44,11 @@ public class RegisterUserTest extends BaseTest {
                 .post();
 
         response.print();
-
+        String responseBodyText = response.asString();
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
 
-        String responseBodyText = response.asString();
+
         assertTrue(responseBodyText.matches("User with name .* and id \\d+ was created"));
 
         registeredUsername = Constants.USERNAME;
@@ -64,14 +59,14 @@ public class RegisterUserTest extends BaseTest {
 
         String[] responseBody = response.asString().split(" ");
         regularUserId = responseBody[6];
-        expertiseProfileId=regularUserId;
+        expertiseProfileId = regularUserId;
         System.out.println(regularUserId);
         usernames.add(registeredUsername);
 
     }
 
-    @Test
-    @Order(2)
+    @Test(priority = 3)
+
     public void getAllRegisterUsersTest() {
 
         baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
@@ -102,7 +97,7 @@ public class RegisterUserTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void registerAdminUser() {
 
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
@@ -123,15 +118,15 @@ public class RegisterUserTest extends BaseTest {
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        Assertions.assertTrue(response.asString().contains(ADMIN_USERNAME), "Admin is registered with different username");
-        Assertions.assertTrue(response.asString().contains("id"), "Newly registered admin doesn't have ID");
+        assertTrue(response.asString().contains(ADMIN_USERNAME), "Admin is registered with different username");
+        assertTrue(response.asString().contains("id"), "Newly registered admin doesn't have ID");
         String[] responseBody = response.asString().split(" ");
         adminUserId = responseBody[6];
         System.out.println(adminUserId);
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
     }
 
-    @Test
+    @Test(priority = 4)
     public void upgradePersonalProfile() {
         if (regularUserId == null) {
             registerNewUserTest();
@@ -156,20 +151,20 @@ public class RegisterUserTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("firstName"), FIRSTNAME, "Provided first name is not equal to response.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("lastName"), LAST_NAME, "Provided last name is not equal to response.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("personalReview"), PERSONAL_REVIEW, "Provided personal review is not equal to response.");
-        Assertions.assertEquals(response.getBody().jsonPath().get("id").toString(), regularUserId, "User id is not correct.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("firstName"), FIRSTNAME, "Provided first name is not equal to response.");
+        assertEquals(response.getBody().jsonPath().get("lastName"), LAST_NAME, "Provided last name is not equal to response.");
+        assertEquals(response.getBody().jsonPath().get("personalReview"), PERSONAL_REVIEW, "Provided personal review is not equal to response.");
+        assertEquals(response.getBody().jsonPath().get("id").toString(), regularUserId, "User id is not correct.");
         System.out.printf("\nPersonal profile of user with id %s was updated successfully\n", regularUserId);
     }
 
-    @Test
+    @Test(priority = 5)
     public void upgradeExpertiseProfileTest() {
         if (expertiseProfileId == null) {
             registerNewUserTest();
         }
-        Cookies cookie = given().queryParam("username",registeredUsername)
+        Cookies cookie = given().queryParam("username", registeredUsername)
                 .queryParam("password", registeredPassword)
                 .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
 
@@ -187,7 +182,7 @@ public class RegisterUserTest extends BaseTest {
                 faker.lorem().word(),
                 faker.lorem().word(),
                 faker.lorem().word()
-                );
+        );
         System.out.println(requestBody);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
@@ -202,9 +197,55 @@ public class RegisterUserTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        Assertions.assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
+    @Test(priority = 6)
+    public void showUserPostsByUserID() {
+        if (regularUserId == null) {
+            registerNewUserTest();
+        }
+        Cookies cookie = given().queryParam("username", registeredUsername)
+                .queryParam("password", registeredPassword)
+                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
 
+        baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, regularUserId)));
+        System.out.println(baseURI);
+        Response response = given()
+                .cookies(cookie)
+                .contentType("application/json")
+                .body(SHOW_USER_BY_ID_BODY)
+                .when()
+                .get(baseURI);
+        System.out.println(response.getBody().asPrettyString());
+
+        int statusCode = response.getStatusCode();
+
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+    }
+
+    @Test(priority = 7)
+    public void getUserById() {
+        if (regularUserId == null) {
+            registerNewUserTest();
+        }
+        Cookies cookie = given().queryParam("username", registeredUsername)
+                .queryParam("password", registeredPassword)
+                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
+
+        baseURI = (format("%s%s", BASE_URL, format(GET_USER_BY_ID, regularUserId)));
+        System.out.println(baseURI);
+        System.out.println(registeredUsername.toLowerCase());
+        Response response = given()
+                .cookies(cookie)
+                .contentType("application/json")
+                .queryParam("principal", registeredUsername)
+                .when()
+                .get(baseURI);
+        System.out.println(response.getBody().asPrettyString());
+
+        int statusCode = response.getStatusCode();
+
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+    }
 }

@@ -9,6 +9,9 @@ public class Endpoints {
     public static final String UPGRADE_EXPERTISE_PROFILE="api/users/auth/%s/expertise";
 
     public static final String UPGRADE_PERSONAL_PROFILE="api/users/auth/%s/personal";
+    public static final String GET_USER_BY_ID="api/users/auth/%s";
+
+    public static final String SHOW_USER_POSTS_BY_ID="api/users/%s/posts";
 
     public static final String CREATE_POST="api/post/auth/creator";
 

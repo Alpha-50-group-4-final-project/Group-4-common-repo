@@ -72,6 +72,14 @@ public class RequestJSON {
             "    \"%s\"\n" +
             "  ]\n" +
             "}";
+
+    public static final String SHOW_USER_BY_ID_BODY="{\n" +
+            "  \"index\": 0,\n" +
+            "  \"next\": true,\n" +
+            "  \"searchParam1\": \"string\",\n" +
+            "  \"searchParam2\": \"string\",\n" +
+            "  \"size\": 10\n" +
+            "}";
     public static final String CREATE_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +
             "  \"picture\": \"No picture\",\n" +
