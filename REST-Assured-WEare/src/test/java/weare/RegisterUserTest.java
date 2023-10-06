@@ -95,7 +95,7 @@ public class RegisterUserTest extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
 
-//        System.out.println(response.getBody().jsonPath().prettify());
+        System.out.println(response.getBody().jsonPath().prettify());
 
         expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
         System.out.println(expertiseProfileId);

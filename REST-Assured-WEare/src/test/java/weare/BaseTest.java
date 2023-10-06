@@ -1,42 +1,36 @@
 package weare;
 
-import io.restassured.RestAssured;
-import io.restassured.http.Cookie;
 import io.restassured.http.Cookies;
-import io.restassured.specification.RequestSpecification;
+
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.api.utils.Constants.BASE_URL;
-import static com.api.utils.Endpoints.LOGIN_USER;
+import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.authenticate;
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 
 public class BaseTest {
-
     public static String regularUserId;
     public static String adminUserId;
     public static String expertiseProfileId;
 
     public static String postId;
+    public static String commentId;
 
     public static Cookies cookies;
     public static List<String> usernames = new ArrayList<>();
 
     @BeforeEach
     public void takeCookiesTests() {
-        baseURI = format("%s%s", BASE_URL, LOGIN_USER);
-
-        cookies = given()
+        cookies = given().queryParam("username", EXISTING_USER)
+                .queryParam("password", EXISTING_USER_PASSWORD)
                 .when().
-                post(baseURI).
+                post(authenticate).
                 then().statusCode(302).
                 extract().response().
                 getDetailedCookies();
