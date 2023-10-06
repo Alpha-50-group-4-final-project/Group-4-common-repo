@@ -20,21 +20,13 @@ public class AnonymousUserTests extends BaseTest {
     @Test
     public void viewPublicPosts_when_latestPostsClicked() {
         homePage.navigateToLatestPosts();
-        latestPostPage.assertPageNavigated();
-        latestPostPage.validateHeader("Explore all posts");
+        postsPage.assertPageNavigated();
+        postsPage.validateHeader("Explore all posts");
     }
-//    @Test
-//    public void postOrderedChronologically_when_latestPostsClicked(){
-//        //api create profile and public posts?
-//
-//        homePage.navigateToLatestPosts();
-//        latestPostPage.assertPageNavigated();
-//        latestPostPage.assertPublicPostOrdered();
-//    }
-
     @Test
     public void viewPublicProfiles_when_searchByNamePerformed() {
         homePage.navigateToPage();
+        //create & update user with API
         homePage.typeIntoNameSearchBox("Ann");
         homePage.clickOnSearchButton();
         homePage.validateSearchResult("Ann");

@@ -28,7 +28,6 @@ public class BaseTest {
     public static LoginPage loginPage;
 
     public static PersonalProfilePage editProfilePage;
-    public static LatestPostPage latestPostPage;
     public static SearchingPage searchingPage;
     public static AdminPage adminPage;
     public static Faker faker;
@@ -42,12 +41,10 @@ public class BaseTest {
     public static void setUp() {
         UserActions.loadBrowser("homePage");
         faker = new Faker();
-
         homePage = new HomePage(actions.getDriver());
         registrationPage = new UserRegistrationPage(actions.getDriver());
         loginPage = new LoginPage(actions.getDriver());
         editProfilePage = new PersonalProfilePage(actions.getDriver());
-        latestPostPage = new LatestPostPage(actions.getDriver());
         searchingPage = new SearchingPage(actions.getDriver());
         adminPage = new AdminPage(actions.getDriver());
         postsPage = new PostsPage(actions.getDriver());
@@ -61,10 +58,10 @@ public class BaseTest {
         usernames = new ArrayList<>();
     }
 
-    //    @AfterAll
-//    public static void tearDown() {
-//        UserActions.quitDriver();
-//    }
+        @AfterAll
+    public static void tearDown() {
+        UserActions.quitDriver();
+    }
     private static final String POST_MESSAGE="This post was made by Selenium WebDriver";
     protected static void createPost() {
         postsPage.clickOnAddNewPostButton();

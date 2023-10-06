@@ -14,7 +14,8 @@ public class AdminTests extends BaseTest {
 
     @BeforeEach
     public void adminLogIn() {
-        actions.navigateToPage("http://localhost:8081/");
+        homePage.navigateToHomePage();
+        //actions.navigateToPage("http://localhost:8081/");
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
         createPost();
@@ -22,8 +23,9 @@ public class AdminTests extends BaseTest {
     }
     @AfterEach
     public  void clean(){
-        actions.navigateToPage("http://localhost:8081/");
-      loginPage.clickOnLogOutButton();
+        //actions.navigateToPage("http://localhost:8081/");
+        homePage.navigateToHomePage();
+        loginPage.clickOnLogOutButton();
     }
 
     @Test
@@ -70,7 +72,7 @@ public class AdminTests extends BaseTest {
     public void disableAnotherUserAccount_when_disableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("Ann");
+        searchingPage.seeCurrentUserProfileByName("Ann-Marie");
         searchingPage.assertElementPresent("adminPage.disableButton");
         adminPage.clickDisableButton();
         searchingPage.assertElementPresent("adminPage.enableButton");
@@ -80,7 +82,7 @@ public class AdminTests extends BaseTest {
     public void enableDisabledUserAccount_when_enableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName("Ann");
+        searchingPage.seeCurrentUserProfileByName("Ann-Marie");
         adminPage.clickOnEnableButton();
         searchingPage.assertElementPresent("adminPage.disableButton");
     }
