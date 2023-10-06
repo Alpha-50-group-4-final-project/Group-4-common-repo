@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ca739b2-da02-40a4-9e86-e7831d937cb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/PostsTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/CommentsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/CommentsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/main/java/pages/WEare/PostsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/adminpart/AdminTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/adminpart/AdminTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/EditProfileTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/EditProfileTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/PostsAndCommentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/java/WEare/privatepart/CommentsTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/mappings/ui_map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/src/test/resources/mappings/ui_map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CommentsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/CommentsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/LoginPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/classes/pages/WEare/PostsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/BaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/BaseTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/adminpart/AdminTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/adminpart/AdminTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/EditProfileTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/EditProfileTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/WEare/privatepart/PostsAndCommentsTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/mappings/ui_map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/New framework/TestAutomationFramework/target/test-classes/mappings/ui_map.properties" afterDir="false" />
-    </list>
+    <list default="true" id="4ca739b2-da02-40a4-9e86-e7831d937cb2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +154,7 @@
       <workItem from="1695727939622" duration="4984000" />
       <workItem from="1696177419425" duration="1821000" />
       <workItem from="1696227259564" duration="4000" />
-      <workItem from="1696488902607" duration="15410000" />
+      <workItem from="1696488902607" duration="16047000" />
     </task>
     <servers />
   </component>
