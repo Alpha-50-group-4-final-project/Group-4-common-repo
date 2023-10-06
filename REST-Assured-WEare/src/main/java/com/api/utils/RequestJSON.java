@@ -15,8 +15,6 @@ public class RequestJSON {
             "  \"password\": \"%s\",\n" +
             "  \"username\": \"%s\"\n" +
             "}";
-
-
     public static final String GET_ALL_REGISTER_USERS_BODY = "{\n" +
             "  \"index\": 0,\n" +
             "  \"next\": true,\n" +
@@ -24,7 +22,6 @@ public class RequestJSON {
             "  \"searchParam2\": \"\",\n" +
             "  \"size\": 15\n" +
             "}";
-
     public static final String REGISTER_ADMIN_BODY = "{\n" +
             "  \"authorities\": [\n" +
             "    \"ROLE_ADMIN\"\n" +
@@ -40,7 +37,6 @@ public class RequestJSON {
             "  \"password\": \"%s\",\n" +
             "  \"username\": \"%s\"\n" +
             "}";
-
     public static final String UPGRADE_PERSONAL_PROFILE_BODY="{\n" +
             "  \"birthYear\": \"%s\",\n" +
             "  \"firstName\": \"%s\",\n" +
@@ -60,8 +56,6 @@ public class RequestJSON {
             "  \"picturePrivacy\": true,\n" +
             "  \"sex\": \"MALE\"\n" +
             "}";
-
-
     public static final String UPGRADE_EXPERTISE_PROFILE_BODY="{\n" +
             "  \"availability\": %s,\n" +
             "  \"category\": {\n" +
@@ -78,9 +72,6 @@ public class RequestJSON {
             "    \"%s\"\n" +
             "  ]\n" +
             "}";
-
-
-
     public static final String CREATE_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +
             "  \"picture\": \"No picture\",\n" +
@@ -92,5 +83,13 @@ public class RequestJSON {
             "  \"picture\": \"%s\",\n" +
             "  \"public\": true\n" +
             "}";
+    public static final String COMMENT_BODY ="{\n" +
+            "  \"commentId\": 0,\n" +
+            "  \"content\":\"%s\",\n" +
+            "  \"deletedConfirmed\": true,\n" +
+            "  \"postId\": \"%s\",\n" +
+            "  \"userId\": \"%s\"\n" +
+            "}";
+
 }
 

@@ -53,7 +53,6 @@ public class PostTest extends BaseTest {
 
     @Test
     public void findAllPostsTest() {
-
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
         System.out.println(baseURI);
 
@@ -63,6 +62,9 @@ public class PostTest extends BaseTest {
         System.out.println(response.getBody().asPrettyString());
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        if(postId==null){
+            postId=response.getBody().jsonPath().get("postId[0]").toString();
+        }
     }
 
     @Test
