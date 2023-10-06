@@ -247,5 +247,7 @@ public class RegisterUserTest extends BaseTest {
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("id").toString(),regularUserId,"User id is not correct.");
+        assertEquals(response.getBody().jsonPath().get("username"),registeredUsername,"Username is not correct.");
     }
 }

@@ -9,7 +9,7 @@ import static com.api.utils.Endpoints.*;
 import static com.api.utils.RequestJSON.COMMENT_BODY;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
 public class CommentsTests extends BaseTest {
 
@@ -21,7 +21,7 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/son").when().get(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-       assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 1)
@@ -41,7 +41,6 @@ public class CommentsTests extends BaseTest {
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
         assertEquals(response.getBody().jsonPath().get("content"), COMMENT_CONTENT, "Response comment is different than provided.");
 
-
         commentId = response.getBody().jsonPath().get("commentId").toString();
         System.out.printf("\nComment with id %s was created.\n", commentId);
     }
@@ -59,6 +58,7 @@ public class CommentsTests extends BaseTest {
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(response.body().asString(), "", "Response body isn't empty.");
     }
 
     @Test(priority = 3)
@@ -72,7 +72,7 @@ public class CommentsTests extends BaseTest {
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
         assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
-
+        assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
     }
 
     @Test(priority = 4)
@@ -87,7 +87,7 @@ public class CommentsTests extends BaseTest {
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
         assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
-
+        assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
     }
 
     @Test(priority = 5)
@@ -119,8 +119,9 @@ public class CommentsTests extends BaseTest {
         System.out.println(response.getBody().asPrettyString());
         assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
     }
+
     @Test(priority = 8)
-    public void deleteComment(){
+    public void deleteComment() {
         if (commentId == null) {
             createComment();
         }
