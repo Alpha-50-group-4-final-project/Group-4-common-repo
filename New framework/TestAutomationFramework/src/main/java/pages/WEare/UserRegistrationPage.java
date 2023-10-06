@@ -26,9 +26,6 @@ public class UserRegistrationPage extends WEareBasePage {
         String email = username + "@abv.bg";
         actions.typeValueInField(email, "userRegistrationPage.EmailField");
     }
-    public void leaveEmailEmpty(String email){
-        actions.typeValueInField(email, "userRegistrationPage.EmailField");
-    }
 
     public void fillPasswordFields(String password) {
         actions.typeValueInField(password, "userRegistrationPage.PasswordField");
@@ -63,26 +60,12 @@ public class UserRegistrationPage extends WEareBasePage {
     public void validateRegistryNotSuccessful() {
         try {
             actions.assertElementAttribute("userRegistrationPage.RegisterButton", "value", "Register");
-            LOGGER.info("User was not registered when a field was left empty.");
+            LOGGER.info("User was not registered. Proper error message shown.");
         } catch (Exception e) {
-            Assertions.fail("Registration was successful although criterials were not met.");
+            Assertions.fail("Registration was successful although registration criteria  not met.");
             LOGGER.info("Registration test fails");
         }
         //getElementByID("username").value==null
-    }
-
-    public void validateErrorMessageForInvalidData() {
-        try {
-            actions.assertElementPresent("registerErrorMessage.Username");
-            LOGGER.info("User was not registered: username requires no whitespaces, only character");
-        } catch (Exception e) {
-            Assertions.fail("Proper error message not presented when invalid username provided");
-        }
-
-        //String expectedErrorMsg = "Password should be at least 8 characters long";
-        //WebElement exp = driver.findElement(By.xpath("//p[contains(text(),'Password should be at least 8 characters long')]"));
-        //String actualErrorMsg = exp.getText();
-        //Assertions.assertEquals(actualErrorMsg, expectedErrorMsg);
     }
 
 
