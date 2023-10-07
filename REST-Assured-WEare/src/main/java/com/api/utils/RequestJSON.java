@@ -111,5 +111,10 @@ public class RequestJSON {
             "  \"skill\": \"%s\",\n" +
             "  \"skillId\": \"%s\"\n" +
             "}";
+
+    public static final String SEND_CONNECTION_REQ_BODY = "{\n" +
+            "  \"id\": \"%s\",\n" +
+            "  \"username\": \"string\"\n" +
+            "}";
 }
 

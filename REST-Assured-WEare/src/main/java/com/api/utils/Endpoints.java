@@ -39,5 +39,8 @@ public class Endpoints {
     public static final String SKILLS_DELETE ="api/skill/delete";
     public static final String SKILLS_EDIT ="api/skill/edit";
     public static final String SKILLS_GET_ONE ="api/skill/getOne";
+    public static final String SEND_REQUEST ="api/auth/request";
+    public static final String GET_REQUEST ="api/auth/users/%s/request/";
+    public static final String APPROVE_REQUEST ="api/auth/users/%s/request/approve?requestId=%s";
 
 }

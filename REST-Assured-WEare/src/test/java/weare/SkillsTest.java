@@ -21,7 +21,7 @@ public class SkillsTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, SKILLS_FIND_ALL);
 
         Response response = given()
-                .cookies(cookies)
+               // .cookies(cookies)
                 .contentType("application/json")
                 .when()
                 .get(baseURI);
