@@ -80,29 +80,29 @@ public class SkillsTest extends BaseTest {
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
     }
 
-//    @Test(priority = 4)
-//    public void getSkillById(){
-//        if (skillId == null) {
-//        createSkill();
-//    }
-//        int intSkillId = Integer.parseInt(skillId);
-//        baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
-//
-//        Response response = given()
-//                .cookies(cookies)
-//                .contentType("application/json")
-//                .queryParam("skillId", intSkillId)
-//                .when()
-//                .get(baseURI);
-//
-//        //System.out.println(response.getBody().asPrettyString());
-//        String resp = response.getBody().asPrettyString();
-//        int statusCode = response.getStatusCode();
-//        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-//        //assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
-//        System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
-//
-//    }
+    @Test(priority = 4)
+    public void getSkillById(){
+        if (skillId == null) {
+        createSkill();
+    }
+        int intSkillId = Integer.parseInt(skillId);
+        baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
+
+        Response response = given()
+                .cookies(cookies)
+                .contentType("application/json")
+                .queryParam("skillId", intSkillId)
+                .when()
+                .get(baseURI);
+
+        //System.out.println(response.getBody().asPrettyString());
+        String resp = response.getBody().asPrettyString();
+        int statusCode = response.getStatusCode();
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        //assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
+        System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
+
+    }
 
     @Test(priority = 5)
     public void deleteSkill() {

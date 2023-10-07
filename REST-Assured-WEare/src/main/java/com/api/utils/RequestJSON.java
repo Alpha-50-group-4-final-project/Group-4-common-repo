@@ -7,8 +7,8 @@ public class RequestJSON {
             "    \"ROLE_USER\"\n" +
             "  ],\n" +
             "    \"category\": {\n" +
-            "    \"id\": 119,\n" +
-            "    \"name\": \"Gardener\"\n" +
+            "    \"id\": \"%s\",\n" +
+            "    \"name\": \"%s\"\n" +
             "  },    \n" +
             "  \"confirmPassword\": \"%s\",\n" +
             "  \"email\": \"%s\",\n" +

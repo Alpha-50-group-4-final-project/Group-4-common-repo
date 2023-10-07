@@ -33,7 +33,7 @@ public class RegisterUserTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         System.out.println(baseURI);
 
-        String requestBody = (format(REGISTER_USER_BODY, PASSWORD, EMAIL, PASSWORD, USERNAME));
+        String requestBody = (format(REGISTER_USER_BODY, CATEGORY_ID, CATEGORY_NAME, PASSWORD, EMAIL, PASSWORD, USERNAME));
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
         System.out.println(requestBody);
 
@@ -66,7 +66,6 @@ public class RegisterUserTest extends BaseTest {
     }
 
     @Test(priority = 3)
-
     public void getAllRegisterUsersTest() {
 
         baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
