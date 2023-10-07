@@ -2,6 +2,7 @@ package weare;
 
 import io.restassured.response.Response;
 
+import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -18,7 +19,7 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
         System.out.println(baseURI);
 
-        Response response = given().cookies(cookies).contentType("application/son").when().get(baseURI);
+        Response response = given().cookies(cookies).contentType("application/json").when().get(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
@@ -54,10 +55,15 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
         System.out.println(baseURI);
 
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).queryParam("content", EDITED_COMMENT_CONTENT).when().put(baseURI);
+        Response response = given().cookies(cookies)
+                .contentType("application/json")
+                .queryParam("commentId", commentId)
+                .queryParam("content", EDITED_COMMENT_CONTENT)
+                .when()
+                .put(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
     }
 
@@ -71,7 +77,7 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
     }
 
@@ -86,7 +92,7 @@ public class CommentsTests extends BaseTest {
         Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
     }
 
@@ -103,7 +109,7 @@ public class CommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 6)
@@ -117,7 +123,7 @@ public class CommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 8)
@@ -132,7 +138,7 @@ public class CommentsTests extends BaseTest {
         int statusCode = response.getStatusCode();
 
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(200, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals("", response.body().asString(), "Response body isn't empty.");
     }
 }

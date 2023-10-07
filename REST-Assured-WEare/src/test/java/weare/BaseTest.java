@@ -19,12 +19,11 @@ public class BaseTest {
     public static String regularUserId;
     public static String adminUserId;
     public static String expertiseProfileId;
-
     public static String postId;
     public static String commentId;
-
     public static Cookies cookies;
     public static List<String> usernames = new ArrayList<>();
+    //public static String skillId;
 
     @BeforeMethod
     public void takeCookiesTests() {

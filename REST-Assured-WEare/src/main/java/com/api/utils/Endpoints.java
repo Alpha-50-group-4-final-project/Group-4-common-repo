@@ -34,5 +34,10 @@ public class Endpoints {
     public static final String GET_ONE_COMMENT="api/comment/single";
 
     public static final String DELETE_COMMENT="api/comment/auth/manager";
+    public static final String SKILLS_FIND_ALL ="api/skill";
+    public static final String SKILLS_CREATE ="api/skill/create";
+    public static final String SKILLS_DELETE ="api/skill/delete";
+    public static final String SKILLS_EDIT ="api/skill/edit";
+    public static final String SKILLS_GET_ONE ="api/skill/getOne";
 
 }
