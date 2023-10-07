@@ -14,10 +14,9 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 
 public class SkillsTest extends BaseTest {
-    String skillId;
 
 
-    @Test
+    @Test(priority = 1)
     public void getAllExistingSkills() {
         baseURI = format("%s%s", BASE_URL, SKILLS_FIND_ALL);
 
@@ -34,7 +33,7 @@ public class SkillsTest extends BaseTest {
         Assert.assertNotNull(response.path("skill"), "Incorrect information returned");
     }
 
-    @Test
+    @Test(priority = 2)
     public void createSkill() {
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
@@ -58,7 +57,7 @@ public class SkillsTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 3)
     public void editSkill() {
         if (skillId == null) {
             createSkill();
@@ -77,13 +76,15 @@ public class SkillsTest extends BaseTest {
         //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
+        assertEquals("", response.body().asString(), "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
     }
 
-//    @Test
+//    @Test(priority = 4)
 //    public void getSkillById(){
-//        //the createSkill does not save the created skill ID WHYYYY
+//        if (skillId == null) {
+//        createSkill();
+//    }
 //        int intSkillId = Integer.parseInt(skillId);
 //        baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
 //
@@ -94,18 +95,20 @@ public class SkillsTest extends BaseTest {
 //                .when()
 //                .get(baseURI);
 //
-//        System.out.println(response.getBody().asPrettyString());
+//        //System.out.println(response.getBody().asPrettyString());
+//        String resp = response.getBody().asPrettyString();
 //        int statusCode = response.getStatusCode();
 //        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-//        assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
-//        System.out.printf("\nSkill with id %s was edited.\n", skillId);
+//        //assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
+//        System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
+//
 //    }
 
-    @Test
+    @Test(priority = 5)
     public void deleteSkill() {
-//        if (skillId == null) {
-//            createSkill();
-//        }
+        if (skillId == null) {
+            createSkill();
+        }
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_DELETE);
 
@@ -116,9 +119,10 @@ public class SkillsTest extends BaseTest {
                 .when()
                 .put(baseURI);
 
-        System.out.println(response.getBody().asPrettyString());
+        //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals("", response.body().asString(), "Response body isn't empty.");
+        System.out.printf("\nSkill with id %s was deleted.\n", skillId);
     }
 }

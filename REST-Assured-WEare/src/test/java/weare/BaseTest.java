@@ -23,7 +23,7 @@ public class BaseTest {
     public static String commentId;
     public static Cookies cookies;
     public static List<String> usernames = new ArrayList<>();
-    //public static String skillId;
+    public static String skillId;
 
     @BeforeMethod
     public void takeCookiesTests() {
