@@ -1,5 +1,6 @@
 package weare;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import org.apache.http.HttpStatus;
@@ -19,10 +20,16 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
         System.out.println(baseURI);
 
-        Response response = given().cookies(cookies).contentType("application/json").when().get(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType(ContentType.JSON).
+                when().
+                get(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 1)
@@ -36,11 +43,20 @@ public class CommentsTests extends BaseTest {
         System.out.println(baseURI);
         String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, dumboUserID);
 
-        Response response = given().cookies(cookies).contentType("application/json").when().body(requestBody).post(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType(ContentType.JSON).
+                when().
+                body(requestBody).
+                post(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("content"), COMMENT_CONTENT, "Response comment is different than provided.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("content"),
+                COMMENT_CONTENT,
+                "Response comment is different than provided.");
 
         commentId = response.getBody().jsonPath().get("commentId").toString();
         System.out.printf("\nComment with id %s was created.\n", commentId);
@@ -55,16 +71,20 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
         System.out.println(baseURI);
 
-        Response response = given().cookies(cookies)
-                .contentType("application/json")
+        Response response = given().cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .queryParam("commentId", commentId)
                 .queryParam("content", EDITED_COMMENT_CONTENT)
                 .when()
                 .put(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals(response.body().asString(), "", "Response body isn't empty.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertEquals(response.body().asString(),
+                "",
+                "Response body isn't empty.");
     }
 
     @Test(priority = 3)
@@ -74,11 +94,19 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON).
+                queryParam("commentId", commentId).
+                when().
+                post(baseURI);
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
+
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertTrue(response.getBody().jsonPath().get("liked"),
+                "Post is not liked.");
     }
 
     @Test(priority = 4)
@@ -89,11 +117,19 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().post(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType(ContentType.JSON).
+                queryParam("commentId", commentId)
+                .when().
+                post(baseURI);
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
+
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertFalse(response.getBody().jsonPath().get("liked"),
+                "Post is not unliked.");
     }
 
     @Test(priority = 5)
@@ -105,11 +141,18 @@ public class CommentsTests extends BaseTest {
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
         System.out.println(baseURI);
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("postId", postId).when().get(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType(ContentType.JSON).
+                queryParam("postId", postId).
+                when().
+                get(baseURI);
 
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 6)
@@ -119,11 +162,18 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().get(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType("application/json").
+                queryParam("commentId", commentId).
+                when().
+                get(baseURI);
 
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
     }
 
     @Test(priority = 8)
@@ -133,12 +183,20 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().cookies(cookies).contentType("application/json").queryParam("commentId", commentId).when().delete(baseURI);
+        Response response = given().
+                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
+                contentType(ContentType.JSON).
+                queryParam("commentId", commentId).
+                when().
+                delete(baseURI);
 
         int statusCode = response.getStatusCode();
 
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals("", response.body().asString(), "Response body isn't empty.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertEquals("",
+                response.body().asString(),
+                "Response body isn't empty.");
     }
 }

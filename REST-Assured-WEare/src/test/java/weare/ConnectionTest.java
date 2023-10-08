@@ -1,5 +1,6 @@
 package weare;
 
+import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
@@ -25,8 +26,8 @@ public class ConnectionTest extends BaseTest {
         String requestBody = format(SEND_CONNECTION_REQ_BODY, annUserID);
 
         Response response = given()
-                .cookies(cookies)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .when()
                 .body(requestBody)
                 .post(baseURI);
@@ -34,19 +35,18 @@ public class ConnectionTest extends BaseTest {
         System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
         assertTrue(response.asString().matches(".* send friend request to .*"));
     }
 
     @Test(priority = 2)
     public void getConnectionRequest() {
-        Cookies cookiesJar = given().queryParam("username", EXISTING_USER_two)
-                .queryParam("password", EXISTING_USER_PASSWORD)
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
 
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, annUserID));
         Response response = given()
-                .cookies(cookiesJar)
+                .cookies(getAuthCookie(EXISTING_USER_two,EXISTING_USER_PASSWORD))
                 .contentType("application/json")
                 .when()
                 .get(baseURI);
@@ -56,7 +56,9 @@ public class ConnectionTest extends BaseTest {
         setConnectionId(response.getBody().jsonPath().getInt("[0].id"));
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
 //        Assert.assertNotNull(response.path("skill"), "Incorrect information returned");
     }
 
@@ -69,13 +71,11 @@ public class ConnectionTest extends BaseTest {
         System.out.println(baseURI);
         //System.out.println(getConnectionId());
 
-        Cookies cookiesJar = given().queryParam("username", EXISTING_USER_two)
-                .queryParam("password", EXISTING_USER_PASSWORD)
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
+
 
         Response response = given()
-                .cookies(cookiesJar)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER_two,EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .queryParam("requestId ", getConnectionId())
                 .when()
                 .post(baseURI);
@@ -83,7 +83,9 @@ public class ConnectionTest extends BaseTest {
         System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
 //        Assert.assertNotNull(response.path("skill"), "Incorrect information returned");
     }
 }

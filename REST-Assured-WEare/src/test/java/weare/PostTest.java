@@ -1,5 +1,6 @@
 package weare;
 
+import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -22,11 +23,6 @@ public class PostTest extends BaseTest {
 
     @Test(priority = 1)
     public void createPost() {
-        Cookies cookiesJar = given().queryParam("username", "Dumbo")
-                .queryParam("password", "12345678")
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
-        System.out.println(cookiesJar);
-
 
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
         System.out.println(baseURI);
@@ -35,7 +31,7 @@ public class PostTest extends BaseTest {
         System.out.println(requestBody);
 
         Response response = given()
-                .cookies(cookiesJar)
+                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
@@ -45,8 +41,12 @@ public class PostTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("content"), POST_CONTENT, "Response post content is different than provided.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("content"),
+                POST_CONTENT,
+                "Response post content is different than provided.");
         postId = response.getBody().jsonPath().get("postId").toString();
         System.out.println(postId);
         System.out.println("New post was successfully created.");
@@ -57,12 +57,14 @@ public class PostTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
         System.out.println(baseURI);
 
-        Response response = given().contentType("application/json").get(baseURI);
+        Response response = given().contentType(ContentType.JSON).get(baseURI);
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
 
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
         if (postId == null) {
             postId = response.getBody().jsonPath().get("postId[0]").toString();
         }
@@ -73,10 +75,6 @@ public class PostTest extends BaseTest {
         if (postId == null) {
             createPost();
         }
-        Cookies cookiesJar = given().queryParam("username", "Dumbo")
-                .queryParam("password", "12345678")
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
-
 
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
 
@@ -85,16 +83,20 @@ public class PostTest extends BaseTest {
 
         System.out.println(EDITED_POST_CONTENT);
         Response response = given()
-                .cookies(cookiesJar)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
                 .put(baseURI);
 
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        assertEquals(response.body().asString(), "", "Response body isn't empty.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
+        assertEquals(response.body().asString(),
+                "",
+                "Response body isn't empty.");
 
     }
 
@@ -104,19 +106,24 @@ public class PostTest extends BaseTest {
         if (postId == null) {
             createPost();
         }
-        Cookies cookiesJar = given().queryParam("username", "Dumbo")
-                .queryParam("password", "12345678")
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
+
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
         System.out.println(baseURI);
 
-        Response response = given().cookies(cookiesJar).contentType("application/json").post(baseURI);
+        Response response = given()
+                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
+                .post(baseURI);
         System.out.println(response.asPrettyString());
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        assertTrue(response.getBody().jsonPath().get("liked"),"Post is not liked.");
+        assertEquals(statusCode,
+                200,
+                "Incorrect status code. Expected 200.");
+        assertTrue(response.getBody().jsonPath().get("liked"),
+                "Post is not liked.");
     }
+
     @Test(priority = 4)
     public void unlikeExistingPost() {
 
@@ -135,7 +142,7 @@ public class PostTest extends BaseTest {
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        assertFalse(response.getBody().jsonPath().get("liked"),"Post is not unliked.");
+        assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
     }
 
     @Test(priority = 4)
@@ -156,12 +163,10 @@ public class PostTest extends BaseTest {
         if (postId == null) {
             createPost();
         }
-        Cookies cookiesJar = given().queryParam("username", "Dumbo")
-                .queryParam("password", "12345678")
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
+
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
         System.out.println(baseURI);
-        Response response = given().cookies(cookiesJar).contentType("application/json").when().delete(baseURI);
+        Response response = given().cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).contentType("application/json").when().delete(baseURI);
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");

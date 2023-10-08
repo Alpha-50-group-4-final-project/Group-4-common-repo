@@ -1,5 +1,6 @@
 package weare;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -22,7 +23,7 @@ public class SkillsTest extends BaseTest {
 
         Response response = given()
                // .cookies(cookies)
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .when()
                 .get(baseURI);
 
@@ -40,8 +41,8 @@ public class SkillsTest extends BaseTest {
         //String requestBody = format(SKILL_BODY_OLD, SKILL, SKILL_ID);
 
         Response response = given()
-                .cookies(cookies)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .when()
                 .body(requestBody)
                 .post(baseURI);
@@ -49,8 +50,12 @@ public class SkillsTest extends BaseTest {
         System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("skill"), SKILL, "Response  is different than provided.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("skill"),
+                SKILL,
+                "Response  is different than provided.");
 
         skillId = (response.path("skillId").toString());
         System.out.printf("\nSkill with id %s was created.\n", skillId);
@@ -66,8 +71,8 @@ public class SkillsTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, SKILLS_EDIT);
 
         Response response = given()
-                .cookies(cookies)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .queryParam("skill", EDITED_SKILL)
                 .queryParam("skillId", intSkillId)
                 .when()
@@ -75,8 +80,11 @@ public class SkillsTest extends BaseTest {
 
         //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals("", response.body().asString(), "Response body isn't empty.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertEquals("", response.body().asString(),
+                "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
     }
 
@@ -89,8 +97,8 @@ public class SkillsTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
 
         Response response = given()
-                .cookies(cookies)
-                .contentType("application/json")
+                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
                 .queryParam("skillId", intSkillId)
                 .when()
                 .get(baseURI);
@@ -98,7 +106,9 @@ public class SkillsTest extends BaseTest {
         //System.out.println(response.getBody().asPrettyString());
         String resp = response.getBody().asPrettyString();
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
         //assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
         System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
 
@@ -114,15 +124,19 @@ public class SkillsTest extends BaseTest {
 
         Response response = given()
                 .cookies(cookies)
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .queryParam("skillId", intSkillId)
                 .when()
                 .put(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        assertEquals("", response.body().asString(), "Response body isn't empty.");
+        assertEquals(statusCode,
+                HttpStatus.SC_OK,
+                "Incorrect status code. Expected 200.");
+        assertEquals("",
+                response.body().asString(),
+                "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was deleted.\n", skillId);
     }
 }

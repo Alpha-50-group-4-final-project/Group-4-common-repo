@@ -14,13 +14,12 @@ import static weare.RegisterUserTest.registeredUsername;
 public class LoginUserTest extends BaseTest {
 
 
-
-
     @Test
     public void loginTest() {
-if (registeredUsername==null){
-        RegisterUserTest registerUserTest = new RegisterUserTest();
-        registerUserTest.registerNewUserTest();}
+        if (registeredUsername == null) {
+            RegisterUserTest registerUserTest = new RegisterUserTest();
+            registerUserTest.registerNewUserTest();
+        }
 
         baseURI = format("%s%s", Constants.BASE_URL, LOGIN_USER);
 

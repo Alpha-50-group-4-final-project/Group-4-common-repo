@@ -3,7 +3,9 @@ package weare;
 import io.restassured.http.Cookies;
 
 
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 
 import java.sql.*;
@@ -34,10 +36,9 @@ public class BaseTest {
         return connectionId;
     }
 
-    @BeforeMethod
-    public void takeCookiesTests() {
-        cookies = given().queryParam("username", EXISTING_USER)
-                .queryParam("password", EXISTING_USER_PASSWORD)
+    public Cookies getAuthCookie(String username, String password) {
+        return cookies = given().given().queryParam("username", username)
+                .queryParam("password", password)
                 .when().
                 post(authenticate).
                 then().statusCode(302).
