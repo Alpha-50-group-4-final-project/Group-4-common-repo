@@ -4,7 +4,7 @@
 1. [Overview](#overview)
 2. [Test Scenarios](#test-scenarios)
 3. [Environment and Preconditions](#environment-and-preconditions)
-4. [Newman Reports](./Newman%20Reports/README.md)
+4. [Newman Reports](#newman-reports)
 5. [API Documentation](#api-documentation)
 
 ---
@@ -66,7 +66,12 @@ This folder contains the Postman collection and environment files for API testin
 ---
 
 ## Environment and Preconditions
-The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the Test Plan.
+The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the [Test Plan](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/blob/main/Documentation/Test-Plan.md).
+
+---
+
+## Newman Reports
+For a detailed guide on how to run Postman collections using Newman and generate reports, please refer to [Newman Reports](./Newman%20Reports/README.md).
 
 ---
 
