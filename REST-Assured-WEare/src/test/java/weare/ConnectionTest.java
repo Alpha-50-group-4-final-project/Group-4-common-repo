@@ -26,7 +26,7 @@ public class ConnectionTest extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void sendConnectionRequest() {
+    public void sendConnectionRequestTest() {
         baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
         String requestBody = format(SEND_CONNECTION_REQ_BODY, Integer.parseInt(regularUserId));
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
@@ -47,7 +47,7 @@ public class ConnectionTest extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void getConnectionRequest() {
+    public void getConnectionRequestTest() {
         //sendConnectionRequest();
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, regularUserId));
         Response response = given()
@@ -67,9 +67,9 @@ public class ConnectionTest extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void approveConnectionRequest() {
+    public void approveConnectionRequestTest() {
         if(connectionId == 0) {
-            getConnectionRequest();
+            getConnectionRequestTest();
         }
         baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, regularUserId, connectionId));
 

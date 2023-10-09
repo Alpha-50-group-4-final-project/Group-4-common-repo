@@ -99,10 +99,6 @@ public class RequestJSON {
             "  \"userId\": \"%s\"\n" +
             "}";
 
-    public static final String SKILL_BODY_OLD = "{\n" +
-            "  \"skill\": \"%s\",\n" +
-            "  \"skillId\": \"%s\"\n" +
-            "}";
     public static final String SKILL_BODY = "{\n" +
             "  \"category\": {\n" +
             "    \"id\": %d,\n" +

@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.api.utils.Constants.*;
-import static com.api.utils.Endpoints.REGISTER_USER;
-import static com.api.utils.Endpoints.authenticate;
+import static com.api.utils.Endpoints.*;
+import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.REGISTER_USER_BODY;
+import static com.api.utils.RequestJSON.SKILL_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static org.testng.Assert.assertTrue;
 
 public class BaseTest {
     public static String regularUserId;
@@ -69,12 +71,26 @@ public class BaseTest {
         regularUserId=responseBody[6];
     }
 
+    public void createSkill(){
+        baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
+        String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        Response response = given()
+                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
+                .contentType(ContentType.JSON)
+                .when()
+                .body(requestBody)
+                .post(baseURI);
+        skillId = (response.path("skillId").toString());
+    }
+
     @AfterClass
     public static void deleteDataBase() {
         String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11651330?useSSL=false&serverTimezone=UTC";
         String username = "sql11651330";
         String password = "GhyP5jmfiK";
-        System.out.println(usernames.size());
+        //System.out.println(usernames.size());
 
         try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
             for (String name : usernames) {
