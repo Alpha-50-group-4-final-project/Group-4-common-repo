@@ -8,6 +8,7 @@
             <class name="weare.CommentsTests"/>
             <class name="weare.PostTest"/>
             <class name="weare.SkillsTest"/>
+            <class name="weare.ConnectionTest"/>
         </classes>
     </test>
 </suite>
