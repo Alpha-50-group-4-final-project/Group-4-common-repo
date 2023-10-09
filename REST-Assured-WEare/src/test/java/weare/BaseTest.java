@@ -1,19 +1,26 @@
 package weare;
 
+import com.api.utils.Constants;
+import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 
 
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.api.utils.Constants.*;
+import static com.api.utils.Endpoints.REGISTER_USER;
 import static com.api.utils.Endpoints.authenticate;
+import static com.api.utils.RequestJSON.REGISTER_USER_BODY;
+import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 
@@ -27,14 +34,9 @@ public class BaseTest {
     public static List<String> usernames = new ArrayList<>();
     public static String skillId;
     public static int connectionId;
+    public static String newUserName;
+    public static String newUserPass;
 
-    public void setConnectionId(int value) {
-        connectionId = value;
-    }
-
-    public int getConnectionId() {
-        return connectionId;
-    }
 
     public Cookies getAuthCookie(String username, String password) {
         return cookies = given().given().queryParam("username", username)
@@ -44,6 +46,27 @@ public class BaseTest {
                 then().statusCode(302).
                 extract().response().
                 getDetailedCookies();
+    }
+
+    public void registerNewUser(){
+        baseURI = format("%s%s", BASE_URL, REGISTER_USER);
+        String requestBody = (format(REGISTER_USER_BODY,
+                CATEGORY_ID,
+                CATEGORY_NAME,
+                PASSWORD,
+                EMAIL,
+                PASSWORD,
+                USERNAME));
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post();
+
+        newUserName = Constants.USERNAME;
+        newUserPass = Constants.PASSWORD;
+        String[] responseBody = response.asString().split(" ");
+        regularUserId=responseBody[6];
     }
 
     @AfterClass

@@ -6,13 +6,9 @@ import java.time.LocalDate;
 
 public class Constants {
     public static final String dumboUserID = "39";
-    public static final String annUserID = "134";
     public static final String EXISTING_USER = "Dumbo";
-    public static final String EXISTING_USER_two = "Ann";
     public static final String EXISTING_USER_PASSWORD = "12345678";
-
     public static final Faker faker = new Faker();
-
     public static final String EMAIL = faker.internet().emailAddress();
     public static final String USERNAME = faker.name().firstName();  // Generate a simple first name
     public static final String PASSWORD = faker.internet().password();
