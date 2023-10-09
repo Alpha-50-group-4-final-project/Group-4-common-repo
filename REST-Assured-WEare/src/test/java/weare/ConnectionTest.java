@@ -28,7 +28,7 @@ public class ConnectionTest extends BaseTest {
     @Test(priority = 1)
     public void sendConnectionRequestTest() {
         baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
-        String requestBody = format(SEND_CONNECTION_REQ_BODY, Integer.parseInt(regularUserId));
+        String requestBody = format(SEND_CONNECTION_REQ_BODY, regularUserId);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         Response response = given()
@@ -38,7 +38,7 @@ public class ConnectionTest extends BaseTest {
                 .body(requestBody)
                 .post(baseURI);
 
-        //System.out.println(response.getBody().asPrettyString());
+        System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK,
                 format("Incorrect status code. Expected %s.", SC_OK));
@@ -57,7 +57,7 @@ public class ConnectionTest extends BaseTest {
                 .get(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
-        connectionId= response.getBody().jsonPath().getInt("[0].id");
+        connectionId= response.getBody().jsonPath().getString("[0].id");
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK,
@@ -68,7 +68,7 @@ public class ConnectionTest extends BaseTest {
 
     @Test(priority = 3)
     public void approveConnectionRequestTest() {
-        if(connectionId == 0) {
+        if(connectionId == null) {
             getConnectionRequestTest();
         }
         baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, regularUserId, connectionId));
