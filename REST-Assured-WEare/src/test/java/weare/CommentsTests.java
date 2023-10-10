@@ -20,10 +20,7 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
         System.out.println(baseURI);
 
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType(ContentType.JSON).
-                when().
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
                 get(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
@@ -43,12 +40,8 @@ public class CommentsTests extends BaseTest {
         System.out.println(baseURI);
         String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, dumboUserID);
 
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType(ContentType.JSON).
-                when().
-                body(requestBody).
-                post(baseURI);
+        response=postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).body(requestBody)
+                .post();
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode,
@@ -71,11 +64,11 @@ public class CommentsTests extends BaseTest {
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
         System.out.println(baseURI);
 
-        Response response = given().cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
+
+
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
                 .queryParam("commentId", commentId)
                 .queryParam("content", EDITED_COMMENT_CONTENT)
-                .when()
                 .put(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
@@ -94,11 +87,8 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON).
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
                 queryParam("commentId", commentId).
-                when().
                 post(baseURI);
         int statusCode = response.getStatusCode();
 
@@ -117,11 +107,8 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType(ContentType.JSON).
-                queryParam("commentId", commentId)
-                .when().
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+                queryParam("commentId", commentId).
                 post(baseURI);
         int statusCode = response.getStatusCode();
 
@@ -141,11 +128,8 @@ public class CommentsTests extends BaseTest {
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
         System.out.println(baseURI);
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType(ContentType.JSON).
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
                 queryParam("postId", postId).
-                when().
                 get(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -162,11 +146,8 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType("application/json").
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
                 queryParam("commentId", commentId).
-                when().
                 get(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -183,11 +164,8 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
         System.out.println(baseURI);
-        Response response = given().
-                cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).
-                contentType(ContentType.JSON).
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
                 queryParam("commentId", commentId).
-                when().
                 delete(baseURI);
 
         int statusCode = response.getStatusCode();

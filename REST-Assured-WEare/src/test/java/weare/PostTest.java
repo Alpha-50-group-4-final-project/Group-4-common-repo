@@ -23,6 +23,10 @@ public class PostTest extends BaseTest {
 
     @Test(priority = 1)
     public void createPost() {
+        if (regularUserId == null) {
+            RegisterUserTest reg = new RegisterUserTest();
+            reg.registerNewUserTest();
+        }
 
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
         System.out.println(baseURI);
@@ -30,12 +34,8 @@ public class PostTest extends BaseTest {
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
         System.out.println(requestBody);
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
-                .contentType("application/json")
-                .body(requestBody)
-                .when()
-                .post(baseURI);
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).body(requestBody)
+                .post();
 
         response.print();
 
@@ -57,7 +57,7 @@ public class PostTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
         System.out.println(baseURI);
 
-        Response response = given().contentType(ContentType.JSON).get(baseURI);
+        response = getRequest(baseURI);
 
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
@@ -76,19 +76,18 @@ public class PostTest extends BaseTest {
             createPost();
         }
 
+        System.out.println(postId);
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
+        System.out.println(baseURI);
 
         String requestBody = format(EDIT_POST_BODY, EDITED_POST_CONTENT, "No picki");
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         System.out.println(EDITED_POST_CONTENT);
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).body(requestBody)
                 .put(baseURI);
 
+        System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode,
@@ -110,9 +109,7 @@ public class PostTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
         System.out.println(baseURI);
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
                 .post(baseURI);
         System.out.println(response.asPrettyString());
         int statusCode = response.getStatusCode();
@@ -131,13 +128,8 @@ public class PostTest extends BaseTest {
             createPost();
             likeExistingPost();
         }
-        Cookies cookiesJar = given().queryParam("username", "Dumbo")
-                .queryParam("password", "12345678")
-                .when().post(authenticate).then().statusCode(302).extract().response().getDetailedCookies();
-        baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
-        System.out.println(baseURI);
 
-        Response response = given().cookies(cookiesJar).contentType("application/json").post(baseURI);
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).put(baseURI);
         System.out.println(response.asPrettyString());
         int statusCode = response.getStatusCode();
 
@@ -152,9 +144,9 @@ public class PostTest extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, format(SHOW_COMMENTS, postId));
         System.out.println(baseURI);
-        Response response = given().contentType("application/json").when().get(baseURI);
+        response = getRequest(baseURI);
         int statusCode = response.getStatusCode();
-
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
     }
 
@@ -166,7 +158,7 @@ public class PostTest extends BaseTest {
 
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
         System.out.println(baseURI);
-        Response response = given().cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD)).contentType("application/json").when().delete(baseURI);
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).delete(baseURI);
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");

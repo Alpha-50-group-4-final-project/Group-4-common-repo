@@ -2,9 +2,12 @@ package weare;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+
 import static org.apache.http.HttpStatus.SC_OK;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
@@ -18,7 +21,7 @@ import static org.testng.Assert.assertTrue;
 
 public class ConnectionTest extends BaseTest {
     @BeforeClass
-    public void userSetUp(){
+    public void userSetUp() {
         registerNewUser();
 //        System.out.println("New user with Registered username: " + newUserName);
 //        System.out.println("New user with Registered password: " + newUserPass);
@@ -31,12 +34,8 @@ public class ConnectionTest extends BaseTest {
         String requestBody = format(SEND_CONNECTION_REQ_BODY, regularUserId);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
-                .when()
-                .body(requestBody)
-                .post(baseURI);
+        response = postRequestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).body(requestBody)
+                .post();
 
         System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
@@ -50,14 +49,11 @@ public class ConnectionTest extends BaseTest {
     public void getConnectionRequestTest() {
         //sendConnectionRequest();
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, regularUserId));
-        Response response = given()
-                .cookies(getAuthCookie(newUserName,newUserPass))
-                .contentType("application/json")
-                .when()
+        response = postRequestSpecificationWithAuthentication(newUserName, newUserPass)
                 .get(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
-        connectionId= response.getBody().jsonPath().getString("[0].id");
+        connectionId = response.getBody().jsonPath().getString("[0].id");
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK,
@@ -68,16 +64,13 @@ public class ConnectionTest extends BaseTest {
 
     @Test(priority = 3)
     public void approveConnectionRequestTest() {
-        if(connectionId == null) {
+        if (connectionId == null) {
             getConnectionRequestTest();
         }
         baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, regularUserId, connectionId));
 
-        Response response = given()
-                .cookies(getAuthCookie(newUserName,newUserPass))
-                .contentType(ContentType.JSON)
+        response = postRequestSpecificationWithAuthentication(newUserName, newUserPass)
                 .queryParam("requestId ", connectionId)
-                .when()
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
