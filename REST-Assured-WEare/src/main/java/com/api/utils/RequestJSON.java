@@ -65,9 +65,6 @@ public class RequestJSON {
             "  \"id\": %s,\n" +
             "  \"skill1\": \"%s\",\n" +
             "  \"skill2\": \"%s\",\n" +
-            "  \"skill3\": \"%s\",\n" +
-            "  \"skill4\": \"%s\",\n" +
-            "  \"skill5\": \"%s\",\n" +
             "  \"skills\": [\n" +
             "    \"%s\"\n" +
             "  ]\n" +

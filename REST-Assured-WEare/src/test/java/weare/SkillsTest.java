@@ -1,7 +1,5 @@
 package weare;
 
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,10 +19,7 @@ public class SkillsTest extends BaseTest {
     public void getAllExistingSkills() {
         baseURI = format("%s%s", BASE_URL, SKILLS_FIND_ALL);
 
-        Response response = given()
-               // .cookies(cookies)
-                .contentType(ContentType.JSON)
-                .when()
+        response= requestSpecificationWithoutAuthentication()
                 .get(baseURI);
 
         System.out.println(response.getBody().asPrettyString());
@@ -40,22 +35,15 @@ public class SkillsTest extends BaseTest {
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
         //String requestBody = format(SKILL_BODY_OLD, SKILL, SKILL_ID);
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
-                .when()
+        response= requestSpecificationWithAuthentication(EXISTING_USER,EXISTING_USER_PASSWORD)
                 .body(requestBody)
                 .post(baseURI);
 
         System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode,
-                HttpStatus.SC_OK,
-                "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("skill"),
-                SKILL,
-                "Response  is different than provided.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("skill"), SKILL, "Response  is different than provided.");
 
         skillId = (response.path("skillId").toString());
         System.out.printf("\nSkill with id %s was created.\n", skillId);
@@ -70,21 +58,15 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_EDIT);
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
+        response= requestSpecificationWithAuthentication(EXISTING_USER,EXISTING_USER_PASSWORD)
                 .queryParam("skill", EDITED_SKILL)
                 .queryParam("skillId", intSkillId)
-                .when()
                 .put(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode,
-                HttpStatus.SC_OK,
-                "Incorrect status code. Expected 200.");
-        assertEquals("", response.body().asString(),
-                "Response body isn't empty.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals("", response.body().asString(), "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
     }
 
@@ -96,19 +78,14 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER,EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
+        response= requestSpecificationWithAuthentication(EXISTING_USER,EXISTING_USER_PASSWORD)
                 .queryParam("skillId", intSkillId)
-                .when()
                 .get(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
         String resp = response.getBody().asPrettyString();
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode,
-                HttpStatus.SC_OK,
-                "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         //assertEquals(response.getBody().jsonPath().get("skill"), EDITED_SKILL, "Response  is different than provided.");
         System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
 
@@ -122,21 +99,14 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_DELETE);
 
-        Response response = given()
-                .cookies(cookies)
-                .contentType(ContentType.JSON)
+        response= requestSpecificationWithAuthentication(EXISTING_USER,EXISTING_USER_PASSWORD)
                 .queryParam("skillId", intSkillId)
-                .when()
                 .put(baseURI);
 
         //System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode,
-                HttpStatus.SC_OK,
-                "Incorrect status code. Expected 200.");
-        assertEquals("",
-                response.body().asString(),
-                "Response body isn't empty.");
+        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals("", response.body().asString(), "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was deleted.\n", skillId);
     }
 }

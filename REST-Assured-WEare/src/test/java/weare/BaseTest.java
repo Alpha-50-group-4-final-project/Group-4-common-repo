@@ -7,14 +7,9 @@ import io.restassured.http.Cookies;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 
 import java.sql.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,17 +49,17 @@ public class BaseTest {
     }
 
 
-
-   RequestSpecification postRequestSpecificationWithoutAuthentication(){
+    RequestSpecification requestSpecificationWithoutAuthentication() {
         return given().
                 contentType(ContentType.JSON).
                 when().log().all();
-   }
-    RequestSpecification postRequestSpecificationWithAuthentication(String username,String password){
+    }
+
+    RequestSpecification requestSpecificationWithAuthentication(String username, String password) {
         return given().
-                cookies(getAuthCookie(username,password)).
+                cookies(getAuthCookie(username, password)).
                 contentType(ContentType.JSON).
-               when().log().all();
+                when().log().all();
     }
 
     public Response getRequest(String URL) {
@@ -72,6 +67,7 @@ public class BaseTest {
     }
 
     public void registerNewUser() {
+        USERNAME = letsTryIt();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY,
                 CATEGORY_ID,
@@ -80,15 +76,12 @@ public class BaseTest {
                 EMAIL,
                 PASSWORD,
                 USERNAME));
-        Response response = given()
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
+        response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
-
         newUserName = Constants.USERNAME;
         newUserPass = Constants.PASSWORD;
         String[] responseBody = response.asString().split(" ");
+
         regularUserId = responseBody[6];
     }
 
@@ -97,10 +90,7 @@ public class BaseTest {
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        Response response = given()
-                .cookies(getAuthCookie(EXISTING_USER, EXISTING_USER_PASSWORD))
-                .contentType(ContentType.JSON)
-                .when()
+        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
                 .body(requestBody)
                 .post(baseURI);
         skillId = (response.path("skillId").toString());
@@ -110,7 +100,7 @@ public class BaseTest {
     @AfterClass
     public static void deleteDataBase() {
         String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11652227?useSSL=false&serverTimezone=UTC";
-        String username = "sql11652227sql11652227";
+        String username = "sql11652227";
         String password = "1Hta4hCK6N";
         //System.out.println(usernames.size());
 
