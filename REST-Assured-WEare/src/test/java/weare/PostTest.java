@@ -1,5 +1,6 @@
 package weare;
 
+import base.BaseTest;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -29,7 +30,7 @@ public class PostTest extends BaseTest {
         String requestBody = format(CREATE_POST_BODY, POST_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post();
 
@@ -67,7 +68,7 @@ public class PostTest extends BaseTest {
         String requestBody = format(EDIT_POST_BODY, EDITED_POST_CONTENT, "No picki");
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .put(baseURI);
 
@@ -84,7 +85,7 @@ public class PostTest extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -101,7 +102,7 @@ public class PostTest extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -130,7 +131,7 @@ public class PostTest extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .delete(baseURI);
         int statusCode = response.getStatusCode();
 

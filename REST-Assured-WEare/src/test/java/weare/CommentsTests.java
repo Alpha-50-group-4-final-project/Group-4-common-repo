@@ -1,5 +1,6 @@
 package weare;
 
+import base.BaseTest;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -16,7 +17,7 @@ public class CommentsTests extends BaseTest {
     public void getAllExistingCommentsTest() {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 get(baseURI);
         int statusCode = response.getStatusCode();
 
@@ -32,7 +33,7 @@ public class CommentsTests extends BaseTest {
 
         String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, regularUserId);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post();
 
@@ -53,7 +54,7 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .queryParam("commentId", commentId)
                 .queryParam("content", EDITED_COMMENT_CONTENT)
                 .put(baseURI);
@@ -70,7 +71,7 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 queryParam("commentId", commentId).
                 post(baseURI);
 
@@ -88,7 +89,7 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 queryParam("commentId", commentId).
                 post(baseURI);
         int statusCode = response.getStatusCode();
@@ -106,7 +107,7 @@ public class CommentsTests extends BaseTest {
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 queryParam("postId", postId).
                 get(baseURI);
 
@@ -122,7 +123,7 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 queryParam("commentId", commentId).
                 get(baseURI);
 
@@ -138,7 +139,7 @@ public class CommentsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
+        response = requestSpecificationWithAuthentication().
                 queryParam("commentId", commentId).
                 delete(baseURI);
 

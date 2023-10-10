@@ -1,6 +1,6 @@
 package weare;
 
-import com.api.utils.Constants;
+import base.BaseTest;
 
 
 import io.restassured.response.Response;
@@ -129,7 +129,7 @@ String expertiseUpdateUsername;
                 PERSONAL_REVIEW);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        Response response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
 
@@ -172,7 +172,7 @@ String expertiseUpdateUsername;
         System.out.println(expertiseUpdateUsername);
         System.out.println(expertiseProfileId);
 
-        response = requestSpecificationWithAuthentication(expertiseUpdateUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post();
 
@@ -184,6 +184,43 @@ String expertiseUpdateUsername;
         assertTrue(response.getBody().asString().contains(skill));
     }
 
+    @Test(priority = 4)
+    public void upgradePersonalProfile_When_Invalid_SElfDescriptionProvided() {
+        if (regularUserId == null) {
+            registerNewUser();
+        }
+        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_PERSONAL_PROFILE, regularUserId)));
+
+        String requestBody = format(UPGRADE_PERSONAL_PROFILE_BODY,
+                TODAY_DATE,
+                FIRSTNAME,
+                regularUserId,
+                LAST_NAME,
+                CITY_ID,
+                PERSONAL_REVIEW_INVALID);
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        response = requestSpecificationWithAuthentication()
+                .body(requestBody)
+                .post(baseURI);
+
+        int statusCode = response.getStatusCode();
+        System.out.println(statusCode);
+        System.out.println(response.getBody().asPrettyString());
+
+//        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+//        assertEquals(response.getBody().jsonPath().get("firstName"), FIRSTNAME,
+//                "Provided first name is not equal to response.");
+//        assertEquals(response.getBody().jsonPath().get("lastName"), LAST_NAME,
+//                "Provided last name is not equal to response.");
+//        assertEquals(response.getBody().jsonPath().get("personalReview"), PERSONAL_REVIEW,
+//                "Provided personal review is not equal to response.");
+//
+//        System.out.printf("\nPersonal profile of user with id %s was updated successfully\n", regularUserId);
+    }
+
+
+
     @Test(priority = 6)
     public void showUserPostsByUserID() {
         if (regularUserId == null) {
@@ -191,7 +228,7 @@ String expertiseUpdateUsername;
         }
         baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, regularUserId)));
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(SHOW_USER_BY_ID_BODY)
                 .get(baseURI);
 
@@ -207,7 +244,7 @@ String expertiseUpdateUsername;
         }
         baseURI = (format("%s%s", BASE_URL, format(GET_USER_BY_ID, regularUserId)));
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .queryParam("principal", registeredUsername)
                 .get(baseURI);
 

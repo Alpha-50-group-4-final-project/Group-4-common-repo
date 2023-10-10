@@ -22,6 +22,8 @@ public class Constants {
     public static String LAST_NAME = faker.name().lastName();
     public static String CITY_ID = faker.random().nextInt(1, 25).toString();
     public static String PERSONAL_REVIEW = faker.lorem().sentence(6);
+
+    public static String PERSONAL_REVIEW_INVALID = faker.lorem().characters(255,true,true);
     public static String AVAILABILITY = faker.random().nextInt(1, 20).toString();
     public static String EDITED_POST_CONTENT = faker.lorem().sentence(4);
     public static String COMMENT_CONTENT = faker.lorem().sentence(5);

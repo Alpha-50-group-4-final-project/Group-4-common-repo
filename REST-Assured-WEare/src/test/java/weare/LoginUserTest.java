@@ -1,15 +1,16 @@
 package weare;
 
+import base.BaseTest;
 import com.api.utils.Constants;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static com.api.utils.Constants.PASSWORD;
 import static com.api.utils.Endpoints.LOGIN_USER;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static weare.RegisterUserTest.registeredUsername;
 
 public class LoginUserTest extends BaseTest {
 
@@ -24,13 +25,13 @@ public class LoginUserTest extends BaseTest {
         baseURI = format("%s%s", Constants.BASE_URL, LOGIN_USER);
 
         System.out.println("Using username: " + registeredUsername);
-        System.out.println("Using password: " + RegisterUserTest.registeredPassword);
+        System.out.println("Using password: " + PASSWORD);
 
 
         Response response = RestAssured.given()
                 .auth()
                 .preemptive()
-                .basic(registeredUsername, RegisterUserTest.registeredPassword)
+                .basic(registeredUsername, PASSWORD)
                 .header("Accept", "application/json")
                 .log().all()
                 .post(baseURI);

@@ -1,5 +1,6 @@
 package weare;
 
+import base.BaseTest;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,7 +36,7 @@ public class SkillsTest extends BaseTest {
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
         //String requestBody = format(SKILL_BODY_OLD, SKILL, SKILL_ID);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
 
@@ -58,7 +59,7 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_EDIT);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .queryParam("skill", EDITED_SKILL)
                 .queryParam("skillId", intSkillId)
                 .put(baseURI);
@@ -78,7 +79,7 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .queryParam("skillId", intSkillId)
                 .get(baseURI);
 
@@ -99,7 +100,7 @@ public class SkillsTest extends BaseTest {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_DELETE);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication()
                 .queryParam("skillId", intSkillId)
                 .put(baseURI);
 
