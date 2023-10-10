@@ -8,8 +8,12 @@ import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +21,7 @@ import java.util.List;
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
-import static com.api.utils.RequestJSON.REGISTER_USER_BODY;
-import static com.api.utils.RequestJSON.SKILL_BODY;
+import static com.api.utils.RequestJSON.*;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
 import static org.testng.Assert.assertTrue;
@@ -35,8 +38,23 @@ public class BaseTest {
     public static String connectionId;
     public static String newUserName;
     public static String newUserPass;
+    public static String registeredUsername;
+    public static String registeredPassword = PASSWORD;
 
     public static Response response;
+
+
+    public static DateTimeFormatter dtf;
+
+
+    public String timeStamp() {
+        String timestamp;
+        dtf = DateTimeFormatter.ISO_INSTANT;
+        Instant time = Instant.now();
+        timestamp = dtf.format(time);
+        return timestamp;
+    }
+
 
     public Cookies getAuthCookie(String username, String password) {
         return cookies = given().queryParam("username", username)
@@ -67,7 +85,7 @@ public class BaseTest {
     }
 
     public void registerNewUser() {
-        USERNAME = letsTryIt();
+        USERNAME = faker.name().firstName();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY,
                 CATEGORY_ID,
@@ -78,11 +96,45 @@ public class BaseTest {
                 USERNAME));
         response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
-        newUserName = Constants.USERNAME;
-        newUserPass = Constants.PASSWORD;
+        System.out.println(response.getBody().asPrettyString());
         String[] responseBody = response.asString().split(" ");
 
         regularUserId = responseBody[6];
+        registeredUsername = responseBody[3];
+        usernames.add(registeredUsername);
+    }
+
+    public void createPost() {
+        if (regularUserId == null) {
+            registerNewUser();
+        }
+        baseURI = format("%s%s", BASE_URL, CREATE_POST);
+
+        String requestBody = format(CREATE_POST_BODY, POST_CONTENT);
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+                .body(requestBody)
+                .post(baseURI);
+        System.out.println(response.getBody().asPrettyString());
+
+        postId = response.getBody().jsonPath().get("postId").toString();
+        System.out.println("New post was successfully created.");
+    }
+
+    public void createComment() {
+        if (postId == null) {
+            createPost();
+        }
+        baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
+
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, dumboUserID);
+
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+                .body(requestBody)
+                .post();
+
+        commentId = response.getBody().jsonPath().get("commentId").toString();
     }
 
     public void createSkill() {
@@ -90,14 +142,14 @@ public class BaseTest {
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
                 .body(requestBody)
                 .post(baseURI);
         skillId = (response.path("skillId").toString());
     }
 
 
-    @AfterClass
+    //    @AfterSuite
     public static void deleteDataBase() {
         String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11652227?useSSL=false&serverTimezone=UTC";
         String username = "sql11652227";

@@ -11,7 +11,7 @@ public class Constants {
     public static final Faker faker = new Faker();
     public static final String EMAIL = faker.internet().emailAddress();
     public static String USERNAME ;  // Generate a simple first name
-    public static final String PASSWORD = faker.internet().password();
+    public static final String PASSWORD = "Pass_12345";
     public static final String BASE_URL = "http://localhost:8081/";
     public static final String CATEGORY_ID = "100";
     public static final String CATEGORY_NAME = "All";

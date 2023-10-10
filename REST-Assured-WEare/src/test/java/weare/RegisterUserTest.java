@@ -21,9 +21,8 @@ import static org.testng.Assert.assertTrue;
 
 public class RegisterUserTest extends BaseTest {
 
+String expertiseUpdateUsername;
 
-    public static String registeredUsername;
-    public static String registeredPassword;
 
     @Test(priority = 1)
 
@@ -52,15 +51,10 @@ public class RegisterUserTest extends BaseTest {
 
         assertTrue(responseBodyText.matches("User with name .* and id \\d+ was created"));
 
-        registeredUsername = Constants.USERNAME;
-        registeredPassword = Constants.PASSWORD;
-
-        System.out.println("Registered username: " + registeredUsername);
-        System.out.println("Registered password: " + registeredPassword);
-
         String[] responseBody = response.asString().split(" ");
-        regularUserId = responseBody[6];
 
+        regularUserId = responseBody[6];
+        registeredUsername=responseBody[3];
         usernames.add(registeredUsername);
 
     }
@@ -78,8 +72,11 @@ public class RegisterUserTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
+        System.out.println(response.getBody().asPrettyString());
 
         expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
+        expertiseUpdateUsername=response.getBody().jsonPath().getString("username[0]");
+
     }
 
     @Test(priority = 2)
@@ -117,7 +114,7 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 4)
     public void upgradePersonalProfile() {
         if (regularUserId == null) {
-            registerNewUserTest();
+            registerNewUser();
         }
 
 
@@ -152,12 +149,12 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 5)
     public void upgradeExpertiseProfileTest() {
         if (expertiseProfileId == null) {
-            registerNewUserTest();
+            registerNewUser();
             getAllRegisterUsersTest();
         }
-        String firstRowSkill=faker.lorem().word();
-        String secondRowKill=faker.lorem().word();
-        String skill=faker.lorem().word();
+        String firstRowSkill=faker.lorem().word()+timeStamp();
+        String secondRowKill=faker.lorem().word()+timeStamp();
+        String skill=faker.lorem().word()+timeStamp();
 
         baseURI = (format("%s%s", BASE_URL, format(UPGRADE_EXPERTISE_PROFILE, regularUserId)));
 
@@ -172,13 +169,15 @@ public class RegisterUserTest extends BaseTest {
         );
         System.out.println(requestBody);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
+        System.out.println(expertiseUpdateUsername);
+        System.out.println(expertiseProfileId);
 
-        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+        response = requestSpecificationWithAuthentication(expertiseUpdateUsername, registeredPassword)
                 .body(requestBody)
                 .post();
 
         int statusCode = response.getStatusCode();
-
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertTrue(response.getBody().asString().contains(firstRowSkill));
         assertTrue(response.getBody().asString().contains(secondRowKill));
@@ -188,7 +187,7 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 6)
     public void showUserPostsByUserID() {
         if (regularUserId == null) {
-            registerNewUserTest();
+            registerNewUser();
         }
         baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, regularUserId)));
 
@@ -204,7 +203,7 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 7)
     public void getUserById() {
         if (regularUserId == null) {
-            registerNewUserTest();
+            registerNewUser();
         }
         baseURI = (format("%s%s", BASE_URL, format(GET_USER_BY_ID, regularUserId)));
 

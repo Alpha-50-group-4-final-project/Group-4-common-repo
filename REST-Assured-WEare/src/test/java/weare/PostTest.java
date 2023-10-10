@@ -20,22 +20,21 @@ public class PostTest extends BaseTest {
 
 
     @Test(priority = 1)
-    public void createPost() {
+    public void createPostTest() {
         if (regularUserId == null) {
-            RegisterUserTest reg = new RegisterUserTest();
-            reg.registerNewUserTest();
+            registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
         String requestBody = format(CREATE_POST_BODY, POST_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
                 .body(requestBody)
                 .post();
 
         int statusCode = response.getStatusCode();
-
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals(response.getBody().jsonPath().get("content"), POST_CONTENT,
                 "Response post content is different than provided.");
@@ -68,7 +67,7 @@ public class PostTest extends BaseTest {
         String requestBody = format(EDIT_POST_BODY, EDITED_POST_CONTENT, "No picki");
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
                 .body(requestBody)
                 .put(baseURI);
 
@@ -79,13 +78,13 @@ public class PostTest extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void likeExistingPost() {
+    public void likeExistingPostTest() {
         if (postId == null) {
             createPost();
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -95,14 +94,15 @@ public class PostTest extends BaseTest {
     }
 
     @Test(priority = 4)
-    public void unlikeExistingPost() {
+    public void unlikeExistingPostTest() {
         if (postId == null) {
             createPost();
-            likeExistingPost();
+            likeExistingPostTest();
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).post(baseURI);
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+                .post(baseURI);
 
         int statusCode = response.getStatusCode();
 
@@ -130,7 +130,8 @@ public class PostTest extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).delete(baseURI);
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+                .delete(baseURI);
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");

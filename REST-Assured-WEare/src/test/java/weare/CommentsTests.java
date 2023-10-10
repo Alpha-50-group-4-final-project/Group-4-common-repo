@@ -13,10 +13,10 @@ import static org.testng.Assert.*;
 public class CommentsTests extends BaseTest {
 
     @Test(priority = 7)
-    public void getAllExistingComments() {
+    public void getAllExistingCommentsTest() {
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 get(baseURI);
         int statusCode = response.getStatusCode();
 
@@ -24,17 +24,18 @@ public class CommentsTests extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void createComment() {
+    public void createCommentTest() {
         if (postId == null) {
-            PostTest post = new PostTest();
-            post.createPost();
+         createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
 
-        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, dumboUserID);
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, regularUserId);
 
-        response= requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).body(requestBody)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
+                .body(requestBody)
                 .post();
+
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
@@ -46,46 +47,48 @@ public class CommentsTests extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void editExistingComment() {
+    public void editExistingCommentTest() {
         if (commentId == null) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD)
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword)
                 .queryParam("commentId", commentId)
                 .queryParam("content", EDITED_COMMENT_CONTENT)
                 .put(baseURI);
         int statusCode = response.getStatusCode();
-
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
     }
 
     @Test(priority = 3)
-    public void likeAComment() {
+    public void likeACommentTest() {
         if (commentId == null) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 queryParam("commentId", commentId).
                 post(baseURI);
+
         int statusCode = response.getStatusCode();
+
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
     }
 
     @Test(priority = 4)
-    public void unlikeAComment() {
+    public void unlikeACommentTest() {
         if (commentId == null) {
             createComment();
-            likeAComment();
+            likeACommentTest();
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 queryParam("commentId", commentId).
                 post(baseURI);
         int statusCode = response.getStatusCode();
@@ -95,7 +98,7 @@ public class CommentsTests extends BaseTest {
     }
 
     @Test(priority = 5)
-    public void getAllCommentsByPost() {
+    public void getAllCommentsByPostTest() {
         if (postId == null) {
             PostTest posts = new PostTest();
             posts.findAllPostsTest();
@@ -103,7 +106,7 @@ public class CommentsTests extends BaseTest {
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 queryParam("postId", postId).
                 get(baseURI);
 
@@ -113,13 +116,13 @@ public class CommentsTests extends BaseTest {
     }
 
     @Test(priority = 6)
-    public void getOneComment() {
+    public void getOneCommentTest() {
         if (commentId == null) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 queryParam("commentId", commentId).
                 get(baseURI);
 
@@ -129,13 +132,13 @@ public class CommentsTests extends BaseTest {
     }
 
     @Test(priority = 8)
-    public void deleteComment() {
+    public void deleteCommentTest() {
         if (commentId == null) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
 
-        response = requestSpecificationWithAuthentication(EXISTING_USER, EXISTING_USER_PASSWORD).
+        response = requestSpecificationWithAuthentication(registeredUsername, registeredPassword).
                 queryParam("commentId", commentId).
                 delete(baseURI);
 
