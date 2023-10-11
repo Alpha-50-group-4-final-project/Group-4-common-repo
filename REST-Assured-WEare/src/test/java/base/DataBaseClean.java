@@ -50,7 +50,9 @@ public class DataBaseClean {
                             deleteStatement.executeUpdate(sqlDeletePosts);
 
                             String sqlQuery = format("DELETE FROM `users` WHERE `users`.`username` = '%s'", name);
+                            String deleteAuthorities = format("DELETE FROM `authorities` WHERE `username` = '%s'", name);
                             deleteStatement.executeUpdate(sqlQuery);
+                            deleteStatement.executeUpdate(deleteAuthorities);
                             System.out.println(sqlQuery);
                             System.out.printf("User %s was deleted from database", name);
                         }

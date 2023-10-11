@@ -70,7 +70,7 @@ public class BaseTest {
                 when().log().all();
     }
 
-    public Response getRequest(String URL) {
+    public static Response getRequest(String URL) {
         return response = given().contentType(ContentType.JSON).get(URL);
     }
 

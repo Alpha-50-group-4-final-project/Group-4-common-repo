@@ -3,7 +3,6 @@ package weare.commentcontrollers;
 import base.BaseTest;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-import weare.postcontrollers.PostTest;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
@@ -11,6 +10,7 @@ import static com.api.utils.RequestJSON.COMMENT_BODY;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
 import static org.testng.Assert.*;
+import static weare.postcontrollers.FindAllPostsTest.findAllPostsTest;
 
 public class CommentsTests extends BaseTest {
 
@@ -124,8 +124,7 @@ public class CommentsTests extends BaseTest {
     @Test(priority = 5)
     public void getAllCommentsByPostTest() {
         if (postId == null) {
-            PostTest posts = new PostTest();
-            posts.findAllPostsTest();
+           findAllPostsTest();
         }
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
