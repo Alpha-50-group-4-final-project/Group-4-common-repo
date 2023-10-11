@@ -1,11 +1,9 @@
 package weare.skillcontrollers;
-
 import base.BaseTest;
-import org.apache.http.HttpStatus;
+
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.BASE_URL;
-import static com.api.utils.Constants.SKILL;
 import static com.api.utils.Endpoints.SKILLS_GET_ONE;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;

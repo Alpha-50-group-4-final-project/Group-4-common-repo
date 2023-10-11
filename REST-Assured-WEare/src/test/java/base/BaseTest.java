@@ -7,6 +7,7 @@ import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,9 +36,9 @@ public class BaseTest {
     public static String registeredUsername;
 
     public static Response response;
-
+    public static String expertiseUpdateUsername;
     public static DateTimeFormatter dtf;
-    public boolean isConnectionSend=false;
+    public boolean isConnectionSend = false;
 
 
     public String timeStamp() {
@@ -121,7 +122,7 @@ public class BaseTest {
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
 
-        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId,regularUserId);
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, regularUserId);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
@@ -141,4 +142,47 @@ public class BaseTest {
         skillId = (response.path("skillId").toString());
     }
 
+    public void getLastUser() {
+        baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
+
+        String requestBody = (format(GET_ALL_REGISTER_USERS_BODY));
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        Response response = requestSpecificationWithoutAuthentication()
+                .body(requestBody)
+                .post();
+
+        expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
+        expertiseUpdateUsername = response.getBody().jsonPath().getString("username[0]");
+    }
+
+    public void deletePost() {
+        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
+
+        response = requestSpecificationWithAuthentication()
+                .delete(baseURI);
+
+        postId = null;
+    }
+
+    public void deleteComment() {
+        baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
+
+        response = requestSpecificationWithAuthentication().
+                queryParam("commentId", commentId).
+                delete(baseURI);
+
+        commentId = null;
+    }
+
+    public void deleteSkill() {
+        int intSkillId = Integer.parseInt(skillId);
+        baseURI = format("%s%s", BASE_URL, SKILLS_DELETE);
+
+        response = requestSpecificationWithAuthentication()
+                .queryParam("skillId", intSkillId)
+                .put(baseURI);
+        skillId = null;
+    }
 }
+

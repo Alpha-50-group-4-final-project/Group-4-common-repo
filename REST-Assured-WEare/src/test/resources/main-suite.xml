@@ -5,7 +5,7 @@
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest"/>
             <class name="weare.login.LoginUserTest"/>
-            <class name="weare.commentcontrollers.CommentsTests"/>
+            <class name="weare.commentcontrollers.LIkeAndUnlikeCommentTests"/>
             <class name="weare.postcontrollers.PostTest"/>
             <class name="weare.skillcontrollers.CreateSkillTest"/>
             <class name="weare.skillcontrollers.GetExistingSkillsTest"/>

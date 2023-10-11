@@ -20,8 +20,6 @@ public class FindAllPostsTest extends BaseTest {
         int statusCode = response.getStatusCode();
 
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        if (postId == null) {
-            postId = response.getBody().jsonPath().get("postId[0]").toString();
-        }
+
     }
 }

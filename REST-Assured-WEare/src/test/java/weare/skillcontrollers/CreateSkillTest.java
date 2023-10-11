@@ -26,5 +26,6 @@ public class CreateSkillTest extends BaseTest {
         assertEquals(response.getBody().jsonPath().get("category.name"), CATEGORY_NAME, "Response is different than provided.");
         skillId = (response.path("skillId").toString());
         System.out.printf("\nSkill with id %s was created.\n", skillId);
+
     }
 }

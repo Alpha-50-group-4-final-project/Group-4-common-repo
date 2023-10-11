@@ -25,6 +25,7 @@ public class DataBaseClean {
                         System.out.println(id);
 
                         try (Statement deleteStatement = connection.createStatement()) {
+
                             String sqlDeleteConnections = format("DELETE FROM `requests` WHERE `requests`.`sender_user_id` = %d OR `requests`.`receiver_user_id`=%d", id, id);
                             System.out.println(sqlDeleteConnections);
                             deleteStatement.executeUpdate(sqlDeleteConnections);

@@ -27,5 +27,7 @@ public class EditSkillTest extends BaseTest {
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertEquals("", response.body().asString(), "Response body isn't empty.");
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
+        System.out.println(response.getBody().asPrettyString());
+
     }
 }

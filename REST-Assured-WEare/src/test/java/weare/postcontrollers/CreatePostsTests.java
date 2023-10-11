@@ -37,6 +37,7 @@ public class CreatePostsTests extends BaseTest {
 
         postId = response.getBody().jsonPath().get("postId").toString();
         System.out.println("New post was successfully created.");
+        deletePost();
     }
     @Test(priority = 1)
     public void createPostTest_when_1001charsTextIsProvided() {
