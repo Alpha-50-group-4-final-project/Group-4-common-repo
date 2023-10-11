@@ -1,32 +1,35 @@
 package weare.skillcontrollers;
 
 import base.BaseTest;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class GetExistingSkillsTest extends BaseTest {
 
 
-    @Test(priority = 1)
+    @Test
     public void getAllExistingSkillsTest() {
         baseURI = format("%s%s", BASE_URL, SKILLS_FIND_ALL);
 
-        response= requestSpecificationWithoutAuthentication()
+        response = requestSpecificationWithoutAuthentication()
                 .get(baseURI);
 
-        System.out.println(response.getBody().asPrettyString());
-
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-        Assert.assertNotNull(response.path("skill"), "Incorrect information returned");
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
+        String resp = response.getBody().toString();
+        if (resp.length() != 0) {
+            assertNotNull(response.getBody().jsonPath().get("skillID"), "Skill id is empty.");
+            assertNotNull(response.getBody().jsonPath().get("skill"), "Skill is empty.");
+            assertNotNull(response.getBody().jsonPath().get("category"), "Category is empty.");
+        }
+        System.out.printf("List of all existing skills below: %s",response.getBody().asPrettyString() );
     }
 
 //    @Test(priority = 2)
