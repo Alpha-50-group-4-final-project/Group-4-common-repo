@@ -1,4 +1,4 @@
-package weare;
+package weare.skillcontrollers;
 
 import base.BaseTest;
 import org.apache.http.HttpStatus;

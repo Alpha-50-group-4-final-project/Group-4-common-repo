@@ -1,4 +1,4 @@
-package weare;
+package weare.postcontrollers;
 
 import base.BaseTest;
 import org.apache.http.HttpStatus;

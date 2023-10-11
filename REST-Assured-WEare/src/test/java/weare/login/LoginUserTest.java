@@ -1,4 +1,4 @@
-package weare;
+package weare.login;
 
 import base.BaseTest;
 import com.api.utils.Constants;
@@ -6,6 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import weare.usercotrollers.RegisterUserTest;
 
 import static com.api.utils.Constants.PASSWORD;
 import static com.api.utils.Endpoints.LOGIN_USER;

@@ -1,9 +1,8 @@
-package weare;
+package weare.connectioncontrollers;
 
 import static org.apache.http.HttpStatus.SC_OK;
 
 import base.BaseTest;
-import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -24,7 +23,7 @@ public class ConnectionTest extends BaseTest {
         registerNewUser();
     }
 
-    boolean isConnectionSend=false;
+
     @Test(priority = 1)
     public void sendConnectionRequestTest() {
 

@@ -1,0 +1,85 @@
+2023-10-06 12:26:42,884 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:48,421 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,863 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,865 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,866 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,866 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,868 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,868 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,869 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:49,869 INFO  [main] Initializing WebDriver
+2023-10-06 12:26:50,249 INFO  [main] The follow username was generated: Stanley
+2023-10-06 12:26:50,250 INFO  [main] The follow password was generated: Stanley
+2023-10-06 12:26:51,516 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:26:53,103 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:26:53,280 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:26:53,463 INFO  [main] anna@sd.comsa@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:26:53,611 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:26:53,764 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:26:53,764 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:26:54,028 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:26:54,754 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:26:55,743 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:26:57,160 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:26:57,277 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:26:57,415 INFO  [main] @abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:26:57,575 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:26:57,725 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:26:57,725 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:26:57,899 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:26:58,629 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:26:59,628 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:01,013 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:01,123 INFO  [main] а was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:01,291 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:01,428 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:01,573 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:01,573 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:27:01,756 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:02,390 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:27:03,390 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:04,768 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:04,858 INFO  [main]  was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:05,024 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:05,170 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:05,312 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:05,312 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:27:05,490 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:05,844 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:27:06,856 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:08,281 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:08,393 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:08,546 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:08,678 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:08,824 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:08,825 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:27:09,010 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:10,863 INFO  [main] Welcome to our community. is the reponse text from RegisterLoginSuccessMessage
+2023-10-06 12:27:10,875 INFO  [main] User was successfully registered. Welcome message displayed.
+2023-10-06 12:27:11,853 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:13,275 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:13,391 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:13,541 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:13,661 INFO  [main] 12345 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:13,782 INFO  [main] 12345 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:13,782 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:27:13,985 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:14,656 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:27:15,633 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:16,950 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:17,085 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:17,383 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:17,576 INFO  [main]  was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:17,681 INFO  [main]  was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:17,681 INFO  [main] Clicking on element userRegistrationPage.ProfessionalCategoryButton
+2023-10-06 12:27:17,893 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:18,122 INFO  [main] User was not registered. Proper error message shown.
+2023-10-06 12:27:19,183 INFO  [main] Clicking on element homepage.RegisterButton
+2023-10-06 12:27:20,507 INFO  [main] Page accessible and navigated successfully.
+2023-10-06 12:27:20,618 INFO  [main] Stanley was typed into userRegistrationPage.UsernameField.
+2023-10-06 12:27:20,791 INFO  [main] Stanley@abv.bg was typed into userRegistrationPage.EmailField.
+2023-10-06 12:27:20,930 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.PasswordField.
+2023-10-06 12:27:21,076 INFO  [main] 8qs0s1bWJsz#4 was typed into userRegistrationPage.ConfirmPasswordField.
+2023-10-06 12:27:21,076 INFO  [main] Clicking on element userRegistrationPage.RegisterButton
+2023-10-06 12:27:22,729 INFO  [main] Join our community is the reponse text from RegisterLoginSuccessMessage
+2023-10-06 12:27:22,762 INFO  [main] Quitting WebDriver

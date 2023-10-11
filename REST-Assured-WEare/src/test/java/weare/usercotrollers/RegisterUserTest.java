@@ -1,4 +1,4 @@
-package weare;
+package weare.usercotrollers;
 
 import base.BaseTest;
 
@@ -101,7 +101,7 @@ String expertiseUpdateUsername;
 
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertTrue(response.asString().contains(ADMIN_USERNAME), "Admin is registered with different username");
         assertTrue(response.asString().contains("id"), "Newly registered admin doesn't have ID");
 
@@ -223,8 +223,9 @@ String expertiseUpdateUsername;
 
     @Test(priority = 6)
     public void showUserPostsByUserID() {
-        if (regularUserId == null) {
+        if (regularUserId == null || postId==null) {
             registerNewUser();
+            createPost();
         }
         baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, regularUserId)));
 

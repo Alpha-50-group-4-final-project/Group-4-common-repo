@@ -3,12 +3,12 @@
 <suite name="Main Suite">
     <test name="WE are social network API testing">
         <classes>
-            <class name="weare.RegisterUserTest"/>
-            <class name="weare.LoginUserTest"/>
-            <class name="weare.CommentsTests"/>
-            <class name="weare.PostTest"/>
-            <class name="weare.SkillsTest"/>
-            <class name="weare.ConnectionTest"/>
+            <class name="weare.usercotrollers.RegisterUserTest"/>
+            <class name="weare.login.LoginUserTest"/>
+            <class name="weare.commentcontrollers.CommentsTests"/>
+            <class name="weare.postcontrollers.PostTest"/>
+            <class name="weare.skillcontrollers.SkillsTest"/>
+            <class name="weare.connectioncontrollers.ConnectionTest"/>
         </classes>
     </test>
 </suite>

@@ -1,8 +1,9 @@
-package weare;
+package weare.commentcontrollers;
 
 import base.BaseTest;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
+import weare.postcontrollers.PostTest;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
