@@ -3,16 +3,11 @@
 <suite name="Main Suite">
     <test name="WE are social network API testing">
         <classes>
-            <class name="weare.usercotrollers.RegisterUserTest"/>
-            <class name="weare.login.LoginUserTest"/>
-            <class name="weare.commentcontrollers.CommentsTests"/>
-            <class name="weare.postcontrollers.PostTest"/>
             <class name="weare.skillcontrollers.CreateSkillTest"/>
             <class name="weare.skillcontrollers.GetExistingSkillsTest"/>
             <class name="weare.skillcontrollers.GetSkillByIdTest"/>
             <class name="weare.skillcontrollers.EditSkillTest"/>
             <class name="weare.skillcontrollers.DeleteSkillTest"/>
-            <class name="weare.connectioncontrollers.ConnectionTest"/>
         </classes>
     </test>
 </suite>
