@@ -31,8 +31,11 @@ public class BaseTest {
     public static List<String> usernames = new ArrayList<>();
     public static String skillId;
     public static String connectionId;
+
     public static String registeredUsername;
+
     public static Response response;
+
     public static DateTimeFormatter dtf;
     public boolean isConnectionSend=false;
 
