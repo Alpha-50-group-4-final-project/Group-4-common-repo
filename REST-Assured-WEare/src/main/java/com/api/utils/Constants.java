@@ -17,6 +17,7 @@ public class Constants {
     public static final String CATEGORY_NAME = "All";
     public static String ADMIN_USERNAME = faker.name().firstName() + "admin";
     public static String POST_CONTENT = faker.lorem().sentence(10);
+    public static String POST_CONTENT_1001_CHARS = faker.lorem().characters(1001,true,true);
     public static String FIRSTNAME = faker.name().firstName();
     public static String TODAY_DATE = LocalDate.now().toString();
     public static String LAST_NAME = faker.name().lastName();
@@ -27,6 +28,7 @@ public class Constants {
     public static String AVAILABILITY = faker.random().nextInt(1, 20).toString();
     public static String EDITED_POST_CONTENT = faker.lorem().sentence(4);
     public static String COMMENT_CONTENT = faker.lorem().sentence(5);
+    public static String COMMENT_CONTENT_1001_CHARS = faker.lorem().characters(1001,true,true);
     public static String EDITED_COMMENT_CONTENT = faker.lorem().sentence(7);
     public static String SKILL = faker.job().keySkills();
     public static String EDITED_SKILL = faker.job().keySkills();

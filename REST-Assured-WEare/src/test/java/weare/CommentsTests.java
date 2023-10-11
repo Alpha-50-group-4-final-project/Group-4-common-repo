@@ -47,6 +47,28 @@ public class CommentsTests extends BaseTest {
         System.out.printf("\nComment with id %s was created.\n", commentId);
     }
 
+    @Test(priority = 1)
+    public void createComment_when_1001charsLongTextIsProvided() {
+        if (postId == null) {
+            createPost();
+        }
+        baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
+
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT_1001_CHARS, postId, regularUserId);
+
+        response = requestSpecificationWithAuthentication()
+                .body(requestBody)
+                .post();
+
+        int statusCode = response.getStatusCode();
+
+        assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, "Incorrect status code. Expected 200.");
+        assertEquals(response.getBody().jsonPath().get("message"), "Content size must be up to 1000 symbols",
+                "Response message is not correct.");
+        assertEquals(response.getBody().jsonPath().get("error"), "Bad Request",
+                "Error message is not correct.");
+    }
+
     @Test(priority = 2)
     public void editExistingCommentTest() {
         if (commentId == null) {
