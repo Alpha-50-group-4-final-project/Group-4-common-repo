@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Main Suite">
+    <test name="User Controllers">
+        <classes>
+            <class name="weare.usercotrollers.RegisterUserTest"/>
+            <class name="weare.usercotrollers.GetUsersTests"/>
+            <class name="weare.usercotrollers.UpgradeUsersTests"/>
+            <class name="weare.usercotrollers.ShowUserPostsByUserIDTest"/>
+        </classes>
+    </test>
+</suite>

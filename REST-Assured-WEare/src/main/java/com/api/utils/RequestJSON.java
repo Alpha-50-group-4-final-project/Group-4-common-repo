@@ -4,7 +4,7 @@ public class RequestJSON {
 
     public static final String REGISTER_USER_BODY = "{  \n" +
             "    \"authorities\": [\n" +
-            "    \"ROLE_USER\"\n" +
+            "    \"%s\"\n" +
             "  ],\n" +
             "    \"category\": {\n" +
             "    \"id\": \"%s\",\n" +
@@ -22,21 +22,6 @@ public class RequestJSON {
             "  \"searchParam2\": \"\",\n" +
             "  \"size\": 15\n" +
             "}";
-    public static final String REGISTER_ADMIN_BODY = "{\n" +
-            "  \"authorities\": [\n" +
-            "    \"ROLE_ADMIN\"\n" +
-            "  ],\n" +
-            "  \n" +
-            "  \"category\": {\n" +
-            "    \"id\": %s,\n" +
-            "    \"name\": \"%s\"\n" +
-            "\n" +
-            "  },\n" +
-            "  \"confirmPassword\": \"%s\",\n" +
-            "  \"email\": \"%s\",\n" +
-            "  \"password\": \"%s\",\n" +
-            "  \"username\": \"%s\"\n" +
-            "}";
     public static final String UPGRADE_PERSONAL_PROFILE_BODY="{\n" +
             "  \"birthYear\": \"%s\",\n" +
             "  \"firstName\": \"%s\",\n" +
@@ -52,7 +37,7 @@ public class RequestJSON {
             "  },\n" +
             "  \"memberSince\": \"\",\n" +
             "  \"personalReview\": \"%s\",\n" +
-            "  \"picture\": \"no picki\",\n" +
+            "  \"picture\": \"%s\",\n" +
             "  \"picturePrivacy\": true,\n" +
             "  \"sex\": \"MALE\"\n" +
             "}";

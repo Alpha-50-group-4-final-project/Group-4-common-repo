@@ -8,6 +8,8 @@ public class Constants {
     public static final String dumboUserID = "39";
     public static final String EXISTING_USER = "Dumbo";
     public static final String EXISTING_USER_PASSWORD = "12345678";
+    public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final Faker faker = new Faker();
     public static final String EMAIL = faker.internet().emailAddress();
     public static String USERNAME ;  // Generate a simple first name

@@ -81,7 +81,7 @@ public class BaseTest {
     public void registerNewUser() {
         USERNAME = faker.name().firstName();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
-        String requestBody = (format(REGISTER_USER_BODY,
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID,
                 CATEGORY_NAME,
                 PASSWORD,

@@ -14,6 +14,7 @@ import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 
 
@@ -25,11 +26,9 @@ public class RegisterUserTest extends BaseTest {
 
     public void registerNewUserTest() {
         USERNAME = letsTryIt();
-
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
-        System.out.println(baseURI);
 
-        String requestBody = (format(REGISTER_USER_BODY,
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID,
                 CATEGORY_NAME,
                 PASSWORD,
@@ -44,15 +43,14 @@ public class RegisterUserTest extends BaseTest {
 
         String responseBodyText = response.asString();
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
-
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertTrue(responseBodyText.matches("User with name .* and id \\d+ was created"));
-
         String[] responseBody = response.asString().split(" ");
 
         regularUserId = responseBody[6];
         registeredUsername = responseBody[3];
         usernames.add(registeredUsername);
+        System.out.printf("User named %s with id %s created.", registeredUsername,regularUserId );
 
     }
 
@@ -60,7 +58,7 @@ public class RegisterUserTest extends BaseTest {
     public void registerAdminUser() {
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
-        String requestBody = (format(REGISTER_ADMIN_BODY,
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_ADMIN,
                 CATEGORY_ID,
                 CATEGORY_NAME,
                 PASSWORD,
@@ -68,17 +66,13 @@ public class RegisterUserTest extends BaseTest {
                 PASSWORD,
                 ADMIN_USERNAME));
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
-        System.out.println(requestBody);
 
         Response response = requestSpecificationWithoutAuthentication()
                 .body(requestBody)
                 .post(baseURI);
 
-        response.print();
-
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertTrue(response.asString().contains(ADMIN_USERNAME), "Admin is registered with different username");
         assertTrue(response.asString().contains("id"), "Newly registered admin doesn't have ID");
 
@@ -88,15 +82,16 @@ public class RegisterUserTest extends BaseTest {
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
     }
 
-    @Test(priority = 1)
 
+    //ANNIE - I think this is bug and should not be here, the error was not handled properly
+    @Test(priority = 1)
     public void registerNewUserTest_when_invalidUserIsProvided() {
         USERNAME = letsTryIt();
 
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         System.out.println(baseURI);
 
-        String requestBody = (format(REGISTER_USER_BODY,
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID,
                 CATEGORY_NAME,
                 PASSWORD,
