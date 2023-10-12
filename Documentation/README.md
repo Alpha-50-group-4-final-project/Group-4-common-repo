@@ -12,32 +12,32 @@
 ---
 
 ## Test Plan
-For details, please refer to the [Test Plan document](./Test-Plan.md).
+For details, please refer to the [Test Plan document](./TEST_PLAN_WEare_Social_Network.docx).
 
 ---
 
 ## Test Cases
-Comprehensive test cases have been documented and can be accessed [here](./Test-Cases.md).
+Comprehensive test cases have been documented and can be accessed [here](./Test_Cases.xlsx).
 
 ---
 
 ## Template Test Cases
-Use this template for drafting new test cases. The document can be found [here](./Template-Test-Cases.md).
+Use this template for drafting new test cases. The document can be found [here](./Test_Cases_Template.docx).
 
 ---
 
 ## Template Bug Reports
-Utilize this template for logging new bugs. The document is available [here](./Template-Bug-Reports.md).
+Utilize this template for logging new bugs. The document is available [here](./Bug_Template.docx).
 
 ---
 
 ## Social Network Test Requirements
-The document outlining the specific requirements for QA can be found [here](./Social-Network-Test-Requirements.md).
+The document outlining the specific requirements for QA can be found [here](./Social_Network_Test_Requirements.docx).
 
 ---
 
 ## Social Network Project Specification
-The application specifications are available [here](./Social-Network-Project-Specification.md).
+The application specifications are available [here](./Social_Network_Project_Specification.docx).
 
 ---
 
