@@ -9,6 +9,11 @@
             <class name="weare.usercotrollers.ShowUserPostsByUserIDTest"/>
         </classes>
     </test>
+    <test name="Login">
+        <classes>
+            <class name="weare.login.LoginUserTest"/>
+        </classes>
+    </test>
     <test name="Post Controllers">
         <classes>
             <class name="weare.postcontrollers.CreatePostsTests"/>
