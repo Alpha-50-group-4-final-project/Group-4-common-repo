@@ -12,7 +12,7 @@
             <class name="weare.skillcontrollers.GetSkillByIdTest"/>
             <class name="weare.skillcontrollers.EditSkillTest"/>
             <class name="weare.skillcontrollers.DeleteSkillTest"/>
-            <class name="weare.connectioncontrollers.ConnectionTest"/>
+            <class name="weare.connectioncontrollers.SendConnectionRequestTest"/>
         </classes>
     </test>
 </suite>

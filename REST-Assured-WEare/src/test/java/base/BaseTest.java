@@ -184,5 +184,23 @@ public class BaseTest {
                 .put(baseURI);
         skillId = null;
     }
+    protected void sendConnectionRequest() {
+        registerNewUser();
+        baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
+        String requestBody = format(SEND_CONNECTION_REQ_BODY, regularUserId, USERNAME);
+
+        response = requestSpecificationWithAuthentication()
+                .body(requestBody)
+                .post();
+        isConnectionSend=true;
+    }
+    protected void getConnectionRequest() {
+        sendConnectionRequest();
+        baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, regularUserId));
+        response = requestSpecificationWithAuthentication()
+                .get(baseURI);
+        connectionId = response.getBody().jsonPath().getString("[0].id");
+        System.out.printf("Connection request with id: %s sent.\n",connectionId);
+    }
 }
 

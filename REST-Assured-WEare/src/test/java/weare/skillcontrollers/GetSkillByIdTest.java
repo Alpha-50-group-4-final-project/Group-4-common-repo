@@ -26,7 +26,7 @@ public class GetSkillByIdTest extends BaseTest {
         String resp = response.getBody().asPrettyString();
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
-        assertEquals(response.getBody().jsonPath().get("skillId").toString(), skillId, "Response is different than provided.");
+        assertEquals(response.getBody().jsonPath().get("skillId").toString(), skillId, "Skill id is different than provided.");
         System.out.printf("\nSkill with id %s :  %s.\n", skillId, resp);
     }
 }

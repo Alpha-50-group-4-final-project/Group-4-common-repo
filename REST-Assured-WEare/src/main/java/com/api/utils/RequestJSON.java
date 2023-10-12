@@ -107,7 +107,7 @@ public class RequestJSON {
 
     public static final String SEND_CONNECTION_REQ_BODY = "{\n" +
             "  \"id\": \"%s\",\n" +
-            "  \"username\": \"string\"\n" +
+            "  \"username\": \"%s\"\n" +
             "}";
 }
 

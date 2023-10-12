@@ -24,7 +24,7 @@ public class DeleteSkillTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
-        assertEquals("", response.body().asString(), "Response body isn't empty.");
+        assertEquals("", response.body().asString(), "Response body isn't empty as expected.");
         System.out.printf("\nSkill with id %s was deleted.\n", skillId);
     }
 }
