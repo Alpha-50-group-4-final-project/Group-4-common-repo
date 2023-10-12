@@ -1,16 +1,16 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 
-public class LIkeAndUnlikeCommentTests extends BaseTest {
+public class LikeAndUnlikeCommentTests extends BaseTest {
 
     @Test(priority = 1)
     public void likeACommentTest() {
@@ -24,8 +24,7 @@ public class LIkeAndUnlikeCommentTests extends BaseTest {
                 post(baseURI);
 
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
     }
 
@@ -41,8 +40,7 @@ public class LIkeAndUnlikeCommentTests extends BaseTest {
                 queryParam("commentId", commentId).
                 post(baseURI);
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
     }
 

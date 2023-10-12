@@ -31,7 +31,6 @@ public class CreatePostsTests extends BaseTest {
                 .post();
 
         int statusCode = response.getStatusCode();
-
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertNotNull(response.getBody().jsonPath().get("postId"), "Post id is empty.");
         assertNotNull(response.getBody().jsonPath().get("rank"), "Rank is empty.");
