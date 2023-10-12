@@ -11,8 +11,8 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 
 public class ShowCommentsOnPostTest extends BaseTest {
-    @Test(priority = 4)
-    public void showCommentsOnPost() {
+    @Test
+    public void showCommentsOnPostTest() {
         if (postId == null) {
             createPost();
         }

@@ -104,7 +104,7 @@ public class BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
-        String requestBody = format(CREATE_POST_BODY, POST_CONTENT);
+        String requestBody = format(CREATE_POST_BODY, POST_CONTENT, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()

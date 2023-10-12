@@ -7,9 +7,6 @@ import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
-import static com.api.utils.Helper.isValid;
-import static com.api.utils.RequestJSON.CREATE_POST_BODY;
-import static com.api.utils.RequestJSON.EDIT_POST_BODY;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
@@ -17,9 +14,9 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
 
 
-public class likeAndUnilikePostTest extends BaseTest {
+public class LikeAndUnilikePostTest extends BaseTest {
 
-    @Test(priority = 3)
+    @Test(priority = 1)
     public void likeExistingPostTest() {
         if (postId == null) {
             createPost();
@@ -35,7 +32,7 @@ public class likeAndUnilikePostTest extends BaseTest {
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
     }
 
-    @Test(priority = 4)
+    @Test(priority = 2)
     public void unlikeExistingPostTest() {
         if (postId == null) {
             createPost();

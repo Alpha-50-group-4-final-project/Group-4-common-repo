@@ -12,8 +12,8 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 
 public class DeletePostTest extends BaseTest {
-    @Test(priority = 6)
-    public void deletePost() {
+    @Test
+    public void deletePostTest() {
         if (postId == null) {
             createPost();
         }

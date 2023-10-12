@@ -11,7 +11,7 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 
 public class FindAllPostsTest extends BaseTest {
-    @Test(priority = 5)
+    @Test
     public static void findAllPostsTest() {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
 

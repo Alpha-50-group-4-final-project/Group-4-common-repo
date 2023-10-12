@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Main Suite">
+    <test name="WE are social network API testing">
+        <classes>
+            <class name="weare.postcontrollers.CreatePostsTests"/>
+            <class name="weare.postcontrollers.FindAllPostsTest"/>
+            <class name="weare.postcontrollers.EditPostTests"/>
+            <class name="weare.postcontrollers.LikeAndUnilikePostTest"/>
+            <class name="weare.postcontrollers.ShowCommentsOnPostTest"/>
+            <class name="weare.postcontrollers.DeletePostTest"/>
+        </classes>
+    </test>
+</suite>

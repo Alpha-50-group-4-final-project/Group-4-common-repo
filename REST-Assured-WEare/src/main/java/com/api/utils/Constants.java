@@ -38,5 +38,11 @@ public class Constants {
     public static String letsTryIt(){
         return faker.name().firstName();
     }
+    public static String PUBLIC_CONTENT = "true";
+    public static String PRIVATE_CONTENT = "false";
+    public static final String CONTENT_SIZE_ERROR = "Content size must be up to 1000 symbols";
+    public static final String BAD_REQUEST_ERROR = "Bad Request";
+
+
 }
 
