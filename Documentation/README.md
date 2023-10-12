@@ -22,12 +22,12 @@ Comprehensive test cases have been documented and can be accessed [here](./Test_
 ---
 
 ## Template Test Cases
-Use this template for drafting new test cases. The document can be found [here](./Template-Test-Cases.md).
+Use this template for drafting new test cases. The document can be found [here](./Test_Cases_Template.docx).
 
 ---
 
 ## Template Bug Reports
-Utilize this template for logging new bugs. The document is available [here](./Template-Bug-Reports.md).
+Utilize this template for logging new bugs. The document is available [here](./Bug_Template.docx).
 
 ---
 
