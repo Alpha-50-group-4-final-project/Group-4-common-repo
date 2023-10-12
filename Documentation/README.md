@@ -32,12 +32,12 @@ Utilize this template for logging new bugs. The document is available [here](./B
 ---
 
 ## Social Network Test Requirements
-The document outlining the specific requirements for QA can be found [here](./Social-Network-Test-Requirements.md).
+The document outlining the specific requirements for QA can be found [here](./Social_Network_Test_Requirements.docx).
 
 ---
 
 ## Social Network Project Specification
-The application specifications are available [here](./Social-Network-Project-Specification.md).
+The application specifications are available [here](./Social_Network_Project_Specification.docx).
 
 ---
 
