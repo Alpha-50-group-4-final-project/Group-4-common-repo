@@ -9,6 +9,7 @@ import static com.api.utils.Endpoints.SHOW_COMMENTS;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class ShowCommentsOnPostTest extends BaseTest {
     @Test
@@ -20,7 +21,18 @@ public class ShowCommentsOnPostTest extends BaseTest {
 
         response = getRequest(baseURI);
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
+        //System.out.println(response.getBody().asPrettyString());
+        String resp = response.getBody().asString();
+        if (resp.length() > 2) {
+            assertNotNull(response.getBody().jsonPath().get("[0].commentId"), "Comment id is empty.");
+            assertNotNull(response.getBody().jsonPath().get("[0].content"), "Comment content is empty.");
+            assertNotNull(response.getBody().jsonPath().get("[0].postId"), "Post id is empty.");
+            assertNotNull(response.getBody().jsonPath().get("[0].userId"), "User id is empty.");
+            System.out.printf("List of all existing comments below: %s",response.getBody().asPrettyString());
+        }else {
+            assertEquals(response.body().asString(), "[]", "Response body isn't empty.");
+            System.out.println("No comments added yet.");
+        }
     }
 }

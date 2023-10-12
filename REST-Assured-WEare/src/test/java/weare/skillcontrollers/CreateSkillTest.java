@@ -12,7 +12,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 public class CreateSkillTest extends BaseTest {
         @Test
-    public void createSkill() {
+    public void createSkillTest() {
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
 

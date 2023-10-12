@@ -23,13 +23,16 @@ public class GetExistingSkillsTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
-        String resp = response.getBody().toString();
-        if (resp.length() != 0) {
+        String resp = response.getBody().asString();
+        if (resp.length() > 2) {
             assertNotNull(response.getBody().jsonPath().get("[0].skillId"), "Skill id is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].skill"), "Skill is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].category"), "Category is empty.");
+            System.out.printf("List of all existing skills below: %s",response.getBody().asPrettyString());
+        }else {
+            assertEquals(response.body().asString(), "[]", "Response body isn't empty.");
+            System.out.println("No skills created yet.");
         }
-        System.out.printf("List of all existing skills below: %s",response.getBody().asPrettyString());
 
     }
 }

@@ -20,13 +20,16 @@ public class FindAllPostsTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
-        String resp = response.getBody().toString();
-        if (resp.length() != 0) {
+        String resp = response.getBody().asString();
+        if (resp.length() > 2) {
             assertNotNull(response.getBody().jsonPath().get("[0].postId"), "Post id is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].content"), "Post content is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].category"), "Category is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].picture"), "Picture is empty.");
+            System.out.printf("List of all existing posts below: %s",response.getBody().asPrettyString() );
+        }else {
+            assertEquals(response.body().asString(), "[]", "Response body isn't empty.");
+            System.out.println("No posts created yet.");
         }
-        System.out.printf("List of all existing posts below: %s",response.getBody().asPrettyString() );
     }
 }

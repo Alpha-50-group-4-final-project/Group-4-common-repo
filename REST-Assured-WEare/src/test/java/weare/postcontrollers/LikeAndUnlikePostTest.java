@@ -42,15 +42,11 @@ public class LikeAndUnlikePostTest extends BaseTest {
 
         response = requestSpecificationWithAuthentication()
                 .post(baseURI);
-        System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
         assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
     }
-
-
-
 
 }
 
