@@ -1,13 +1,14 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
-import org.apache.http.HttpStatus;
+import static org.apache.http.HttpStatus.*;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.EDIT_COMMENT;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 
 public class EditCommentTests extends BaseTest {
@@ -24,11 +25,12 @@ public class EditCommentTests extends BaseTest {
                 .put(baseURI);
         int statusCode = response.getStatusCode();
         System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
+        System.out.printf("Comment with id %s was successfully edited.", commentId);
     }
     @Test(priority = 2)
-    public void editExistingComment_when_1001charsTextIsProvided() {
+    public void editExistingCommentError_when_1001charsTextIsProvided() {
         if (commentId == null) {
             createComment();
         }
@@ -39,11 +41,10 @@ public class EditCommentTests extends BaseTest {
                 .queryParam("content",COMMENT_CONTENT_1001_CHARS)
                 .put(baseURI);
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
-        assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, "Incorrect status code. Expected 200.");
-        assertEquals(response.getBody().jsonPath().get("message"), "Content size must be up to 1000 symbols",
-                "Response message is not correct.");
-        assertEquals(response.getBody().jsonPath().get("error"), "Bad Request",
-                "Error message is not correct.");
+        assertEquals(statusCode, SC_BAD_REQUEST, format("Incorrect status code. Expected %s.", SC_BAD_REQUEST));
+        assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
+                format("Response message is not correct. Expected: %s", CONTENT_SIZE_ERROR));
+        assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
+                format("Error message is not correct. Expected: %s", BAD_REQUEST_ERROR));
     }
 }

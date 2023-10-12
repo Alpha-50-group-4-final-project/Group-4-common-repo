@@ -1,11 +1,13 @@
 package weare.connectioncontrollers;
 
 import base.BaseTest;
+import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
@@ -17,8 +19,11 @@ public class GetConnectionRequestTest extends BaseTest {
         if (isConnectionSend == false) {
             sendConnectionRequest();
         }
-        baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, regularUserId));
-        response = requestSpecificationWithAuthentication()
+        baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, userReceivingRequestId));
+        response = given()
+                .cookies(getAuthCookie(userReceivingRequestName, PASSWORD))
+                .contentType(ContentType.JSON)
+                .when()
                 .get(baseURI);
 
         connectionId = response.getBody().jsonPath().getString("[0].id");
@@ -30,7 +35,7 @@ public class GetConnectionRequestTest extends BaseTest {
                 "This connection request have been already approved.");
         assertEquals(response.getBody().jsonPath().getString("[0].seen"), "false",
                 "This connection request have been already seen.");
-        System.out.printf("Connection request with id: %s sent.",connectionId);
+        System.out.printf("Connection request with id: %s received.",connectionId);
     }
 
 

@@ -1,11 +1,13 @@
 package weare.connectioncontrollers;
 
 import base.BaseTest;
+import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
@@ -17,9 +19,12 @@ public class ApproveConnectionRequestTest extends BaseTest {
         if (connectionId == null) {
             getConnectionRequest();
         }
-        baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, regularUserId, connectionId));
+        baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, userReceivingRequestId, connectionId));
 
-        response = requestSpecificationWithAuthentication()
+        response = given()
+                .cookies(getAuthCookie(userReceivingRequestName, PASSWORD))
+                .contentType(ContentType.JSON)
+                .when()
                 .queryParam("requestId ", connectionId)
                 .post(baseURI);
 
@@ -29,9 +34,9 @@ public class ApproveConnectionRequestTest extends BaseTest {
                 format("Incorrect response. Expected: %s approved request of %s.", regularUserId, USERNAME));
         String resp = response.body().asPrettyString();
         int i = resp.indexOf(" ");
-        assertEquals(resp.substring(0, i), registeredUsername,
-                format("The name of the person sending friend request was wrong. Expected: %s, received: %s", registeredUsername, resp.substring(0, i)));
-        System.out.printf("%s approved request of %s.", registeredUsername, USERNAME);
+        assertEquals(resp.substring(0, i), userReceivingRequestName,
+                format("The name of the person sending friend request was wrong. Expected: %s, received: %s", userReceivingRequestName, resp.substring(0, i)));
+        System.out.printf("%s approved request of %s.", userReceivingRequestName, registeredUsername);
     }
 
 
