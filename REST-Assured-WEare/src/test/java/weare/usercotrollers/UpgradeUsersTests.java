@@ -20,7 +20,7 @@ public class UpgradeUsersTests extends BaseTest {
 
     @Test(priority = 4)
     public void upgradePersonalProfile() {
-        if (regularUserId == null) {
+            if (regularUserId == null) {
             registerNewUser();
         }
 

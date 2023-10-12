@@ -28,6 +28,7 @@ public class CreateCommentTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals(response.getBody().jsonPath().get("content"), COMMENT_CONTENT,
                 "Response comment is different than provided.");

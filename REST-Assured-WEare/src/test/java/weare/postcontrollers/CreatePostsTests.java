@@ -31,6 +31,7 @@ public class CreatePostsTests extends BaseTest {
                 .post();
 
         int statusCode = response.getStatusCode();
+        System.out.println(response.getBody().asPrettyString());
 
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertNotNull(response.getBody().jsonPath().get("postId"), "Post id is empty.");
@@ -61,7 +62,7 @@ public class CreatePostsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
 //        System.out.println(statusCode);
-//        System.out.println(response.getBody().asPrettyString());
+        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected %s.", HttpStatus.SC_BAD_REQUEST));
         assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
