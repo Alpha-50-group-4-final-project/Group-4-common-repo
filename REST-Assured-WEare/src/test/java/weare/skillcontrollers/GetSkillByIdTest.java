@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 
 public class GetSkillByIdTest extends BaseTest {
         @Test
-    public void getSkillById(){
+    public void getSkillByIdTest(){
         if (skillId == null) {
         createSkill();
     }

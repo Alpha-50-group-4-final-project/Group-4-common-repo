@@ -53,11 +53,11 @@ public class EditPostTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected %s.", HttpStatus.SC_BAD_REQUEST));
+        assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected: %s.", HttpStatus.SC_BAD_REQUEST));
         assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
-                format("Incorrect response message. Expected %s.", CONTENT_SIZE_ERROR));
+                format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
         assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
-                format("Incorrect response error. Expected %s.", BAD_REQUEST_ERROR));
+                format("Incorrect response error. Expected: %s.", BAD_REQUEST_ERROR));
 
     }
 }

@@ -6,14 +6,16 @@ import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.BASE_URL;
+import static com.api.utils.Constants.EMAIL;
 import static com.api.utils.Endpoints.GET_REGISTER_USERS;
 import static com.api.utils.Endpoints.GET_USER_BY_ID;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.GET_ALL_REGISTER_USERS_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotNull;
 
 public class GetUsersTests extends BaseTest {
     @Test
@@ -28,14 +30,17 @@ public class GetUsersTests extends BaseTest {
                 .post();
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, 200, "Incorrect status code. Expected 200.");
-        System.out.println(response.getBody().asPrettyString());
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
+        assertNotNull(response.getBody().jsonPath().get("[0].userId"), "User id is empty.");
+        assertNotNull(response.getBody().jsonPath().get("[0].username"), "Username is empty.");
+        assertNotNull(response.getBody().jsonPath().get("[0].expertiseProfile"), "Expertise Profile is empty.");
+        System.out.printf("List of all existing users below: %s", response.getBody().asPrettyString());
 
         expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
         expertiseUpdateUsername = response.getBody().jsonPath().getString("username[0]");
     }
     @Test
-    public void getUserById() {
+    public void getUserByIdTest() {
         if (regularUserId == null) {
             registerNewUser();
         }
@@ -46,11 +51,13 @@ public class GetUsersTests extends BaseTest {
                 .get(baseURI);
 
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertEquals(response.getBody().jsonPath().get("id").toString(), regularUserId,
                 "User id is not correct.");
         assertEquals(response.getBody().jsonPath().get("username"), registeredUsername,
                 "Username is not correct.");
+        assertEquals(response.getBody().jsonPath().get("email"), EMAIL,
+                "Email is not correct.");
+        System.out.printf("User with id: %s below: %s", regularUserId, response.getBody().asPrettyString());
     }
 }
