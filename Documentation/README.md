@@ -12,7 +12,7 @@
 ---
 
 ## Test Plan
-For details, please refer to the [Test Plan document](./Test-Plan.md).
+For details, please refer to the [Test Plan document](./TEST_PLAN_WEare_Social_Network.docx).
 
 ---
 
