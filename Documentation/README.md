@@ -17,7 +17,7 @@ For details, please refer to the [Test Plan document](./TEST_PLAN_WEare_Social_N
 ---
 
 ## Test Cases
-Comprehensive test cases have been documented and can be accessed [here](./Test-Cases.md).
+Comprehensive test cases have been documented and can be accessed [here](./Test_Cases.xlsx).
 
 ---
 
