@@ -39,6 +39,9 @@ public class BaseTest {
     public static String expertiseUpdateUsername;
     public static DateTimeFormatter dtf;
     public boolean isConnectionSend = false;
+    public static String userSendingRequestName;
+    public static String userReceivingRequestId;
+    public static String userReceivingRequestName;
 
 
     public String timeStamp() {
@@ -82,20 +85,33 @@ public class BaseTest {
         USERNAME = faker.name().firstName();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
-                CATEGORY_ID,
-                CATEGORY_NAME,
-                PASSWORD,
-                EMAIL,
-                PASSWORD,
+                CATEGORY_ID, CATEGORY_NAME,
+                PASSWORD, EMAIL, PASSWORD,
+                USERNAME));
+
+        response = requestSpecificationWithoutAuthentication().body(requestBody)
+                .post();
+        System.out.println(response.getBody().asPrettyString());
+        String[] responseBody = response.asString().split(" ");
+        regularUserId = responseBody[6];
+        registeredUsername = responseBody[3];
+        usernames.add(registeredUsername);
+    }
+    public void registerAnotherUser() {
+        USERNAME = faker.name().firstName();
+        baseURI = format("%s%s", BASE_URL, REGISTER_USER);
+
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
+                CATEGORY_ID, CATEGORY_NAME,
+                PASSWORD, EMAIL,PASSWORD,
                 USERNAME));
         response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
         System.out.println(response.getBody().asPrettyString());
         String[] responseBody = response.asString().split(" ");
-
-        regularUserId = responseBody[6];
-        registeredUsername = responseBody[3];
-        usernames.add(registeredUsername);
+        userReceivingRequestId = responseBody[6];
+        userReceivingRequestName = responseBody[3];
+        usernames.add(userReceivingRequestName);
     }
 
     public void createPost() {
@@ -188,8 +204,9 @@ public class BaseTest {
     }
     protected void sendConnectionRequest() {
         registerNewUser();
+        registerAnotherUser();
         baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
-        String requestBody = format(SEND_CONNECTION_REQ_BODY, regularUserId, USERNAME);
+        String requestBody = format(SEND_CONNECTION_REQ_BODY, userReceivingRequestId, userReceivingRequestName);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
@@ -199,8 +216,11 @@ public class BaseTest {
     }
     protected void getConnectionRequest() {
         sendConnectionRequest();
-        baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, regularUserId));
-        response = requestSpecificationWithAuthentication()
+        baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, userReceivingRequestId));
+        response = given()
+                .cookies(getAuthCookie(userReceivingRequestName, PASSWORD))
+                .contentType(ContentType.JSON)
+                .when()
                 .get(baseURI);
         connectionId = response.getBody().jsonPath().getString("[0].id");
         System.out.printf("Connection request with id: %s received.\n",connectionId);
