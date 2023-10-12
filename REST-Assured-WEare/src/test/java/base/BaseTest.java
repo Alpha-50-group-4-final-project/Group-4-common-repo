@@ -104,16 +104,16 @@ public class BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
-        String requestBody = format(CREATE_POST_BODY, POST_CONTENT, PUBLIC_CONTENT);
+        String requestBody = format(CREATE_POST_BODY, POST_CONTENT, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
-        System.out.println(response.getBody().asPrettyString());
+       // System.out.println(response.getBody().asPrettyString());
 
         postId = response.getBody().jsonPath().get("postId").toString();
-        System.out.println("New post was successfully created.");
+        System.out.printf("New post with id: %s was successfully created.", postId);
     }
 
     public void createComment() {
@@ -129,6 +129,7 @@ public class BaseTest {
                 .post();
 
         commentId = response.getBody().jsonPath().get("commentId").toString();
+        System.out.printf("New comment with id: %s was successfully created.", commentId);
     }
 
     public void createSkill() {
@@ -140,6 +141,7 @@ public class BaseTest {
                 .body(requestBody)
                 .post(baseURI);
         skillId = (response.path("skillId").toString());
+        System.out.printf("New skill with id: %s was successfully created.", skillId);
     }
 
     public void getLastUser() {
@@ -193,6 +195,7 @@ public class BaseTest {
                 .body(requestBody)
                 .post();
         isConnectionSend=true;
+        System.out.println("Connection request was successfully sent.");
     }
     protected void getConnectionRequest() {
         sendConnectionRequest();
@@ -200,7 +203,7 @@ public class BaseTest {
         response = requestSpecificationWithAuthentication()
                 .get(baseURI);
         connectionId = response.getBody().jsonPath().getString("[0].id");
-        System.out.printf("Connection request with id: %s sent.\n",connectionId);
+        System.out.printf("Connection request with id: %s received.\n",connectionId);
     }
 }
 

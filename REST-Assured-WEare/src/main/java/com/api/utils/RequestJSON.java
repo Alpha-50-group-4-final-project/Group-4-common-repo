@@ -79,14 +79,14 @@ public class RequestJSON {
             "}";
     public static final String CREATE_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +
-            "  \"picture\": \"No picture\",\n" +
+            "  \"picture\": \"%s\",\n" +
             "  \"public\": \"%s\"\n" +
             "}";
 
     public static final String EDIT_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +
             "  \"picture\": \"%s\",\n" +
-            "  \"public\": true\n" +
+            "  \"public\": \"%s\"\n" +
             "}";
     public static final String COMMENT_BODY ="{\n" +
             "  \"commentId\": 0,\n" +

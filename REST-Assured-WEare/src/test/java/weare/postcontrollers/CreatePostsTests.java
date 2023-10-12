@@ -23,7 +23,7 @@ public class CreatePostsTests extends BaseTest {
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
-        String requestBody = format(CREATE_POST_BODY, POST_CONTENT, PUBLIC_CONTENT);
+        String requestBody = format(CREATE_POST_BODY, POST_CONTENT, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
@@ -41,17 +41,18 @@ public class CreatePostsTests extends BaseTest {
                 "Response public/private field is different than provided.");
 
         postId = response.getBody().jsonPath().get("postId").toString();
-        System.out.println("New post was successfully created.");
-        //deletePost();
+
+        System.out.printf("New post with id: %s was successfully created.", postId);
+        deletePost();
     }
     @Test(priority = 2)
-    public void createPostTest_when_1001charsTextIsProvided() {
+    public void createPostTestError_when_1001charsTextIsProvided() {
         if (regularUserId == null) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
-        String requestBody = format(CREATE_POST_BODY,POST_CONTENT_1001_CHARS, PUBLIC_CONTENT);
+        String requestBody = format(CREATE_POST_BODY,POST_CONTENT_1001_CHARS, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
@@ -63,9 +64,9 @@ public class CreatePostsTests extends BaseTest {
 //        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected %s.", HttpStatus.SC_BAD_REQUEST));
         assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
-                format("Response message is not correct. Expected: %s.", CONTENT_SIZE_ERROR));
+                format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
         assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
-                format("Error message is not correct.Expected: %s.", BAD_REQUEST_ERROR));
+                format("Incorrect response error. Expected: %s.", BAD_REQUEST_ERROR));
 
     }
 }

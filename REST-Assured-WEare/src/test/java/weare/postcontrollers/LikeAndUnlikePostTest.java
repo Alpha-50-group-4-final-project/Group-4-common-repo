@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
 
 
-public class LikeAndUnilikePostTest extends BaseTest {
+public class LikeAndUnlikePostTest extends BaseTest {
 
     @Test(priority = 1)
     public void likeExistingPostTest() {
@@ -27,9 +27,9 @@ public class LikeAndUnilikePostTest extends BaseTest {
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
+        assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
     }
 
     @Test(priority = 2)
@@ -42,11 +42,11 @@ public class LikeAndUnilikePostTest extends BaseTest {
 
         response = requestSpecificationWithAuthentication()
                 .post(baseURI);
-
+        System.out.println(response.getBody().asPrettyString());
         int statusCode = response.getStatusCode();
-
-        assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
+        assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
     }
 
 

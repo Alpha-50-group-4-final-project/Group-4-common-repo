@@ -25,6 +25,8 @@ public class DeletePostTest extends BaseTest {
 
         assertEquals(statusCode, HttpStatus.SC_OK, "Incorrect status code. Expected 200.");
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
+
+        System.out.printf("Post with id: %s was successfully deleted.", postId);
         postId=null;
     }
 }
