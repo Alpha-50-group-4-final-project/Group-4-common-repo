@@ -1,21 +1,21 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 import static org.testng.Assert.assertNotNull;
 
-public class GetCommentsTests extends BaseTest {
+public class GetCommentTests extends BaseTest {
     @Test
-    public void getAllExistingCommentsTest() {
-        if(commentId==null){
+    public void allCommentsShown_When_SearchedForAllComments() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
@@ -24,17 +24,17 @@ public class GetCommentsTests extends BaseTest {
                 get(baseURI);
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
-        assertNotNull(response.getBody().jsonPath().get("commentId").toString(),"Comment id is empty.");
-        assertNotNull(response.getBody().jsonPath().get("content").toString(),"Comment content field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("likes").toString(),"Comment likes field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("date").toString(),"Comment date field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("liked").toString(),"Comment liked field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("commentId").toString(), "Comment id is empty.");
+        assertNotNull(response.getBody().jsonPath().get("content").toString(), "Comment content field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("likes").toString(), "Comment likes field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("All existing comments below: %s", response.getBody().asPrettyString());
     }
 
     @Test
-    public void getAllCommentsByPostTest() {
-        if (postId == null || commentId == null) {
+    public void commentsShown_When_CommentsByPostSearched() {
+        if (isNull(postId) || isNull(commentId)) {
             createPost();
             createComment();
         }
@@ -46,16 +46,17 @@ public class GetCommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
-        assertNotNull(response.getBody().jsonPath().get("commentId").toString(),"Comment id is empty.");
-        assertNotNull(response.getBody().jsonPath().get("content").toString(),"Comment content field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("likes").toString(),"Comment likes field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("date").toString(),"Comment date field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("liked").toString(),"Comment liked field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("commentId").toString(), "Comment id is empty.");
+        assertNotNull(response.getBody().jsonPath().get("content").toString(), "Comment content field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("likes").toString(), "Comment likes field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("All comments on post: %s below: %s", postId, response.getBody().asPrettyString());
     }
+
     @Test
-    public void getAllCommentsByPostTest_when_postDoesNotHaveComments() {
-            createPost();
+    public void commentsNotShown_When_NoCommentsOnPost() {
+        createPost();
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
 
@@ -70,9 +71,10 @@ public class GetCommentsTests extends BaseTest {
         System.out.printf("No comments on post with id %s", postId);
 
     }
+
     @Test
-    public void getOneCommentTest() {
-        if (commentId == null) {
+    public void commentShown_When_SearchedById() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
@@ -83,11 +85,11 @@ public class GetCommentsTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
-        assertNotNull(response.getBody().jsonPath().get("commentId").toString(),"Comment id is empty.");
-        assertNotNull(response.getBody().jsonPath().get("content").toString(),"Comment content field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("likes").toString(),"Comment likes field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("date").toString(),"Comment date field is empty.");
-        assertNotNull(response.getBody().jsonPath().get("liked").toString(),"Comment liked field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("commentId").toString(), "Comment id is empty.");
+        assertNotNull(response.getBody().jsonPath().get("content").toString(), "Comment content field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("likes").toString(), "Comment likes field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
+        assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("Content on comment with id: %s below: %s", commentId, response.getBody().asPrettyString());
     }
 }

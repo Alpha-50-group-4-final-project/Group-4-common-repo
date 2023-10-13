@@ -1,6 +1,8 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
+
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.*;
 import org.testng.annotations.Test;
 
@@ -13,8 +15,8 @@ import static org.testng.Assert.assertEquals;
 
 public class EditCommentTests extends BaseTest {
     @Test(priority = 1)
-    public void editExistingCommentTest() {
-        if (commentId == null) {
+    public void commentEdited_When_ValidDataProvided() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
@@ -30,8 +32,8 @@ public class EditCommentTests extends BaseTest {
         System.out.printf("Comment with id %s was successfully edited.", commentId);
     }
     @Test(priority = 2)
-    public void editExistingCommentError_when_1001charsTextIsProvided() {
-        if (commentId == null) {
+    public void commentNotEdited_When_1001charsTextProvided() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);

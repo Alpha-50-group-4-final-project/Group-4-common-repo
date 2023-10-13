@@ -1,7 +1,6 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -10,6 +9,7 @@ import static com.api.utils.Endpoints.CREATE_COMMENTS;
 import static com.api.utils.RequestJSON.COMMENT_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
@@ -17,8 +17,8 @@ import static org.testng.Assert.assertNotNull;
 
 public class CreateCommentTests extends BaseTest {
     @Test(priority = 1)
-    public void createCommentTest() {
-        if (postId == null) {
+    public void commentCreated_When_ValidDataProvided() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
@@ -40,8 +40,8 @@ public class CreateCommentTests extends BaseTest {
         System.out.printf("\nComment with id %s was created.\n", commentId);
     }
     @Test(priority = 2)
-    public void createCommentError_when_1001charsLongTextIsProvided() {
-        if (postId == null) {
+    public void commentNotCreated_When_1001charsLongTextProvided() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);

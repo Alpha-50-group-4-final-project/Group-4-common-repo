@@ -7,14 +7,15 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 
 public class LikeAndUnlikeCommentTests extends BaseTest {
 
     @Test(priority = 1)
-    public void likeACommentTest() {
-        if (commentId == null) {
+    public void commentLiked_When_LikeButtonClicked() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
@@ -29,10 +30,9 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void unlikeACommentTest() {
-        if (commentId == null) {
-            createComment();
-            likeACommentTest();
+    public void commentUnliked_When_LikeButtonClicked() {
+        if (isNull(commentId)) {
+            likeComment();
         }
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
@@ -43,6 +43,4 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
     }
-
-
 }
