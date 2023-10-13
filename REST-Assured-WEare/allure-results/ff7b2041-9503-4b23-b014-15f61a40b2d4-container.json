@@ -1,0 +1,1 @@
+{"uuid":"ff7b2041-9503-4b23-b014-15f61a40b2d4","name":"weare.SkillsTest","children":["a90f6f30-9c54-40f3-9432-2c96cbcd88c9"],"befores":[],"afters":[{"name":"deleteDataBase","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1696956519337,"stop":1696956520003}],"start":1696956516555,"stop":1696956520009}

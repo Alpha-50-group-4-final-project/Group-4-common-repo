@@ -1,0 +1,1 @@
+{"uuid":"aacda439-29e0-4fc2-a1ff-378a3cb63138","name":"weare.LoginUserTest","children":["d6dc86fd-3807-41d1-8083-26b99659e912"],"befores":[],"afters":[{"name":"deleteDataBase","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1696950614612,"stop":1696950614728}],"start":1696950605855,"stop":1696950643038}

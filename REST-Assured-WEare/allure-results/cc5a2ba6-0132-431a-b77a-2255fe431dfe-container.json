@@ -1,0 +1,1 @@
+{"uuid":"cc5a2ba6-0132-431a-b77a-2255fe431dfe","name":"weare.ConnectionTest","children":["50b94cd8-5491-41f0-9487-76d0364c39d3"],"befores":[{"name":"userSetUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1696967825785,"stop":1696967827654}],"afters":[],"start":1696967825744,"stop":1696967830808}
