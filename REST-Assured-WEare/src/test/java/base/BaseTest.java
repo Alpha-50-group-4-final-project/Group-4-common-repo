@@ -235,5 +235,13 @@ public class BaseTest {
                 queryParam("commentId", commentId).
                 post(baseURI);
     }
+    protected void likeExistingPost() {
+        createPost();
+        baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
+
+        response = requestSpecificationWithAuthentication()
+                .post(baseURI);
+
+    }
 }
 

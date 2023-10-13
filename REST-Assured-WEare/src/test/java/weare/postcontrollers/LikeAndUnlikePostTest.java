@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -9,6 +10,7 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
@@ -17,8 +19,9 @@ import static org.testng.Assert.assertFalse;
 public class LikeAndUnlikePostTest extends BaseTest {
 
     @Test(priority = 1)
-    public void likeExistingPostTest() {
-        if (postId == null) {
+    @Label("Jira - FPW-249")
+    public void postLiked_When_ValidRequestSent() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
@@ -33,10 +36,10 @@ public class LikeAndUnlikePostTest extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void unlikeExistingPostTest() {
-        if (postId == null) {
-            createPost();
-            likeExistingPostTest();
+    @Label("Jira - FPW-250")
+    public void postUnliked_When_ValidRequestSent() {
+        if (isNull(postId)) {
+            likeExistingPost();
         }
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
@@ -47,7 +50,6 @@ public class LikeAndUnlikePostTest extends BaseTest {
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
         assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
     }
-
 }
 
 

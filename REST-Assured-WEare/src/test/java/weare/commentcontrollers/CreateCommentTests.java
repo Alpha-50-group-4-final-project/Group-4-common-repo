@@ -1,6 +1,7 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -17,6 +18,7 @@ import static org.testng.Assert.assertNotNull;
 
 public class CreateCommentTests extends BaseTest {
     @Test(priority = 1)
+    @Label("Jira - FPW-254")
     public void commentCreated_When_ValidDataProvided() {
         if (isNull(postId)) {
             createPost();
@@ -40,7 +42,8 @@ public class CreateCommentTests extends BaseTest {
         System.out.printf("\nComment with id %s was created.\n", commentId);
     }
     @Test(priority = 2)
-    public void commentNotCreated_When_1001charsLongTextProvided() {
+    @Label("Jira - FPW-268")
+    public void commentNotCreated_When_contentProvidedIsTooLong() {
         if (isNull(postId)) {
             createPost();
         }

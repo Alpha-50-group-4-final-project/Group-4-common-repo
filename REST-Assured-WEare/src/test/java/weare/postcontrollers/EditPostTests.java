@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -10,14 +11,16 @@ import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.EDIT_POST_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class EditPostTests extends BaseTest {
 
     @Test(priority = 1)
-    public void editExistingPostTest() {
-        if (postId == null) {
+    @Label("Jira - FPW-248")
+    public void postEdited_When_ValidDataProvided() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
@@ -30,7 +33,6 @@ public class EditPostTests extends BaseTest {
                 .put(baseURI);
 
         int statusCode = response.getStatusCode();
-
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.",HttpStatus.SC_OK));
         assertEquals(response.body().asString(), "", "Response body isn't empty as expected.");
 
@@ -38,8 +40,9 @@ public class EditPostTests extends BaseTest {
         deletePost();
     }
     @Test(priority = 2)
-    public void editExistingPostError_when_1001charsTextIsProvided() {
-        if (postId == null) {
+    @Label("Jira - FPW-267")
+    public void postNotEdited_When_ContentProvidedIsTooLong() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
@@ -52,7 +55,6 @@ public class EditPostTests extends BaseTest {
                 .put(baseURI);
 
         int statusCode = response.getStatusCode();
-
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected: %s.", HttpStatus.SC_BAD_REQUEST));
         assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));

@@ -1,6 +1,7 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -14,7 +15,8 @@ import static org.testng.Assert.assertEquals;
 
 public class DeleteCommentTest extends BaseTest {
     @Test
-    public void commentDeleted_When_DeleteButtonClicked() {
+    @Label("Jira - FPW-258")
+    public void commentDeleted_When_DeleteRequestSent() {
         if (isNull(commentId)) {
             createComment();
         }

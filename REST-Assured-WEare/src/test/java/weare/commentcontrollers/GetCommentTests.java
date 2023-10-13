@@ -1,6 +1,7 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.BASE_URL;
@@ -14,6 +15,7 @@ import static org.testng.Assert.assertNotNull;
 
 public class GetCommentTests extends BaseTest {
     @Test
+    @Label("Jira - FPW-253")
     public void allCommentsShown_When_SearchedForAllComments() {
         if (isNull(commentId)) {
             createComment();
@@ -33,6 +35,7 @@ public class GetCommentTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira - FPW-259")
     public void commentsShown_When_CommentsByPostSearched() {
         if (isNull(postId) || isNull(commentId)) {
             createPost();
@@ -55,6 +58,7 @@ public class GetCommentTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira - FPW-259")
     public void commentsNotShown_When_NoCommentsOnPost() {
         createPost();
 
@@ -73,6 +77,7 @@ public class GetCommentTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira - FPW-260")
     public void commentShown_When_SearchedById() {
         if (isNull(commentId)) {
             createComment();

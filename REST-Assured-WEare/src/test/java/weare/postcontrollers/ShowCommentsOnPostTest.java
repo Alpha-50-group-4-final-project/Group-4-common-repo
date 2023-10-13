@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -8,13 +9,15 @@ import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.SHOW_COMMENTS;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class ShowCommentsOnPostTest extends BaseTest {
     @Test
-    public void showCommentsOnPostTest() {
-        if (postId == null) {
+    @Label("Jira - FPW-252")
+    public void commentsShownOnPost_When_ValidRequestSent() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s", BASE_URL, format(SHOW_COMMENTS, postId));
