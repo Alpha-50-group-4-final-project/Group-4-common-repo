@@ -5,6 +5,7 @@ import base.BaseTest;
 
 import io.restassured.response.Response;
 
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -23,8 +24,8 @@ public class RegisterUserTest extends BaseTest {
     public static final String STATUS_CODE_ERROR_MSG = "Incorrect status code. Expected %s.";
 
     @Test(priority = 1)
-
-    public void registerNewUserTest() {
+    @Label("Jira - FPW-233")
+    public void newUserRegistered_When_ValidDataProvided() {
         USERNAME = letsTryIt();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
@@ -55,7 +56,8 @@ public class RegisterUserTest extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void registerAdminUser() {
+    @Label("Jira - FPW-233")
+    public void newAdminRegistered_When_ValidDataProvided() {
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_ADMIN,
@@ -78,14 +80,13 @@ public class RegisterUserTest extends BaseTest {
 
         String[] responseBody = response.asString().split(" ");
         adminUserId = responseBody[6];
-
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
     }
 
 
     //ANNIE - I think this is bug and should not be here, the error was not handled properly
     @Test(priority = 1)
-    public void registerNewUserTest_when_invalidUserIsProvided() {
+    public void newUserNotRegistered_When_ValidDataProvided() {
         USERNAME = letsTryIt();
 
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);

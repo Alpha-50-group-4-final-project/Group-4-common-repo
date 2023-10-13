@@ -4,6 +4,7 @@ import base.BaseTest;
 import com.api.utils.Constants;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import jdk.jfr.Label;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import weare.usercotrollers.RegisterUserTest;
@@ -17,10 +18,10 @@ public class LoginUserTest extends BaseTest {
 
 
     @Test
-    public void loginTest() {
+    @Label("Jira - FPW-23")
+    public void userLoggedIn_When_ValidDataProvided() {
         if (registeredUsername == null) {
-            RegisterUserTest registerUserTest = new RegisterUserTest();
-            registerUserTest.registerNewUserTest();
+            registerNewUser();
         }
 
         baseURI = format("%s%s", Constants.BASE_URL, LOGIN_USER);

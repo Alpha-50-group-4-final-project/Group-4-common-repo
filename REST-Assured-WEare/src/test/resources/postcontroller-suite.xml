@@ -4,10 +4,9 @@
     <test name="Post Controllers">
         <classes>
             <class name="weare.postcontrollers.CreatePostsTests"/>
-            <class name="weare.postcontrollers.FindAllPostsTest"/>
+            <class name="weare.postcontrollers.GetPostTest"/>
             <class name="weare.postcontrollers.EditPostTests"/>
             <class name="weare.postcontrollers.LikeAndUnlikePostTest"/>
-            <class name="weare.postcontrollers.ShowCommentsOnPostTest"/>
             <class name="weare.postcontrollers.DeletePostTest"/>
         </classes>
     </test>

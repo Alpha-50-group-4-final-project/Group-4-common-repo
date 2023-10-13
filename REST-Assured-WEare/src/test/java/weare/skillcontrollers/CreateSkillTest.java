@@ -1,6 +1,7 @@
 package weare.skillcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -10,9 +11,11 @@ import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
+
 public class CreateSkillTest extends BaseTest {
-        @Test
-    public void createSkillTest() {
+    @Test
+    @Label("Jira - FPW-239")
+    public void skillCreated_When_ValidDataProvided() {
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
 

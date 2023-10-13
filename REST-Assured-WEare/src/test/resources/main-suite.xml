@@ -4,9 +4,8 @@
     <test name="User Controllers">
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest"/>
-            <class name="weare.usercotrollers.GetUsersTests"/>
-            <class name="weare.usercotrollers.UpgradeUsersTests"/>
-            <class name="weare.usercotrollers.ShowUserPostsByUserIDTest"/>
+            <class name="weare.usercotrollers.GetUserTests"/>
+            <class name="weare.usercotrollers.UpgradeUserTests"/>
         </classes>
     </test>
     <test name="Login">
@@ -17,10 +16,9 @@
     <test name="Post Controllers">
         <classes>
             <class name="weare.postcontrollers.CreatePostsTests"/>
-            <class name="weare.postcontrollers.FindAllPostsTest"/>
+            <class name="weare.postcontrollers.GetPostTest"/>
             <class name="weare.postcontrollers.EditPostTests"/>
             <class name="weare.postcontrollers.LikeAndUnlikePostTest"/>
-            <class name="weare.postcontrollers.ShowCommentsOnPostTest"/>
             <class name="weare.postcontrollers.DeletePostTest"/>
         </classes>
     </test>
@@ -36,8 +34,7 @@
     <test name="Skill Controllers">
         <classes>
             <class name="weare.skillcontrollers.CreateSkillTest"/>
-            <class name="weare.skillcontrollers.GetExistingSkillsTest"/>
-            <class name="weare.skillcontrollers.GetSkillByIdTest"/>
+            <class name="weare.skillcontrollers.GetSkillTest"/>
             <class name="weare.skillcontrollers.EditSkillTest"/>
             <class name="weare.skillcontrollers.DeleteSkillTest"/>
         </classes>

@@ -1,19 +1,22 @@
 package weare.skillcontrollers;
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 
 
 public class EditSkillTest extends BaseTest {
     @Test
-    public void editSkillTest() {
-        if (skillId == null) {
+    @Label("Jira - FPW-241")
+    public void skillEdited_When_ValidDataProvided() {
+        if (isNull(skillId)) {
             createSkill();
         }
         int intSkillId = Integer.parseInt(skillId);

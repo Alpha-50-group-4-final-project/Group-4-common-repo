@@ -16,7 +16,7 @@ import static org.testng.Assert.assertNotNull;
 public class GetCommentTests extends BaseTest {
     @Test
     @Label("Jira - FPW-253")
-    public void allCommentsShown_When_SearchedForAllComments() {
+    public void getAllComments_When_SearchedForAllComments() {
         if (isNull(commentId)) {
             createComment();
         }
@@ -36,7 +36,7 @@ public class GetCommentTests extends BaseTest {
 
     @Test
     @Label("Jira - FPW-259")
-    public void commentsShown_When_CommentsByPostSearched() {
+    public void getCommentsByPost_When_SearchedForCommentsByPost() {
         if (isNull(postId) || isNull(commentId)) {
             createPost();
             createComment();
@@ -59,7 +59,7 @@ public class GetCommentTests extends BaseTest {
 
     @Test
     @Label("Jira - FPW-259")
-    public void commentsNotShown_When_NoCommentsOnPost() {
+    public void getNoCommentsByPost_When_NoCommentsOnPost() {
         createPost();
 
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
@@ -78,7 +78,7 @@ public class GetCommentTests extends BaseTest {
 
     @Test
     @Label("Jira - FPW-260")
-    public void commentShown_When_SearchedById() {
+    public void getComment_When_SearchedByCommentId() {
         if (isNull(commentId)) {
             createComment();
         }

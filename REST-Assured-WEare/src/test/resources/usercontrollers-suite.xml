@@ -4,9 +4,8 @@
     <test name="User Controllers">
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest"/>
-            <class name="weare.usercotrollers.GetUsersTests"/>
-            <class name="weare.usercotrollers.UpgradeUsersTests"/>
-            <class name="weare.usercotrollers.ShowUserPostsByUserIDTest"/>
+            <class name="weare.usercotrollers.GetUserTests"/>
+            <class name="weare.usercotrollers.UpgradeUserTests"/>
         </classes>
     </test>
 </suite>

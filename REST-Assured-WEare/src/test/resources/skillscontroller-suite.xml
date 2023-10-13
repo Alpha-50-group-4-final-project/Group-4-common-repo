@@ -4,8 +4,7 @@
     <test name="Skill Controllers">
         <classes>
             <class name="weare.skillcontrollers.CreateSkillTest"/>
-            <class name="weare.skillcontrollers.GetExistingSkillsTest"/>
-            <class name="weare.skillcontrollers.GetSkillByIdTest"/>
+            <class name="weare.skillcontrollers.GetSkillTest"/>
             <class name="weare.skillcontrollers.EditSkillTest"/>
             <class name="weare.skillcontrollers.DeleteSkillTest"/>
         </classes>
