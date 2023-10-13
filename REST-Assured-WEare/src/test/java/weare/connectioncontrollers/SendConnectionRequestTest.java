@@ -5,6 +5,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 
 import base.BaseTest;
 import io.restassured.http.ContentType;
+import jdk.jfr.Label;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -28,7 +29,8 @@ public class SendConnectionRequestTest extends BaseTest {
 
 
     @Test
-    public void sendConnectionRequestTest() {
+    @Label("Jira - FPW-243")
+    public void sendConnectionRequest_When_RequestPosted() {
         baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
         String requestBody = format(SEND_CONNECTION_REQ_BODY, userReceivingRequestId, userReceivingRequestName);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");

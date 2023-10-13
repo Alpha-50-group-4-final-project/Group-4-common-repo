@@ -1,6 +1,7 @@
 package weare.commentcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -14,7 +15,8 @@ import static org.testng.Assert.*;
 public class LikeAndUnlikeCommentTests extends BaseTest {
 
     @Test(priority = 1)
-    public void commentLiked_When_LikeButtonClicked() {
+    @Label("Jira - FPW-256")
+    public void commentLiked_When_ValidRequestSent() {
         if (isNull(commentId)) {
             createComment();
         }
@@ -30,7 +32,8 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void commentUnliked_When_LikeButtonClicked() {
+    @Label("Jira - FPW-257")
+    public void commentUnliked_When_ValidRequestSent() {
         if (isNull(commentId)) {
             likeComment();
         }

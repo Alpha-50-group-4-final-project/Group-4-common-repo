@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -13,7 +14,8 @@ import static org.testng.Assert.assertNotNull;
 
 public class FindAllPostsTest extends BaseTest {
     @Test
-    public static void findAllPostsTest() {
+    @Label("Jira - FPW-246")
+    public static void allPostShown_When_FindALlPostRequestSent() {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
 
         response = getRequest(baseURI);

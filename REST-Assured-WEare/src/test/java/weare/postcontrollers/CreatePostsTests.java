@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -10,6 +11,7 @@ import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.CREATE_POST_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 
@@ -17,8 +19,9 @@ public class CreatePostsTests extends BaseTest {
 
 
     @Test(priority = 1)
-    public void createPostTest() {
-        if (regularUserId == null) {
+    @Label("Jira - FPW-247")
+    public void postCreated_When_ValidDataProvided() {
+        if (isNull(regularUserId)) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -45,8 +48,9 @@ public class CreatePostsTests extends BaseTest {
         deletePost();
     }
     @Test(priority = 2)
-    public void createPostTestError_when_1001charsTextIsProvided() {
-        if (regularUserId == null) {
+    @Label("Jira - FPW-266")
+    public void postNotCreated_When_ContentProvidedIsTooLong() {
+        if (isNull(regularUserId)) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -59,8 +63,6 @@ public class CreatePostsTests extends BaseTest {
                 .post();
 
         int statusCode = response.getStatusCode();
-//        System.out.println(statusCode);
-//        System.out.println(response.getBody().asPrettyString());
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected %s.", HttpStatus.SC_BAD_REQUEST));
         assertEquals(response.getBody().jsonPath().get("message"), CONTENT_SIZE_ERROR,
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));

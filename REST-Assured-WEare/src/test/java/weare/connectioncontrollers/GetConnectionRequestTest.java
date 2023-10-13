@@ -2,6 +2,7 @@ package weare.connectioncontrollers;
 
 import base.BaseTest;
 import io.restassured.http.ContentType;
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -9,14 +10,16 @@ import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 
 
 public class GetConnectionRequestTest extends BaseTest {
     @Test
-    public void getConnectionRequestTest() {
-        if (isConnectionSend == false) {
+    @Label("Jira - FPW-244")
+    public void getConnectionRequestTest_When_RequestSent() {
+        if (isNull(isConnectionSend )) {
             sendConnectionRequest();
         }
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, userReceivingRequestId));

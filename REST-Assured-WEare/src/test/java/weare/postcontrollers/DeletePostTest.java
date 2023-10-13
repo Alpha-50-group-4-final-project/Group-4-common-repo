@@ -1,6 +1,7 @@
 package weare.postcontrollers;
 
 import base.BaseTest;
+import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -14,7 +15,8 @@ import static org.testng.Assert.assertEquals;
 
 public class DeletePostTest extends BaseTest {
     @Test
-    public void deletePostTest() {
+    @Label("Jira - FPW-251")
+    public void postDeleted_When_DeleteRequestSent() {
         if (postId == null) {
             createPost();
         }

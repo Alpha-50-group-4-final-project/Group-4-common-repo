@@ -4,6 +4,8 @@ import base.BaseTest;
 
 import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.*;
+
+import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -15,6 +17,7 @@ import static org.testng.Assert.assertEquals;
 
 public class EditCommentTests extends BaseTest {
     @Test(priority = 1)
+    @Label("Jira - FPW-255")
     public void commentEdited_When_ValidDataProvided() {
         if (isNull(commentId)) {
             createComment();
@@ -32,7 +35,8 @@ public class EditCommentTests extends BaseTest {
         System.out.printf("Comment with id %s was successfully edited.", commentId);
     }
     @Test(priority = 2)
-    public void commentNotEdited_When_1001charsTextProvided() {
+    @Label("Jira - FPW-270")
+    public void commentNotEdited_When_ContentProvidedIsTooLong() {
         if (isNull(commentId)) {
             createComment();
         }
