@@ -20,31 +20,33 @@ import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.testng.Assert.assertTrue;
 
 public class BaseTest {
-    public static String regularUserId;
-    public static String adminUserId;
-    public static String expertiseProfileId;
-    public static String postId;
-    public static String commentId;
-    public static Cookies cookies;
-    public static List<String> usernames = new ArrayList<>();
-    public static String skillId;
-    public static String connectionId;
+    protected static String regularUserId;
+    protected static String adminUserId;
+    protected static String expertiseProfileId;
 
-    public static String registeredUsername;
+    protected static String postId;
+    protected static String commentId;
+    protected static Cookies cookies;
+    protected static List<String> usernames = new ArrayList<>();
+    protected static String skillId;
+    protected static String connectionId;
 
-    public static Response response;
-    public static String expertiseUpdateUsername;
-    public static DateTimeFormatter dtf;
-    public boolean isConnectionSend = false;
-    public static String userSendingRequestName;
-    public static String userReceivingRequestId;
-    public static String userReceivingRequestName;
+    protected static String registeredUsername;
+
+    protected static Response response;
+    protected static String expertiseUpdateUsername;
+    protected static DateTimeFormatter dtf;
+    protected boolean isConnectionSend = false;
+    protected static String userSendingRequestName;
+    protected static String userReceivingRequestId;
+    protected static String userReceivingRequestName;
 
 
-    public String timeStamp() {
+    protected String timeStamp() {
         String timestamp;
         dtf = DateTimeFormatter.ISO_INSTANT;
         Instant time = Instant.now();
@@ -53,7 +55,7 @@ public class BaseTest {
     }
 
 
-    public Cookies getAuthCookie(String username, String password) {
+    protected Cookies getAuthCookie(String username, String password) {
         return cookies = given().queryParam("username", username).
                 queryParam("password", password).
                 when().
@@ -77,11 +79,11 @@ public class BaseTest {
                 when().log().all();
     }
 
-    public static Response getRequest(String URL) {
+    protected static Response getRequest(String URL) {
         return response = given().contentType(ContentType.JSON).get(URL);
     }
 
-    public void registerNewUser() {
+    protected void registerNewUser() {
         USERNAME = faker.name().firstName();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -97,7 +99,7 @@ public class BaseTest {
         registeredUsername = responseBody[3];
         usernames.add(registeredUsername);
     }
-    public void registerAnotherUser() {
+    protected void registerAnotherUser() {
         USERNAME = faker.name().firstName();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
@@ -114,8 +116,8 @@ public class BaseTest {
         usernames.add(userReceivingRequestName);
     }
 
-    public void createPost() {
-        if (regularUserId == null) {
+    protected void createPost() {
+        if (isNull(regularUserId)) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -132,8 +134,8 @@ public class BaseTest {
         System.out.printf("New post with id: %s was successfully created.", postId);
     }
 
-    public void createComment() {
-        if (postId == null) {
+    protected void createComment() {
+        if (isNull(postId)) {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
@@ -148,7 +150,7 @@ public class BaseTest {
         System.out.printf("New comment with id: %s was successfully created.", commentId);
     }
 
-    public void createSkill() {
+    protected void createSkill() {
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
@@ -160,7 +162,7 @@ public class BaseTest {
         System.out.printf("New skill with id: %s was successfully created.", skillId);
     }
 
-    public void getLastUser() {
+    protected void getLastUser() {
         baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
 
         String requestBody = (format(GET_ALL_REGISTER_USERS_BODY));
@@ -174,7 +176,7 @@ public class BaseTest {
         expertiseUpdateUsername = response.getBody().jsonPath().getString("username[0]");
     }
 
-    public void deletePost() {
+    protected void deletePost() {
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
 
         response = requestSpecificationWithAuthentication()
@@ -183,7 +185,7 @@ public class BaseTest {
         postId = null;
     }
 
-    public void deleteComment() {
+    protected void deleteComment() {
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
@@ -193,7 +195,7 @@ public class BaseTest {
         commentId = null;
     }
 
-    public void deleteSkill() {
+    protected void deleteSkill() {
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_DELETE);
 
@@ -224,6 +226,14 @@ public class BaseTest {
                 .get(baseURI);
         connectionId = response.getBody().jsonPath().getString("[0].id");
         System.out.printf("Connection request with id: %s received.\n",connectionId);
+    }
+    protected void likeComment() {
+        createComment();
+        baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
+
+        response = requestSpecificationWithAuthentication().
+                queryParam("commentId", commentId).
+                post(baseURI);
     }
 }
 

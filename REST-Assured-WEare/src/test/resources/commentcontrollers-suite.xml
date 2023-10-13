@@ -6,7 +6,7 @@
             <class name="weare.commentcontrollers.CreateCommentTests"/>
             <class name="weare.commentcontrollers.EditCommentTests"/>
             <class name="weare.commentcontrollers.LikeAndUnlikeCommentTests"/>
-            <class name="weare.commentcontrollers.GetCommentsTests"/>
+            <class name="weare.commentcontrollers.GetCommentTests"/>
             <class name="weare.commentcontrollers.DeleteCommentTest"/>
         </classes>
     </test>

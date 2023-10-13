@@ -8,13 +8,14 @@ import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.DELETE_COMMENT;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 
 public class DeleteCommentTest extends BaseTest {
     @Test
-    public void deleteCommentTest() {
-        if (commentId == null) {
+    public void commentDeleted_When_DeleteButtonClicked() {
+        if (isNull(commentId)) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
