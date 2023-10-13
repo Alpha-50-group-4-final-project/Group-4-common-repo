@@ -35,7 +35,7 @@ public class GetConnectionRequestTest extends BaseTest {
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertEquals(response.getBody().jsonPath().getString("[0].id"), connectionId, format("Connection Id not as expected. Expected: %s.", connectionId));
         assertEquals(response.getBody().jsonPath().getString("[0].approved"), "false",
-                "This connection request have been already approved.");
+                "Connection request missing or already approved.");
         assertEquals(response.getBody().jsonPath().getString("[0].seen"), "false",
                 "This connection request have been already seen.");
         System.out.printf("Connection request with id: %s received.",connectionId);
