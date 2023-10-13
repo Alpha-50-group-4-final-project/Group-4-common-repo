@@ -43,7 +43,7 @@ public class CreateCommentTests extends BaseTest {
     }
     @Test(priority = 2)
     @Label("Jira - FPW-268")
-    public void commentNotCreated_When_contentProvidedIsTooLong() {
+    public void commentNotCreated_When_ContentProvidedIsTooLong() {
         if (isNull(postId)) {
             createPost();
         }
