@@ -8,7 +8,8 @@ public class SearchingPage extends WEareBasePage{
         super(driver,"");
     }
 
-    public void seeCurrentUserProfileByName(String name){
+
+    public void findUserProfileByName(String name){
         actions.waitForElementPresent("ProfileConnectionPageSeeProfileByName",name);
         actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
     }

@@ -13,12 +13,6 @@ public class AdminCommentTest extends BaseTest {
         login(adminUsername, adminPassword);
     }
 
-//    @AfterEach
-//    public void adminLogout(){
-//        homePage.navigateToHomePage();
-//        loginPage.clickOnLogOutButton();
-//    }
-
     @Test
     @Order(1)
     public void editLatestComment_when_editCommentClicked() {
@@ -40,6 +34,5 @@ public class AdminCommentTest extends BaseTest {
         commentsPage.clickDeleteComment();
         commentsPage.deleteComment();
         commentsPage.validateCommentDeleted();
-        //validation
     }
 }

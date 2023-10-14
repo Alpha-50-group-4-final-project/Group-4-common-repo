@@ -40,27 +40,27 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
     @Test
     public void sendConnectRequest_when_connectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchingPage.clickOnConnectButton();
-        searchingPage.assertRequestIsSend();
+        searchPage.clickOnConnectButton();
+        searchPage.assertRequestIsSend();
     }
 
     @Test
     public void acceptConnectRequest_when_approveRequestButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchingPage.clickOnConnectButton();
-        searchingPage.assertRequestIsSend();
+        searchPage.clickOnConnectButton();
+        searchPage.assertRequestIsSend();
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
     }
 
     @Test
     public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchingPage.clickOnConnectButton();
-        searchingPage.assertRequestIsSend();
+        searchPage.clickOnConnectButton();
+        searchPage.assertRequestIsSend();
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
         searchAndFindCurrentProfileByName(secondUserFirstName);
-        searchingPage.clickOnDisconnectButton();
-        searchingPage.assertElementPresent("ProfileConnectionPageConnectButton");
+        searchPage.clickOnDisconnectButton();
+        searchPage.assertElementPresent("ProfileConnectionPageConnectButton");
     }
 
     private static void loginSendsApproveRequests(String username, String userFirstName) {
@@ -68,15 +68,15 @@ public class SendAndAcceptFriendRequestsTests extends BaseTest {
         login(username, PASSWORD);
 
         homePage.navigateToPersonalProfileButton();
-        searchingPage.clickOnNewFriendRequestButton();
-        searchingPage.approveRequestByUserFirstName(userFirstName);
+        searchPage.clickOnNewFriendRequestButton();
+        searchPage.approveRequestByUserFirstName(userFirstName);
     }
 
     private static void searchAndFindCurrentProfileByName(String userName) {
         actions.navigateToPage("http://localhost:8081/");
         homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
-        searchingPage.seeCurrentUserProfileByName(userName);
+        searchPage.findUserProfileByName(userName);
     }
 
 }

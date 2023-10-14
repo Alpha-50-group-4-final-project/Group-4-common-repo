@@ -5,7 +5,6 @@ import com.github.javafaker.Faker;
 import com.telerikacademy.testframework.UserActions;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
-import org.junit.jupiter.api.AfterAll;
 
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
@@ -33,7 +32,7 @@ public class BaseTest {
     public static LoginPage loginPage;
 
     public static PersonalProfilePage editProfilePage;
-    public static SearchingPage searchingPage;
+    public static SearchingPage searchPage;
     public static AdminPage adminPage;
     public static Faker faker;
     public static PostsPage postsPage;
@@ -55,7 +54,7 @@ public class BaseTest {
         registrationPage = new UserRegistrationPage(actions.getDriver());
         loginPage = new LoginPage(actions.getDriver());
         editProfilePage = new PersonalProfilePage(actions.getDriver());
-        searchingPage = new SearchingPage(actions.getDriver());
+        searchPage = new SearchingPage(actions.getDriver());
         adminPage = new AdminPage(actions.getDriver());
         postsPage = new PostsPage(actions.getDriver());
         commentsPage = new CommentsPage(actions.getDriver());
@@ -70,13 +69,13 @@ public class BaseTest {
         LOGGER.info("The follow password was generated: " + usernameRandom);
         dtf = new SimpleDateFormat("yyyy/MM/dd");
         TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
-        PROFILE_FOR_ENABLE_DISABLE = "Ann-Marie";
+        PROFILE_FOR_ENABLE_DISABLE = "Aladin";
         usernames = new ArrayList<>();
     }
 
 //        @AfterAll
 //    public static void tearDown() {
-//        UserActions.quitDriver();
+//
 //    }
     public static final String POST_MESSAGE="This post was made by Selenium WebDriver";
 
@@ -95,6 +94,7 @@ public class BaseTest {
 //        if (actions.isElementVisible("homePage.LogoutButton")) {
 //            actions.clickElement("homePage.LogoutButton");
 //        }
+//    UserActions.quitDriver();
 //    }
 
 //    @AfterAll

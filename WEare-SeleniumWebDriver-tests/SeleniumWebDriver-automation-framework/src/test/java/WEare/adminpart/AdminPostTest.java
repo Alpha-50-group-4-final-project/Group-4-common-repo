@@ -13,11 +13,7 @@ public class AdminPostTest extends BaseTest {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
     }
-    @AfterEach
-    public void adminLogout(){
-        homePage.navigateToHomePage();
-        loginPage.clickOnLogOutButton();
-    }
+
     @Test
     @Order(1)
     public void editLatestPost_when_editPostClicked() {

@@ -74,6 +74,8 @@ public class AdminPage extends WEareBasePage {
         actions.clickElement("adminPage.ViewUsersButton");
     }
     public void clickDisableButton(){
+        actions.waitForElementVisible("adminPage.disableButton");
+        actions.assertElementPresent("adminPage.disableButton");
         if (actions.isElementVisible("adminPage.enableButton")) {
             actions.clickElement("adminPage.enableButton");
         }
@@ -87,5 +89,11 @@ public class AdminPage extends WEareBasePage {
         }
         actions.waitForElementClickable("adminPage.enableButton");
         actions.clickElement("adminPage.enableButton");
+    }
+    public void validateProfileDisabled(){
+        actions.assertElementAttribute("adminPage.enableButton", "value", "enable");
+    }
+    public void validateProfileEnabled(){
+        actions.assertElementAttribute("adminPage.disableButton", "value", "disable");
     }
 }
