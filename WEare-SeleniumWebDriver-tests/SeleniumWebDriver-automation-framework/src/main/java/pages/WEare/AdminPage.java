@@ -4,14 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.opentest4j.AssertionFailedError;
 
-import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.Utils.*;
 
 public class AdminPage extends WEareBasePage {
 
-    public String updatedMessage = "my automation edited post by Selenium Driver";
     public String deletedMessage = "Post deleted successfully";
-    public String postVisibilityPublic = "public";
     public String deleteConfirmation = "delete";
 
     public AdminPage(WebDriver driver) {
@@ -20,8 +19,12 @@ public class AdminPage extends WEareBasePage {
 
 
     public void validateAdminPageNavigated() {
-        actions.assertElementAttribute("adminPage.adminZoneButton", "innerText", "GO TO admin zone");
-        LOGGER.info("Admin logged in.");
+        try {
+            actions.assertElementAttribute("adminPage.adminZoneButton", "innerText", "GO TO admin zone");
+            LOGGER.info("Admin logged in.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Admin is not logged in.");
+        }
     }
 
     public void clickEditButton() {
@@ -33,15 +36,19 @@ public class AdminPage extends WEareBasePage {
     public void editPostInformation() {
         actions.clickElement("adminPage.postVisibility");
         actions.waitForElementPresent("adminPage.postVisibility");
-        actions.typeValueInField(postVisibilityPublic, "adminPage.postVisibility");
+        actions.typeValueInField(getUIMappingByKey("visibility.public"), "adminPage.postVisibility");
         actions.waitForElementPresent("adminPage.editMessage");
-        actions.typeValueInField(updatedMessage, "adminPage.editMessage");
+        actions.typeValueInField(getUIMappingByKey("postPage.postMessage.edit"), "adminPage.editMessage");
         actions.clickElement("adminPage.submitButton");
     }
 
     public void validatePostEdited() {
-        actions.assertElementAttribute("adminPage.editedPostMessage", "innerText", updatedMessage);
-        LOGGER.info("Admin edited post successfully.");
+        try {
+            actions.assertElementAttribute("adminPage.editedPostMessage", "innerText", getUIMappingByKey("postPage.postMessage.edit"));
+            LOGGER.info("Admin edited post successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Admin did not edit the post successfully.");
+        }
     }
 
     public void clickDeleteButton() {
@@ -64,16 +71,17 @@ public class AdminPage extends WEareBasePage {
         LOGGER.info("Item deleted successfully.");
     }
 
-    public void clickGOTOadminzoneButton(){
+    public void clickGOTOadminzoneButton() {
         actions.waitForElementClickable("adminPage.adminZoneButton");
         actions.clickElement("adminPage.adminZoneButton");
     }
 
-    public void clickOnViewUsersButton(){
+    public void clickOnViewUsersButton() {
         actions.waitForElementClickable("adminPage.ViewUsersButton");
         actions.clickElement("adminPage.ViewUsersButton");
     }
-    public void clickDisableButton(){
+
+    public void clickDisableButton() {
         actions.waitForElementVisible("adminPage.disableButton");
         actions.assertElementPresent("adminPage.disableButton");
         if (actions.isElementVisible("adminPage.enableButton")) {
@@ -83,17 +91,29 @@ public class AdminPage extends WEareBasePage {
         actions.clickElement("adminPage.disableButton");
     }
 
-    public void clickOnEnableButton(){
+    public void clickOnEnableButton() {
         if (actions.isElementVisible("adminPage.disableButton")) {
             actions.clickElement("adminPage.disableButton");
         }
         actions.waitForElementClickable("adminPage.enableButton");
         actions.clickElement("adminPage.enableButton");
     }
-    public void validateProfileDisabled(){
-        actions.assertElementAttribute("adminPage.enableButton", "value", "enable");
+
+    public void validateProfileDisabled() {
+        try {
+            actions.assertElementAttribute("adminPage.enableButton", "value", "enable");
+            LOGGER.info(getUIMappingByKey("adminPage.disableProfile.success"));
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Profile was not successfully disabled.");
+        }
     }
-    public void validateProfileEnabled(){
-        actions.assertElementAttribute("adminPage.disableButton", "value", "disable");
+
+    public void validateProfileEnabled() {
+        try {
+            actions.assertElementAttribute("adminPage.disableButton", "value", "disable");
+            LOGGER.info(getUIMappingByKey("adminPage.enableProfile.success"));
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Profile was not successfully enabled.");
+        }
     }
 }

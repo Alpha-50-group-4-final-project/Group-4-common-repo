@@ -11,9 +11,9 @@ public class CommentsTests extends BaseTest {
     @BeforeAll
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
-        apiPost = api.createPost(usernameRandom, passwordRandom, POST_MESSAGE);
+        apiPost = api.createPost(usernameRandom, passwordRandom, postMessage);
         System.out.println(apiPost.postId);
-        var two = api.createComment(usernameRandom, passwordRandom, POST_MESSAGE, apiPost.postId);
+        var two = api.createComment(usernameRandom, passwordRandom, postMessage, apiPost.postId);
         login(usernameRandom, passwordRandom);
         postsPage.navigateToPage();
     }

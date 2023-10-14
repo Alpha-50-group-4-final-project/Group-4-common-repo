@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.opentest4j.AssertionFailedError;
 
 import java.util.List;
 import java.util.Random;
@@ -51,7 +52,7 @@ public class UserRegistrationPage extends WEareBasePage {
             actions.waitForElementVisible("RegisterLoginSuccessMessage");
             actions.assertElementText("RegisterLoginSuccessMessage","Welcome to our community.");
             LOGGER.info(getConfigPropertyByKey("User was successfully registered. Welcome message displayed."));
-        } catch (Exception e) {
+        } catch (AssertionFailedError e) {
             Assertions.fail("Registration was not successful.");
         }
 
@@ -61,7 +62,7 @@ public class UserRegistrationPage extends WEareBasePage {
         try {
             actions.assertElementAttribute("userRegistrationPage.RegisterButton", "value", "Register");
             LOGGER.info("User was not registered. Proper error message shown.");
-        } catch (Exception e) {
+        } catch (AssertionFailedError e) {
             Assertions.fail("Registration was successful although registration criteria not met.");
             LOGGER.info("Registration test fails");
         }

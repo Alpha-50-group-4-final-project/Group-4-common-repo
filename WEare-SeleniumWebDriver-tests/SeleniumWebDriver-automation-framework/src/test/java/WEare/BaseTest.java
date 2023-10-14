@@ -6,6 +6,7 @@ import com.telerikacademy.testframework.UserActions;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
@@ -41,10 +42,9 @@ public class BaseTest {
     public static SimpleDateFormat dtf;
     public static List<String> usernames;
 
-    public static  String TEST_SET_UP_COMMENT;
-    public static  String PROFILE_FOR_ENABLE_DISABLE;
     public static String adminUsername;
     public static String adminPassword;
+    public static final String postMessage = "This post was made by Selenium WebDriver";
 
     @BeforeAll
     public static void setUp() {
@@ -58,27 +58,26 @@ public class BaseTest {
         adminPage = new AdminPage(actions.getDriver());
         postsPage = new PostsPage(actions.getDriver());
         commentsPage = new CommentsPage(actions.getDriver());
-        api=new WEareApi();
-        apiPost=new PostModel();
+        api = new WEareApi();
+        apiPost = new PostModel();
         usernameRandom = faker.name().firstName();
         lastNameRandom = faker.name().lastName();
-        adminUsername = faker.name().firstName()+"admin";
+        adminUsername = faker.name().firstName() + "admin";
         adminPassword = "12345678";
         LOGGER.info("The follow username was generated: " + usernameRandom);
         passwordRandom = faker.internet().password(8, 20, true, true);
         LOGGER.info("The follow password was generated: " + usernameRandom);
         dtf = new SimpleDateFormat("yyyy/MM/dd");
-        TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
-        PROFILE_FOR_ENABLE_DISABLE = "Aladin";
         usernames = new ArrayList<>();
     }
 
-//        @AfterAll
-//    public static void tearDown() {
-//
+//    @AfterAll
+//    public static void logOutFromAccount() {
+//        if (actions.isElementVisible("homePage.LogoutButton")) {
+//            actions.clickElement("homePage.LogoutButton");
+//        }
+//        UserActions.quitDriver();
 //    }
-    public static final String POST_MESSAGE="This post was made by Selenium WebDriver";
-
 
     public static void login(String username, String password) {
         loginPage.clickOnLoginButton();
@@ -89,15 +88,8 @@ public class BaseTest {
         LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
     }
 
-//    @AfterAll
-//    public static void logOutFromAccount() {
-//        if (actions.isElementVisible("homePage.LogoutButton")) {
-//            actions.clickElement("homePage.LogoutButton");
-//        }
-//    UserActions.quitDriver();
-//    }
 
-//    @AfterAll
+    //    @AfterAll
     public static void deleteDataBase() {
         String jdbcUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11650430?useSSL=false&serverTimezone=UTC";
         String username = "sql11650430";

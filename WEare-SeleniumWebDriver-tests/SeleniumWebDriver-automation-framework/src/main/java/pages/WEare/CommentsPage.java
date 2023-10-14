@@ -1,9 +1,12 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.opentest4j.AssertionFailedError;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 public class CommentsPage extends WEareBasePage {
 
@@ -41,14 +44,6 @@ public class CommentsPage extends WEareBasePage {
     }
 
 
-//    public void goToLatestComment() {
-//        PostsPage post = new PostsPage(actions.getDriver());
-//        post.goToLatestPosts();
-//        actions.waitForElementClickable("posts.browsePublicPosts");
-//        actions.clickElement("posts.browsePublicPosts");
-//    }
-
-
     public void clickEditComment() {
         actions.waitForElementClickable("commentsPage.editComment");
         actions.clickElement("commentsPage.editComment");
@@ -60,14 +55,18 @@ public class CommentsPage extends WEareBasePage {
         // assertPageNavigated();
         actions.waitForElementClickable("posts.commentField");
         actions.clickElement("posts.commentField");
-        actions.typeValueInField("This is edition from automation.", "posts.commentField");
+        actions.typeValueInField(getUIMappingByKey("editedCommentText"), "posts.commentField");
         actions.clickElement("adminPage.submitButton");
     }
 
     public void validateCommentEdited() {
         clickOnShowCommentsButton();
-        actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", "This is edition from automation.");
-        LOGGER.info("Comment validated successfully.");
+        try {
+            actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", getUIMappingByKey("editedCommentText"));
+            LOGGER.info("Comment was successfully edited.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Comment was not successfully edited.");
+        }
     }
 
     public void clickDeleteComment() {
@@ -103,7 +102,11 @@ public class CommentsPage extends WEareBasePage {
 
 
     public void validateCommentDeleted() {
-        validateHeader("Comment deleted successfully");
-        LOGGER.info("Comment deleted successfully.");
+        try {
+            validateHeader("Comment deleted successfully");
+            LOGGER.info("Comment was deleted successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Comment was not successfully deleted.");
+        }
     }
 }
