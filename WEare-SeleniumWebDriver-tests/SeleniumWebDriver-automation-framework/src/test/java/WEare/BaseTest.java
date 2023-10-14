@@ -22,6 +22,7 @@ import static java.lang.String.format;
 public class BaseTest {
 
     public static String usernameRandom;
+    public static String lastNameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
     protected static UserActions actions = new UserActions();
@@ -41,6 +42,11 @@ public class BaseTest {
     public static SimpleDateFormat dtf;
     public static List<String> usernames;
 
+    public static  String TEST_SET_UP_COMMENT;
+    public static  String PROFILE_FOR_ENABLE_DISABLE;
+    public static String adminUsername;
+    public static String adminPassword;
+
     @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("homePage");
@@ -56,10 +62,15 @@ public class BaseTest {
         api=new WEareApi();
         apiPost=new PostModel();
         usernameRandom = faker.name().firstName();
+        lastNameRandom = faker.name().lastName();
+        adminUsername = faker.name().firstName()+"admin";
+        adminPassword = "12345678";
         LOGGER.info("The follow username was generated: " + usernameRandom);
         passwordRandom = faker.internet().password(8, 20, true, true);
         LOGGER.info("The follow password was generated: " + usernameRandom);
         dtf = new SimpleDateFormat("yyyy/MM/dd");
+        TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
+        PROFILE_FOR_ENABLE_DISABLE = "Ann-Marie";
         usernames = new ArrayList<>();
     }
 

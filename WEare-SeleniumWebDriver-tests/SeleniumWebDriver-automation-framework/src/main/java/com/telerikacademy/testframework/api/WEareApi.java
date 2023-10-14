@@ -30,7 +30,6 @@ public class WEareApi {
                 username));
        Response response= requestSpecificationWithoutAuthentication().body(requestBody).post(baseURI);
         String[] responseBody = response.asString().split(" ");
-
         USER_ID = responseBody[6];
     }
 

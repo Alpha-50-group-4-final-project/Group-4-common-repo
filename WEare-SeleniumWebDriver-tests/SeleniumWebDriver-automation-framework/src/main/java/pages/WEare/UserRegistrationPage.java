@@ -62,7 +62,7 @@ public class UserRegistrationPage extends WEareBasePage {
             actions.assertElementAttribute("userRegistrationPage.RegisterButton", "value", "Register");
             LOGGER.info("User was not registered. Proper error message shown.");
         } catch (Exception e) {
-            Assertions.fail("Registration was successful although registration criteria  not met.");
+            Assertions.fail("Registration was successful although registration criteria not met.");
             LOGGER.info("Registration test fails");
         }
         //getElementByID("username").value==null

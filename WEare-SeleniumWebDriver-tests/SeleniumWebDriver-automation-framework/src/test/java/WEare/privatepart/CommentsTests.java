@@ -1,7 +1,6 @@
 package WEare.privatepart;
 
 import WEare.BaseTest;
-import com.telerikacademy.testframework.api.PostModel;
 import org.junit.jupiter.api.*;
 
 

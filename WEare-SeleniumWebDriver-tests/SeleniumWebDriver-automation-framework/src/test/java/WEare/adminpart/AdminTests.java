@@ -1,46 +1,35 @@
 package WEare.adminpart;
 
 import WEare.BaseTest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class AdminTests extends BaseTest {
-
-    public static final String TEST_SET_UP_COMMENT = "Automated comment by selenium driver";
-    public static final String PROFILE_FOR_ENABLE_DISSABLE = "Ann-Marie";
-    public static String adminUsername = faker.name().firstName()+"admin";
-    public static String adminPassword = "12345678";
-
 
     @BeforeAll
     public static void testSetUp(){
         homePage.navigateToHomePage();
         api.registerUser(adminUsername, adminPassword);
         api.registerUser(usernameRandom,passwordRandom);
-        api.updateUserProfile(usernameRandom,passwordRandom,PROFILE_FOR_ENABLE_DISSABLE,"TADAM");
+        api.updateUserProfile(usernameRandom,passwordRandom, PROFILE_FOR_ENABLE_DISABLE,lastNameRandom);
     }
-
 
     @BeforeEach
     public void adminLogIn() {
         homePage.navigateToHomePage();
-        //actions.navigateToPage("http://localhost:8081/");
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
-        apiPost=api.createPost(adminUsername,adminPassword,POST_MESSAGE);
-        api.createComment(adminUsername,adminPassword,TEST_SET_UP_COMMENT,apiPost.postId);
+        //apiPost=api.createPost(usernameRandom,passwordRandom,POST_MESSAGE);
+        //api.createComment(usernameRandom,passwordRandom,TEST_SET_UP_COMMENT,apiPost.postId);
     }
     @AfterEach
-    public  void clean(){
-        //actions.navigateToPage("http://localhost:8081/");
+    public void adminLogout(){
         homePage.navigateToHomePage();
         loginPage.clickOnLogOutButton();
     }
 
     @Test
     public void editLatestPost_when_editPostClicked() {
+        apiPost=api.createPost(usernameRandom,passwordRandom,POST_MESSAGE);
         homePage.navigateToLatestPosts();
         postsPage.clickExplorePost();
         adminPage.clickEditButton();
@@ -51,6 +40,7 @@ public class AdminTests extends BaseTest {
 
     @Test
     public void deleteLatestPost_when_deletePostClicked() {
+        apiPost=api.createPost(usernameRandom,passwordRandom,POST_MESSAGE);
         homePage.navigateToLatestPosts();
         postsPage.clickExplorePost();
         adminPage.clickDeleteButton();
@@ -60,6 +50,8 @@ public class AdminTests extends BaseTest {
 
     @Test
     public void editLatestComment_when_editCommentClicked() {
+        apiPost=api.createPost(usernameRandom,passwordRandom,POST_MESSAGE);
+        api.createComment(usernameRandom,passwordRandom,TEST_SET_UP_COMMENT,apiPost.postId);
         homePage.navigateToLatestPosts();
         postsPage.clickExplorePost();
         postsPage.clickShowComments();
@@ -71,6 +63,8 @@ public class AdminTests extends BaseTest {
 
     @Test
     public void deleteLatestComment_when_deleteCommentClicked() {
+        apiPost=api.createPost(usernameRandom,passwordRandom,POST_MESSAGE);
+        api.createComment(usernameRandom,passwordRandom,TEST_SET_UP_COMMENT,apiPost.postId);
         homePage.navigateToLatestPosts();
         postsPage.clickExplorePost();
         postsPage.clickShowComments();
@@ -83,7 +77,7 @@ public class AdminTests extends BaseTest {
     public void disableAnotherUserAccount_when_disableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName(PROFILE_FOR_ENABLE_DISSABLE);
+        searchingPage.seeCurrentUserProfileByName(PROFILE_FOR_ENABLE_DISABLE);
         searchingPage.assertElementPresent("adminPage.disableButton");
         adminPage.clickDisableButton();
         searchingPage.assertElementPresent("adminPage.enableButton");
@@ -93,7 +87,7 @@ public class AdminTests extends BaseTest {
     public void enableDisabledUserAccount_when_enableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchingPage.seeCurrentUserProfileByName(PROFILE_FOR_ENABLE_DISSABLE);
+        searchingPage.seeCurrentUserProfileByName(PROFILE_FOR_ENABLE_DISABLE);
         adminPage.clickOnEnableButton();
         searchingPage.assertElementPresent("adminPage.disableButton");
     }
