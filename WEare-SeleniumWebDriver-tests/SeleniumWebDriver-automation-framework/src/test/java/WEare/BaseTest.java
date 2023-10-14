@@ -90,12 +90,12 @@ public class BaseTest {
         LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
     }
 
-    @AfterAll
-    public static void logOutFromAccount() {
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
-    }
+//    @AfterAll
+//    public static void logOutFromAccount() {
+//        if (actions.isElementVisible("homePage.LogoutButton")) {
+//            actions.clickElement("homePage.LogoutButton");
+//        }
+//    }
 
 //    @AfterAll
     public static void deleteDataBase() {

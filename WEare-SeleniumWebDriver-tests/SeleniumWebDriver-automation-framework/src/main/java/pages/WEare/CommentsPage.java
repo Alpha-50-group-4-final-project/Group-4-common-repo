@@ -65,10 +65,8 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void validateCommentEdited() {
-
         clickOnShowCommentsButton();
-        actions.assertElementText("commentsPage.commentContent", "This is edition from automation.");
-
+        actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", "This is edition from automation.");
         LOGGER.info("Comment validated successfully.");
     }
 

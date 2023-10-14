@@ -4,7 +4,7 @@ import WEare.BaseTest;
 import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AdminPostTest extends BaseTest {
-    
+
     @BeforeAll
     public static void testSetUp(){
         api.registerUser(usernameRandom,passwordRandom);
