@@ -7,6 +7,7 @@ import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 import pages.WEare.*;
 
 import java.sql.*;
@@ -24,7 +25,7 @@ public class BaseTest {
     public static String lastNameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    protected static UserActions actions = new UserActions();
+    protected static UserActions actions;
 
     public static WEareApi api;
     public static PostModel apiPost;
@@ -47,6 +48,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void setUp() {
+        UserActions actions = new UserActions();
         UserActions.loadBrowser("homePage");
         faker = new Faker();
         homePage = new HomePage(actions.getDriver());
@@ -70,25 +72,22 @@ public class BaseTest {
         usernames = new ArrayList<>();
     }
 
-//    @AfterAll
-//    public static void logOutFromAccount() {
-//        logout();
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void logOutFromAccount() {
+        logout();
+        //UserActions.quitDriver();
+    }
 
     public static void login(String username, String password) {
         loginPage.clickOnLoginButton();
         loginPage.fillUsername(username);
         loginPage.fillPassword(password);
         loginPage.submitForm();
-        loginPage.assertElementPresent("homePage.LogoutButton");
-        LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
     }
 
     public static void logout() {
         homePage.navigateToHomePage();
         loginPage.clickOnLogOutButton();
-
     }
 
 

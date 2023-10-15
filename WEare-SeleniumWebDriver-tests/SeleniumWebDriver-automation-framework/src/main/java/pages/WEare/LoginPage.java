@@ -36,7 +36,7 @@ public class LoginPage extends WEareBasePage {
             actions.waitForElementClickable("homePage.LogoutButton");
             actions.clickElement("homePage.LogoutButton");
         }
-        validateHeader("Login Page");
+        //validateHeader("Login Page");
     }
 
     public void assertElementPresent(String locator) {

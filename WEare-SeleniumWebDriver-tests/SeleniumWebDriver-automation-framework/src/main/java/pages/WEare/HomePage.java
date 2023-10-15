@@ -64,6 +64,7 @@ public class HomePage extends WEareBasePage {
     }
 
     public void validateSearchResult(String name){
+        actions.waitForElementVisible("homePage.nameInputField");
         try {
             actions.assertElementAttribute("homePage.nameInputField", "value", name);
             LOGGER.info("Search result validated.");

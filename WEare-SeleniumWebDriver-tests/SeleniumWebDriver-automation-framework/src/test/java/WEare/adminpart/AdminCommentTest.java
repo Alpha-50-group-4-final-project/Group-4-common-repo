@@ -23,9 +23,7 @@ public class AdminCommentTest extends BaseTest {
     @AfterAll
     public static void clearData() {
         homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+        logout();
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
 

@@ -21,11 +21,8 @@ public class CommentsTests extends BaseTest {
     @AfterAll
     public static void returnHome() {
 
-        //logout();
         homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+        logout();
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 

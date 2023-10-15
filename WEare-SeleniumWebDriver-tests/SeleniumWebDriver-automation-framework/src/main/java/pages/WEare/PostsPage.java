@@ -34,6 +34,7 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void explorePost(String name) {
+        actions.waitForElementPresent("posts.explorePostsByUserName", name);
         actions.waitForElementClickable("posts.explorePostsByUserName", name);
         actions.clickElement("posts.explorePostsByUserName", name);
         validateHeader("Explore post");

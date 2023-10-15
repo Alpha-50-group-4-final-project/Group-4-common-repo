@@ -75,6 +75,7 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void deleteCommentConfirmation() {
+        actions.waitForElementClickable("adminPage.deleteConfirmation");
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");
