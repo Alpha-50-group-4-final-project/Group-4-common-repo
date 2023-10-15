@@ -2,46 +2,40 @@ package WEare.publicpart;
 
 import WEare.BaseTest;
 
+import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-
-
 public class LoginTests extends BaseTest {
-
 
     @BeforeAll
     public static void registerUser_when_ValidCredentialsArePassed() {
        api.registerUser(usernameRandom,passwordRandom);
     }
     @BeforeEach
-    public  void takeMeToHomePage(){
-        actions.navigateToPage("http://localhost:8081/");
-        loginPage.clickOnLoginButton();
+    public  void takeMeToLoginForm(){
+        homePage.navigateToPage();
+        homePage.navigateToLoginPage();
     }
 
     @Test
+    @Label("Jira FPW-23")
     public void login_when_validCredentialsArePassed() {
-
-
-        loginPage.fillUsernameField(usernameRandom);
-        loginPage.fillPasswordField(passwordRandom);
-        loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("homePage.LogoutButton");
+        loginPage.fillUsername(usernameRandom);
+        loginPage.fillPassword(passwordRandom);
+        loginPage.submitForm();
+        loginPage.validateLoggedIn();
         loginPage.clickOnLogOutButton();
-        System.out.println("Login has been successful.");
     }
 
     @ParameterizedTest
+    @Label("Jira FPW-24, FPW-25, FPW-26, FPW-27, FPW-28")
     @CsvSource({"T st,Valid_123", "Testbot,vald12", "'',vald12", "Testbot,''", "'',''"})
     public void login_when_invalidCredentialsArePassed(String username, String password) {
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
-        loginPage.clickOnSubmitButton();
-        loginPage.assertErrorMessage("Wrong username or password.");
-        System.out.println("Expected error message showed up.");
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.submitForm();
+        loginPage.validateErrorMessage();
     }
-
-
 }

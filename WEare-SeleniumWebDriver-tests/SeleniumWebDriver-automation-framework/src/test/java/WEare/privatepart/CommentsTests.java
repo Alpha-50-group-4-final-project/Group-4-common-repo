@@ -1,76 +1,84 @@
 package WEare.privatepart;
 
 import WEare.BaseTest;
+import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
+import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 
 public class CommentsTests extends BaseTest {
-    //private static final String VALID_COMMENT_MESSAGE = "This is a valid comment made by Selenium WebDriver";
+    private static String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
+    private static String postBody = getUIMappingByKey("postPage.postMessage");
 
     @BeforeAll
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
-        apiPost = api.createPost(usernameRandom, passwordRandom, postMessage);
-        System.out.println(apiPost.postId);
-        var two = api.createComment(usernameRandom, passwordRandom, postMessage, apiPost.postId);
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         login(usernameRandom, passwordRandom);
-        postsPage.navigateToPage();
     }
 
     @AfterAll
     public static void returnHome() {
+
         homePage.navigateToHomePage();
-        loginPage.clickOnLogOutButton();
+        logout();
+        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
-
     @Test
-    @Order(1)
+    @Label("Jira FPW-101")
     public void addValidComment_when_postCommentButtonClicked() {
-        postsPage.navigateToPage();
-        //postsPage.clickOnExplorePostButton(usernameRandom);
-        postsPage.clickOnExplorePostButton(usernameRandom);
+        homePage.navigateToLatestPosts();
+        postsPage.explorePost(usernameRandom);
         commentsPage.writeComment();
-        commentsPage.clickOnPostCommentButton();
-//        commentsPage.validateCommentCreated();
+        commentsPage.submitComment();
+        commentsPage.validateCommentCreated();
     }
 
     @Test
-
+    @Label("Jira FPW-121")
     public void editComment_when_validTextAdded() {
-
+        api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        //postsPage.clickOnExplorePostButton(usernameRandom);
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickEditComment();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.clickEditCommentButton();
         commentsPage.editComment();
         commentsPage.validateCommentEdited();
     }
 
     @Test
-
+    @Label("Jira FPW-133")
     public void likeComment_when_likedButtonClicked() {
+        api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        //postsPage.clickOnExplorePostButton(usernameRandom);
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickOnLikeButton();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.likeComment();
         commentsPage.validateCommentLiked();
+    }
+    @Test
+    @Label("Jira FPW-135")
+    public void unlikeComment_when_unlikedButtonClicked() {
+        api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
+        homePage.navigateToLatestPosts();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.unlikeComment();
+        commentsPage.validateCommentUnliked();
     }
 
     @Test
-
+    @Label("Jira FPW-124")
     public void deleteComment_when_deleteButtonClicked() {
+        api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        //postsPage.clickOnExplorePostButton(usernameRandom);
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickDeleteComment();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
         commentsPage.deleteComment();
+        commentsPage.deleteCommentConfirmation();
         commentsPage.validateCommentDeleted();
     }
-
 
 }

@@ -19,7 +19,8 @@ public class AdminPostTest extends BaseTest {
         adminPage.validateAdminPageNavigated();
     }
     @AfterAll
-    public static void testTearDown(){
+    public static void clearData(){
+        homePage.navigateToHomePage();
         logout();
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
@@ -28,10 +29,9 @@ public class AdminPostTest extends BaseTest {
     @Label("Jira FPW-148")
     public void editOtherUsersPost_when_editPostClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickExplorePost();
+        postsPage.explorePost(usernameRandom);
         adminPage.clickEditButton();
         adminPage.editPostInformation();
-        homePage.navigateToLatestPosts();
         adminPage.validatePostEdited();
     }
 
@@ -39,7 +39,7 @@ public class AdminPostTest extends BaseTest {
     @Label("Jira FPW-150")
     public void deleteOtherUsersPost_when_deletePostClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickExplorePost();
+        postsPage.explorePost(usernameRandom);
         adminPage.clickDeleteButton();
         adminPage.deletePost();
         adminPage.validateDeletion();

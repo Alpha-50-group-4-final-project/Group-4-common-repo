@@ -16,11 +16,11 @@ public class AdminEnableDisableUserTest extends BaseTest {
         api.updateUserProfile(usernameRandom, passwordRandom, userForTesting, lastNameRandom);
         api.registerUser(adminUsername, adminPassword);
         login(adminUsername, adminPassword);
-        adminPage.validateAdminPageNavigated();
     }
 
     @AfterAll
-    public static void testTearDown() {
+    public static void clearData() {
+        homePage.navigateToHomePage();
         logout();
     }
 

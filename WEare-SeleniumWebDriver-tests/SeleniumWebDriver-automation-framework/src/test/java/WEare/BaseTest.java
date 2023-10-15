@@ -6,8 +6,8 @@ import com.telerikacademy.testframework.UserActions;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 import pages.WEare.*;
 
 import java.sql.*;
@@ -25,10 +25,11 @@ public class BaseTest {
     public static String lastNameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    protected static UserActions actions = new UserActions();
+    protected static UserActions actions;
 
     public static WEareApi api;
     public static PostModel apiPost;
+
     public static UserRegistrationPage registrationPage;
     public static LoginPage loginPage;
 
@@ -44,10 +45,10 @@ public class BaseTest {
 
     public static String adminUsername;
     public static String adminPassword;
-    public static final String postMessage = "This post was made by Selenium WebDriver";
 
     @BeforeAll
     public static void setUp() {
+        UserActions actions = new UserActions();
         UserActions.loadBrowser("homePage");
         faker = new Faker();
         homePage = new HomePage(actions.getDriver());
@@ -71,27 +72,22 @@ public class BaseTest {
         usernames = new ArrayList<>();
     }
 
-//    @AfterAll
-//    public static void logOutFromAccount() {
-////        if (actions.isElementVisible("homePage.LogoutButton")) {
-////            actions.clickElement("homePage.LogoutButton");
-////        }
-//        UserActions.quitDriver();
-//    }
+    @AfterAll
+    public static void logOutFromAccount() {
+        logout();
+        //UserActions.quitDriver();
+    }
 
     public static void login(String username, String password) {
         loginPage.clickOnLoginButton();
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
-        loginPage.clickOnSubmitButton();
-        loginPage.assertElementPresent("homePage.LogoutButton");
-        LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.submitForm();
     }
-    public static void logout(){
+
+    public static void logout() {
         homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+        loginPage.clickOnLogOutButton();
     }
 
 

@@ -34,8 +34,8 @@ public class AdminPage extends WEareBasePage {
     }
 
     public void editPostInformation() {
+        actions.waitForElementClickable("adminPage.postVisibility");
         actions.clickElement("adminPage.postVisibility");
-        actions.waitForElementPresent("adminPage.postVisibility");
         actions.typeValueInField(getUIMappingByKey("visibility.public"), "adminPage.postVisibility");
         actions.waitForElementPresent("adminPage.editMessage");
         actions.typeValueInField(getUIMappingByKey("postPage.postMessage.edit"), "adminPage.editMessage");
@@ -44,7 +44,7 @@ public class AdminPage extends WEareBasePage {
 
     public void validatePostEdited() {
         try {
-            actions.assertElementAttribute("adminPage.editedPostMessage", "innerText", getUIMappingByKey("postPage.postMessage.edit"));
+            actions.assertElementAttribute("adminPage.editedPostMessage.validation", "innerText", getUIMappingByKey("postPage.postMessage.edit"));
             LOGGER.info("Admin edited post successfully.");
         } catch (AssertionFailedError e) {
             Assertions.fail("Admin did not edit the post successfully.");
@@ -59,6 +59,7 @@ public class AdminPage extends WEareBasePage {
     }
 
     public void deletePost() {
+        actions.waitForElementClickable("adminPage.deleteConfirmation");
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");

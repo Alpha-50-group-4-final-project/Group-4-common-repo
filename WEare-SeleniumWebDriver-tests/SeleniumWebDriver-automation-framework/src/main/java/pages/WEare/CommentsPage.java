@@ -20,31 +20,31 @@ public class CommentsPage extends WEareBasePage {
         actions.waitForElementClickable("posts.explorePostsByUserName", userName);
         actions.clickElement("posts.explorePostsByUserName", userName);
         writeComment();
-        clickOnPostCommentButton();
+        submitComment();
         actions.pressKey(Keys.PAGE_UP);
-        clickOnShowCommentsButton();
+        showComments();
     }
 
 
-    public void clickOnShowCommentsButton() {
+    public void showComments() {
         actions.waitForElementPresent("posts.showCommentsButton");
         actions.waitForElementVisible("posts.showCommentsButton");
         actions.waitForElementClickable("posts.showCommentsButton");
         actions.moveToElementAndClickOnit("posts.showCommentsButton");
     }
 
-    public void clickOnPostCommentButton() {
+    public void submitComment() {
         actions.waitForElementClickable("posts.submitCommentButton");
         actions.clickElement("posts.submitCommentButton");
     }
 
     public void writeComment() {
         actions.waitForElementClickable("posts.commentField");
-        actions.typeValueInField("This is a valid comment made by Selenium WebDriver", "posts.commentField");
+        actions.typeValueInField(getUIMappingByKey("commentPage.validCommentMessage"), "posts.commentField");
     }
 
 
-    public void clickEditComment() {
+    public void clickEditCommentButton() {
         actions.waitForElementClickable("commentsPage.editComment");
         actions.clickElement("commentsPage.editComment");
         validateHeader("Edit comment");
@@ -52,7 +52,6 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void editComment() {
-        // assertPageNavigated();
         actions.waitForElementClickable("posts.commentField");
         actions.clickElement("posts.commentField");
         actions.typeValueInField(getUIMappingByKey("editedCommentText"), "posts.commentField");
@@ -60,7 +59,7 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void validateCommentEdited() {
-        clickOnShowCommentsButton();
+        showComments();
         try {
             actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", getUIMappingByKey("editedCommentText"));
             LOGGER.info("Comment was successfully edited.");
@@ -69,37 +68,47 @@ public class CommentsPage extends WEareBasePage {
         }
     }
 
-    public void clickDeleteComment() {
+    public void deleteComment() {
         actions.waitForElementClickable("commentsPage.deleteComment");
         actions.clickElement("commentsPage.deleteComment");
         validateHeader("Delete comment");
     }
 
-    public void deleteComment() {
+    public void deleteCommentConfirmation() {
+        actions.waitForElementClickable("adminPage.deleteConfirmation");
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");
     }
 
     public void validateCommentCreated() {
-        actions.pressKey(Keys.PAGE_UP);
-        clickOnShowCommentsButton();
-        actions.assertElementAttribute("commentsPage.commentContent", "innerText", "This is a valid comment made by Selenium WebDriver");
-        actions.assertElementPresent("posts.deleteCommentButton");
-        LOGGER.info("Comment was successfully added to existing post.");
+        showComments();
+        try {
+            actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", getUIMappingByKey("commentPage.validCommentMessage"));
+            LOGGER.info("Comment was successfully created.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Comment was not created.");
+        }
     }
 
-    public void clickOnLikeButton() {
+
+    public void likeComment() {
+        if(actions.isElementVisible("commentsPage.dislikeButton")){
+            actions.clickElement("commentsPage.dislikeButton");
+        }
         actions.waitForElementClickable("commentsPage.likeComment");
         actions.clickElement("commentsPage.likeComment");
+        actions.waitForElementVisible("commentsPage.dislikeButton");
     }
 
     public void validateCommentLiked() {
-        actions.waitForElementVisible("commentsPage.dislikeButton");
-        actions.assertElementPresent("commentsPage.dislikeButton");
-        // actions.assertElementAttribute("commentsPage.likesCount", "value", "1");
+        try {
+            actions.assertElementPresent("commentsPage.dislikeButton");
+            LOGGER.info("Comment was successfully liked.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Comment was not liked.");
+        }
     }
-
 
     public void validateCommentDeleted() {
         try {
@@ -107,6 +116,24 @@ public class CommentsPage extends WEareBasePage {
             LOGGER.info("Comment was deleted successfully.");
         } catch (AssertionFailedError e) {
             Assertions.fail("Comment was not successfully deleted.");
+        }
+    }
+
+    public void unlikeComment() {
+        if(actions.isElementVisible("commentsPage.likeComment")){
+            actions.clickElement("commentsPage.likeComment");
+        }
+        actions.waitForElementClickable("commentsPage.dislikeButton");
+        actions.clickElement("commentsPage.dislikeButton");
+        actions.waitForElementVisible("commentsPage.likeComment");
+    }
+
+    public void validateCommentUnliked() {
+        try {
+            actions.assertElementPresent("commentsPage.likeComment");
+            LOGGER.info("Comment was successfully disliked.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Comment was not disliked.");
         }
     }
 }
