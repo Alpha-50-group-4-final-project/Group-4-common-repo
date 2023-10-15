@@ -31,7 +31,7 @@ public class AdminPostTest extends BaseTest {
     @Label("Jira FPW-148")
     public void editOtherUsersPost_when_editPostClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
+        postsPage.explorePost(usernameRandom);
         adminPage.clickEditButton();
         adminPage.editPostInformation();
         adminPage.validatePostEdited();
@@ -41,7 +41,7 @@ public class AdminPostTest extends BaseTest {
     @Label("Jira FPW-150")
     public void deleteOtherUsersPost_when_deletePostClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
+        postsPage.explorePost(usernameRandom);
         adminPage.clickDeleteButton();
         adminPage.deletePost();
         adminPage.validateDeletion();

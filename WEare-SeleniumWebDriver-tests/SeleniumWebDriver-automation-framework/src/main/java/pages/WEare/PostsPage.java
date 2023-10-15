@@ -2,15 +2,16 @@ package pages.WEare;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.opentest4j.AssertionFailedError;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 import static java.lang.String.format;
 
 
@@ -21,95 +22,122 @@ public class PostsPage extends WEareBasePage {
         super(driver, "latestPostsPage");
     }
 
-    public void clickPostSubmitButton() {
+    public void submitDeletion() {
         actions.waitForElementClickable("posts.submitButton");
         actions.clickElement("posts.submitButton");
     }
-    public void clickOnEditPostButton() {
+
+    public void clickEditPost() {
         actions.waitForElementClickable("posts.editPost");
         actions.clickElement("posts.editPost");
         validateHeader("Edit post");
     }
-    public void clickOnExplorePostButton(String name) {
-        actions.waitForElementClickable("posts.explorePostsByUserName",name);
-        actions.clickElement("posts.explorePostsByUserName",name);
+
+    public void explorePost(String name) {
+        actions.waitForElementClickable("posts.explorePostsByUserName", name);
+        actions.clickElement("posts.explorePostsByUserName", name);
         validateHeader("Explore post");
     }
 
-    public void clickExplorePost(){
-        actions.waitForElementClickable("latestPosts.exploreThisPost");
-        actions.clickElement("latestPosts.exploreThisPost");
-    }
     public void clickShowComments() {
         actions.waitForElementClickable("posts.showCommentsButton");
         actions.moveToElementAndClickOnit("posts.showCommentsButton");
     }
-    public void clickOnLikePostButton() {
-        actions.waitForElementClickable("posts.likePost");
-        actions.clickElement("posts.likePost");
-        actions.waitForElementPresent("posts.dislikePostButton");
+
+    public void likePostByUsername(String name) {
+        actions.waitForElementClickable("posts.clickLikeByUserName", name);
+        actions.clickElement("posts.clickLikeByUserName", name);
+        actions.waitForElementVisible("posts.dislikePostButton");
     }
-    public void clickOnDislikePostButton() {
-        actions.waitForElementPresent("posts.dislikePostButton");
-        actions.clickElement("posts.dislikePostButton");
-        actions.waitForElementPresent("posts.likePost");
+
+    public void dislikePostByUsername(String name) {
+        actions.waitForElementClickable("posts.clickDislikeByUserName", name);
+        actions.clickElement("posts.clickDislikeByUserName", name);
+        actions.waitForElementVisible("posts.likePost");
     }
-    public void postPublicVisibilityChoice() {
-        actions.waitForElementClickable("posts.publicVisibility");
-        actions.clickElement("posts.publicVisibility");
-    }
-    public void clickOnPostVisibilityButton() {
+
+
+    public void selectPostVisibility() {
         actions.waitForElementClickable("posts.visibility");
         actions.clickElement("posts.visibility");
+        actions.clickElement("posts.publicVisibility");
     }
-    public void clickOnSavePostButton() {
-        actions.waitForElementClickable("posts.savePostButton");
+
+    public void submitPost() {
         actions.clickElement("posts.savePostButton");
     }
-    public void typeMessageInMessageField(String message) {
-        actions.waitForElementClickable("posts.commentField");
+
+    public void writePostMessage() {
         actions.clickElement("posts.commentField");
-        actions.typeValueInField(message, "posts.commentField");
-        LOGGER.info(format("Comment was set to : \"%s\"",message));
+        actions.typeValueInField(getUIMappingByKey("postPage.postMessage"), "posts.commentField");
+        LOGGER.info(format("Comment was set to : \"%s\"", getUIMappingByKey("postPage.postMessage")));
     }
-    public void clickOnAddNewPostButton() {
+
+    public void clickAddNewPost() {
         actions.waitForElementClickable("posts.addNewPost");
         actions.clickElement("posts.addNewPost");
     }
-    public void choosingDeletePostOption() {
+
+    public void confirmDeletion() {
         actions.waitForElementClickable("posts.deleteDropDown");
         actions.clickElement("posts.deleteDropDown");
         actions.waitForElementClickable("posts.selectDeleteDropDown");
         actions.clickElement("posts.selectDeleteDropDown");
     }
-    public void clickOnDeletePostButton() {
+
+    public void clickDeletePost() {
         actions.waitForElementClickable("posts.deletePost");
         actions.clickElement("posts.deletePost");
         validateHeader("Delete post");
     }
+
     public void validatePostCreated() {
-        actions.assertElementPresent("posts.postExist");
-        actions.assertElementPresent("posts.postIsPublic");
-        LOGGER.info("New public post was created successfully.");
+        try {
+            actions.assertElementAttribute("postPage.postContent.validation", "innerText",
+                    getUIMappingByKey("postPage.postMessage"));
+            LOGGER.info("New public post was created successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Post was not created.");
+        }
+
     }
+
     public void validatePostEdited() {
-        actions.assertElementPresent("posts.postEditExist");
-        LOGGER.info("Public post was edited successfully.");
+        try {
+            actions.assertElementAttribute("postPage.editPostContent.validation", "innerText",
+                    getUIMappingByKey("postPage.postMessage.edit"));
+            LOGGER.info("Public post was edited successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Post was not edited.");
+        }
+
     }
+
     public void validatePostLiked() {
-        actions.assertElementPresent("posts.dislikePostButton");
-        LOGGER.info("Public post was liked successfully.");
+        try {
+            actions.assertElementPresent("posts.dislikePostButton");
+            LOGGER.info("Public post was liked successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Post was not liked.");
+        }
+
     }
+
     public void clickBrowsePublicPost() {
         actions.waitForElementClickable("posts.browsePublicPosts");
-            actions.clickElement("posts.browsePublicPosts");
+        actions.clickElement("posts.browsePublicPosts");
     }
+
     public void validatePostDeleted() {
-        //actions.assertElementAttribute("post.deleteMessage", "value", "Post deleted successfully");
-        validateHeader("Post deleted successfully");
-        //actions.assertElementPresent("post.deleteMessage");
-        LOGGER.info("Public post was deleted successfully.");
+        try {
+            actions.assertElementAttribute("post.deleteMessage", "innerHTML", "Post deleted successfully");
+            LOGGER.info("Public post was deleted successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Public post was not deleted successfully.");
+        }
+
     }
+
     public void assertPublicPostOrdered() {
         List<WebElement> rankList = driver.findElements(By.xpath("//span[@class='seen']"));
         List<String> ranks = rankList.stream().map(n -> n.getText()).collect(Collectors.toList());
@@ -117,5 +145,21 @@ public class PostsPage extends WEareBasePage {
         Collections.sort(ranks);
         Assertions.assertTrue(ranks.equals(unsortedRanks), "Public posts were not ordered by date.");
         LOGGER.info("Public posts ordered by date.");
+    }
+
+    public void editPostMessage() {
+        actions.clickElement("posts.commentField");
+        actions.typeValueInField(getUIMappingByKey("postPage.postMessage.edit"), "posts.commentField");
+        LOGGER.info(format("Comment was set to : \"%s\"", getUIMappingByKey("postPage.postMessage.edit")));
+    }
+
+    public void validatePostDisliked() {
+        try {
+            actions.assertElementPresent("posts.likePost");
+            LOGGER.info("Public post was disliked successfully.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Post was not disliked.");
+        }
+
     }
 }

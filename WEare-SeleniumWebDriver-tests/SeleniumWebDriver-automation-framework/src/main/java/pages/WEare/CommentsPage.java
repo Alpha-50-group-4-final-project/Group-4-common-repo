@@ -20,20 +20,20 @@ public class CommentsPage extends WEareBasePage {
         actions.waitForElementClickable("posts.explorePostsByUserName", userName);
         actions.clickElement("posts.explorePostsByUserName", userName);
         writeComment();
-        clickOnPostCommentButton();
+        submitComment();
         actions.pressKey(Keys.PAGE_UP);
-        clickOnShowCommentsButton();
+        showComments();
     }
 
 
-    public void clickOnShowCommentsButton() {
+    public void showComments() {
         actions.waitForElementPresent("posts.showCommentsButton");
         actions.waitForElementVisible("posts.showCommentsButton");
         actions.waitForElementClickable("posts.showCommentsButton");
         actions.moveToElementAndClickOnit("posts.showCommentsButton");
     }
 
-    public void clickOnPostCommentButton() {
+    public void submitComment() {
         actions.waitForElementClickable("posts.submitCommentButton");
         actions.clickElement("posts.submitCommentButton");
     }
@@ -44,7 +44,7 @@ public class CommentsPage extends WEareBasePage {
     }
 
 
-    public void clickEditComment() {
+    public void clickEditCommentButton() {
         actions.waitForElementClickable("commentsPage.editComment");
         actions.clickElement("commentsPage.editComment");
         validateHeader("Edit comment");
@@ -59,7 +59,7 @@ public class CommentsPage extends WEareBasePage {
     }
 
     public void validateCommentEdited() {
-        clickOnShowCommentsButton();
+        showComments();
         try {
             actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", getUIMappingByKey("editedCommentText"));
             LOGGER.info("Comment was successfully edited.");
@@ -68,20 +68,20 @@ public class CommentsPage extends WEareBasePage {
         }
     }
 
-    public void clickDeleteComment() {
+    public void deleteComment() {
         actions.waitForElementClickable("commentsPage.deleteComment");
         actions.clickElement("commentsPage.deleteComment");
         validateHeader("Delete comment");
     }
 
-    public void deleteComment() {
+    public void deleteCommentConfirmation() {
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");
     }
 
     public void validateCommentCreated() {
-        clickOnShowCommentsButton();
+        showComments();
         try {
             actions.assertElementAttribute("commentsPage.commentContent.validation", "innerText", getUIMappingByKey("commentPage.validCommentMessage"));
             LOGGER.info("Comment was successfully created.");
@@ -91,7 +91,7 @@ public class CommentsPage extends WEareBasePage {
     }
 
 
-    public void clickOnLikeButton() {
+    public void likeComment() {
         if(actions.isElementVisible("commentsPage.dislikeButton")){
             actions.clickElement("commentsPage.dislikeButton");
         }
@@ -109,7 +109,6 @@ public class CommentsPage extends WEareBasePage {
         }
     }
 
-
     public void validateCommentDeleted() {
         try {
             validateHeader("Comment deleted successfully");
@@ -119,14 +118,13 @@ public class CommentsPage extends WEareBasePage {
         }
     }
 
-    public void clickOnUnlikeButton() {
+    public void unlikeComment() {
         if(actions.isElementVisible("commentsPage.likeComment")){
             actions.clickElement("commentsPage.likeComment");
         }
         actions.waitForElementClickable("commentsPage.dislikeButton");
         actions.clickElement("commentsPage.dislikeButton");
         actions.waitForElementVisible("commentsPage.likeComment");
-
     }
 
     public void validateCommentUnliked() {

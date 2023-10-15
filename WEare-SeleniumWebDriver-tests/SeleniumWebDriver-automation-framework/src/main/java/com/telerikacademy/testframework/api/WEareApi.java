@@ -85,11 +85,17 @@ public class WEareApi {
                 .as(CommentModel.class);
     }
 
-
     public Response deletePost(String username, String password, String postId) {
        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
         return requestSpecificationWithoutAuthentication()
                 .cookies(getAuthCookie(username, password))
                 .delete(baseURI);
+    }
+
+    public Response likePost(String username, String password, String postId) {
+        baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
+        return requestSpecificationWithoutAuthentication()
+                .cookies(getAuthCookie(username, password))
+                .post(baseURI);
     }
 }

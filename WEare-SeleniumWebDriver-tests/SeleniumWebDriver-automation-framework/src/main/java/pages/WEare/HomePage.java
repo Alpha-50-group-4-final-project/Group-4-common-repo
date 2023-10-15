@@ -13,6 +13,7 @@ public class HomePage extends WEareBasePage {
 
 
     public void navigateToHomePage() {
+        actions.waitForElementVisible("homePageButton");
         actions.waitForElementClickable("homePageButton");
         actions.clickElement("homePageButton");
     }
@@ -32,6 +33,7 @@ public class HomePage extends WEareBasePage {
 
     public void navigateToLatestPosts(){
         actions.waitForElementPresent("homepage.latestPostsButton");
+        actions.waitForElementClickable("homepage.latestPostsButton");
         actions.clickElement("homepage.latestPostsButton");
         validateHeader("Explore all posts");
     }

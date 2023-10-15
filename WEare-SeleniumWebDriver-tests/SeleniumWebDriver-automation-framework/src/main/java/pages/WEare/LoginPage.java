@@ -7,26 +7,31 @@ public class LoginPage extends WEareBasePage {
         super(driver, "loginPage");
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         actions.waitForElementClickable("homepage.signInButton");
         actions.clickElement("homepage.signInButton");
     }
-    public  void  fillUsernameField(String username){
+
+    public void fillUsernameField(String username) {
         actions.waitForElementPresent("loginPage.UsernameField");
         actions.typeValueInField(username, "loginPage.UsernameField");
     }
-    public  void  fillPasswordField(String password){
+
+    public void fillPasswordField(String password) {
         actions.waitForElementPresent("loginPage.PasswordField");
         actions.typeValueInField(password, "loginPage.PasswordField");
     }
 
-    public void  clickOnSubmitButton(){
+    public void clickOnSubmitButton() {
         actions.waitForElementClickable("loginPage.LoginButton");
         actions.clickElement("loginPage.LoginButton");
     }
-    public void clickOnLogOutButton(){
-        actions.waitForElementClickable("homePage.LogoutButton");
-        actions.clickElement("homePage.LogoutButton");
+
+    public void clickOnLogOutButton() {
+        if (actions.isElementVisible("homePage.LogoutButton")) {
+            actions.waitForElementClickable("homePage.LogoutButton");
+            actions.clickElement("homePage.LogoutButton");
+        }
         validateHeader("Login Page");
     }
 

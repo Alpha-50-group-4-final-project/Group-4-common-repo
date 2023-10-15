@@ -9,16 +9,19 @@ import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 public class CommentsTests extends BaseTest {
     private static String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
+    private static String postBody = getUIMappingByKey("postPage.postMessage");
 
     @BeforeAll
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
-        apiPost = api.createPost(usernameRandom, passwordRandom, postMessage);
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         login(usernameRandom, passwordRandom);
     }
 
     @AfterAll
     public static void returnHome() {
+
+        //logout();
         homePage.navigateToHomePage();
         if (actions.isElementVisible("homePage.LogoutButton")) {
             actions.clickElement("homePage.LogoutButton");
@@ -30,9 +33,9 @@ public class CommentsTests extends BaseTest {
     @Label("Jira FPW-101")
     public void addValidComment_when_postCommentButtonClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
+        postsPage.explorePost(usernameRandom);
         commentsPage.writeComment();
-        commentsPage.clickOnPostCommentButton();
+        commentsPage.submitComment();
         commentsPage.validateCommentCreated();
     }
 
@@ -41,9 +44,9 @@ public class CommentsTests extends BaseTest {
     public void editComment_when_validTextAdded() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickEditComment();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.clickEditCommentButton();
         commentsPage.editComment();
         commentsPage.validateCommentEdited();
     }
@@ -53,9 +56,9 @@ public class CommentsTests extends BaseTest {
     public void likeComment_when_likedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickOnLikeButton();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.likeComment();
         commentsPage.validateCommentLiked();
     }
     @Test
@@ -63,9 +66,9 @@ public class CommentsTests extends BaseTest {
     public void unlikeComment_when_unlikedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickOnUnlikeButton();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
+        commentsPage.unlikeComment();
         commentsPage.validateCommentUnliked();
     }
 
@@ -74,10 +77,10 @@ public class CommentsTests extends BaseTest {
     public void deleteComment_when_deleteButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        commentsPage.clickOnShowCommentsButton();
-        commentsPage.clickDeleteComment();
+        postsPage.explorePost(usernameRandom);
+        commentsPage.showComments();
         commentsPage.deleteComment();
+        commentsPage.deleteCommentConfirmation();
         commentsPage.validateCommentDeleted();
     }
 

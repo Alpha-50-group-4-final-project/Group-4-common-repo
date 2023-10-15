@@ -46,7 +46,6 @@ public class BaseTest {
 
     public static String adminUsername;
     public static String adminPassword;
-    public static final String postMessage = "This post was made by Selenium WebDriver";
 
     @BeforeAll
     public static void setUp() {
@@ -90,9 +89,8 @@ public class BaseTest {
 
     public static void logout() {
         homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+        loginPage.clickOnLogOutButton();
+
     }
 
 

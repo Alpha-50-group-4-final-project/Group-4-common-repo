@@ -1,93 +1,83 @@
 package WEare.privatepart;
 
 import WEare.BaseTest;
+import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
-import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostsTests extends BaseTest {
-    public static final String EDITED_POST_MESSAGE = "This post was edited by Selenium WebDriver";
-
-    public static final String POST_MESSAGE="This post was made by Selenium WebDriver";
-    private static final String VALID_COMMENT_MESSAGE = "This is a valid comment made by Selenium WebDriver";
+    private static String postBody = getUIMappingByKey("postPage.postMessage");
 
     @BeforeAll
-    public static void testSetup(){
-        api.registerUser(usernameRandom,passwordRandom);
+    public static void testSetup() {
+        api.registerUser(usernameRandom, passwordRandom);
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         login(usernameRandom, passwordRandom);
     }
 
     @AfterAll
     public void returnHome() {
-        homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+//        homePage.navigateToHomePage();
+//        if (actions.isElementVisible("homePage.LogoutButton")) {
+//            actions.clickElement("homePage.LogoutButton");
+//        }
+
+        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
     @Test
-   @Order(1)
-   // @Description("Create a new public post")
+    @Label("Jira FPW-70")
     public void createPublicPost_when_addNewPostButtonClicked() {
-        postsPage. clickOnAddNewPostButton();
-        postsPage. clickOnPostVisibilityButton();
-        postsPage.postPublicVisibilityChoice();
-        postsPage.typeMessageInMessageField(POST_MESSAGE);
-        postsPage. clickOnSavePostButton();
+        postsPage.clickAddNewPost();
+        postsPage.selectPostVisibility();
+        postsPage.writePostMessage();
+        postsPage.submitPost();
         postsPage.validatePostCreated();
     }
 
     @Test
-    @Order(2)
-    //@Description("Validate the user can edit his public post")
+    @Label("Jira FPW-83")
     public void editPublicPost_when_editPostButtonClicked() {
         homePage.navigateToLatestPosts();
-
-        postsPage.clickOnExplorePostButton(usernameRandom);
-        postsPage.clickOnEditPostButton();
-        postsPage.clickOnPostVisibilityButton();
-        postsPage.postPublicVisibilityChoice();
-        postsPage.typeMessageInMessageField(EDITED_POST_MESSAGE);
-        postsPage.clickOnSavePostButton();
+        postsPage.explorePost(usernameRandom);
+        postsPage.clickEditPost();
+        postsPage.selectPostVisibility();
+        postsPage.editPostMessage();
+        postsPage.submitPost();
         postsPage.validatePostEdited();
     }
 
     @Test
-    @Order(3)
-    //@Description("Validate user can like a post")
+    @Label("Jira FPW-94")
     public void likePublicPost_when_likeButtonClicked() {
-       // commentsPage.goToLatestComment();
         homePage.navigateToLatestPosts();
-        postsPage.clickOnLikePostButton();
+        postsPage.likePostByUsername(usernameRandom);
         postsPage.validatePostLiked();
     }
 
     @Test
-    @Order(4)
-    public void deletePost_when_deleteButtonClicked(){
-        //create post
-           // postsPage.goToLatestPosts();
-        postsPage.clickBrowsePublicPost();
+    @Label("Jira FPW-96")
+    public void dislikePublicPost_when_dislikeButtonClicked() {
+        api.likePost(usernameRandom, passwordRandom, apiPost.postId);
+        homePage.navigateToLatestPosts();
+        postsPage.dislikePostByUsername(usernameRandom);
+        postsPage.validatePostDisliked();
+    }
 
-            postsPage.clickOnExplorePostButton(usernameRandom);
-            postsPage.clickOnDeletePostButton();
-            postsPage.choosingDeletePostOption();
-            postsPage.clickPostSubmitButton();
-            postsPage.validatePostDeleted();
-
+    @Test
+    @Label("Jira FPW-85")
+    public void deletePost_when_deleteButtonClicked() {
+        homePage.navigateToLatestPosts();
+        postsPage.explorePost(usernameRandom);
+        postsPage.clickDeletePost();
+        postsPage.confirmDeletion();
+        postsPage.submitDeletion();
+        postsPage.validatePostDeleted();
     }
 }
 
-//    @Test
-//    @Order(4)
-//    //@Description("Validate user can dislike a post")
-//    public void dislikePublicPost_when_dislikeButtonClicked() {
-//        postsPage.goToLatestPosts();
-//        postsPage.clickOnDislikePostButton();
-//        actions.assertElementPresent("posts.likePost");
-//        LOGGER.info("Public post was disliked successfully.");
-//    }
+
 
