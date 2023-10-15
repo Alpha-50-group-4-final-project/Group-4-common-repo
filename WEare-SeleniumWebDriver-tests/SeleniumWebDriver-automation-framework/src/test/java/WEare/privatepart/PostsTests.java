@@ -31,6 +31,7 @@ public class PostsTests extends BaseTest {
     @Test
     @Label("Jira FPW-70")
     public void createPublicPost_when_addNewPostButtonClicked() {
+        homePage.navigateToLatestPosts();
         postsPage.clickAddNewPost();
         postsPage.selectPostVisibility();
         postsPage.writePostMessage();
@@ -70,6 +71,7 @@ public class PostsTests extends BaseTest {
     @Test
     @Label("Jira FPW-85")
     public void deletePost_when_deleteButtonClicked() {
+        api.createPost(usernameRandom, passwordRandom, postBody);
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
         postsPage.clickDeletePost();

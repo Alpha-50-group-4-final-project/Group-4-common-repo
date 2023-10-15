@@ -1,6 +1,10 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.opentest4j.AssertionFailedError;
+
+import static com.telerikacademy.testframework.Utils.LOGGER;
 
 public class LoginPage extends WEareBasePage {
     public LoginPage(WebDriver driver) {
@@ -12,17 +16,17 @@ public class LoginPage extends WEareBasePage {
         actions.clickElement("homepage.signInButton");
     }
 
-    public void fillUsernameField(String username) {
+    public void fillUsername(String username) {
         actions.waitForElementPresent("loginPage.UsernameField");
         actions.typeValueInField(username, "loginPage.UsernameField");
     }
 
-    public void fillPasswordField(String password) {
+    public void fillPassword(String password) {
         actions.waitForElementPresent("loginPage.PasswordField");
         actions.typeValueInField(password, "loginPage.PasswordField");
     }
 
-    public void clickOnSubmitButton() {
+    public void submitForm() {
         actions.waitForElementClickable("loginPage.LoginButton");
         actions.clickElement("loginPage.LoginButton");
     }
@@ -35,14 +39,6 @@ public class LoginPage extends WEareBasePage {
         validateHeader("Login Page");
     }
 
-    public void navigateToHomePage() {
-        driver.get("http://localhost:8081/");
-    }
-
-    public void assertErrorMessage(String message) {
-        actions.assertElementText("loginErrorMessage", message);
-    }
-
     public void assertElementPresent(String locator) {
         actions.assertElementPresent(locator);
     }
@@ -51,4 +47,21 @@ public class LoginPage extends WEareBasePage {
         actions.assertElementAttribute(locator, attributeName, attributeValue);
     }
 
+    public void validateLoggedIn() {
+        try {
+            actions.assertElementAttribute("homePage.LogoutButton", "innerText", "LOGOUT");
+            LOGGER.info("User was successfully logged in.");
+        }catch (AssertionFailedError e) {
+            Assertions.fail("User was not logged in.");
+        }
+    }
+
+    public void validateErrorMessage() {
+        try {
+            actions.assertElementText("loginErrorMessage", "Wrong username or password.");
+            LOGGER.info("Expected error message showed up.");
+        }catch (AssertionFailedError e) {
+            Assertions.fail("User was logged in despite wrong credentials provided.");
+        }
+    }
 }

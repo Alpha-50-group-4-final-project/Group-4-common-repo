@@ -3,11 +3,9 @@ package WEare;
 import com.github.javafaker.Faker;
 
 import com.telerikacademy.testframework.UserActions;
-import com.telerikacademy.testframework.api.CommentModel;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import pages.WEare.*;
 
@@ -80,9 +78,9 @@ public class BaseTest {
 
     public static void login(String username, String password) {
         loginPage.clickOnLoginButton();
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
-        loginPage.clickOnSubmitButton();
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.submitForm();
         loginPage.assertElementPresent("homePage.LogoutButton");
         LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
     }

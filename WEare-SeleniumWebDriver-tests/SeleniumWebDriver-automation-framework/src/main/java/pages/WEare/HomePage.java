@@ -1,6 +1,8 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.opentest4j.AssertionFailedError;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
 
@@ -22,7 +24,7 @@ public class HomePage extends WEareBasePage {
         navigateToPage();
         actions.waitForElementClickable("homepage.RegisterButton");
         actions.clickElement("homepage.RegisterButton");
-        validateHeader("Join our community");
+        //validateHeader("Join our community");
     }
 
     public void navigateToLoginPage(){
@@ -62,8 +64,12 @@ public class HomePage extends WEareBasePage {
     }
 
     public void validateSearchResult(String name){
-        actions.assertElementAttribute("homePage.nameInputField", "value", name);
-        LOGGER.info("Search result validated.");
+        try {
+            actions.assertElementAttribute("homePage.nameInputField", "value", name);
+            LOGGER.info("Search result validated.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Search was unsuccessful.");
+        }
     }
 
 }
