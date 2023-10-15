@@ -16,12 +16,14 @@ public class AdminEnableDisableUserTest extends BaseTest {
         api.updateUserProfile(usernameRandom, passwordRandom, userForTesting, lastNameRandom);
         api.registerUser(adminUsername, adminPassword);
         login(adminUsername, adminPassword);
-        adminPage.validateAdminPageNavigated();
     }
 
     @AfterAll
-    public static void testTearDown() {
-        logout();
+    public static void clearData() {
+        homePage.navigateToHomePage();
+        if (actions.isElementVisible("homePage.LogoutButton")) {
+            actions.clickElement("homePage.LogoutButton");
+        }
     }
 
     @Test

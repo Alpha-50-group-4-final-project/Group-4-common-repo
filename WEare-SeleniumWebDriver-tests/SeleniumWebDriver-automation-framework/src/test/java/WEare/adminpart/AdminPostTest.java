@@ -19,8 +19,11 @@ public class AdminPostTest extends BaseTest {
         adminPage.validateAdminPageNavigated();
     }
     @AfterAll
-    public static void testTearDown(){
-        logout();
+    public static void clearData(){
+        homePage.navigateToHomePage();
+        if (actions.isElementVisible("homePage.LogoutButton")) {
+            actions.clickElement("homePage.LogoutButton");
+        }
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
 
