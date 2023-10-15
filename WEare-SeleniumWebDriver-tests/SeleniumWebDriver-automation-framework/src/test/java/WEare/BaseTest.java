@@ -73,9 +73,9 @@ public class BaseTest {
 
 //    @AfterAll
 //    public static void logOutFromAccount() {
-//        if (actions.isElementVisible("homePage.LogoutButton")) {
-//            actions.clickElement("homePage.LogoutButton");
-//        }
+////        if (actions.isElementVisible("homePage.LogoutButton")) {
+////            actions.clickElement("homePage.LogoutButton");
+////        }
 //        UserActions.quitDriver();
 //    }
 
@@ -86,6 +86,12 @@ public class BaseTest {
         loginPage.clickOnSubmitButton();
         loginPage.assertElementPresent("homePage.LogoutButton");
         LOGGER.info("User with the following user name: " + username + "and password: " + password + " has logged in successfully.");
+    }
+    public static void logout(){
+        homePage.navigateToHomePage();
+        if (actions.isElementVisible("homePage.LogoutButton")) {
+            actions.clickElement("homePage.LogoutButton");
+        }
     }
 
 
