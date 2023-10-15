@@ -16,16 +16,16 @@ public class PostsTests extends BaseTest {
 
     @BeforeAll
     public static void testSetup(){
-
         api.registerUser(usernameRandom,passwordRandom);
-//        registerUser(usernameRandom,passwordRandom);
         login(usernameRandom, passwordRandom);
     }
 
     @AfterAll
     public void returnHome() {
         homePage.navigateToHomePage();
-        loginPage.clickOnLogOutButton();
+        if (actions.isElementVisible("homePage.LogoutButton")) {
+            actions.clickElement("homePage.LogoutButton");
+        }
     }
 
     @Test

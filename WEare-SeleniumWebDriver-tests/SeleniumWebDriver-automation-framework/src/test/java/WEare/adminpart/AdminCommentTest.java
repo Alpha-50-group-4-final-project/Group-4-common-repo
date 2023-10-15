@@ -34,7 +34,7 @@ public class AdminCommentTest extends BaseTest {
     @Label("Jira FPW-151")
     public void editOtherUsersComment_when_editCommentClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickExplorePost();
+        postsPage.clickOnExplorePostButton(usernameRandom);
         postsPage.clickShowComments();
         commentsPage.clickEditComment();
         commentsPage.editComment();
@@ -46,7 +46,7 @@ public class AdminCommentTest extends BaseTest {
     @Label("Jira FPW-153")
     public void deleteOtherUsersComment_when_deleteCommentClicked() {
         homePage.navigateToLatestPosts();
-        postsPage.clickExplorePost();
+        postsPage.clickOnExplorePostButton(usernameRandom);
         postsPage.clickShowComments();
         commentsPage.clickDeleteComment();
         commentsPage.deleteComment();

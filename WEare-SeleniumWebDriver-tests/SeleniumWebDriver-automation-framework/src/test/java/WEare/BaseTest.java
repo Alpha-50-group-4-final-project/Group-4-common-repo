@@ -3,6 +3,7 @@ package WEare;
 import com.github.javafaker.Faker;
 
 import com.telerikacademy.testframework.UserActions;
+import com.telerikacademy.testframework.api.CommentModel;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
@@ -29,6 +30,7 @@ public class BaseTest {
 
     public static WEareApi api;
     public static PostModel apiPost;
+
     public static UserRegistrationPage registrationPage;
     public static LoginPage loginPage;
 

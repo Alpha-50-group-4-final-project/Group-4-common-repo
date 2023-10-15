@@ -44,7 +44,7 @@ public class AdminPage extends WEareBasePage {
 
     public void validatePostEdited() {
         try {
-            actions.assertElementAttribute("adminPage.editedPostMessage", "innerText", getUIMappingByKey("postPage.postMessage.edit"));
+            actions.assertElementAttribute("adminPage.editedPostMessage.validation", "innerText", getUIMappingByKey("postPage.postMessage.edit"));
             LOGGER.info("Admin edited post successfully.");
         } catch (AssertionFailedError e) {
             Assertions.fail("Admin did not edit the post successfully.");
