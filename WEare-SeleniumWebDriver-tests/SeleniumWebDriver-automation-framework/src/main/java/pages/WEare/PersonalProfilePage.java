@@ -2,6 +2,10 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
+import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.telerikacademy.testframework.Utils.LOGGER;
 import static java.lang.String.format;
 

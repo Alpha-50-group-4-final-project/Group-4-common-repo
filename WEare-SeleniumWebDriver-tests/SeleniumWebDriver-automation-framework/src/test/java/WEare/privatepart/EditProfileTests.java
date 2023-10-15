@@ -59,7 +59,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void addSelfDescription_when_validDataIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
 
@@ -71,7 +71,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeGender_when_validDataProvided() {
         editProfilePage.navigateToEditProfileMenu();
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
 
@@ -83,7 +83,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     public void changeEmail_when_validNewEmailIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeEmail(NEW_EMAIL);
         editProfilePage.clickPersonalInformationUpdateButton();
 
@@ -104,7 +104,7 @@ public class EditProfileTests extends BaseTest {
 
     @Test
     public void changeCity_when_differentCityIsChosen() {
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -113,14 +113,14 @@ public class EditProfileTests extends BaseTest {
 
     @Test
     public void changeProfessionalCategory_when_validProfessionProvided() {
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeProfessionalCategory(PROFESSION);
     }
 
     @Test
     public void changeServices_when_validServiceClicked() {
         editProfilePage.navigateToEditProfileMenu();
-//        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
     }
 }
