@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class AdminPostTest extends BaseTest {
     private static final String postMessage = getUIMappingByKey("postPage.postMessage");
 
@@ -18,9 +18,13 @@ public class AdminPostTest extends BaseTest {
         login(adminUsername, adminPassword);
         adminPage.validateAdminPageNavigated();
     }
+    @AfterAll
+    public static void testTearDown(){
+        logout();
+        api.deletePost(adminUsername, adminPassword, apiPost.postId);
+    }
 
     @Test
-    @Order(1)
     @Label("Jira FPW-148")
     public void editOtherUsersPost_when_editPostClicked() {
         homePage.navigateToLatestPosts();
@@ -32,7 +36,6 @@ public class AdminPostTest extends BaseTest {
     }
 
     @Test
-    @Order(2)
     @Label("Jira FPW-150")
     public void deleteOtherUsersPost_when_deletePostClicked() {
         homePage.navigateToLatestPosts();

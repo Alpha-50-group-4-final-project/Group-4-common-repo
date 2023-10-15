@@ -52,6 +52,7 @@ public class AdminPage extends WEareBasePage {
     }
 
     public void clickDeleteButton() {
+        actions.waitForElementVisible("adminPage.deletePostButton");
         actions.waitForElementClickable("adminPage.deletePostButton");
         actions.clickElement("adminPage.deletePostButton");
         validateHeader("Delete post");
