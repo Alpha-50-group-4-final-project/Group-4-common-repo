@@ -26,12 +26,14 @@ public class SearchingPage extends WEareBasePage{
     }
     public void clickDisconnectButton(){
         actions.waitForElementClickable("PersonalProfilePageDisconnectButton");
+        actions.assertElementPresent("PersonalProfilePageDisconnectButton");
         actions.clickElement("PersonalProfilePageDisconnectButton");
     }
 
     public void validateConnectionRequestSend(){
         try {
             actions.waitForElementVisible("ProfileConnectionPage.successMessage");
+            actions.assertElementPresent("ProfileConnectionPage.successMessage");
             actions.assertElementText("ProfileConnectionPage.successMessage", "Good job! You have send friend request!");
             LOGGER.info("Connection request was successfully sent.");
         } catch (AssertionFailedError e) {
@@ -41,14 +43,21 @@ public class SearchingPage extends WEareBasePage{
 
     public void clickOnNewFriendRequestButton(){
         actions.waitForElementClickable("PersonalProfilePageNewFriendRequestButton");
+        actions.assertElementPresent("PersonalProfilePageNewFriendRequestButton");
         actions.clickElement("PersonalProfilePageNewFriendRequestButton");
     }
     public void approveRequestByUserFirstName(String name){
         actions.waitForElementClickable("PersonalProfileFriendRequestAcceptButton",name);
+//        actions.assertElementPresent("PersonalProfileFriendRequestAcceptButton",name);
         actions.clickElement("PersonalProfileFriendRequestAcceptButton",name);
     }
     public void assertElementPresent(String locator) {
         actions.waitForElementVisible(locator);
         actions.assertElementPresent(locator);
+    }
+    
+    public void validateRequestAccepted(String approverID){
+        actions.navigateToPage("personalProfilePageById",approverID);
+        assertElementPresent("PersonalProfilePageDisconnectButton");
     }
 }

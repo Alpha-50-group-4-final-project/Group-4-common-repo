@@ -6,7 +6,6 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.HttpStatus;
 
 import static com.telerikacademy.testframework.api.Constants.*;
 import static com.telerikacademy.testframework.api.EndPoints.*;
@@ -14,12 +13,10 @@ import static com.telerikacademy.testframework.api.JsonBodies.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
-import static org.apache.http.HttpStatus.SC_OK;
 
 public class WEareApi {
     private Cookies cookies;
-    private String USER_ID;
+    public static String USER_ID;
 
     protected RequestSpecification requestSpecificationWithoutAuthentication() {
         Gson deserializer = new Gson();
@@ -68,7 +65,7 @@ public class WEareApi {
 
     public PostModel createPost(String username, String password, String postContent) {
         String baseURI = format("%s%s", BASE_URL, CREATE_POST);
-        String requestBody = format(CREATE_POST_BODY, postContent, NO_PICTURE, PUBLIC_CONTENT);
+        String requestBody = format(getCreatePostBody(), postContent, NO_PICTURE, PUBLIC_CONTENT);
         return requestSpecificationWithoutAuthentication()
                 .cookies(getAuthCookie(username, password))
                 .body(requestBody)
@@ -101,11 +98,22 @@ public class WEareApi {
                 .post(baseURI);
     }
 
-    public Response deleteComment(String username,String password,int commentId){
+    public Response deleteComment(String username, String password, int commentId) {
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
         return requestSpecificationWithoutAuthentication()
-                .cookies(getAuthCookie(username,password)).
+                .cookies(getAuthCookie(username, password)).
                 queryParam("commentId", commentId).
                 delete(baseURI);
+    }
+
+    public Response sendConnectionRequest(String username, String password,String recipientId,String recipientName) {
+        baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
+
+        String requestBody = format(SEND_CONNECTION_REQ_BODY, recipientId, recipientName);
+
+        return requestSpecificationWithoutAuthentication()
+                .cookies(getAuthCookie(username, password))
+                .body(requestBody)
+                .post(baseURI);
     }
 }

@@ -146,8 +146,8 @@ public class UserActions {
         }
     }
 
-    public void navigateToPage(String locator) {
-        driver.get(getLocatorValueByKey(locator));
+    public void navigateToPage(String locator,Object... arguments) {
+        driver.get(getLocatorValueByKey(locator,arguments));
     }
 
     private String elementText(String key, Object... arguments) {

@@ -3,10 +3,11 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-
+@Suite
 public class CommentsTests extends BaseTest {
     private static String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
     private static String postBody = getUIMappingByKey("postPage.postMessage");
@@ -28,6 +29,7 @@ public class CommentsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-101")
+    @Tag("Happy path")
     public void addValidComment_when_postCommentButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
@@ -38,6 +40,7 @@ public class CommentsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-121")
+    @Tag("Happy path")
     public void editComment_when_validTextAdded() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -50,6 +53,7 @@ public class CommentsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-133")
+    @Tag("Happy path")
     public void likeComment_when_likedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -60,6 +64,7 @@ public class CommentsTests extends BaseTest {
     }
     @Test
     @Label("Jira FPW-135")
+    @Tag("Happy path")
     public void unlikeComment_when_unlikedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -71,6 +76,7 @@ public class CommentsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-124")
+    @Tag("Happy path")
     public void deleteComment_when_deleteButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
