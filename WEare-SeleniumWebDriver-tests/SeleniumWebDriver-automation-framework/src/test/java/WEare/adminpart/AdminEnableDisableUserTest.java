@@ -29,7 +29,7 @@ public class AdminEnableDisableUserTest extends BaseTest {
     public void disableAnotherUserAccount_when_disableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchPage.findUserProfileByName(userForTesting);
+        homePage.searchUserByName(userForTesting);
         adminPage.clickDisableButton();
         adminPage.validateProfileDisabled();
     }
@@ -39,7 +39,7 @@ public class AdminEnableDisableUserTest extends BaseTest {
     public void enableDisabledUserAccount_when_enableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
-        searchPage.findUserProfileByName(userForTesting);
+        homePage.searchUserByName(userForTesting);
         adminPage.clickOnEnableButton();
         adminPage.validateProfileEnabled();
     }

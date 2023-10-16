@@ -42,16 +42,16 @@ public class ConnectToUserTests extends BaseTest {
     @Label("Jira FPW-140")
     public void sendConnectRequest_when_connectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchPage.clickOnConnectButton();
-        searchPage.assertRequestIsSend();
+        searchPage.clickConnectButton();
+        searchPage.validateConnectionRequestSend();
     }
 
     @Test
     @Label("Jira FPW-141")
     public void acceptConnectRequest_when_approveRequestButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchPage.clickOnConnectButton();
-        searchPage.assertRequestIsSend();
+        searchPage.clickConnectButton();
+        searchPage.validateConnectionRequestSend();
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
     }
 
@@ -59,11 +59,11 @@ public class ConnectToUserTests extends BaseTest {
     @Label("Jira FPW-142")
     public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchPage.clickOnConnectButton();
-        searchPage.assertRequestIsSend();
+        searchPage.clickConnectButton();
+        searchPage.validateConnectionRequestSend();
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
         searchAndFindCurrentProfileByName(secondUserFirstName);
-        searchPage.clickOnDisconnectButton();
+        searchPage.clickDisconnectButton();
         searchPage.assertElementPresent("ProfileConnectionPageConnectButton");
     }
 
@@ -80,7 +80,7 @@ public class ConnectToUserTests extends BaseTest {
         homePage.navigateToPage();
         homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
-        searchPage.findUserProfileByName(userName);
+        homePage.searchUserByName(userName);
     }
 
 }

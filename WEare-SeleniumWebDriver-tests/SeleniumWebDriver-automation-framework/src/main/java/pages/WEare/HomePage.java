@@ -72,5 +72,9 @@ public class HomePage extends WEareBasePage {
             Assertions.fail("Search was unsuccessful.");
         }
     }
+    public void searchUserByName(String name){
+        actions.waitForElementClickable("ProfileConnectionPageSeeProfileByName",name);
+        actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
+    }
 
 }
