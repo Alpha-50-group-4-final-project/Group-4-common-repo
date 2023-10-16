@@ -3,11 +3,12 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import org.junit.platform.commons.annotation.Testable;
 import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.api.WEareApi.USER_ID;
 
-@Suite
+@Testable
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ConnectToUserTests extends BaseTest {
 
@@ -47,6 +48,7 @@ public class ConnectToUserTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-140")
+    @Tag("HappyPath")
     public void sendConnectRequest_when_connectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchPage.clickConnectButton();
@@ -55,6 +57,7 @@ public class ConnectToUserTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-141")
+    @Tag("HappyPath")
     public void acceptConnectRequest_when_approveRequestButtonClicked() {
         api.sendConnectionRequest(SECOND_USER,PASSWORD,recipientID,firstUserFirstName);
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
@@ -63,6 +66,7 @@ public class ConnectToUserTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-142")
+    @Tag("HappyPath")
     public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchPage.clickConnectButton();
@@ -72,6 +76,7 @@ public class ConnectToUserTests extends BaseTest {
         searchPage.clickDisconnectButton();
         searchPage.assertElementPresent("ProfileConnectionPageConnectButton");
     }
+
 
     private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();

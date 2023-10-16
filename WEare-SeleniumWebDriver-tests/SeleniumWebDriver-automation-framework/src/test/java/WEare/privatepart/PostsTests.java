@@ -3,11 +3,12 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import org.junit.platform.commons.annotation.Testable;
 import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@Suite
+@Testable
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PostsTests extends BaseTest {
     private static String postBody = getUIMappingByKey("postPage.postMessage");
@@ -31,7 +32,7 @@ public class PostsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-70")
-    @Tag("Happy path")
+    @Tag("HappyPath")
     public void createPublicPost_when_addNewPostButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.clickAddNewPost();
@@ -43,7 +44,7 @@ public class PostsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-83")
-    @Tag("Happy path")
+    @Tag("HappyPath")
     public void editPublicPost_when_editPostButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
@@ -56,7 +57,7 @@ public class PostsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-94")
-    @Tag("Happy path")
+    @Tag("HappyPath")
     public void likePublicPost_when_likeButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.likePostByUsername(usernameRandom);
@@ -65,7 +66,7 @@ public class PostsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-96")
-    @Tag("Happy path")
+    @Tag("HappyPath")
     public void dislikePublicPost_when_dislikeButtonClicked() {
         api.likePost(usernameRandom, passwordRandom, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -75,7 +76,7 @@ public class PostsTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-85")
-    @Tag("Happy path")
+    @Tag("HappyPath")
     public void deletePost_when_deleteButtonClicked() {
         api.createPost(usernameRandom, passwordRandom, postBody);
         homePage.navigateToLatestPosts();

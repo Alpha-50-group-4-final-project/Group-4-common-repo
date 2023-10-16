@@ -75,7 +75,7 @@ public class BaseTest {
     @AfterAll
     public static void logOutFromAccount() {
         logout();
-        //UserActions.quitDriver();
+        UserActions.quitDriver();
     }
 
     public static void login(String username, String password) {
