@@ -117,7 +117,7 @@ public class BaseTest {
     }
 
     protected void createPost() {
-        if (isNull(regularUserId)) {
+        if (regularUserId==null) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -135,7 +135,7 @@ public class BaseTest {
     }
 
     protected void createComment() {
-        if (isNull(postId)) {
+        if (postId==null) {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);

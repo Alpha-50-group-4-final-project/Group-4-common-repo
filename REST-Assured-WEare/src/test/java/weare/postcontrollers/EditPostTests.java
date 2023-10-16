@@ -20,9 +20,8 @@ public class EditPostTests extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-248")
     public void postEdited_When_ValidDataProvided() {
-        if (isNull(postId)) {
             createPost();
-        }
+
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
 
         String requestBody = format(EDIT_POST_BODY, EDITED_POST_CONTENT, NO_PICTURE, PUBLIC_CONTENT);

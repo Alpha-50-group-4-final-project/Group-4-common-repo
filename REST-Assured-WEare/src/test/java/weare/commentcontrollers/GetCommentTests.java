@@ -79,7 +79,7 @@ public class GetCommentTests extends BaseTest {
     @Test
     @Label("Jira - FPW-260")
     public void getComment_When_SearchedByCommentId() {
-        if (isNull(commentId)) {
+        if (commentId==null) {
             createComment();
         }
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);

@@ -19,9 +19,9 @@ public class EditCommentTests extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-255")
     public void commentEdited_When_ValidDataProvided() {
-        if (isNull(commentId)) {
+
             createComment();
-        }
+
         baseURI = format("%s%s", BASE_URL, EDIT_COMMENT);
 
         response = requestSpecificationWithAuthentication()
