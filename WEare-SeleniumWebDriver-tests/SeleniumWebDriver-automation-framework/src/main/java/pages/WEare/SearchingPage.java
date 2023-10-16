@@ -1,6 +1,10 @@
 package pages.WEare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.opentest4j.AssertionFailedError;
+
+import static com.telerikacademy.testframework.Utils.LOGGER;
 
 public class SearchingPage extends WEareBasePage{
 
@@ -10,24 +14,29 @@ public class SearchingPage extends WEareBasePage{
 
 
     public void findUserProfileByName(String name){
-        actions.waitForElementPresent("ProfileConnectionPageSeeProfileByName",name);
+        actions.waitForElementClickable("ProfileConnectionPageSeeProfileByName",name);
         actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
     }
-    public void clickOnConnectButton(){
+    public void clickConnectButton(){
         if (actions.isElementVisible("PersonalProfilePageDisconnectButton")) {
             actions.clickElement("PersonalProfilePageDisconnectButton");
         }
         actions.waitForElementClickable("ProfileConnectionPageConnectButton");
         actions.clickElement("ProfileConnectionPageConnectButton");
     }
-    public void clickOnDisconnectButton(){
+    public void clickDisconnectButton(){
         actions.waitForElementClickable("PersonalProfilePageDisconnectButton");
         actions.clickElement("PersonalProfilePageDisconnectButton");
     }
 
-    public void assertRequestIsSend(){
-        actions.waitForElementVisible("ProfileConnectionPageConnectAssert");
-        actions.assertElementText("ProfileConnectionPageConnectAssert","Good job! You have send friend request!");
+    public void validateConnectionRequestSend(){
+        try {
+            actions.waitForElementVisible("ProfileConnectionPage.successMessage");
+            actions.assertElementText("ProfileConnectionPage.successMessage", "Good job! You have send friend request!");
+            LOGGER.info("Connection request was successfully sent.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Connection request was successfully sent.");
+        }
     }
 
     public void clickOnNewFriendRequestButton(){

@@ -1,6 +1,7 @@
 package WEare.privatepart;
 
 import WEare.BaseTest;
+import jdk.jfr.Label;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-43")
     public void editFirstnameLastNameBirthday_when_validDataIsProvided() {
         editProfilePage.fillUpFirstNameField(SET_UP_FIRSTNAME);
         editProfilePage.fillUpLastNameField(SET_UP_LASTNAME);
@@ -46,7 +48,8 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
-    public void editFirstnameLastNameBirthday_when_invalidLastNameIsProvided() {
+    @Label("Jira FPW-46")
+    public void editFirstnameLastNameBirthday_when_emptyLastNameIsProvided() {
         editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
         editProfilePage.fillUpLastNameField("");
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
@@ -57,6 +60,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-58")
     public void addSelfDescription_when_validDataIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
@@ -69,6 +73,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-57")
     public void changeGender_when_validDataProvided() {
         editProfilePage.navigateToEditProfileMenu();
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
@@ -81,6 +86,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-56")
     public void changeEmail_when_validNewEmailIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
@@ -93,6 +99,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-45")
     public void editFirstnameLastNameBirthday_when_invalidFirstNameIsProvided() {
         editProfilePage.fillUpFirstNameField("");
         editProfilePage.fillUpLastNameField(VALID_LAST_NAME);
@@ -103,6 +110,7 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-61")
     public void changeCity_when_differentCityIsChosen() {
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.clickOnCityButton();
@@ -112,12 +120,14 @@ public class EditProfileTests extends BaseTest {
     }
 
     @Test
+    @Label("Jira FPW-62")
     public void changeProfessionalCategory_when_validProfessionProvided() {
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeProfessionalCategory(PROFESSION);
     }
 
     @Test
+    @Label("Jira FPW-63")
     public void changeServices_when_validServiceClicked() {
         editProfilePage.navigateToEditProfileMenu();
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
