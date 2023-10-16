@@ -3,7 +3,11 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import org.junit.platform.suite.api.Suite;
 
+import static com.telerikacademy.testframework.api.WEareApi.USER_ID;
+
+@Suite
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ConnectToUserTests extends BaseTest {
 
@@ -12,6 +16,7 @@ public class ConnectToUserTests extends BaseTest {
     public static String SECOND_USER;
     private static String firstUserFirstName;
     private static String secondUserFirstName;
+    private static String recipientID;
 
     @BeforeAll
     public static void initialSetUp() {
@@ -23,8 +28,10 @@ public class ConnectToUserTests extends BaseTest {
         SECOND_USER = faker.name().firstName();
         api.registerUser(usernameRandom, PASSWORD);
         api.updateUserProfile(usernameRandom, PASSWORD, firstUserFirstName, lastNameFirstUser);
+        recipientID=USER_ID;
         api.registerUser(SECOND_USER, PASSWORD);
         api.updateUserProfile(SECOND_USER,PASSWORD, secondUserFirstName, lastNameSecondUser);
+
     }
 
     @BeforeEach
@@ -49,10 +56,9 @@ public class ConnectToUserTests extends BaseTest {
     @Test
     @Label("Jira FPW-141")
     public void acceptConnectRequest_when_approveRequestButtonClicked() {
-        searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchPage.clickConnectButton();
-        searchPage.validateConnectionRequestSend();
+        api.sendConnectionRequest(SECOND_USER,PASSWORD,recipientID,firstUserFirstName);
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
+        searchPage.validateRequestAccepted(USER_ID);
     }
 
     @Test

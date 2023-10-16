@@ -1,14 +1,17 @@
 package WEare.publicpart;
 
 import WEare.BaseTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
-
+@Suite
 public class RegistrationTests extends BaseTest {
 
+    @Tag("Happy path")
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();
@@ -20,8 +23,10 @@ public class RegistrationTests extends BaseTest {
         registrationPage.assertUserCreatedWithWelcomeText();
         usernames.add(usernameRandom);
     }
+
     @ParameterizedTest
     @CsvSource({ "а", "''"})
+    @Tag("Unhappy path")
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -34,6 +39,7 @@ public class RegistrationTests extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({ "anna@sd.comsa", "''"})
+    @Tag("Unhappy path")
     public void registerNewUser_when_invalidEmailPassed(String email){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -46,6 +52,7 @@ public class RegistrationTests extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({ "12345", "''"})
+    @Tag("Unhappy path")
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -56,6 +63,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.validateRegistryNotSuccessful();
     }
     @Test
+    @Tag("Unhappy path")
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         String name=faker.name().firstName();
         homePage.navigateToRegisterPage();

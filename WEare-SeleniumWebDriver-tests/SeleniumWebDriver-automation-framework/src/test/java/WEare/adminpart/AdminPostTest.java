@@ -3,10 +3,11 @@ package WEare.adminpart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-
+@Suite
 public class AdminPostTest extends BaseTest {
     private static final String postMessage = getUIMappingByKey("postPage.postMessage");
 
@@ -27,6 +28,7 @@ public class AdminPostTest extends BaseTest {
 
     @Test
     @Label("Jira FPW-148")
+    @Tag("Happy path")
     public void editOtherUsersPost_when_editPostClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
@@ -37,6 +39,7 @@ public class AdminPostTest extends BaseTest {
 
     @Test
     @Label("Jira FPW-150")
+    @Tag("Happy path")
     public void deleteOtherUsersPost_when_deletePostClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);

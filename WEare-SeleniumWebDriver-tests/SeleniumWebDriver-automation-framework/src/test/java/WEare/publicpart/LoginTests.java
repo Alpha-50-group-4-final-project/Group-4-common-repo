@@ -7,7 +7,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.platform.suite.api.Suite;
 
+@Suite
 public class LoginTests extends BaseTest {
 
     @BeforeAll
@@ -22,6 +24,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-23")
+    @Tag("Happy path")
     public void login_when_validCredentialsArePassed() {
         loginPage.fillUsername(usernameRandom);
         loginPage.fillPassword(passwordRandom);
@@ -33,6 +36,7 @@ public class LoginTests extends BaseTest {
     @ParameterizedTest
     @Label("Jira FPW-24, FPW-25, FPW-26, FPW-27, FPW-28")
     @CsvSource({"T st,Valid_123", "Testbot,vald12", "'',vald12", "Testbot,''", "'',''"})
+    @Tag("Unhappy path")
     public void login_when_invalidCredentialsArePassed(String username, String password) {
         loginPage.fillUsername(username);
         loginPage.fillPassword(password);
