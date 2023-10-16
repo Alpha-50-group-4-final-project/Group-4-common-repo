@@ -19,7 +19,7 @@ public class GetConnectionRequestTest extends BaseTest {
     @Test
     @Label("Jira - FPW-244")
     public void getConnectionRequestTest_When_RequestSent() {
-        if (isNull(isConnectionSend )) {
+        if (isConnectionSend==false ) {
             sendConnectionRequest();
         }
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, userReceivingRequestId));
@@ -28,6 +28,7 @@ public class GetConnectionRequestTest extends BaseTest {
                 .contentType(ContentType.JSON)
                 .when()
                 .get(baseURI);
+        System.out.println(response.getBody().asPrettyString());
 
         connectionId = response.getBody().jsonPath().getString("[0].id");
 
