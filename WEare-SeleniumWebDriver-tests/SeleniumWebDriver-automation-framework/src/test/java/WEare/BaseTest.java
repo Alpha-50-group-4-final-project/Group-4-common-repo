@@ -79,7 +79,7 @@ public class BaseTest {
     }
 
     public static void login(String username, String password) {
-        loginPage.clickOnLoginButton();
+        loginPage.navigateToSignIn();
         loginPage.fillUsername(username);
         loginPage.fillPassword(password);
         loginPage.submitForm();

@@ -18,7 +18,7 @@ public class LoginPage extends WEareBasePage {
         super(driver, "loginPage");
     }
 
-    public void clickOnLoginButton() {
+    public void navigateToSignIn() {
         actions.waitForElementClickable("homepage.signInButton");
         actions.clickElement("homepage.signInButton");
     }
