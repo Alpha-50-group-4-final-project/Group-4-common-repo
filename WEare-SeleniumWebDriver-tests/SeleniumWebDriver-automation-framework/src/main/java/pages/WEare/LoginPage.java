@@ -1,10 +1,17 @@
 package pages.WEare;
 
+import com.telerikacademy.testframework.CustomWebDriverManager;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.opentest4j.AssertionFailedError;
 
+import java.io.ByteArrayInputStream;
+
 import static com.telerikacademy.testframework.Utils.LOGGER;
+
 
 public class LoginPage extends WEareBasePage {
     public LoginPage(WebDriver driver) {
@@ -52,6 +59,7 @@ public class LoginPage extends WEareBasePage {
             actions.assertElementAttribute("homePage.LogoutButton", "innerText", "LOGOUT");
             LOGGER.info("User was successfully logged in.");
         }catch (AssertionFailedError e) {
+            Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
             Assertions.fail("User was not logged in.");
         }
     }

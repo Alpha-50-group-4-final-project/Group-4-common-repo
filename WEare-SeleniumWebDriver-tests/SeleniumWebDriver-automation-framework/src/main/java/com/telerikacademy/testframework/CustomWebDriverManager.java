@@ -1,13 +1,20 @@
 package com.telerikacademy.testframework;
 
 import com.telerikacademy.testframework.enums.BrowserTypes;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.ByteArrayInputStream;
 
 public class CustomWebDriverManager {
 
     public enum CustomWebDriverManagerEnum {
         INSTANCE;
-        private WebDriver driver = setupBrowser();
+        private  WebDriver driver = setupBrowser();
 
         public void quitDriver() {
             if (driver != null) {
@@ -22,7 +29,8 @@ public class CustomWebDriverManager {
             }
         }
 
-        public WebDriver getDriver() {
+
+        public  WebDriver getDriver() {
             if (driver == null) {
                 setupBrowser();
             }

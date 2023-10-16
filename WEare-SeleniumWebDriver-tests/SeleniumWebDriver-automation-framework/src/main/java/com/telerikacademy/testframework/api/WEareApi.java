@@ -14,6 +14,8 @@ import static com.telerikacademy.testframework.api.JsonBodies.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
+import static org.apache.http.HttpStatus.SC_OK;
 
 public class WEareApi {
     private Cookies cookies;
@@ -86,7 +88,7 @@ public class WEareApi {
     }
 
     public Response deletePost(String username, String password, String postId) {
-       baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
+        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
         return requestSpecificationWithoutAuthentication()
                 .cookies(getAuthCookie(username, password))
                 .delete(baseURI);
@@ -97,5 +99,13 @@ public class WEareApi {
         return requestSpecificationWithoutAuthentication()
                 .cookies(getAuthCookie(username, password))
                 .post(baseURI);
+    }
+
+    public Response deleteComment(String username,String password,int commentId){
+        baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
+        return requestSpecificationWithoutAuthentication()
+                .cookies(getAuthCookie(username,password)).
+                queryParam("commentId", commentId).
+                delete(baseURI);
     }
 }

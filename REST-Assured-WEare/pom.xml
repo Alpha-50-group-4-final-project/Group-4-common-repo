@@ -66,6 +66,9 @@
             <artifactId>spring-security-core</artifactId>
             <version>5.5.3</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+
+
     </dependencies>
 
 </project>
