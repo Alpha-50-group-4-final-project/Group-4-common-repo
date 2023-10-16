@@ -2,42 +2,36 @@
 
 ## Table of Contents
 1. [Test Plan](./Test-Plan.md)
-2. [Test Cases](./Test-Cases.md)
-3. [Template Test Cases](./Template-Test-Cases.md)
-4. [Template Bug Reports](./Template-Bug-Reports.md)
-5. [Social Network Test Requirements](./Social-Network-Test-Requirements.md)
-6. [Social Network Project Specification](./Social-Network-Project-Specification.md)
-7. [Jira Boards](#jira-boards)
+2. [Template Test Cases](./Template-Test-Cases.md)
+3. [Template Bug Reports](./Template-Bug-Reports.md)
+4. [Social Network Test Requirements](./Social-Network-Test-Requirements.md)
+5. [Social Network Project Specification](./Social-Network-Project-Specification.md)
+6. [Jira Boards](#jira-boards)
 
 ---
 
 ## Test Plan
-For details, please refer to the [Test Plan document](./TEST_PLAN_WEare_Social_Network.docx).
-
----
-
-## Test Cases
-Comprehensive test cases have been documented and can be accessed [here](./Test_Cases.xlsx).
+For details, please refer to the [Test Plan document](./Team4{win} - TEST_PLAN_WEare social network_v4.docx).
 
 ---
 
 ## Template Test Cases
-Use this template for drafting new test cases. The document can be found [here](./Test_Cases_Template.docx).
+Use this template for drafting new test cases. The document can be found [here](./Team4{win} - Test_Cases_Template.docx).
 
 ---
 
 ## Template Bug Reports
-Utilize this template for logging new bugs. The document is available [here](./Bug_Template.docx).
+Utilize this template for logging new bugs. The document is available [here](./Team4{win} - Bug_template.docx).
 
 ---
 
 ## Social Network Test Requirements
-The document outlining the specific requirements for QA can be found [here](./Social_Network_Test_Requirements.docx).
+The document outlining the specific requirements for QA can be found [here](./Team4{win} - Social_Network_Test_Requirements.docx).
 
 ---
 
 ## Social Network Project Specification
-The application specifications are available [here](./Social_Network_Project_Specification.docx).
+The application specifications are available [here](./Team4{win} - Social_Network_Project_Specification.docx).
 
 ---
 
