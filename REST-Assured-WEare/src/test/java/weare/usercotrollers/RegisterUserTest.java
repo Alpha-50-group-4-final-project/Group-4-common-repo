@@ -84,9 +84,8 @@ public class RegisterUserTest extends BaseTest {
     }
 
 
-    //ANNIE - I think this is bug and should not be here, the error was not handled properly
-    @Test(priority = 1)
-    public void newUserNotRegistered_When_ValidDataProvided() {
+    @Test(priority = 3)
+    public void newUserNotRegistered_When_InvalidDataProvided() {
         USERNAME = letsTryIt();
 
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);

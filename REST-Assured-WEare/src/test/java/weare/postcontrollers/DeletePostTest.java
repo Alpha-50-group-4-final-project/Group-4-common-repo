@@ -17,9 +17,7 @@ public class DeletePostTest extends BaseTest {
     @Test
     @Label("Jira - FPW-251")
     public void postDeleted_When_DeleteRequestSent() {
-        if (postId == null) {
-            createPost();
-        }
+        createPost();
         baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
 
         response = requestSpecificationWithAuthentication()
@@ -30,6 +28,6 @@ public class DeletePostTest extends BaseTest {
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
 
         System.out.printf("Post with id: %s was successfully deleted.", postId);
-        postId=null;
+        postId = null;
     }
 }

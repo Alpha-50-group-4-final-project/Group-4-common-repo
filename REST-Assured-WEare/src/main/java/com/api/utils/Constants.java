@@ -2,12 +2,10 @@ package com.api.utils;
 
 import com.github.javafaker.Faker;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class Constants {
-    public static final String dumboUserID = "39";
-    public static final String EXISTING_USER = "Dumbo";
-    public static final String EXISTING_USER_PASSWORD = "12345678";
     public static final String ROLE_USER = "ROLE_USER";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final Faker faker = new Faker();
@@ -25,15 +23,14 @@ public class Constants {
     public static String LAST_NAME = faker.name().lastName();
     public static String CITY_ID = faker.random().nextInt(1, 25).toString();
     public static String PERSONAL_REVIEW = faker.lorem().sentence(6);
-
-    public static String PERSONAL_REVIEW_INVALID = faker.lorem().characters(255,true,true);
     public static String AVAILABILITY = faker.random().nextInt(1, 20).toString();
     public static String EDITED_POST_CONTENT = faker.lorem().sentence(4);
     public static String COMMENT_CONTENT = faker.lorem().sentence(5);
     public static String COMMENT_CONTENT_1001_CHARS = faker.lorem().characters(1001,true,true);
     public static String EDITED_COMMENT_CONTENT = faker.lorem().sentence(7);
+    public static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
     public static String SKILL = faker.job().keySkills();
-    public static String EDITED_SKILL = faker.job().keySkills();
+    public static String EDIT_SKILL = faker.job().keySkills() + timeStamp;
     public static int CATEGORY_ID_SKILL = 100;
     public static String SKILL_ID = faker.random().nextInt(1, 999).toString();
 

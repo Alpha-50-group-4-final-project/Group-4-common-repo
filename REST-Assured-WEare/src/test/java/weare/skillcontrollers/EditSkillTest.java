@@ -1,4 +1,5 @@
 package weare.skillcontrollers;
+
 import base.BaseTest;
 import jdk.jfr.Label;
 import org.testng.annotations.Test;
@@ -16,14 +17,12 @@ public class EditSkillTest extends BaseTest {
     @Test
     @Label("Jira - FPW-241")
     public void skillEdited_When_ValidDataProvided() {
-        if (isNull(skillId)) {
-            createSkill();
-        }
+        createSkill();
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_EDIT);
 
         response = requestSpecificationWithAuthentication()
-                .queryParam("skill", EDITED_SKILL)
+                .queryParam("skill", EDIT_SKILL)
                 .queryParam("skillId", intSkillId)
                 .put(baseURI);
         int statusCode = response.getStatusCode();
