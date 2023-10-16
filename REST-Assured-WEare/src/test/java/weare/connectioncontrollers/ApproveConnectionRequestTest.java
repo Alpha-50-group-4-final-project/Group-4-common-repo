@@ -3,6 +3,7 @@ package weare.connectioncontrollers;
 import base.BaseTest;
 import io.restassured.http.ContentType;
 import jdk.jfr.Label;
+import org.springframework.util.SocketUtils;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -19,9 +20,8 @@ public class ApproveConnectionRequestTest extends BaseTest {
     @Test
     @Label("Jira - FPW-245")
     public void approveConnectionRequest_When_RequestApprovalPosted() {
-        if (isNull(connectionId)) {
-            getConnectionRequest();
-        }
+        getConnectionRequest();
+
         baseURI = format("%s%s", BASE_URL, format(APPROVE_REQUEST, userReceivingRequestId, connectionId));
 
         response = given()
@@ -34,7 +34,7 @@ public class ApproveConnectionRequestTest extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertTrue(response.asString().matches(".* approved request of .*"),
-                format("Incorrect response. Expected: %s approved request of %s.", regularUserId, USERNAME));
+                format("Incorrect response. Expected: %s approved request of %s.", userReceivingRequestName, registeredUsername));
         String resp = response.body().asPrettyString();
         int i = resp.indexOf(" ");
         assertEquals(resp.substring(0, i), userReceivingRequestName,

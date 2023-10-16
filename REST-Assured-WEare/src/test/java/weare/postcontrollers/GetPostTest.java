@@ -17,7 +17,7 @@ import static org.testng.Assert.assertNotNull;
 public class GetPostTest extends BaseTest {
     @Test
     @Label("Jira - FPW-246")
-    public static void getAllPost_When_SearchedForALlPosts() {
+    public static void getAllPost_When_SearchedForAllPosts() {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
 
         response = getRequest(baseURI);

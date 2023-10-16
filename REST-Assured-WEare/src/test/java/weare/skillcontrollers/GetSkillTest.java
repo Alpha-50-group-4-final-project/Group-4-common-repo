@@ -8,7 +8,6 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -41,9 +40,8 @@ public class GetSkillTest extends BaseTest {
     @Test
     @Label("Jira - FPW-242")
     public void getOneSkillById_When_SearchedForSkillById() {
-        if (isNull(skillId)) {
-            createSkill();
-        }
+        createSkill();
+
         int intSkillId = Integer.parseInt(skillId);
         baseURI = format("%s%s", BASE_URL, SKILLS_GET_ONE);
 

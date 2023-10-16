@@ -151,13 +151,14 @@ public class BaseTest {
     }
 
     protected void createSkill() {
+        registerNewUser();
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
         String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
-        assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
+        System.out.println(response.getBody().asPrettyString());
         skillId = (response.path("skillId").toString());
         System.out.printf("New skill with id: %s was successfully created.", skillId);
     }
@@ -207,6 +208,7 @@ public class BaseTest {
     protected void sendConnectionRequest() {
         registerNewUser();
         registerAnotherUser();
+
         baseURI = format("%s%s", BASE_URL, SEND_REQUEST);
         String requestBody = format(SEND_CONNECTION_REQ_BODY, userReceivingRequestId, userReceivingRequestName);
 

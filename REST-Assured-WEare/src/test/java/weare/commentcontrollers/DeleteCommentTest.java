@@ -17,9 +17,7 @@ public class DeleteCommentTest extends BaseTest {
     @Test
     @Label("Jira - FPW-258")
     public void commentDeleted_When_DeleteRequestSent() {
-        if (isNull(commentId)) {
-            createComment();
-        }
+        createComment();
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
@@ -30,6 +28,6 @@ public class DeleteCommentTest extends BaseTest {
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertEquals("", response.body().asString(), "Response body isn't empty.");
         System.out.println("Comment deleted.");
-        commentId=null;
+        commentId = null;
     }
 }
