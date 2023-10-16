@@ -44,4 +44,4 @@ To run the Postman collection and generate reports, execute the provided BAT fil
 - Automatically locate the Postman collection and environment files.
 - Run the tests using Newman.
 - Generate an HTML report.
-- Open the HTML report in your default web browser after the tests are completed.
+- Display the HTML report using the system's default program for viewing HTML files once the tests are completed.
