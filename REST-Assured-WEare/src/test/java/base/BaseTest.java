@@ -151,9 +151,8 @@ public class BaseTest {
     }
 
     protected void createSkill() {
-        registerNewUser();
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
-        String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, SKILL, SKILL_ID);
+        String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, format(SKILL+timeStamp()), SKILL_ID);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)

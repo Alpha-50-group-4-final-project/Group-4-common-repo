@@ -29,7 +29,8 @@ public class Constants {
     public static String COMMENT_CONTENT_1001_CHARS = faker.lorem().characters(1001,true,true);
     public static String EDITED_COMMENT_CONTENT = faker.lorem().sentence(7);
     public static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
-    public static String SKILL = faker.job().keySkills() + " " +timeStamp;
+    public static String SKILL = faker.job().keySkills();
+    public static String EDIT_SKILL = faker.job().keySkills() + timeStamp;
     public static int CATEGORY_ID_SKILL = 100;
     public static String SKILL_ID = faker.random().nextInt(1, 999).toString();
 

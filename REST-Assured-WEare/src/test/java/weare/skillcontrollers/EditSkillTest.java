@@ -22,7 +22,7 @@ public class EditSkillTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, SKILLS_EDIT);
 
         response = requestSpecificationWithAuthentication()
-                .queryParam("skill", SKILL)
+                .queryParam("skill", EDIT_SKILL)
                 .queryParam("skillId", intSkillId)
                 .put(baseURI);
         int statusCode = response.getStatusCode();
