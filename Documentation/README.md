@@ -11,27 +11,27 @@
 ---
 
 ## Test Plan
-For details, please refer to the [Test Plan document](./Team4{win} - TEST_PLAN_WEare social network_v4.docx).
+For details, please refer to the [Test Plan document](./Team4{win}-TEST_PLAN_WEare social network_v4.docx).
 
 ---
 
 ## Template Test Cases
-Use this template for drafting new test cases. The document can be found [here](./Team4{win} - Test_Cases_Template.docx).
+Use this template for drafting new test cases. The document can be found [here](./Team4{win}-Test_Cases_Template.docx).
 
 ---
 
 ## Template Bug Reports
-Utilize this template for logging new bugs. The document is available [here](./Team4{win} - Bug_template.docx).
+Utilize this template for logging new bugs. The document is available [here](./Team4{win}-Bug_template.docx).
 
 ---
 
 ## Social Network Test Requirements
-The document outlining the specific requirements for QA can be found [here](./Team4{win} - Social_Network_Test_Requirements.docx).
+The document outlining the specific requirements for QA can be found [here](./Team4{win}-Social_Network_Test_Requirements.docx).
 
 ---
 
 ## Social Network Project Specification
-The application specifications are available [here](./Team4{win} - Social_Network_Project_Specification.docx).
+The application specifications are available [here](./Team4{win}-Social_Network_Project_Specification.docx).
 
 ---
 
