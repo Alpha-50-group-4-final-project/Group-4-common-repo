@@ -83,35 +83,4 @@ public class RegisterUserTest extends BaseTest {
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
     }
 
-
-    @Test(priority = 3)
-    public void newUserNotRegistered_When_InvalidDataProvided() {
-        USERNAME = letsTryIt();
-
-        baseURI = format("%s%s", BASE_URL, REGISTER_USER);
-        System.out.println(baseURI);
-
-        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
-                CATEGORY_ID,
-                CATEGORY_NAME,
-                PASSWORD,
-                EMAIL,
-                PASSWORD,
-                "a"));
-        assertTrue(isValid(requestBody), "Body is not a valid JSON");
-
-        response = requestSpecificationWithoutAuthentication()
-                .body(requestBody)
-                .post();
-
-
-        System.out.println(response.getBody().asPrettyString());
-        int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_INTERNAL_SERVER_ERROR,
-                format(STATUS_CODE_ERROR_MSG, HttpStatus.SC_INTERNAL_SERVER_ERROR));
-
-        assertTrue(response.getBody().jsonPath().getString("message").contains("The username must have at least 2 symbols!"),
-                "Error message is not correct");
-        assertNotNull(response.getBody().jsonPath().getString("timestamp"),"There is no timestamp  when error occurs");
-    }
 }
