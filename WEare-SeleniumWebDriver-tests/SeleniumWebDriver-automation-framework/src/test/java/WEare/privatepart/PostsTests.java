@@ -3,36 +3,26 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@Testable
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PostsTests extends BaseTest {
     private static String postBody = getUIMappingByKey("postPage.postMessage");
-
     @BeforeAll
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
         apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         login(usernameRandom, passwordRandom);
     }
-
     @AfterAll
-    public void returnHome() {
-//        homePage.navigateToHomePage();
-//        if (actions.isElementVisible("homePage.LogoutButton")) {
-//            actions.clickElement("homePage.LogoutButton");
-//        }
-
+    public static void returnHome() {
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
     @Test
     @Label("Jira FPW-70")
     @Tag("HappyPath")
+    @Tag("SmokeTest")
     public void createPublicPost_when_addNewPostButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.clickAddNewPost();
@@ -58,6 +48,7 @@ public class PostsTests extends BaseTest {
     @Test
     @Label("Jira FPW-94")
     @Tag("HappyPath")
+    @Tag("SmokeTest")
     public void likePublicPost_when_likeButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.likePostByUsername(usernameRandom);
@@ -67,6 +58,7 @@ public class PostsTests extends BaseTest {
     @Test
     @Label("Jira FPW-96")
     @Tag("HappyPath")
+    @Tag("SmokeTest")
     public void dislikePublicPost_when_dislikeButtonClicked() {
         api.likePost(usernameRandom, passwordRandom, apiPost.postId);
         homePage.navigateToLatestPosts();

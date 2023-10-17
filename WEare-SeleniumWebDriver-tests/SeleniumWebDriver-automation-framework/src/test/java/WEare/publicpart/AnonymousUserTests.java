@@ -5,11 +5,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import jdk.jfr.Label;
 
-import org.junit.platform.suite.api.Suite;
-
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@Suite
 public class AnonymousUserTests extends BaseTest {
     private static String firstNameUpdate = getUIMappingByKey("personalProfilePage.firstName");
 

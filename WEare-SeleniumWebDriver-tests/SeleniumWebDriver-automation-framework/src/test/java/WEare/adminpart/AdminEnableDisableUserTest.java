@@ -4,7 +4,6 @@ import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 @Testable

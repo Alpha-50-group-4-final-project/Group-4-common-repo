@@ -8,10 +8,8 @@ import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.api.WEareApi.USER_ID;
 
-@Testable
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ConnectToUserTests extends BaseTest {
 
+public class ConnectToUserTests extends BaseTest {
 
     private static final String PASSWORD = "123456";
     public static String SECOND_USER;

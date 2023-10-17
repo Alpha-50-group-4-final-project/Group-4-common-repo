@@ -3,10 +3,7 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
-@Testable
 public class EditProfileTests extends BaseTest {
 
     public static final String SELF_DESCRIPTION = "Hello its my first time here.Im trying to be smart but im not.";

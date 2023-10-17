@@ -2,10 +2,6 @@ package pages.WEare;
 
 import org.openqa.selenium.WebDriver;
 
-import java.text.SimpleDateFormat;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static com.telerikacademy.testframework.Utils.LOGGER;
 import static java.lang.String.format;
 
@@ -14,7 +10,6 @@ public class PersonalProfilePage extends WEareBasePage {
     public PersonalProfilePage(WebDriver driver) {
         super(driver, "");
     }
-
 
     public void navigateToEditProfileMenu() {
         actions.navigateToPage("http://localhost:8081/");
@@ -42,7 +37,6 @@ public class PersonalProfilePage extends WEareBasePage {
 
     public void fillBirthdayField(String date) {
         actions.waitForElementPresent("personalProfilePageBirthdayField");
-//        actions.clearingFiled("personalProfilePageBirthdayField");
         actions.typeValueInField(date, "personalProfilePageBirthdayField");
         LOGGER.info(format("Birthday date was set to : \"%s\"",date));
     }

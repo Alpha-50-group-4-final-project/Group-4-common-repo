@@ -59,7 +59,6 @@ public class LoginPage extends WEareBasePage {
             actions.assertElementAttribute("homePage.LogoutButton", "innerText", "LOGOUT");
             LOGGER.info("User was successfully logged in.");
         }catch (AssertionFailedError e) {
-            Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
             Assertions.fail("User was not logged in.");
         }
     }

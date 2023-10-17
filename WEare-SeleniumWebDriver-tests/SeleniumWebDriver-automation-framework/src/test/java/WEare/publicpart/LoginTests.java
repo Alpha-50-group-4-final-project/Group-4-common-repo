@@ -2,23 +2,25 @@ package WEare.publicpart;
 
 import WEare.BaseTest;
 
+import WEare.MyTestWatcher;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 
+@ExtendWith(MyTestWatcher.class)
 public class LoginTests extends BaseTest {
 
     @BeforeAll
     public static void registerUser_when_ValidCredentialsArePassed() {
-       api.registerUser(usernameRandom,passwordRandom);
+        api.registerUser(usernameRandom, passwordRandom);
     }
+
     @BeforeEach
-    public  void takeMeToLoginForm(){
+    public void takeMeToLoginForm() {
         homePage.navigateToPage();
         homePage.navigateToLoginPage();
     }
@@ -26,12 +28,14 @@ public class LoginTests extends BaseTest {
     @Test
     @Label("Jira FPW-23")
     @Tag("HappyPath")
+    @Tag("SmokeTest")
     public void login_when_validCredentialsArePassed() {
         loginPage.fillUsername(usernameRandom);
         loginPage.fillPassword(passwordRandom);
         loginPage.submitForm();
         loginPage.validateLoggedIn();
         loginPage.clickOnLogOutButton();
+
     }
 
     @ParameterizedTest

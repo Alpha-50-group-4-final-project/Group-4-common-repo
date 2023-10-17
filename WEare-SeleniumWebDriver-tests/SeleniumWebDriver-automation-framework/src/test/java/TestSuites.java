@@ -1,11 +1,9 @@
-import org.junit.jupiter.api.Tag;
+
 import org.junit.platform.suite.api.IncludeTags;
-import org.junit.platform.suite.api.SelectClasses;
+
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
-import WEare.privatepart.*;
-import WEare.publicpart.*;
-import WEare.adminpart.*;
+
 
 
 public class TestSuites {

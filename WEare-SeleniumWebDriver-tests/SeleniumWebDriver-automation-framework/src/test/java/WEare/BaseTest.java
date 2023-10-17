@@ -8,24 +8,23 @@ import com.telerikacademy.testframework.api.WEareApi;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.WEare.*;
 
-import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
-import static java.lang.String.format;
 
 
+@ExtendWith(MyTestWatcher.class)
 public class BaseTest {
 
     public static String usernameRandom;
     public static String lastNameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    protected static UserActions actions;
 
     public static WEareApi api;
     public static PostModel apiPost;

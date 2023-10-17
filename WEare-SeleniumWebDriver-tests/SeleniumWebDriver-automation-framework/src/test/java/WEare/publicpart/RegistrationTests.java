@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
+
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
-@Testable
+
 public class RegistrationTests extends BaseTest {
 
     @Tag("Happy path")
+    @Tag("SmokeTest")
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();
