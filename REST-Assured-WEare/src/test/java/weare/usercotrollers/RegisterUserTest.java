@@ -6,7 +6,6 @@ import base.BaseTest;
 import io.restassured.response.Response;
 
 import jdk.jfr.Label;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.*;
@@ -21,12 +20,13 @@ import static org.testng.Assert.*;
 
 public class RegisterUserTest extends BaseTest {
 
-    public static final String STATUS_CODE_ERROR_MSG = "Incorrect status code. Expected %s.";
+
 
     @Test(priority = 1)
     @Label("Jira - FPW-233")
     public void newUserRegistered_When_ValidDataProvided() {
-        USERNAME = letsTryIt();
+
+     USERNAME=letsTryIt();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -41,6 +41,7 @@ public class RegisterUserTest extends BaseTest {
         response = requestSpecificationWithoutAuthentication()
                 .body(requestBody)
                 .post();
+        System.out.println(response.getBody().asPrettyString());
 
         String responseBodyText = response.asString();
         int statusCode = response.getStatusCode();
@@ -52,7 +53,6 @@ public class RegisterUserTest extends BaseTest {
         registeredUsername = responseBody[3];
         usernames.add(registeredUsername);
         System.out.printf("User named %s with id %s created.", registeredUsername,regularUserId );
-
     }
 
     @Test(priority = 2)
@@ -81,6 +81,33 @@ public class RegisterUserTest extends BaseTest {
         String[] responseBody = response.asString().split(" ");
         adminUserId = responseBody[6];
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
+    }
+    @Test(priority = 1)
+    @Label("Jira - FPW-268")
+    public void newUserRegistered_When_UsernameNumeric() {
+        USERNAME ="12345678";
+        System.out.println(USERNAME.length());
+        System.out.println(USERNAME);
+        baseURI = format("%s%s", BASE_URL, REGISTER_USER);
+
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
+                CATEGORY_ID,
+                CATEGORY_NAME,
+                PASSWORD,
+                EMAIL,
+                PASSWORD,
+                USERNAME));
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        response = requestSpecificationWithoutAuthentication()
+                .body(requestBody)
+                .post();
+        System.out.println(response.getBody().asPrettyString());
+
+
+        int statusCode = response.getStatusCode();
+        assertEquals(statusCode, 400, format("Incorrect status code. Expected: %s.", 400));
+
     }
 
 }

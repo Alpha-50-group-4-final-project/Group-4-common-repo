@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Unhappy suite -WE are social network API testing">
+<suite name="Happy path suite -WE are social network API testing">
     <test name="User Controllers">
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest">
@@ -8,6 +8,11 @@
                     <include name="newUserRegistered_When_ValidDataProvided"/>
                 <include name="newAdminRegistered_When_ValidDataProvided"/>
             </methods>
+            </class>
+            <class name="weare.login.LoginUserTest">
+                <methods>
+                    <include name="userLoggedIn_When_ValidDataProvided"/>DeleteAllExistingUsers
+                </methods>
             </class>
             <class name="weare.usercotrollers.UpgradeUserTests">
                 <methods>
@@ -19,6 +24,7 @@
                 <methods>
                     <include name="getAllUsers_When_SearchedForAllUsers"/>
                     <include name="getUsersPostById_When_SearchedForPost"/>
+                    <include name="getUserById_When_SearchedForUserById"/>
                 </methods>
             </class>
         </classes>
@@ -81,6 +87,8 @@
             <methods>
                 <include name="getAllComments_When_SearchedForAllComments"/>
                 <include name="getCommentsByPost_When_SearchedForCommentsByPost"/>
+                <include name="getNoCommentsByPost_When_NoCommentsOnPost"/>
+                <include name="getComment_When_SearchedByCommentId"/>
             </methods>
         </class>
             <class name="weare.commentcontrollers.DeleteCommentTest">
@@ -106,6 +114,12 @@
                 <methods>
                     <include name="getAllExistingSkills_When_SearchedForAllSkills"/>
                     <include name="getOneSkillById_When_SearchedForSkillById"/>
+                </methods>
+            </class>
+            <class name="weare.skillcontrollers.DeleteSkillTest">
+                <methods>
+                    <include name="getAllExistingSkills_When_SearchedForAllSkills"/>
+                    <include name="skillDeleted_When_ValidDataProvided"/>
                 </methods>
             </class>
         </classes>

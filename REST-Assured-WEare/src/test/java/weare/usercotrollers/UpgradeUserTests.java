@@ -22,6 +22,7 @@ public class UpgradeUserTests extends BaseTest {
     @Test
     @Label("Jira - FPW-237")
     public void personalProfileUpgraded_When_ValidDataProvided() {
+
         if (isNull(regularUserId)) {
             registerNewUser();
         }
@@ -40,6 +41,7 @@ public class UpgradeUserTests extends BaseTest {
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
+
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertEquals(response.getBody().jsonPath().get("firstName"), FIRSTNAME,
                 "Provided first name is not equal to response.");

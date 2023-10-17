@@ -11,6 +11,8 @@ public class Constants {
     public static final Faker faker = new Faker();
     public static final String EMAIL = faker.internet().emailAddress();
     public static String USERNAME ;  // Generate a simple first name
+   static String pattern = "\\b[A-Z][a-zA-Z]*\\b";
+    public static String nameUser= faker.lorem().characters(3,31,true,false);
     public static final String PASSWORD = "Pass_12345";
     public static final String BASE_URL = "http://localhost:8081/";
     public static final String CATEGORY_ID = "100";
@@ -35,7 +37,7 @@ public class Constants {
     public static String SKILL_ID = faker.random().nextInt(1, 999).toString();
 
     public static String letsTryIt(){
-        return faker.name().firstName();
+        return faker.lorem().characters(3,25,true,false);
     }
     public static String PUBLIC_CONTENT = "true";
     public static String PRIVATE_CONTENT = "false";

@@ -2,13 +2,12 @@ package weare.postcontrollers;
 
 import base.BaseTest;
 import jdk.jfr.Label;
-import org.apache.http.HttpStatus;
+
 import org.testng.annotations.Test;
 
 import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.DELETE_POST;
 import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.post;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.assertEquals;

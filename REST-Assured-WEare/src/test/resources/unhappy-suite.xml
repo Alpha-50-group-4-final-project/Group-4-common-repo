@@ -5,7 +5,7 @@
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest">
             <methods>
-                    <include name="newUserNotRegistered_When_ValidDataProvided"/>
+                    <include name="newUserRegistered_When_UsernameNumeric"/>
             </methods>
             </class>
         </classes>
