@@ -13,7 +13,7 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 
 public class RegistrationTests extends BaseTest {
 
-    @Tag("Happy path")
+    @Tag("Happypath")
     @Tag("SmokeTest")
     @DisplayName("Register new user with valid credentials are used")
     @Description("As new product user i want to register myself into the system.")
@@ -32,6 +32,8 @@ public class RegistrationTests extends BaseTest {
     @ParameterizedTest
     @CsvSource({ "а", "''"})
     @Tag("UnHappyPath")
+    @DisplayName("Register new user with invalid username")
+    @Description("As new product user i want to register myself into the system.")
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -45,6 +47,8 @@ public class RegistrationTests extends BaseTest {
     @ParameterizedTest
     @CsvSource({ "anna@sd.comsa", "''"})
     @Tag("UnHappyPath")
+    @DisplayName("Register new user with invalid email")
+    @Description("As new product user i want to register myself into the system.")
     public void registerNewUser_when_invalidEmailPassed(String email){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -58,6 +62,8 @@ public class RegistrationTests extends BaseTest {
     @ParameterizedTest
     @CsvSource({ "12345", "''"})
     @Tag("UnHappyPath")
+    @DisplayName("Register new user with invalid password")
+    @Description("As new product user i want to register myself into the system.")
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -69,6 +75,8 @@ public class RegistrationTests extends BaseTest {
     }
     @Test
     @Tag("UnHappyPath")
+    @DisplayName("Register new user without choosing option.")
+    @Description("As new product user i want to register myself into the system.")
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         String name=faker.name().firstName();
         homePage.navigateToRegisterPage();
