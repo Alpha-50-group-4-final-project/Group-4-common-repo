@@ -1,6 +1,8 @@
 package WEare.publicpart;
 
 import WEare.BaseTest;
+import jdk.jfr.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +15,8 @@ public class RegistrationTests extends BaseTest {
 
     @Tag("Happy path")
     @Tag("SmokeTest")
+    @DisplayName("Register new user with valid credentials are used")
+    @Description("As new product user i want to register myself into the system.")
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();

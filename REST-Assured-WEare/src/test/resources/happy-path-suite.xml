@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Unhappy suite -WE are social network API testing">
+    <test name="User Controllers">
+        <classes>
+            <class name="weare.usercotrollers.RegisterUserTest">
+            <methods>
+                    <include name="newUserRegistered_When_ValidDataProvided"/>
+                <include name="newAdminRegistered_When_ValidDataProvided"/>
+            </methods>
+            </class>
+            <class name="weare.usercotrollers.UpgradeUserTests">
+                <methods>
+                    <include name="personalProfileUpgraded_When_ValidDataProvided"/>
+                    <include name="expertiseProfileUpgraded_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.usercotrollers.GetUserTests">
+                <methods>
+                    <include name="getAllUsers_When_SearchedForAllUsers"/>
+                    <include name="getUsersPostById_When_SearchedForPost"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Post Controllers">
+        <classes>
+            <class name="weare.postcontrollers.CreatePostsTests">
+                <methods>
+                    <include name="postCreated_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.postcontrollers.EditPostTests">
+                <methods>
+                    <include name="postEdited_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.postcontrollers.LikeAndUnlikePostTest">
+                <methods>
+                    <include name="postLiked_When_ValidRequestSent"/>
+                    <include name="postUnliked_When_ValidRequestSent"/>
+                </methods>
+            </class>
+            <class name="weare.postcontrollers.GetPostTest">
+                <methods>
+                    <include name="getAllPost_When_SearchedForAllPosts"/>
+                    <include name="getCommentsOnPost_When_SearchedForComments"/>
+                </methods>
+            </class>
+            <class name="weare.postcontrollers.DeletePostTest">
+                <methods>
+                    <include name="postDeleted_When_DeleteRequestSent"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Comment Controllers">
+        <classes>
+            <class name="weare.commentcontrollers.CreateCommentTests">
+                <methods>
+                    <include name="commentCreated_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.commentcontrollers.EditCommentTests">
+                <methods>
+                    <include name="commentEdited_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.commentcontrollers.LikeAndUnlikeCommentTests">
+                <methods>
+                    <include name="commentLiked_When_ValidRequestSent"/>
+                    <include name="commentUnliked_When_ValidRequestSent"/>
+                </methods>
+            </class>
+            <class name="weare.commentcontrollers.EditCommentTests">
+                <methods>
+                    <include name="commentEdited_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.commentcontrollers.GetCommentTests">
+            <methods>
+                <include name="getAllComments_When_SearchedForAllComments"/>
+                <include name="getCommentsByPost_When_SearchedForCommentsByPost"/>
+            </methods>
+        </class>
+            <class name="weare.commentcontrollers.DeleteCommentTest">
+                <methods>
+                    <include name="commentDeleted_When_DeleteRequestSent"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Skill Controllers">
+        <classes>
+            <class name="weare.skillcontrollers.CreateSkillTest">
+                <methods>
+                    <include name="skillCreated_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.skillcontrollers.EditSkillTest">
+                <methods>
+                    <include name="skillEdited_When_ValidDataProvided"/>
+                </methods>
+            </class>
+            <class name="weare.skillcontrollers.GetSkillTest">
+                <methods>
+                    <include name="getAllExistingSkills_When_SearchedForAllSkills"/>
+                    <include name="getOneSkillById_When_SearchedForSkillById"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Connection Controllers">
+        <classes>
+            <class name="weare.connectioncontrollers.SendConnectionRequestTest">
+                <methods>
+                    <include name="sendConnectionRequest_When_RequestPosted"/>
+                </methods>
+            </class>
+            <class name="weare.connectioncontrollers.GetConnectionRequestTest">
+                <methods>
+                    <include name="getConnectionRequestTest_When_RequestSent"/>
+                </methods>
+            </class>
+            <class name="weare.connectioncontrollers.ApproveConnectionRequestTest">
+                <methods>
+                    <include name="approveConnectionRequest_When_RequestApprovalPosted"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

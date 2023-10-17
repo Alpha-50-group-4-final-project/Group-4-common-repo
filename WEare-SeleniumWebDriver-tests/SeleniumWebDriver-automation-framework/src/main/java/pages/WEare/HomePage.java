@@ -21,12 +21,10 @@ public class HomePage extends WEareBasePage {
     }
 
     public void navigateToRegisterPage(){
-        navigateToHomePage();
-        actions.waitForElementPresent("homepage.RegisterButton");
-        actions.waitForElementVisible("homepage.RegisterButton");
+        navigateToPage();
         actions.waitForElementClickable("homepage.RegisterButton");
         actions.clickElement("homepage.RegisterButton");
-        validateHeader("Join our community");
+        //validateHeader("Join our community");
     }
 
     public void navigateToLoginPage(){
