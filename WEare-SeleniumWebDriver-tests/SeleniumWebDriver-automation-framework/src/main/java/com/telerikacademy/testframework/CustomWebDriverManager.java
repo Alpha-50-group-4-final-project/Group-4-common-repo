@@ -1,22 +1,15 @@
 package com.telerikacademy.testframework;
 
 import com.telerikacademy.testframework.enums.BrowserTypes;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
-import io.qameta.allure.Step;
-import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import java.io.ByteArrayInputStream;
+import static com.telerikacademy.testframework.Utils.getConfigPropertyByKey;
 
 public class CustomWebDriverManager {
 
     public enum CustomWebDriverManagerEnum {
         INSTANCE;
-        private  WebDriver driver = setupBrowser();
+        private WebDriver driver = setupBrowser();
 
         public void quitDriver() {
             if (driver != null) {
@@ -24,6 +17,7 @@ public class CustomWebDriverManager {
                 driver = null;
             }
         }
+
         public void closeDriver() {
             if (driver != null) {
                 driver.close();
@@ -32,18 +26,21 @@ public class CustomWebDriverManager {
         }
 
 
-        public  WebDriver getDriver() {
+        public WebDriver getDriver() {
             if (driver == null) {
                 setupBrowser();
             }
             return driver;
         }
 
-        private WebDriver setupBrowser() {
-            WebDriver driver = BrowserTypes.choseBrowser(BrowserTypes.CHROME);
+        public WebDriver setupBrowser() {
+            String chosenBrowser = getConfigPropertyByKey("config.chooseBrowser");
+            BrowserTypes browser = BrowserTypes.valueOf(chosenBrowser);
+            WebDriver driver = BrowserTypes.choseBrowser(browser);
             driver.manage().window().maximize();
             this.driver = driver;
             return driver;
         }
+
     }
 }

@@ -19,9 +19,9 @@ Our team employs an Agile Scrumban methodology, and our activities are organized
 
 ## Repository Structure
 
-- [Documentation](./Documentation/README.md) - Contains test plans, test cases, and other QA-related documents.
-- [New framework](./New%20framework/README.md) - Holds the Java-based test automation framework following the Page Object Model (POM) pattern.
-- [Postman Collections](./Postman%20Collections/README.md) - Includes Postman collections for API testing.
-- [REST-Assured-WEare](./REST-Assured-WEare/README.md) - Contains REST Assured tests for API validation.
+- [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation) - Contains test plans, test cases, and other QA-related documents.
+- [WEare Selenium WebDriver Tests](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/WEare-SeleniumWebDriver-tests/SeleniumWebDriver-automation-framework) - Holds our Java-based test automation framework for UI testing.
+- [Postman Collections](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections) - Includes Postman collections for API testing.
+- [REST-Assured-WEare](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare) - Contains REST Assured tests for API validation.
 
 ---
