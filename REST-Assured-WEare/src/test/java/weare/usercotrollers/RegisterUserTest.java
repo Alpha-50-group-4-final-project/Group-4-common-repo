@@ -30,7 +30,7 @@ public class RegisterUserTest extends BaseTest {
         try {
             USERNAME = nameUnique();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            USERNAME=faker.name().firstName();
         }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
@@ -122,7 +122,7 @@ public class RegisterUserTest extends BaseTest {
         try {
             USERNAME = nameUnique();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            USERNAME=faker.name().firstName();
         }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 

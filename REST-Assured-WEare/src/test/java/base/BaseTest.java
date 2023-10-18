@@ -86,7 +86,7 @@ public class BaseTest {
             try {
                 USERNAME = nameUnique();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+               USERNAME=faker.name().firstName();
             }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -107,7 +107,7 @@ public class BaseTest {
         try {
             USERNAME = nameUnique();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            USERNAME=faker.name().firstName();
         }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
