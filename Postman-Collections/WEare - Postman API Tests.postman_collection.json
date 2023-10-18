@@ -1251,6 +1251,71 @@
 					"name": "Upgrade Expertise Profile (FPW-236)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get All Users (FPW-232)",
 							"event": [
 								{
@@ -4548,40 +4613,6 @@
 									"key": "requestId",
 									"value": "{{connectID}}"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout user Two",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"\r",
-									"pm.test(\"Validate HTML response values after logout\",function(){\r",
-									"const $ = cheerio.load(pm.response.text());\r",
-									"link = $('a');\r",
-									"pm.expect($(link).attr('href').includes('Sign In')).not.to.be.null;\r",
-									"pm.expect($(link).attr('href').includes('Create Account')).not.to.be.null;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_URL}}/logout",
-							"host": [
-								"{{base_URL}}"
-							],
-							"path": [
-								"logout"
 							]
 						}
 					},
