@@ -71,7 +71,7 @@ The application is Dockerized and runs through IntelliJ with a shared database. 
 ---
 
 ## Newman Reports
-For a detailed guide on how to run Postman collections using Newman and generate reports, please refer to [Newman Reports](./https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections/newman-reports).
+For a detailed guide on how to run Postman collections using Newman and generate reports, please refer to [Newman Reports](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections/newman-reports).
 
 ---
 
