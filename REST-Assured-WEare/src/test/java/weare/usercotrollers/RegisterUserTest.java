@@ -51,7 +51,7 @@ public class RegisterUserTest extends BaseTest {
         regularUserId = responseBody[6];
         registeredUsername = responseBody[3];
         usernames.add(registeredUsername);
-        System.out.printf("User named %s with id %s created.", registeredUsername,regularUserId );
+        System.out.printf("User named %s with id %s created.", registeredUsername, regularUserId);
 
     }
 
@@ -82,5 +82,34 @@ public class RegisterUserTest extends BaseTest {
         adminUserId = responseBody[6];
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
     }
+
+    @Test(priority = 1)
+    @Label("Jira - FPW-268")
+    public void newUserRegistered_When_UsernameNumeric() {
+        USERNAME = "12345678";
+        System.out.println(USERNAME.length());
+        System.out.println(USERNAME);
+        baseURI = format("%s%s", BASE_URL, REGISTER_USER);
+
+        String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
+                CATEGORY_ID,
+                CATEGORY_NAME,
+                PASSWORD,
+                EMAIL,
+                PASSWORD,
+                USERNAME));
+        assertTrue(isValid(requestBody), "Body is not a valid JSON");
+
+        response = requestSpecificationWithoutAuthentication()
+                .body(requestBody)
+                .post();
+        System.out.println(response.getBody().asPrettyString());
+
+
+        int statusCode = response.getStatusCode();
+        assertEquals(statusCode, 400, format("Incorrect status code. Expected: %s.", 400));
+
+    }
+
 
 }
