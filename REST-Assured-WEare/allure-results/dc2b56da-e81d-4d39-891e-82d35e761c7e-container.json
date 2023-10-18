@@ -1,1 +1,0 @@
-{"uuid":"dc2b56da-e81d-4d39-891e-82d35e761c7e","name":"Default Suite","children":["f7fde1f7-024d-422e-be3b-162afff6cd11"],"befores":[],"afters":[{"name":"deleteDataBase","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1696959701895,"stop":1696959702725}],"start":1696959697053,"stop":1696959702726}
