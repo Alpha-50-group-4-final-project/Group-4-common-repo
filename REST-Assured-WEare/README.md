@@ -62,7 +62,7 @@ These XML suite files allow you to configure which specific tests to run.
 ---
 
 ## REST Assured WEare Reports
-For detailed reports on the API tests, please refer to the [REST Assured WEare Reports](./REST%20Assured%20WEare%20Reports/README.md).
+For detailed reports on the API tests, please refer to the [REST Assured WEare Reports](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare/rest-assured-weare-reports).
 
 ---
 
