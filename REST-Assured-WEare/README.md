@@ -22,38 +22,52 @@ This folder contains the REST-Assured framework used for API testing of the WEar
 - **TestNG**: Version 7.8.0
 - **JavaFaker**: Version 1.0.2
 - **MySQL Connector**: Version 5.1.6
+- **Allure TestNG**: Version 2.24.0
+- **Spring Security Core**: Version 5.5.3
 
 ---
 
 ## Project Structure
 
 - **src/main/java/com/api/utils**
-  - `Constants.java`: Constants used across tests.
-  - `Endpoints.java`: Endpoints for API requests.
-  - `Helper.java`: Helper methods, including a method for JSON validation.
-  - `RequestJSON.java`: Request bodies for API calls.
-  
+  - `Constants.java`
+  - `Endpoints.java`
+  - `Helper.java`
+  - `RequestJSON.java`
+
+These classes provide various utilities to assist in API testing.
+
 - **src/test/java/weare**
-  - `BaseTest.java`: Base test class with setup and teardown methods.
-  - `CommentsTests.java`: Tests related to comments.
-  - `ConnectionTest.java`: Tests related to user connections.
-  - `LoginUserTest.java`: Tests for user login.
-  - `PostTest.java`: Tests related to posts.
-  - `RegisterUserTest.java`: Tests for user registration.
-  - `SkillsTest.java`: Tests related to skills.
+  - `commentcontrollers`
+  - `connectioncontrollers`
+  - `login`
+  - `postcontrollers`
+  - `skillcontrollers`
+  - `usercotrollers`
+
+These packages are organized by functionality, allowing you to find and run tests specific to different features of the application.
 
 - **src/test/resources**
-  - `main-suite.xml`: TestNG suite configuration.
+  - `commentcontrollers-suite.xml`
+  - `connectioncontroller-suite.xml`
+  - `happy-path-suite.xml`
+  - `main-suite.xml`
+  - `postcontroller-suite.xml`
+  - `skillscontroller-suite.xml`
+  - `unhappy-suite.xml`
+  - `usercontrollers-suite.xml`
+
+These XML suite files allow you to configure which specific tests to run.
 
 ---
 
 ## REST Assured WEare Reports
-For detailed reports on the API tests, please refer to the [REST Assured WEare Reports](./REST%20Assured%20WEare%20Reports/README.md).
+For detailed reports on the API tests, please refer to the [REST Assured WEare Reports](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare/rest-assured-weare-reports).
 
 ---
 
 ## API Documentation
 
-- **Swagger**: The API documentation for the WEare Social Network is available [here](http://localhost:8081/swagger-ui.html#/).
+**Swagger**: The API documentation for the 'WEare' Social Network is accessible via Swagger, but only when the application is actively running. You can view it [here](http://localhost:8081/swagger-ui.html#/).
 
 ---
