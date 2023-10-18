@@ -43,7 +43,16 @@ This folder contains the REST-Assured framework used for API testing of the WEar
   - `SkillsTest.java`: Tests related to skills.
 
 - **src/test/resources**
-  - `main-suite.xml`: TestNG suite configuration.
+  - `commentcontrollers-suite.xml`
+  - `connectioncontroller-suite.xml`
+  - `happy-path-suite.xml`
+  - `main-suite.xml`
+  - `postcontroller-suite.xml`
+  - `skillscontroller-suite.xml`
+  - `unhappy-suite.xml`
+  - `usercontrollers-suite.xml`
+
+These XML suite files allow you to configure which specific tests to run.
 
 ---
 
