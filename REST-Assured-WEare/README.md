@@ -32,15 +32,16 @@ This folder contains the REST-Assured framework used for API testing of the WEar
   - `Endpoints.java`: Endpoints for API requests.
   - `Helper.java`: Helper methods, including a method for JSON validation.
   - `RequestJSON.java`: Request bodies for API calls.
-  
+
 - **src/test/java/weare**
-  - `BaseTest.java`: Base test class with setup and teardown methods.
-  - `CommentsTests.java`: Tests related to comments.
-  - `ConnectionTest.java`: Tests related to user connections.
-  - `LoginUserTest.java`: Tests for user login.
-  - `PostTest.java`: Tests related to posts.
-  - `RegisterUserTest.java`: Tests for user registration.
-  - `SkillsTest.java`: Tests related to skills.
+  - `commentcontrollers`
+  - `connectioncontrollers`
+  - `login`
+  - `postcontrollers`
+  - `skillcontrollers`
+  - `usercotrollers`
+
+These packages are organized by functionality, allowing you to find and run tests specific to different features of the application.
 
 - **src/test/resources**
   - `commentcontrollers-suite.xml`
