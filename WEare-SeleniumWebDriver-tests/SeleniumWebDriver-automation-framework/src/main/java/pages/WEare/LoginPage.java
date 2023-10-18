@@ -42,10 +42,12 @@ public class LoginPage extends WEareBasePage {
     }
 
     public void clickOnLogOutButton() {
-            actions.waitForElementClickable("homePage.LogoutButton");
-            actions.waitForElementPresent("homePage.LogoutButton");
-            actions.assertElementPresent("homePage.LogoutButton");
-            actions.clickElement("homePage.LogoutButton");
+            if (actions.isElementVisible("homePage.LogoutButton")) {
+                actions.waitForElementClickable("homePage.LogoutButton");
+                actions.waitForElementPresent("homePage.LogoutButton");
+                actions.assertElementPresent("homePage.LogoutButton");
+                actions.clickElement("homePage.LogoutButton");
+            }
     }
 
     public void validateLoggedIn() {

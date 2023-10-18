@@ -29,7 +29,7 @@ public class EditCommentTests extends BaseTest {
                 .queryParam("content", EDITED_COMMENT_CONTENT)
                 .put(baseURI);
         int statusCode = response.getStatusCode();
-        System.out.println(response.getBody().asPrettyString());
+
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertEquals(response.body().asString(), "", "Response body isn't empty.");
         System.out.printf("Comment with id %s was successfully edited.", commentId);

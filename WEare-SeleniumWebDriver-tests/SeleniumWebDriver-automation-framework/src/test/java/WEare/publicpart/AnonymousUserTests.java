@@ -10,7 +10,7 @@ import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-
+@DisplayName("UnregisteredUserTests")
 public class AnonymousUserTests extends BaseTest {
     private static final String firstNameUpdate = getUIMappingByKey("personalProfilePage.firstName");
 

@@ -5,7 +5,7 @@ import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-
+@DisplayName("AdminEnableDisableFunctionsTests")
 public class AdminEnableDisableUserTest extends BaseTest {
     private static String userForTesting = getUIMappingByKey("adminPage.enableDisable.nameUpdate");
 

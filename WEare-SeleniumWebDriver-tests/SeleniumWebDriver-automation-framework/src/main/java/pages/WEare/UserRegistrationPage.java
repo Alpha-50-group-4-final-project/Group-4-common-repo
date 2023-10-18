@@ -72,4 +72,13 @@ public class UserRegistrationPage extends WEareBasePage {
             LOGGER.info("Registration test fails");
         }
     }
+    public void validateRegistrationErrorMessage(String message) {
+        try {
+           actions.assertElementText("userRegistrationPage.ErrorMessage",message,message);
+            LOGGER.info("User was not registered. Proper error message shown.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Registration was successful although registration criteria not met.");
+            LOGGER.info("Registration test fails");
+        }
+    }
 }

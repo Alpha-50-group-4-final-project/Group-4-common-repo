@@ -5,7 +5,7 @@ import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-
+@DisplayName("CommentsTests")
 public class CommentsTests extends BaseTest {
     private static final String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
     private static final String postBody = getUIMappingByKey("postPage.postMessage");

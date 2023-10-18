@@ -47,7 +47,7 @@ public class GetPostTest extends BaseTest {
         response = getRequest(baseURI);
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
-        System.out.println(response.getBody().asPrettyString());
+
         String resp = response.getBody().asString();
         if (resp.length() > 2) {
             assertNotNull(response.getBody().jsonPath().get("[0].commentId"), "Comment id is empty.");

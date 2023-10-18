@@ -2,20 +2,21 @@ package WEare.publicpart;
 
 import WEare.BaseTest;
 import io.qameta.allure.Description;
+import jdk.jfr.Label;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.platform.commons.annotation.Testable;
 
 import static com.telerikacademy.testframework.Utils.LOGGER;
-@Testable
+@DisplayName("RegistrationTests")
 public class RegistrationTests extends BaseTest {
     @Tag("Happypath")
     @Tag("SmokeTest")
-    @DisplayName("Register new user with valid credentials are used")
-    @Description("As new product user i want to register myself into the system.")
+    @DisplayName("User registration with valid email, username, password (letters)")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-4")
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();
@@ -31,7 +32,8 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "а", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid username")
-    @Description("As new product user i want to register myself into the system.")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-4, Jira FPW-10")
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -46,7 +48,8 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "anna@sd.comsa", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid email")
-    @Description("As new product user i want to register myself into the system.")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-11, Jira FPW-13")
     public void registerNewUser_when_invalidEmailPassed(String email){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -61,7 +64,8 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "12345", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid password")
-    @Description("As new product user i want to register myself into the system.")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-14, Jira FPW-15")
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -74,7 +78,8 @@ public class RegistrationTests extends BaseTest {
     @Test
     @Tag("UnHappyPath")
     @DisplayName("Register new user without choosing option.")
-    @Description("As new product user i want to register myself into the system.")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-14, Jira FPW-15")
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         String name=faker.name().firstName();
         homePage.navigateToRegisterPage();
@@ -84,5 +89,21 @@ public class RegistrationTests extends BaseTest {
         registrationPage.clickRegistryButton();
         registrationPage.assertUserCreatedWithWelcomeText();
         LOGGER.info("User was successfully registered.");
+    }
+    @Test
+    @Tag("UnHappyPath")
+    @DisplayName("User registration with invalid credentials -username already used for registration")
+    @Description("As a user I want to register to use app's full list of features")
+    @Label("Jira FPW-9")
+    public void registerNewUser_when_usernameAlreadyExist(){
+        api.registerUser(usernameRandom,passwordRandom);
+        homePage.navigateToRegisterPage();
+        registrationPage.fillUsernameField(usernameRandom);
+        registrationPage.fillEmailField(usernameRandom);
+        registrationPage.fillPasswordFields(passwordRandom);
+        registrationPage.selectCategoryField();
+        registrationPage.clickRegistryButton();
+        registrationPage.validateRegistryNotSuccessful();
+        registrationPage.validateRegistrationErrorMessage("User with this username already exist");
     }
 }

@@ -3,7 +3,7 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-
+@DisplayName("EditUserProfileTests")
 public class EditProfileTests extends BaseTest {
 
     public static final String SELF_DESCRIPTION = "Hello its my first time here.Im trying to be smart but im not.";
@@ -33,6 +33,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-46")
     @Tag("UnHappyPath")
+    @DisplayName("Edit pofile of registered user without last name, only valid first name and birthday are provided")
     public void editFirstnameLastNameBirthdayFails_when_emptyLastNameIsProvided() {
         editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
         editProfilePage.fillUpLastNameField("");
@@ -45,6 +46,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-58")
     @Tag("HappyPath")
+    @DisplayName("Edit profile by adding valid self description.")
     public void addSelfDescription_when_validDataIsProvided() {
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -54,6 +56,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-57")
     @Tag("HappyPath")
+    @DisplayName("Edit profile by changing gender from MALE to FEMALE")
     public void changeGender_when_validDataProvided() {
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -63,6 +66,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-56")
     @Tag("HappyPath")
+    @DisplayName("Edit profile by changing existing  email")
     public void changeEmail_when_validNewEmailIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
         editProfilePage.changeEmail(NEW_EMAIL);
@@ -72,6 +76,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-45")
     @Tag("UnHappyPath")
+    @DisplayName("Edit profile of registered user without a first name, only valid last name and birthday are provided")
     public void editFirstnameLastNameBirthdayFail_when_invalidFirstNameIsProvided() {
         editProfilePage.fillUpFirstNameField("");
         editProfilePage.fillUpLastNameField(VALID_LAST_NAME);
@@ -84,6 +89,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-61")
     @Tag("HappyPath")
+    @DisplayName("Edit profile by changing city")
     public void changeCity_when_differentCityIsChosen() {
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
@@ -94,6 +100,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-62")
     @Tag("HappyPath")
+    @DisplayName("Edit profile by changing industry/workspace category")
     public void changeProfessionalCategory_when_validProfessionProvided() {
         editProfilePage.changeProfessionalCategory(PROFESSION);
         editProfilePage.validateCategoryUpdated(PROFESSION);

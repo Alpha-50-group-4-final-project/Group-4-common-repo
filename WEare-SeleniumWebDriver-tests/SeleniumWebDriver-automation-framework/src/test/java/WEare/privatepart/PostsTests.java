@@ -5,7 +5,7 @@ import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-
+@DisplayName("PostTests")
 public class PostsTests extends BaseTest {
     private static final String postBody = getUIMappingByKey("postPage.postMessage");
 

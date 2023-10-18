@@ -2,15 +2,21 @@ package com.api.utils;
 
 import com.github.javafaker.Faker;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+
+import static com.api.utils.UniqueUserName.nameUnique;
 
 public class Constants {
     public static final String ROLE_USER = "ROLE_USER";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final Faker faker = new Faker();
     public static final String EMAIL = faker.internet().emailAddress();
-    public static String USERNAME ;  // Generate a simple first name
+    public static String USERNAME;  // Generate a simple first name
+
+
+
     static String pattern = "\\b[A-Z][a-zA-Z]*\\b";
     public static String nameUser= faker.lorem().characters(3,31,true,false);
     public static final String PASSWORD = "Pass_12345";

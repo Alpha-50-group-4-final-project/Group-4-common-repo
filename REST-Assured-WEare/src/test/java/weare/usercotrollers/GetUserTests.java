@@ -52,7 +52,6 @@ public class GetUserTests extends BaseTest {
         response = requestSpecificationWithAuthentication()
                 .body(SHOW_USER_BY_ID_BODY)
                 .get(baseURI);
-        System.out.println(response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 
 import static com.telerikacademy.testframework.api.WEareApi.USER_ID;
 
-
+@DisplayName("UserConnectionsTests")
 public class ConnectToUserTests extends BaseTest {
     private static final String PASSWORD = "123456";
     private static String SECOND_USER;

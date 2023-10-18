@@ -3,24 +3,22 @@ package base;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 
-
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-
+import java.sql.SQLException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
+import static com.api.utils.UniqueUserName.nameUnique;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 import static org.testng.Assert.assertTrue;
 
 public class BaseTest {
@@ -41,7 +39,7 @@ public class BaseTest {
     protected static String expertiseUpdateUsername;
     protected static DateTimeFormatter dtf;
     protected boolean isConnectionSend = false;
-    protected static String userSendingRequestName;
+
     protected static String userReceivingRequestId;
     protected static String userReceivingRequestName;
 
@@ -84,7 +82,12 @@ public class BaseTest {
     }
 
     protected void registerNewUser() {
-        USERNAME = faker.name().firstName();
+//        USERNAME = faker.name().firstName();
+            try {
+                USERNAME = nameUnique();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID, CATEGORY_NAME,
@@ -93,14 +96,19 @@ public class BaseTest {
 
         response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
-        System.out.println(response.getBody().asPrettyString());
+
         String[] responseBody = response.asString().split(" ");
         regularUserId = responseBody[6];
         registeredUsername = responseBody[3];
         usernames.add(registeredUsername);
     }
     protected void registerAnotherUser() {
-        USERNAME = faker.name().firstName();
+//        USERNAME = faker.name().firstName();
+        try {
+            USERNAME = nameUnique();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -109,7 +117,7 @@ public class BaseTest {
                 USERNAME));
         response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
-        System.out.println(response.getBody().asPrettyString());
+
         String[] responseBody = response.asString().split(" ");
         userReceivingRequestId = responseBody[6];
         userReceivingRequestName = responseBody[3];
@@ -157,7 +165,7 @@ public class BaseTest {
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
-        System.out.println(response.getBody().asPrettyString());
+
         skillId = (response.path("skillId").toString());
         System.out.printf("New skill with id: %s was successfully created.", skillId);
     }
