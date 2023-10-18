@@ -28,10 +28,12 @@ This folder contains the REST-Assured framework used for API testing of the WEar
 ## Project Structure
 
 - **src/main/java/com/api/utils**
-  - `Constants.java`: Constants used across tests.
-  - `Endpoints.java`: Endpoints for API requests.
-  - `Helper.java`: Helper methods, including a method for JSON validation.
-  - `RequestJSON.java`: Request bodies for API calls.
+  - `Constants.java`
+  - `Endpoints.java`
+  - `Helper.java`
+  - `RequestJSON.java`
+
+These classes provide various utilities to assist in API testing.
 
 - **src/test/java/weare**
   - `commentcontrollers`
