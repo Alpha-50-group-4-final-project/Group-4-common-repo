@@ -1,0 +1,3869 @@
+{
+	"info": {
+		"_postman_id": "3a5dcd19-a774-4fbe-8f2c-c8db0d170e12",
+		"name": "WEare - Postman API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30112923",
+		"_collection_link": "https://lunar-star-43854.postman.co/workspace/TheFinalProject~6080e7a0-32b6-4b6d-935d-1589d5c3c169/collection/28764946-3a5dcd19-a774-4fbe-8f2c-c8db0d170e12?action=share&source=collection_link&creator=30112923"
+	},
+	"item": [
+		{
+			"name": "Happy Path",
+			"item": [
+				{
+					"name": "User registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resp = pm.response.text()\r",
+									"\r",
+									" pm.test(\"Response body contains id\", ()=>{\r",
+									"     pm.expect(resp).to.include(\"id\");\r",
+									" })\r",
+									"\r",
+									"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+									"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+									"\r",
+									"console.log(resp.split(\" \")[3]); //username\r",
+									"console.log(resp.split(\" \")[6]); //id\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}/users/",
+							"host": [
+								"{{base_URL}}{{api}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"     pm.expect(pm.response.text()).to.include(\"LOGOUT\");\r",
+									" })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_URL}}/authenticate",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a post",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Post content to contains automation message.\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"post_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have post_id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");\r",
+									"});\r",
+									"\r",
+									"console.log(jsonData.postId);\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.postId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{post_content}},\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/creator",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{edit_post_content}},\r\n  \"picture\": {{edited_picture_content}},\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/editor?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to contains automation message\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have commentId section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"commentId\");\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"comment_id\", jsonData.commentId);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"commentId\": 0,\r\n  \"content\": {{comment_content}},\r\n  \"deletedConfirmed\": true,\r\n  \"postId\": {{postId}},\r\n  \"userId\": {{user_id}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/auth/creator",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//console.log(pm.response.text());\r",
+									"\r",
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "set-cookie",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_URL}}/api/comment/auth/editor?commentId={{comment_id}}&content={{edited_comment_content}}",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								},
+								{
+									"key": "content",
+									"value": "{{edited_comment_content}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all comments by post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to contains automation comments\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminTeam",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/byPost?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"byPost"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/manager?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"manager"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var moment = require('moment');",
+							"var pastDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"pastDate = moment(pastDate).format((\"YYYY-MM-DD\"));",
+							"",
+							"var moment = require('moment');",
+							"var memberDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"memberDate = moment(memberDate).format((\"DD/MM/YYYY\"));",
+							"",
+							"pm.collectionVariables.set(\"random_memberDate\", memberDate)",
+							"pm.collectionVariables.set(\"random_pastDate\", pastDate)",
+							"pm.collectionVariables.set(\"random_city\", _.random(1,25))",
+							"pm.collectionVariables.set(\"random_number\", _.random(1,10))"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "1. User Controllers",
+			"item": [
+				{
+					"name": "User registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resp = pm.response.text()\r",
+									"\r",
+									" pm.test(\"Response body contains id\", ()=>{\r",
+									"     pm.expect(resp).to.include(\"id\");\r",
+									" })\r",
+									"\r",
+									"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+									"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+									"\r",
+									"console.log(resp.split(\" \")[3]); //username\r",
+									"console.log(resp.split(\" \")[6]); //id\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}/users/",
+							"host": [
+								"{{base_URL}}{{api}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Body contains userId\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"expertiseProfile_id\", jsonData[0].expertiseProfile.id);\r",
+									"\r",
+									"\r",
+									"//console.log(pastDate)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index\": 0,\r\n  \"next\": true,\r\n  \"searchParam1\": \"\",\r\n  \"searchParam2\": \"\",\r\n  \"size\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{users}}",
+							"host": [
+								"{{base_URL}}{{api}}{{users}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"     pm.expect(pm.response.text()).to.include(\"LOGOUT\");\r",
+									" })\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_URL}}/authenticate",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show User Post by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"[]\");\r",
+									"});\r",
+									"\r",
+									"console.log(pm.response.text());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index\": 0,\r\n  \"next\": true,\r\n  \"searchParam1\": \"string\",\r\n  \"searchParam2\": \"string\",\r\n  \"size\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{users}}/{{user_id}}/posts",
+							"host": [
+								"{{base_URL}}{{api}}{{users}}"
+							],
+							"path": [
+								"{{user_id}}",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Body contains userId\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Username match request body\", function () {\r",
+									"//     pm.expect(pm.response.jsonData.username).to.eql(JSON.stringify(pm.environment.get(\"username\")));\r",
+									"\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"//console.log(pm.response.userId)\r",
+									"//console.log(jsonData.username)\r",
+									"//pm.collectionVariables.set(\"user_name\", jsonData.name);\r",
+									"//pm.collectionVariables.set(\"user_id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/api/users/auth/{{user_id}}?principal={{username}}",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{user_id}}"
+							],
+							"query": [
+								{
+									"key": "principal",
+									"value": "{{username}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade Expertise Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response body is not empty\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									" pm.test(\"Response body contains all properties\", function () {\r",
+									"    pm.expect(jsonData.skills[0].category.name).to.eql(pm.collectionVariables.get(\"category_name\"))\r",
+									"    pm.expect(jsonData.skills[0].category.id).to.eql(parseInt(pm.collectionVariables.get(\"category_id\")))\r",
+									"    pm.expect(jsonData.skills[0].skill).to.be.a('string')\r",
+									" })\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"availability\": {{$randomInt}}, \r\n  \"category\": {\r\n    \"id\": {{category_id}}, \r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"id\": {{expertiseProfile_id}},\r\n  \"skill1\": \"kyrti {{$randomDateRecent}}\",\r\n  \"skill2\": \"chisti {{$randomDateRecent}}\",\r\n  \"skill3\": \"izvozva {{$randomDateRecent}}}\",\r\n  \"skill4\": \"hamaslki {{$randomDateRecent}}\",\r\n  \"skill5\": \"uslugi {{$randomDateRecent}}\",\r\n  \"skills\": [\r\n    \"skill {{$randomDateRecent}}\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/api/users/auth/{{user_id}}/expertise",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{user_id}}",
+								"expertise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade Personal Profile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var jsonData = pm.response.json()\r",
+									"\r",
+									" pm.test(\"Response body contains all properties\", function () {\r",
+									"    //pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"user_id\")))\r",
+									"    pm.expect(jsonData.firstName).to.be.a('string')\r",
+									"    pm.expect(jsonData.lastName).to.be.a('string')\r",
+									"    pm.expect(jsonData.personalReview).to.be.a('string')\r",
+									"    pm.expect(typeof(jsonData.location))==='array'\r",
+									"    pm.expect(jsonData.birthYear).to.match(/^\\d{4}\\-\\d{2}\\-\\d{2}$/)\r",
+									"   \r",
+									" })\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"birthYear\": \"{{random_birthDate}}\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"id\": {{user_id}}, \r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"location\": {\r\n    \"city\": {\r\n      \"city\": \"\",\r\n      \"country\": {},\r\n      \"id\": {{random_city}}//1-25\r\n    },\r\n    \"id\": 0\r\n  },\r\n  \"memberSince\": \"\",\r\n  \"personalReview\": \"{{$randomLoremSentence}}\",\r\n  \"picture\": {{picture_content}},\r\n  \"picturePrivacy\": true,\r\n  \"sex\": \"{{sex}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/api/users/auth/{{user_id}}/personal",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{user_id}}",
+								"personal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resp = pm.response.text()\r",
+									"\r",
+									" pm.test(\"Response body contains id\", ()=>{\r",
+									"     pm.expect(resp).to.include(\"id\");\r",
+									" })\r",
+									"\r",
+									"pm.collectionVariables.set(\"admin_username\", resp.split(\" \")[3]);\r",
+									"pm.collectionVariables.set(\"admin_id\", resp.split(\" \")[6]);\r",
+									"\r",
+									"console.log(resp.split(\" \")[3]); //username\r",
+									"console.log(resp.split(\" \")[6]); //id"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_ADMIN\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}/users/",
+							"host": [
+								"{{base_URL}}{{api}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// var moment = require('moment');",
+							"// var pastDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"// pastDate = moment(pastDate).format((\"YYYY-MM-DD\"));",
+							"",
+							"// var moment = require('moment');",
+							"// var memberDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"// memberDate = moment(memberDate).format((\"DD/MM/YYYY\"));",
+							"",
+							"// pm.collectionVariables.set(\"random_memberDate\", memberDate)",
+							"// pm.collectionVariables.set(\"random_pastDate\", pastDate)",
+							"pm.collectionVariables.set(\"random_city\", _.random(1,25))",
+							"// pm.collectionVariables.set(\"random_number\", _.random(1,10))"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							"var user=pm.collectionVariables.get(\"username\");",
+							"var pass=pm.collectionVariables.get(\"password\");",
+							"",
+							"",
+							"// var requestOptions = {",
+							"//     method: 'POST', // or 'GET', 'PUT', 'DELETE', etc. as needed",
+							"//     url: 'http://localhost:8081/authenticate', // Replace with your source request URL",
+							"//     header: {",
+							"//         'Content-Type': 'multipart/form-data', // Set the appropriate content type",
+							"//         // Add any other headers as needed",
+							"//     },",
+							"//     body: {",
+							"//         mode: 'formdata',",
+							"//         formdata: [",
+							"//             { key: 'username', value: user },",
+							"//             { key: 'password', value: pass },",
+							"//             // Add more form-data fields as needed",
+							"//         ]",
+							"//     }",
+							"// };",
+							"// pm.sendRequest(requestOptions);"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Post Controllers",
+			"item": [
+				{
+					"name": "Get Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"     pm.expect(pm.response.text()).to.include(\"LOGOUT\");\r",
+									" })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_URL}}/authenticate",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"console.log(jsonData.postId);\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.postId);\r",
+									"\r",
+									"\r",
+									"pm.test(\"Post content to contains automation message.\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"post_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have post_id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");\r",
+									"});\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.postId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{post_content}},\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/creator",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response to have comment_id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");\r",
+									"});\r",
+									"\r",
+									"//console.log(pm.response.json());\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"pm.test(\"Response to contains comments send from automation\", () => {\r",
+									"    _.each(resp.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"post_content\"))).to.be.true;\r",
+									"        })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{edit_post_content}},\r\n  \"picture\": {{edited_picture_content}},\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/editor?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validate post is liked.\", function () {\r",
+									"    pm.expect(JSON.stringify(jsonData.liked)).to.eql(\"true\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate user liked the post.\", function () {\r",
+									"//     pm.expect(jsonData.likes[0].username).to.eql(JSON.stringify(pm.environment.get(\"username\")));\r",
+									"// });\r",
+									"\r",
+									"console.log(jsonData.likes[0].username);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/likesUp?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validate comment is liked.\", function () {\r",
+									"    pm.expect(JSON.stringify(jsonData.liked)).to.eql(\"false\");\r",
+									"\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/likesUp?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show comments on post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// pm.test(\"Validate response contains comment id\", function () {\r",
+									"//     pm.expect(jsonData[0]).to.include(\"commentId\");\r",
+									"// });\r",
+									"\r",
+									"pm.test(\"Response to contains automation message.\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"post_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminTeam",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/Comments?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"Comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/manager?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"manager"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Comment Controllers",
+			"item": [
+				{
+					"name": "Get Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"     pm.expect(pm.response.text()).to.include(\"LOGOUT\");\r",
+									" })\r",
+									"// pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"//      pm.expect(pm.response.text()).to.include(\"Add New post\");\r",
+									"//  })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_URL}}/authenticate",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"console.log(jsonData.postId);\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.postId);\r",
+									"pm.globals.set(\"postId\", jsonData.postId);\r",
+									"\r",
+									"// var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Post content to contains automation message.\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"post_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have post_id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");\r",
+									"});\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.postId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{post_content}},\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{post}}/auth/creator",
+							"host": [
+								"{{base_URL}}{{api}}{{post}}"
+							],
+							"path": [
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to contains automation message\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have commentId section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"commentId\");\r",
+									"});\r",
+									"pm.collectionVariables.set(\"comment_id\", jsonData.commentId);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// var user=pm.collectionVariables.get(\"username\");\r",
+									"// var pass=pm.collectionVariables.get(\"password\");\r",
+									"\r",
+									"\r",
+									"// var requestOptions = {\r",
+									"//     method: 'POST', // or 'GET', 'PUT', 'DELETE', etc. as needed\r",
+									"//     url: 'http://localhost:8081/authenticate', // Replace with your source request URL\r",
+									"//     header: {\r",
+									"//         'Content-Type': 'multipart/form-data', // Set the appropriate content type\r",
+									"//         // Add any other headers as needed\r",
+									"//     },\r",
+									"//     body: {\r",
+									"//         mode: 'formdata',\r",
+									"//         formdata: [\r",
+									"//             { key: 'username', value: user },\r",
+									"//             { key: 'password', value: pass },\r",
+									"//             // Add more form-data fields as needed\r",
+									"//         ]\r",
+									"//     }\r",
+									"// };\r",
+									"// pm.sendRequest(requestOptions);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"commentId\": 0,\r\n  \"content\": {{comment_content}},\r\n  \"deletedConfirmed\": true,\r\n  \"postId\": {{postId}},\r\n  \"userId\": {{user_id}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/auth/creator",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response to have commen_id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"commentId\");\r",
+									"});\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"pm.test(\"Response to contains comments send from automation\", () => {\r",
+									"    _.each(resp.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//console.log(pm.response.text());\r",
+									"\r",
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "set-cookie",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_URL}}/api/comment/auth/editor?commentId={{comment_id}}&content={{edited_comment_content}}",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								},
+								{
+									"key": "content",
+									"value": "{{edited_comment_content}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validate comment is liked.\", function () {\r",
+									"    pm.expect(JSON.stringify(jsonData.liked)).to.eql(\"true\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate user liked the comment.\", function () {\r",
+									"//     pm.expect(jsonData.likes[0].username).to.eql(JSON.stringify(pm.collectionVariables.get(\"username\")));\r",
+									"// });\r",
+									"\r",
+									"//console.log(jsonData.likes[0].username);\r",
+									"//console.log(JSON.stringify(pm.collectionVariables.get(\"username\")));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/auth/likesUp?commentId={{comment_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validate comment is liked.\", function () {\r",
+									"    pm.expect(JSON.stringify(jsonData.liked)).to.eql(\"false\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/auth/likesUp?commentId={{comment_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all comments by post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to contains automation comments\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminTeam",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/byPost?postId={{postId}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"byPost"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one comments by post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to contains automation comments\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"comment_content\"))).to.be.true;\r",
+									"        })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminTeam",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/single?commentId={{comment_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"single"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{comment}}/auth/manager?commentId={{comment_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{comment}}"
+							],
+							"path": [
+								"auth",
+								"manager"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{comment_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Skill Controllers",
+			"item": [
+				{
+					"name": "Get Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body contains text - logout button\", ()=>{\r",
+									"     pm.expect(pm.response.text()).to.include(\"LOGOUT\");\r",
+									" })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_URL}}/authenticate",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response to have skillId section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skillId\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have skill section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skill\");\r",
+									"});\r",
+									"//console.log(pm.response.json());\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"//pm.collectionVariables.set(\"skill_id\",resp[0].skillId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{skill}}?unsorted=true",
+							"host": [
+								"{{base_URL}}{{api}}{{skill}}"
+							],
+							"query": [
+								{
+									"key": "unsorted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Skill saving to contains automation message.\", () => {\r",
+									"    _.each(jsonData.Responses, (item) => {\r",
+									"        //pm.expect(item.content).to.include(pm.collectionVariables.get(\"comment_content\"))\r",
+									"        pm.expect(item.content.startsWith(pm.collectionVariables.get(\"skill_text\"))).to.be.true;\r",
+									"        })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have skill description section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skill\");\r",
+									"});\r",
+									"// pm.test(\"Response skill description to be the same as provided\", function () {\r",
+									"//     console.log(jsonData.skill);\r",
+									"//     pm.expect(jsonData.skill).equals(pm.variables.get(\"skill_text\")\r",
+									"//     );\r",
+									"// });\r",
+									"pm.test(\"Response to have skill id section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skillId\");\r",
+									"});\r",
+									"\r",
+									"console.log(jsonData.skillId)\r",
+									"pm.collectionVariables.set(\"skill_id\", jsonData.skillId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var text=pm.variables.replaceIn(\"{{$randomCatchPhrase}}\");\r",
+									"\r",
+									"pm.collectionVariables.set(\"skill_text\",text);\r",
+									"\r",
+									"pm.sendRequest(\"http://localhost:8081/api/skill?unsorted=true\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"skill\": \"skill {{$randomDateRecent}}\",\r\n  \"skillId\": {{$randomInt}}\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{skill}}/create",
+							"host": [
+								"{{base_URL}}{{api}}{{skill}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var text=pm.variables.replaceIn(\"{{$randomCatchPhrase}}\");\r",
+									"\r",
+									"pm.collectionVariables.set(\"skill_update\",text);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{skill}}/edit?skill={{skill_update}}&skillId={{skill_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{skill}}"
+							],
+							"path": [
+								"edit"
+							],
+							"query": [
+								{
+									"key": "skill",
+									"value": "{{skill_update}}"
+								},
+								{
+									"key": "skillId",
+									"value": "{{skill_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response to have skillId section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skillId\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response to have skill section\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"skill\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "Dumbo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{skill}}/getOne?skillId={{skill_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{skill}}"
+							],
+							"path": [
+								"getOne"
+							],
+							"query": [
+								{
+									"key": "skillId",
+									"value": "{{skill_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": {{edit_post_content}},\r\n  \"picture\": \"{{CurrentDate}}\",\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{base_URL}}{{api}}{{skill}}/delete?skillId={{skill_id}}",
+							"host": [
+								"{{base_URL}}{{api}}{{skill}}"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "skillId",
+									"value": "{{skill_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Connection Controllers",
+			"item": [
+				{
+					"name": "Register users One and Two",
+					"item": [
+						{
+							"name": "User One registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"usernameOne\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"userOne_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Two registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"usernameTwo\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"userTwo_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User One connects to user Two",
+					"item": [
+						{
+							"name": "Login user One",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"login_cookie\", pm.cookies.get('JSESSIONID'));\r",
+											"console.log(pm.cookies.get('JSESSIONID'));\r",
+											"\r",
+											"pm.test(\"Validate HTML response values after login\",function(){\r",
+											"const $ = cheerio.load(pm.response.text());\r",
+											"link = $('a');\r",
+											"pm.expect($(link).attr('href').includes('LOGOUT')).not.to.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The username and password are correct\", function () {\r",
+											"   pm.expect(pm.response.text()).not.to.include(\"Wrong username or password.\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "{{usernameOne}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_URL}}/authenticate",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User One send connect request to user Two",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const html = cheerio(responseBody);\r",
+											"pm.test(\"Response has succefull message for sending connection- Good job! You have send friend request\", function () {\r",
+											"   pm.expect(pm.response.text()).to.include(\"Good job! You have send friend request!\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_URL}}/auth/connection/request?id={{userTwo_id}}&username={{usernameTwo}}",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"auth",
+										"connection",
+										"request"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{userTwo_id}}"
+										},
+										{
+											"key": "username",
+											"value": "{{usernameTwo}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout user One",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate HTML response values after logout\",function(){\r",
+											"const $ = cheerio.load(pm.response.text());\r",
+											"link = $('a');\r",
+											"pm.expect($(link).attr('href').includes('Sign In')).not.to.be.null;\r",
+											"pm.expect($(link).attr('href').includes('Create Account')).not.to.be.null;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_URL}}/logout",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Two connects to user One",
+					"item": [
+						{
+							"name": "Login user Two",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"login_cookie\", pm.cookies.get('JSESSIONID'));\r",
+											"console.log(pm.cookies.get('JSESSIONID'));\r",
+											"\r",
+											"pm.test(\"Validate HTML response values after login\",function(){\r",
+											"const $ = cheerio.load(pm.response.text());\r",
+											"link = $('a');\r",
+											"pm.expect($(link).attr('href').includes('LOGOUT')).not.to.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The username and password are correct\", function () {\r",
+											"   pm.expect(pm.response.text()).not.to.include(\"Wrong username or password.\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "{{usernameTwo}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_URL}}/authenticate",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get connection requests",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonRes = pm.response.json();\r",
+											"\r",
+											"\r",
+											"pm.collectionVariables.set(\"connectID\", jsonRes[0].id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_URL}}/api/auth/users/{{userTwo_id}}/request/",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"users",
+										"{{userTwo_id}}",
+										"request",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Accept connection request from user One",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Validate response has same content\", function () {\r",
+											"   pm.expect(pm.response.text()).to.include(\"approved request\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_URL}}/api/auth/users/{{userTwo_id}}/request/approve?name={{usernameTwo}}&requestId={{connectID}}",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"users",
+										"{{userTwo_id}}",
+										"request",
+										"approve"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "{{usernameTwo}}"
+										},
+										{
+											"key": "requestId",
+											"value": "{{connectID}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout user Two",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Validate HTML response values after logout\",function(){\r",
+											"const $ = cheerio.load(pm.response.text());\r",
+											"link = $('a');\r",
+											"pm.expect($(link).attr('href').includes('Sign In')).not.to.be.null;\r",
+											"pm.expect($(link).attr('href').includes('Create Account')).not.to.be.null;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_URL}}/logout",
+									"host": [
+										"{{base_URL}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var moment = require('moment');",
+							"var pastDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"pastDate = moment(pastDate).format((\"YYYY-MM-DD\"));",
+							"",
+							"var moment = require('moment');",
+							"var memberDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+							"memberDate = moment(memberDate).format((\"DD/MM/YYYY\"));",
+							"",
+							"pm.collectionVariables.set(\"random_memberDate\", memberDate)",
+							"pm.collectionVariables.set(\"random_pastDate\", pastDate)",
+							"pm.collectionVariables.set(\"random_city\", _.random(1,25))",
+							"pm.collectionVariables.set(\"random_number\", _.random(1,10))"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"var user=pm.collectionVariables.get(\"username\");",
+							"var pass=pm.collectionVariables.get(\"password\");"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"pm.collectionVariables.set(\"CurrentDate\", moment().format());",
+					"",
+					"var moment = require('moment');",
+					"var pastDate = pm.collectionVariables.replaceIn(\"{{$randomDatePast}}\")",
+					"pastDate = moment(pastDate).format((\"YYYY-MM-DD\"));",
+					"",
+					"var moment = require('moment');",
+					"var memberDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+					"memberDate = moment(memberDate).format((\"DD/MM/YYYY\"));",
+					"",
+					"pm.collectionVariables.set(\"random_memberDate\", memberDate)",
+					"pm.collectionVariables.set(\"random_birthDate\", pastDate)",
+					"pm.collectionVariables.set(\"random_city\", _.random(1, 25))",
+					"pm.collectionVariables.set(\"random_number\", _.random(1,10))",
+					"",
+					"//  const num = pm.variables.replaceIn('{{$randomInt}}') % 5 + 1;",
+					"// pm.globals.set(\"random_city\", num);",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Happy Path Vars",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "username_random",
+			"value": "\"{{$randomFirstName}}\"",
+			"type": "string"
+		},
+		{
+			"key": "email_random",
+			"value": "{{$randomEmail}}",
+			"type": "string"
+		},
+		{
+			"key": "category_name",
+			"value": "All",
+			"type": "string"
+		},
+		{
+			"key": "category_id",
+			"value": "100",
+			"type": "string"
+		},
+		{
+			"key": "postId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "post_content",
+			"value": "\"Automated post from Postman  {{CurrentDate}}\"",
+			"type": "string"
+		},
+		{
+			"key": "picture_content",
+			"value": "\"No picture {{CurrentDate}}\"",
+			"type": "string"
+		},
+		{
+			"key": "comment_content",
+			"value": "\"Automated comment from Postman {{CurrentDate}}\"",
+			"type": "string"
+		},
+		{
+			"key": "edit_post_content",
+			"value": "\"My edited automated post from Postman {{CurrentDate}}\"",
+			"type": "string"
+		},
+		{
+			"key": "edited_comment_content",
+			"value": "My edited automated comment from Postman {{CurrentDate}}",
+			"type": "string"
+		},
+		{
+			"key": "---------------------------------------------",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "admin_user",
+			"value": "adminTeam",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "12345678",
+			"type": "string"
+		},
+		{
+			"key": "comment_content",
+			"value": "\"{{$randomPhrase}}  {{CurrentDate}} \"",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "random_year",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "login_cookie",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "edited_picture_content",
+			"value": "\"Edited: still no picture {{CurrentDate}}\"",
+			"type": "string"
+		},
+		{
+			"key": "skill_update",
+			"value": "{{$randomBsNoun}}",
+			"type": "string"
+		},
+		{
+			"key": "random_number",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "random_city",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "random_pastDate",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "random_memberDate",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "sex",
+			"value": "MALE",
+			"type": "string"
+		},
+		{
+			"key": "comment_id",
+			"value": ""
+		},
+		{
+			"key": "skill_text",
+			"value": ""
+		},
+		{
+			"key": "skill_id",
+			"value": ""
+		},
+		{
+			"key": "random_birthDate",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "expertiseProfile_id",
+			"value": ""
+		},
+		{
+			"key": "CurrentDate",
+			"value": ""
+		},
+		{
+			"key": "usernameOne",
+			"value": ""
+		},
+		{
+			"key": "userOne_id",
+			"value": ""
+		},
+		{
+			"key": "usernameTwo",
+			"value": ""
+		},
+		{
+			"key": "userTwo_id",
+			"value": ""
+		},
+		{
+			"key": "connectID",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "admin_username",
+			"value": ""
+		},
+		{
+			"key": "admin_id",
+			"value": ""
+		}
+	]
+}
