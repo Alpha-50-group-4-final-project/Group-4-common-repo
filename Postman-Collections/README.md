@@ -71,12 +71,12 @@ The application is Dockerized and runs through IntelliJ with a shared database. 
 ---
 
 ## Newman Reports
-For a detailed guide on how to run Postman collections using Newman and generate reports, please refer to [Newman Reports](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections/newman-reports).
+For a detailed guide on how to run Postman collections using Newman and generate reports, please refer to [Newman Reports](./Newman%20Reports/README.md).
 
 ---
 
 ## API Documentation
 
-**Swagger**: The API documentation for the 'WEare' Social Network is accessible via Swagger, but only when the application is actively running. You can view it [here](http://localhost:8081/swagger-ui.html#/).
+- **Swagger**: The API documentation for the WEare Social Network is available [here](http://localhost:8081/swagger-ui.html#/).
 
 ---
