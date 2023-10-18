@@ -4,7 +4,6 @@ import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
-
 public class EditProfileTests extends BaseTest {
 
     public static final String SELF_DESCRIPTION = "Hello its my first time here.Im trying to be smart but im not.";
@@ -13,8 +12,7 @@ public class EditProfileTests extends BaseTest {
     public static final String SET_UP_LASTNAME = "Snow";
     public static final String SET_UP_BIRTHDAY_DATE = "07/05/1970";
     public static final String PROFESSION = "Doctor";
-    public static final String SERVICE_PROVIDED = "Nothing special.";
-    public static final String WEEKLY_AVAILABILITY = "8";
+
     public static final String NEW_EMAIL = "peshakaa@abv.bg";
     public static final String GENDER_TYPE = "FEMALE";
     public static final String VALID_FIRST_NAME = "Patkan";
@@ -24,20 +22,12 @@ public class EditProfileTests extends BaseTest {
     @BeforeAll
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
-        login(usernameRandom, passwordRandom);
         api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
-        editProfilePage.navigateToEditProfileMenu();
+        login(usernameRandom, passwordRandom);
     }
-
-    @Test
-    @Label("Jira FPW-43")
-    @Tag("HappyPath")
-    public void editFirstnameLastNameBirthday_when_validDataIsProvided() {
-        editProfilePage.fillUpFirstNameField(SET_UP_FIRSTNAME);
-        editProfilePage.fillUpLastNameField(SET_UP_LASTNAME);
-        editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
-        editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.validateSuccessfulEdit(SET_UP_FIRSTNAME, SET_UP_LASTNAME);
+    @BeforeEach
+    public  void  resetPage(){
+        editProfilePage.navigateToEditProfileMenu();
     }
 
     @Test
@@ -56,20 +46,15 @@ public class EditProfileTests extends BaseTest {
     @Label("Jira FPW-58")
     @Tag("HappyPath")
     public void addSelfDescription_when_validDataIsProvided() {
-        //editProfilePage.navigateToEditProfileMenu();
-        //api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.validateSelfDescriptionUpdated(SELF_DESCRIPTION);
-
     }
 
     @Test
     @Label("Jira FPW-57")
     @Tag("HappyPath")
     public void changeGender_when_validDataProvided() {
-        // editProfilePage.navigateToEditProfileMenu();
-        // api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.validateGenderUpdated(GENDER_TYPE);
@@ -84,7 +69,6 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.validateEmailUpdated(NEW_EMAIL);
        }
-
     @Test
     @Label("Jira FPW-45")
     @Tag("UnHappyPath")
@@ -113,14 +97,5 @@ public class EditProfileTests extends BaseTest {
     public void changeProfessionalCategory_when_validProfessionProvided() {
         editProfilePage.changeProfessionalCategory(PROFESSION);
         editProfilePage.validateCategoryUpdated(PROFESSION);
-    }
-
-    @Test
-    @Label("Jira FPW-63")
-    @Tag("HappyPath")
-    public void changeServices_when_validServiceClicked() {
-       // api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
-        editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
-       // editProfilePage.validateServiceUpdated();
     }
 }

@@ -65,15 +65,12 @@ public class ConnectToUserTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Disconnect friendships")
     public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
-        searchAndFindCurrentProfileByName(firstUserFirstName);
-        searchPage.clickConnectButton();
-        searchPage.validateConnectionRequestSend();
+        api.sendConnectionRequest(SECOND_USER,PASSWORD,recipientID,firstUserFirstName);
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
         searchAndFindCurrentProfileByName(secondUserFirstName);
         searchPage.clickDisconnectButton();
         searchPage.assertElementPresent("ProfileConnectionPageConnectButton");
     }
-
 
     private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();

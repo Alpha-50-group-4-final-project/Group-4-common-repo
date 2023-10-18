@@ -63,12 +63,10 @@ public class BaseTest {
         passwordRandom = faker.internet().password(8, 20, true, true);
         LOGGER.info("The follow password was generated: " + usernameRandom);
         dtf = new SimpleDateFormat("yyyy/MM/dd");
-
     }
 
     @AfterAll
     public static void logOutFromAccount() {
-        logout();
         UserActions.quitDriver();
     }
 

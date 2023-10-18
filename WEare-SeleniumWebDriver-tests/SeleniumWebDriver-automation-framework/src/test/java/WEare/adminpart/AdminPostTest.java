@@ -3,10 +3,8 @@ package WEare.adminpart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-
 
 public class AdminPostTest extends BaseTest {
     private static final String postMessage = getUIMappingByKey("postPage.postMessage");

@@ -30,6 +30,7 @@ public class GetConnectionRequestTest extends BaseTest {
                 .get(baseURI);
 
         connectionId = response.getBody().jsonPath().getString("[0].id");
+        System.out.println("Tova e resposna \n"+response.getBody().asPrettyString());
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));

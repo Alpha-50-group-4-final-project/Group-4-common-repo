@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -90,7 +89,8 @@ public class UserActions {
         waitForElementPresenceUntilTimeout(locator, defaultTimeout, arguments);
     }
 
-    public void assertElementPresent(String locator, Object... arguments) {
+    public void assertElementPresent(String key, Object... arguments) {
+        String locator=getLocatorValueByKey(key,arguments);
         Assertions.assertNotNull((driver.findElement(By.xpath(getUIMappingByKey(locator)))), "Element is not found.");
     }
 
@@ -157,7 +157,8 @@ public class UserActions {
         return element.getText();
     }
 
-    public void assertElementText(String locator, String message, Object... arguments) {
+    public void assertElementText(String key, String message, Object... arguments) {
+        String locator = getLocatorValueByKey(key, arguments);
         waitForElementVisible(locator);
         Assertions.assertEquals(message, elementText(locator), "Response message is not correct.");
 

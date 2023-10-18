@@ -20,6 +20,7 @@ public class UserRegistrationPage extends WEareBasePage {
 
     public void fillUsernameField(String username) {
         actions.waitForElementPresent("userRegistrationPage.UsernameField");
+        actions.assertElementPresent("userRegistrationPage.UsernameField");
         actions.typeValueInField(username, "userRegistrationPage.UsernameField");
     }
 
@@ -29,7 +30,9 @@ public class UserRegistrationPage extends WEareBasePage {
     }
 
     public void fillPasswordFields(String password) {
+        actions.assertElementPresent("userRegistrationPage.PasswordField");
         actions.typeValueInField(password, "userRegistrationPage.PasswordField");
+        actions.assertElementPresent("userRegistrationPage.ConfirmPasswordField");
         actions.typeValueInField(password, "userRegistrationPage.ConfirmPasswordField");
     }
 
@@ -43,6 +46,8 @@ public class UserRegistrationPage extends WEareBasePage {
     }
 
     public void clickRegistryButton() {
+        actions.waitForElementVisible("userRegistrationPage.RegisterButton");
+        actions.assertElementPresent("userRegistrationPage.RegisterButton");
         actions.clickElement("userRegistrationPage.RegisterButton");
     }
 
@@ -66,8 +71,5 @@ public class UserRegistrationPage extends WEareBasePage {
             Assertions.fail("Registration was successful although registration criteria not met.");
             LOGGER.info("Registration test fails");
         }
-        //getElementByID("username").value==null
     }
-
-
 }

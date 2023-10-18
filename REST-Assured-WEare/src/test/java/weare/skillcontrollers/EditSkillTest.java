@@ -30,6 +30,5 @@ public class EditSkillTest extends BaseTest {
         assertEquals("", response.body().asString(), "Response body isn't empty as expected.");
         System.out.printf("\nSkill with id %s was edited.\n", skillId);
         System.out.println(response.getBody().asPrettyString());
-
     }
 }

@@ -12,13 +12,9 @@ public class SearchingPage extends WEareBasePage{
         super(driver,"");
     }
 
-
-    public void findUserProfileByName(String name){
-        actions.waitForElementClickable("ProfileConnectionPageSeeProfileByName",name);
-        actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
-    }
     public void clickConnectButton(){
         if (actions.isElementVisible("PersonalProfilePageDisconnectButton")) {
+            actions.assertElementPresent("PersonalProfilePageDisconnectButton");
             actions.clickElement("PersonalProfilePageDisconnectButton");
         }
         actions.waitForElementClickable("ProfileConnectionPageConnectButton");
@@ -48,7 +44,6 @@ public class SearchingPage extends WEareBasePage{
     }
     public void approveRequestByUserFirstName(String name){
         actions.waitForElementClickable("PersonalProfileFriendRequestAcceptButton",name);
-//        actions.assertElementPresent("PersonalProfileFriendRequestAcceptButton",name);
         actions.clickElement("PersonalProfileFriendRequestAcceptButton",name);
     }
     public void assertElementPresent(String locator) {

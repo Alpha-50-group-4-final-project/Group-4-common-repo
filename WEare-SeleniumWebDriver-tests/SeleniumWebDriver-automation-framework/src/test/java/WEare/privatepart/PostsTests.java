@@ -3,12 +3,9 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@Testable
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PostsTests extends BaseTest {
     private static final String postBody = getUIMappingByKey("postPage.postMessage");
 
@@ -20,12 +17,9 @@ public class PostsTests extends BaseTest {
     }
 
     @AfterAll
-    public void returnHome() {
-        homePage.navigateToHomePage();
-        if (actions.isElementVisible("homePage.LogoutButton")) {
-            actions.clickElement("homePage.LogoutButton");
-        }
+    public static void returnHome() {
 
+     logout();
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
@@ -47,6 +41,7 @@ public class PostsTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Validate the User Can Edit His Public Post")
     public void editPublicPost_when_editPostButtonClicked() {
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
         postsPage.clickEditPost();
@@ -54,6 +49,7 @@ public class PostsTests extends BaseTest {
         postsPage.editPostMessage();
         postsPage.submitPost();
         postsPage.validatePostEdited();
+        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
     @Test
@@ -61,9 +57,11 @@ public class PostsTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Validate User Can Like a Public Post")
     public void likePublicPost_when_likeButtonClicked() {
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         homePage.navigateToLatestPosts();
         postsPage.likePostByUsername(usernameRandom);
         postsPage.validatePostLiked();
+        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
     @Test
@@ -71,10 +69,12 @@ public class PostsTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Validate User Can Unlike a Public Post")
     public void dislikePublicPost_when_dislikeButtonClicked() {
+        apiPost = api.createPost(usernameRandom, passwordRandom, postBody);
         api.likePost(usernameRandom, passwordRandom, apiPost.postId);
         homePage.navigateToLatestPosts();
         postsPage.dislikePostByUsername(usernameRandom);
         postsPage.validatePostDisliked();
+        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 
     @Test

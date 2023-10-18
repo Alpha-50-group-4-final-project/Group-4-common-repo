@@ -3,13 +3,10 @@ package WEare.adminpart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 public class AdminEnableDisableUserTest extends BaseTest {
-
     private static String userForTesting = getUIMappingByKey("adminPage.enableDisable.nameUpdate");
 
     @BeforeAll

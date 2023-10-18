@@ -30,8 +30,6 @@ public class AdminCommentTest extends BaseTest {
 
     @AfterAll
     public static void clearData() {
-        homePage.navigateToHomePage();
-
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
 

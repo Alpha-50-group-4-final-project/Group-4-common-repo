@@ -1,6 +1,5 @@
 package pages.WEare;
 
-import com.telerikacademy.testframework.CustomWebDriverManager;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.OutputType;
@@ -20,38 +19,33 @@ public class LoginPage extends WEareBasePage {
 
     public void navigateToSignIn() {
         actions.waitForElementClickable("homepage.signInButton");
+        actions.assertElementPresent("homepage.signInButton");
         actions.clickElement("homepage.signInButton");
     }
 
     public void fillUsername(String username) {
         actions.waitForElementPresent("loginPage.UsernameField");
+        actions.assertElementPresent("loginPage.UsernameField");
         actions.typeValueInField(username, "loginPage.UsernameField");
     }
 
     public void fillPassword(String password) {
         actions.waitForElementPresent("loginPage.PasswordField");
+        actions.assertElementPresent("loginPage.PasswordField");
         actions.typeValueInField(password, "loginPage.PasswordField");
     }
 
     public void submitForm() {
         actions.waitForElementClickable("loginPage.LoginButton");
+        actions.assertElementPresent("loginPage.LoginButton");
         actions.clickElement("loginPage.LoginButton");
     }
 
     public void clickOnLogOutButton() {
-        if (actions.isElementVisible("homePage.LogoutButton")) {
             actions.waitForElementClickable("homePage.LogoutButton");
+            actions.waitForElementPresent("homePage.LogoutButton");
+            actions.assertElementPresent("homePage.LogoutButton");
             actions.clickElement("homePage.LogoutButton");
-        }
-        //validateHeader("Login Page");
-    }
-
-    public void assertElementPresent(String locator) {
-        actions.assertElementPresent(locator);
-    }
-
-    public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
-        actions.assertElementAttribute(locator, attributeName, attributeValue);
     }
 
     public void validateLoggedIn() {

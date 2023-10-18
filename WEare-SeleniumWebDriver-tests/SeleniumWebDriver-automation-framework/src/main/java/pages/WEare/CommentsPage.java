@@ -1,7 +1,6 @@
 package pages.WEare;
 
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.opentest4j.AssertionFailedError;
 
@@ -16,36 +15,30 @@ public class CommentsPage extends WEareBasePage {
         super(driver, "");
     }
 
-    public void addComment(String userName) {
-        actions.waitForElementClickable("posts.explorePostsByUserName", userName);
-        actions.clickElement("posts.explorePostsByUserName", userName);
-        writeComment();
-        submitComment();
-        actions.pressKey(Keys.PAGE_UP);
-        showComments();
-    }
-
-
     public void showComments() {
         actions.waitForElementPresent("posts.showCommentsButton");
         actions.waitForElementVisible("posts.showCommentsButton");
         actions.waitForElementClickable("posts.showCommentsButton");
+        actions.assertElementPresent("posts.showCommentsButton");
         actions.moveToElementAndClickOnit("posts.showCommentsButton");
     }
 
     public void submitComment() {
         actions.waitForElementClickable("posts.submitCommentButton");
+        actions.assertElementPresent("posts.submitCommentButton");
         actions.clickElement("posts.submitCommentButton");
     }
 
     public void writeComment() {
         actions.waitForElementClickable("posts.commentField");
+        actions.assertElementPresent("posts.commentField");
         actions.typeValueInField(getUIMappingByKey("commentPage.validCommentMessage"), "posts.commentField");
     }
 
 
     public void clickEditCommentButton() {
         actions.waitForElementClickable("commentsPage.editComment");
+        actions.assertElementPresent("commentsPage.editComment");
         actions.clickElement("commentsPage.editComment");
         validateHeader("Edit comment");
 
@@ -53,8 +46,10 @@ public class CommentsPage extends WEareBasePage {
 
     public void editComment() {
         actions.waitForElementClickable("posts.commentField");
+        actions.assertElementPresent("posts.commentField");
         actions.clickElement("posts.commentField");
         actions.typeValueInField(getUIMappingByKey("editedCommentText"), "posts.commentField");
+        actions.assertElementPresent("adminPage.submitButton");
         actions.clickElement("adminPage.submitButton");
     }
 
@@ -70,12 +65,14 @@ public class CommentsPage extends WEareBasePage {
 
     public void deleteComment() {
         actions.waitForElementClickable("commentsPage.deleteComment");
+        actions.assertElementPresent("commentsPage.deleteComment");
         actions.clickElement("commentsPage.deleteComment");
         validateHeader("Delete comment");
     }
 
     public void deleteCommentConfirmation() {
         actions.waitForElementClickable("adminPage.deleteConfirmation");
+        actions.assertElementPresent("adminPage.deleteConfirmation");
         actions.clickElement("adminPage.deleteConfirmation");
         actions.typeValueInField(deleteConfirmation, "adminPage.deleteConfirmation");
         actions.clickElement("adminPage.submitButton");
@@ -97,8 +94,10 @@ public class CommentsPage extends WEareBasePage {
             actions.clickElement("commentsPage.dislikeButton");
         }
         actions.waitForElementClickable("commentsPage.likeComment");
+        actions.assertElementPresent("commentsPage.likeComment");
         actions.clickElement("commentsPage.likeComment");
         actions.waitForElementVisible("commentsPage.dislikeButton");
+        actions.assertElementPresent("commentsPage.dislikeButton");
     }
 
     public void validateCommentLiked() {
@@ -124,6 +123,7 @@ public class CommentsPage extends WEareBasePage {
             actions.clickElement("commentsPage.likeComment");
         }
         actions.waitForElementClickable("commentsPage.dislikeButton");
+        actions.assertElementPresent("commentsPage.dislikeButton");
         actions.clickElement("commentsPage.dislikeButton");
         actions.waitForElementVisible("commentsPage.likeComment");
     }

@@ -17,6 +17,7 @@ public class HomePage extends WEareBasePage {
     public void navigateToHomePage() {
         actions.waitForElementVisible("homePageButton");
         actions.waitForElementClickable("homePageButton");
+        actions.assertElementPresent("homePageButton");
         actions.clickElement("homePageButton");
     }
 
@@ -38,30 +39,25 @@ public class HomePage extends WEareBasePage {
     public void navigateToLatestPosts(){
         actions.waitForElementPresent("homepage.latestPostsButton");
         actions.waitForElementClickable("homepage.latestPostsButton");
+        actions.assertElementPresent("homepage.latestPostsButton");
         actions.clickElement("homepage.latestPostsButton");
         validateHeader("Explore all posts");
     }
 
-    public void navigateToAboutUs(){
-        actions.waitForElementClickable("homepage.aboutUsButton");
-        actions.clickElement("homepage.aboutUsButton");
-    }
-
     public  void typeIntoNameSearchBox(String name){
-
         actions.waitForElementVisible("homePage.NameField");
+        actions.assertElementPresent("homePage.NameField");
         actions.typeValueInField(name,"homePage.NameField");
     }
-    public  void typeIntoProfessionSearchBox(String profession){
-        actions.waitForElementPresent("homePage.ProfessionField");
-        actions.typeValueInField(profession,"homePage.ProfessionField");
-    }
+
     public void clickOnSearchButton(){
         actions.waitForElementClickable("homePage.SearchButton");
+        actions.assertElementPresent("homePage.SearchButton");
         actions.clickElement("homePage.SearchButton");
     }
     public void navigateToPersonalProfileButton(){
         actions.waitForElementPresent("homePage.PersonalProfileButton");
+        actions.assertElementPresent("homePage.PersonalProfileButton");
         actions.clickElement("homePage.PersonalProfileButton");
     }
 
@@ -76,6 +72,7 @@ public class HomePage extends WEareBasePage {
     }
     public void searchUserByName(String name){
         actions.waitForElementClickable("ProfileConnectionPageSeeProfileByName",name);
+        actions.assertElementPresent("ProfileConnectionPageSeeProfileByName",name);
         actions.clickElement("ProfileConnectionPageSeeProfileByName",name);
     }
 
