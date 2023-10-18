@@ -68,6 +68,6 @@ For detailed reports on the API tests, please refer to the [REST Assured WEare R
 
 ## API Documentation
 
-- **Swagger**: The API documentation for the WEare Social Network is available [here](http://localhost:8081/swagger-ui.html#/).
+**Swagger**: The API documentation for the 'WEare' Social Network is accessible via Swagger, but only when the application is actively running. You can view it [here](http://localhost:8081/swagger-ui.html#/).
 
 ---
