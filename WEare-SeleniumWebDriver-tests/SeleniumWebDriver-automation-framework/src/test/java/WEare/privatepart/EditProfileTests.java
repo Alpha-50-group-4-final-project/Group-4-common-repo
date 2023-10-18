@@ -25,7 +25,7 @@ public class EditProfileTests extends BaseTest {
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
         login(usernameRandom, passwordRandom);
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.navigateToEditProfileMenu();
     }
 
@@ -37,21 +37,18 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.fillUpLastNameField(SET_UP_LASTNAME);
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.validateSuccessfulEdit(SET_UP_FIRSTNAME, SET_UP_LASTNAME);
     }
 
     @Test
     @Label("Jira FPW-46")
-    @Tag("Unhappypath")
-    public void editFirstnameLastNameBirthday_when_emptyLastNameIsProvided() {
+    @Tag("UnHappyPath")
+    public void editFirstnameLastNameBirthdayFails_when_emptyLastNameIsProvided() {
         editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
         editProfilePage.fillUpLastNameField("");
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
+        editProfilePage.validateEditFailed();
         editProfilePage.assertLastNameErrorMessage();
     }
 
@@ -59,28 +56,23 @@ public class EditProfileTests extends BaseTest {
     @Label("Jira FPW-58")
     @Tag("HappyPath")
     public void addSelfDescription_when_validDataIsProvided() {
-        editProfilePage.navigateToEditProfileMenu();
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        //editProfilePage.navigateToEditProfileMenu();
+        //api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
         editProfilePage.clickPersonalInformationUpdateButton();
+        editProfilePage.validateSelfDescriptionUpdated(SELF_DESCRIPTION);
 
-        editProfilePage.assertSelfDescription(SELF_DESCRIPTION);
-        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
     }
 
     @Test
     @Label("Jira FPW-57")
     @Tag("HappyPath")
     public void changeGender_when_validDataProvided() {
-        editProfilePage.navigateToEditProfileMenu();
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+        // editProfilePage.navigateToEditProfileMenu();
+        // api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.changeGender(GENDER_TYPE);
         editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertElementAttribute("personalProfilePageGenderButton", "value", GENDER_TYPE, GENDER_TYPE);
-        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
+        editProfilePage.validateGenderUpdated(GENDER_TYPE);
     }
 
     @Test
@@ -90,21 +82,18 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.navigateToEditProfileMenu();
         editProfilePage.changeEmail(NEW_EMAIL);
         editProfilePage.clickPersonalInformationUpdateButton();
-
-        editProfilePage.assertElementAttribute("personalProfilePageEmailField", "value", NEW_EMAIL);
-        editProfilePage.assertElementAttribute("personalProfilePageFirstNameField", "value", SET_UP_FIRSTNAME);
-        editProfilePage.assertElementAttribute("personalProfilePageLastNameField", "value", SET_UP_LASTNAME);
-    }
+        editProfilePage.validateEmailUpdated(NEW_EMAIL);
+       }
 
     @Test
     @Label("Jira FPW-45")
-    @Tag("HappyPath")
-    public void editFirstnameLastNameBirthday_when_invalidFirstNameIsProvided() {
+    @Tag("UnHappyPath")
+    public void editFirstnameLastNameBirthdayFail_when_invalidFirstNameIsProvided() {
         editProfilePage.fillUpFirstNameField("");
         editProfilePage.fillUpLastNameField(VALID_LAST_NAME);
         editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.assertElementPresent("personalProfilePageEditErrorMessage");
+        editProfilePage.validateEditFailed();
         editProfilePage.assertFirstNameErrorMessage();
     }
 
@@ -115,7 +104,7 @@ public class EditProfileTests extends BaseTest {
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.assertCity(CITY);
+        editProfilePage.validateCityUpdated(CITY);
     }
 
     @Test
@@ -123,13 +112,15 @@ public class EditProfileTests extends BaseTest {
     @Tag("HappyPath")
     public void changeProfessionalCategory_when_validProfessionProvided() {
         editProfilePage.changeProfessionalCategory(PROFESSION);
+        editProfilePage.validateCategoryUpdated(PROFESSION);
     }
 
     @Test
     @Label("Jira FPW-63")
     @Tag("HappyPath")
     public void changeServices_when_validServiceClicked() {
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
+       // api.updateUserProfile(usernameRandom, passwordRandom, SET_UP_FIRSTNAME, SET_UP_LASTNAME);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
+       // editProfilePage.validateServiceUpdated();
     }
 }
