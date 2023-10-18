@@ -22,6 +22,8 @@ This folder contains the REST-Assured framework used for API testing of the WEar
 - **TestNG**: Version 7.8.0
 - **JavaFaker**: Version 1.0.2
 - **MySQL Connector**: Version 5.1.6
+- **Allure TestNG**: Version 2.24.0
+- **Spring Security Core**: Version 5.5.3
 
 ---
 
