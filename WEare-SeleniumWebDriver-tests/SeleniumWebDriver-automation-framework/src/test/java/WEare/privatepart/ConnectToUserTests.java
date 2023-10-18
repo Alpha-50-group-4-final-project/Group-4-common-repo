@@ -29,14 +29,13 @@ public class ConnectToUserTests extends BaseTest {
         api.updateUserProfile(SECOND_USER,PASSWORD, secondUserFirstName, lastNameSecondUser);
 
     }
-
     @BeforeEach
     protected void usersFirstNameSetUps() {
         login(SECOND_USER, PASSWORD);
     }
 
     @AfterEach
-    protected void clean() {
+    protected void logOut() {
         loginPage.clickOnLogOutButton();
     }
 

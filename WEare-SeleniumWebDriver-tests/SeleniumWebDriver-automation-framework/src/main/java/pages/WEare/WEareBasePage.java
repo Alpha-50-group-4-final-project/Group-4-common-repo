@@ -16,7 +16,10 @@ public abstract class WEareBasePage extends BasePage {
     }
 
     public void validateHeader(String message){
+        actions.waitForElementVisible("page.headers");
         try {
+            actions.waitForElementVisible("page.headers");
+            actions.waitForElementPresent("page.headers");
             actions.assertElementAttribute("page.headers", "innerHTML", message);
         LOGGER.info("Page accessible and navigated successfully.");
         } catch  (AssertionFailedError e) {

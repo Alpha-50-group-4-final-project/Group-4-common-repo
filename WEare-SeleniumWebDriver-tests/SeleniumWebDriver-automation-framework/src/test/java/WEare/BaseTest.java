@@ -67,10 +67,12 @@ public class BaseTest {
 
     @AfterAll
     public static void logOutFromAccount() {
+        logout();
         UserActions.quitDriver();
     }
 
     public static void login(String username, String password) {
+        loginPage.navigateToPage();
         loginPage.navigateToSignIn();
         loginPage.fillUsername(username);
         loginPage.fillPassword(password);

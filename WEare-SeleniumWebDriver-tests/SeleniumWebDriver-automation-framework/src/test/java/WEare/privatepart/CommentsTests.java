@@ -18,10 +18,7 @@ public class CommentsTests extends BaseTest {
     }
 
     @AfterAll
-    public static void returnHome() {
-
-        homePage.navigateToHomePage();
-        logout();
+    public static void testClean() {
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 

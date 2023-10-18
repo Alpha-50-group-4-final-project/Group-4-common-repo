@@ -27,7 +27,6 @@ public class AdminCommentTest extends BaseTest {
         logout();
     }
 
-
     @AfterAll
     public static void clearData() {
         api.deletePost(adminUsername, adminPassword, apiPost.postId);

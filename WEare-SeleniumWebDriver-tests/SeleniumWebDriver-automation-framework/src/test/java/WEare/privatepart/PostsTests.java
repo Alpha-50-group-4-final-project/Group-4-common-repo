@@ -18,8 +18,6 @@ public class PostsTests extends BaseTest {
 
     @AfterAll
     public static void returnHome() {
-
-     logout();
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
 

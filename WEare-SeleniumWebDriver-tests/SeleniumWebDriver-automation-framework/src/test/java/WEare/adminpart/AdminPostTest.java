@@ -18,9 +18,7 @@ public class AdminPostTest extends BaseTest {
         adminPage.validateAdminPageNavigated();
     }
     @AfterAll
-    public static void clearData(){
-        homePage.navigateToHomePage();
-        logout();
+    public static void deletePost(){
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
 

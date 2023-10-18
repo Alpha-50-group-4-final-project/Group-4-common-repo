@@ -17,12 +17,6 @@ public class AdminEnableDisableUserTest extends BaseTest {
         login(adminUsername, adminPassword);
     }
 
-    @AfterAll
-    public static void clearData() {
-        homePage.navigateToHomePage();
-        logout();
-    }
-
     @Test
     @Label("Jira FPW-146")
     @Tag("HappyPath")
