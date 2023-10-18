@@ -3,10 +3,8 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
-@Testable
+
 public class EditProfileTests extends BaseTest {
 
     public static final String SELF_DESCRIPTION = "Hello its my first time here.Im trying to be smart but im not.";
@@ -27,12 +25,8 @@ public class EditProfileTests extends BaseTest {
     public static void testSetup() {
         api.registerUser(usernameRandom, passwordRandom);
         login(usernameRandom, passwordRandom);
+        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.navigateToEditProfileMenu();
-    }
-
-    @BeforeEach
-    public void pageSetUp() {
-
     }
 
     @Test
@@ -94,7 +88,6 @@ public class EditProfileTests extends BaseTest {
     @Tag("HappyPath")
     public void changeEmail_when_validNewEmailIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeEmail(NEW_EMAIL);
         editProfilePage.clickPersonalInformationUpdateButton();
 
@@ -119,7 +112,6 @@ public class EditProfileTests extends BaseTest {
     @Label("Jira FPW-61")
     @Tag("HappyPath")
     public void changeCity_when_differentCityIsChosen() {
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.clickOnCityButton();
         editProfilePage.selectCity(CITY);
         editProfilePage.clickPersonalInformationUpdateButton();
@@ -130,7 +122,6 @@ public class EditProfileTests extends BaseTest {
     @Label("Jira FPW-62")
     @Tag("HappyPath")
     public void changeProfessionalCategory_when_validProfessionProvided() {
-        api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeProfessionalCategory(PROFESSION);
     }
 
@@ -138,7 +129,6 @@ public class EditProfileTests extends BaseTest {
     @Label("Jira FPW-63")
     @Tag("HappyPath")
     public void changeServices_when_validServiceClicked() {
-        editProfilePage.navigateToEditProfileMenu();
         api.updateUserProfile(usernameRandom, passwordRandom,SET_UP_FIRSTNAME,SET_UP_LASTNAME);
         editProfilePage.changeServices(SERVICE_PROVIDED, WEEKLY_AVAILABILITY);
     }

@@ -3,15 +3,12 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
-@Testable
 public class CommentsTests extends BaseTest {
-    private static String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
-    private static String postBody = getUIMappingByKey("postPage.postMessage");
+    private static final String commentBody = getUIMappingByKey("commentPage.validCommentMessage");
+    private static final String postBody = getUIMappingByKey("postPage.postMessage");
 
     @BeforeAll
     public static void testSetup() {
@@ -31,6 +28,7 @@ public class CommentsTests extends BaseTest {
     @Test
     @Label("Jira FPW-101")
     @Tag("HappyPath")
+    @DisplayName("Validate User Can Comment on a Public Post")
     public void addValidComment_when_postCommentButtonClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
@@ -42,6 +40,7 @@ public class CommentsTests extends BaseTest {
     @Test
     @Label("Jira FPW-121")
     @Tag("HappyPath")
+    @DisplayName("Validate User Can Edit His Comment on a Public Post")
     public void editComment_when_validTextAdded() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -55,6 +54,7 @@ public class CommentsTests extends BaseTest {
     @Test
     @Label("Jira FPW-133")
     @Tag("HappyPath")
+    @DisplayName("Validate User Can Like a Comment on public post")
     public void likeComment_when_likedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -66,6 +66,7 @@ public class CommentsTests extends BaseTest {
     @Test
     @Label("Jira FPW-135")
     @Tag("HappyPath")
+    @DisplayName("Validate User Can Unlike a Comment on public post")
     public void unlikeComment_when_unlikedButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -78,6 +79,7 @@ public class CommentsTests extends BaseTest {
     @Test
     @Label("Jira FPW-124")
     @Tag("HappyPath")
+    @DisplayName("Validate User Can Delete His Comment on a Public Post")
     public void deleteComment_when_deleteButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
         homePage.navigateToLatestPosts();
@@ -87,5 +89,4 @@ public class CommentsTests extends BaseTest {
         commentsPage.deleteCommentConfirmation();
         commentsPage.validateCommentDeleted();
     }
-
 }

@@ -3,12 +3,9 @@ package WEare.adminpart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-@Testable
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class AdminCommentTest extends BaseTest {
     private static final String postMessage = getUIMappingByKey("postPage.postMessage");
     private static final String commentMessage = getUIMappingByKey("commentPage.postMessage");
@@ -33,6 +30,7 @@ public class AdminCommentTest extends BaseTest {
     @Order(1)
     @Label("Jira FPW-151")
     @Tag("HappyPath")
+    @DisplayName("Edit Comment with valid data provided")
     public void editOtherUsersComment_when_editCommentClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);
@@ -46,6 +44,7 @@ public class AdminCommentTest extends BaseTest {
     @Order(2)
     @Label("Jira FPW-153")
     @Tag("HappyPath")
+    @DisplayName("Delete Comment")
     public void deleteOtherUsersComment_when_deleteCommentClicked() {
         homePage.navigateToLatestPosts();
         postsPage.explorePost(usernameRandom);

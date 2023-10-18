@@ -3,24 +3,19 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.api.WEareApi.USER_ID;
 
-@Testable
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class ConnectToUserTests extends BaseTest {
-
-
     private static final String PASSWORD = "123456";
-    public static String SECOND_USER;
+    private static String SECOND_USER;
     private static String firstUserFirstName;
     private static String secondUserFirstName;
     private static String recipientID;
 
     @BeforeAll
-    public static void initialSetUp() {
+    protected static void initialSetUp() {
         firstUserFirstName = faker.name().firstName();
         String lastNameFirstUser = faker.name().firstName();
 
@@ -36,19 +31,19 @@ public class ConnectToUserTests extends BaseTest {
     }
 
     @BeforeEach
-    public void usersFirstNameSetUps() {
+    protected void usersFirstNameSetUps() {
         login(SECOND_USER, PASSWORD);
     }
 
     @AfterEach
-    public void clean() {
+    protected void clean() {
         loginPage.clickOnLogOutButton();
     }
-
 
     @Test
     @Label("Jira FPW-140")
     @Tag("HappyPath")
+    @DisplayName("Sending connection request")
     public void sendConnectRequest_when_connectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchPage.clickConnectButton();
@@ -58,6 +53,7 @@ public class ConnectToUserTests extends BaseTest {
     @Test
     @Label("Jira FPW-141")
     @Tag("HappyPath")
+    @DisplayName("Accept connection request.")
     public void acceptConnectRequest_when_approveRequestButtonClicked() {
         api.sendConnectionRequest(SECOND_USER,PASSWORD,recipientID,firstUserFirstName);
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
@@ -67,6 +63,7 @@ public class ConnectToUserTests extends BaseTest {
     @Test
     @Label("Jira FPW-142")
     @Tag("HappyPath")
+    @DisplayName("Disconnect friendships")
     public void disconnectAcceptedFriendShip_when_disconnectButtonClicked() {
         searchAndFindCurrentProfileByName(firstUserFirstName);
         searchPage.clickConnectButton();

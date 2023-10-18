@@ -7,7 +7,7 @@ import org.junit.platform.commons.annotation.Testable;
 import org.junit.platform.suite.api.Suite;
 
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
-@Testable
+
 public class AdminEnableDisableUserTest extends BaseTest {
 
     private static String userForTesting = getUIMappingByKey("adminPage.enableDisable.nameUpdate");
@@ -29,6 +29,7 @@ public class AdminEnableDisableUserTest extends BaseTest {
     @Test
     @Label("Jira FPW-146")
     @Tag("HappyPath")
+    @DisplayName("Disable profile")
     public void disableAnotherUserAccount_when_disableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();
@@ -40,6 +41,7 @@ public class AdminEnableDisableUserTest extends BaseTest {
     @Test
     @Label("Jira FPW-147")
     @Tag("HappyPath")
+    @DisplayName("Enable profile")
     public void enableDisabledUserAccount_when_enableClicked() {
         adminPage.clickGOTOadminzoneButton();
         adminPage.clickOnViewUsersButton();

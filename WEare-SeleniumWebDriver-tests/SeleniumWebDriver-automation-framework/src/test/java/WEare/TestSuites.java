@@ -1,15 +1,10 @@
-import org.junit.jupiter.api.Tag;
+package WEare;
+
 import org.junit.platform.suite.api.IncludeTags;
-import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
-import WEare.privatepart.*;
-import WEare.publicpart.*;
-import WEare.adminpart.*;
-
 
 public class TestSuites {
-
 
     @IncludeTags("HappyPath")
     @Suite
@@ -23,5 +18,4 @@ public class TestSuites {
     public static class UnhappyPathTestSuite {
 
     }
-
 }

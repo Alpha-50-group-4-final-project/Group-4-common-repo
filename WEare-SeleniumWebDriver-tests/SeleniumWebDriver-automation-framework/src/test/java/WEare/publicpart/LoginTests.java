@@ -25,6 +25,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     @Label("Jira FPW-23")
+    @DisplayName("Login with valid credentials")
     @Tag("HappyPath")
     public void login_when_validCredentialsArePassed() {
         loginPage.fillUsername(usernameRandom);
@@ -37,6 +38,7 @@ public class LoginTests extends BaseTest {
     @ParameterizedTest
     @Label("Jira FPW-24, FPW-25, FPW-26, FPW-27, FPW-28")
     @CsvSource({"T st,Valid_123", "Testbot,vald12", "'',vald12", "Testbot,''", "'',''"})
+    @DisplayName("Login with invalid credentials")
     @Tag("UnHappyPath")
     public void login_when_invalidCredentialsArePassed(String username, String password) {
         loginPage.fillUsername(username);
