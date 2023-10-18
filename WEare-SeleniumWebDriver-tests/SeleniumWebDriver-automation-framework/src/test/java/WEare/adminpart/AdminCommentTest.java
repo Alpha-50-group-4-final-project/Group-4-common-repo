@@ -14,15 +14,24 @@ public class AdminCommentTest extends BaseTest {
     public static void testSetUp() {
         api.registerUser(usernameRandom, passwordRandom);
         apiPost = api.createPost(usernameRandom, passwordRandom, postMessage);
-        api.createComment(usernameRandom, passwordRandom, commentMessage, apiPost.postId);
         api.registerUser(adminUsername, adminPassword);
+    }
+    @BeforeEach
+    public void createComment(){
+        api.createComment(usernameRandom, passwordRandom, commentMessage, apiPost.postId);
         login(adminUsername, adminPassword);
     }
+    @AfterEach
+    public void deleteComment(){
+        api.deleteComment(usernameRandom,passwordRandom, apiComment.commentId);
+        logout();
+    }
+
 
     @AfterAll
     public static void clearData() {
         homePage.navigateToHomePage();
-        logout();
+
         api.deletePost(adminUsername, adminPassword, apiPost.postId);
     }
 

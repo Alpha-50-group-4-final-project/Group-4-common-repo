@@ -1,6 +1,7 @@
 package WEare;
 import com.github.javafaker.Faker;
 import com.telerikacademy.testframework.UserActions;
+import com.telerikacademy.testframework.api.CommentModel;
 import com.telerikacademy.testframework.api.PostModel;
 import com.telerikacademy.testframework.api.WEareApi;
 
@@ -24,6 +25,7 @@ public class BaseTest {
 
     protected static WEareApi api;
     protected static PostModel apiPost;
+    protected static CommentModel apiComment;
     protected static UserRegistrationPage registrationPage;
     protected static LoginPage loginPage;
 
@@ -52,6 +54,7 @@ public class BaseTest {
         commentsPage = new CommentsPage(actions.getDriver());
         api = new WEareApi();
         apiPost = new PostModel();
+        apiComment=new CommentModel();
         usernameRandom = faker.name().firstName();
         lastNameRandom = faker.name().lastName();
         adminUsername = faker.name().firstName() + "admin";

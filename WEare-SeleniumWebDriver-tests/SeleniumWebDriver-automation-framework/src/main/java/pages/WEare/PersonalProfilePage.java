@@ -10,11 +10,9 @@ import static com.telerikacademy.testframework.Utils.LOGGER;
 import static java.lang.String.format;
 
 public class PersonalProfilePage extends WEareBasePage {
-
     public PersonalProfilePage(WebDriver driver) {
         super(driver, "");
     }
-
 
     public void navigateToEditProfileMenu() {
         actions.navigateToPage("http://localhost:8081/");
@@ -104,7 +102,6 @@ public class PersonalProfilePage extends WEareBasePage {
 
         actions.waitForElementClickable("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
         actions.clickElement("personalProfileUpdatePage.PersonalProfileUpdateServiceButton");
-
     }
 
     public void assertFirstNameErrorMessage() {
