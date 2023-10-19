@@ -12,6 +12,8 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
+import static dataBaseManipulations.BaseSetup.freshUsernames;
+import static dataBaseManipulations.BaseSetup.freshUsersIds;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -50,6 +52,8 @@ public class RegisterUserTest extends BaseTest {
         registeredUsername = responseBody[3];
 
         System.out.printf("User named %s with id %s created.", registeredUsername, userId);
+        freshUsernames.add(registeredUsername);
+        freshUsersIds.add(Integer.parseInt(userId));
     }
 
     @Test(priority = 2)
@@ -139,6 +143,7 @@ public class RegisterUserTest extends BaseTest {
         assertEquals(response.getBody().jsonPath().get("message"), "User with this username already exist",
                 format("Incorrect response error. Expected: %s.", "User with this username already exist"));
         assertNotNull(response.getBody().jsonPath().get("timestamp"), "Empty timestamp field.");
+
     }
 
 

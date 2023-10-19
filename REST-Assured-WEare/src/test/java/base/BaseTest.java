@@ -1,11 +1,14 @@
 package base;
 
+import dataBaseManipulations.UserManipulation.DeleteCurrentUserById;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.testng.annotations.AfterClass;
 
+import java.sql.SQLException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
@@ -13,6 +16,9 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
+import static dataBaseManipulations.BaseSetup.freshUsernames;
+import static dataBaseManipulations.BaseSetup.freshUsersIds;
+import static dataBaseManipulations.UserManipulation.DeleteCurrentUserById.deleteUserById;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
 import static org.testng.Assert.assertTrue;
@@ -24,19 +30,23 @@ public class BaseTest {
     protected static String postId;
     protected static String commentId;
     protected static Cookies cookies;
-
     protected static String skillId;
     protected static String connectionId;
-
     protected static String registeredUsername;
 
     protected static Response response;
     protected static String expertiseUpdateUsername;
     protected static DateTimeFormatter dtf;
     protected boolean isConnectionSend = false;
-
     protected static String userReceivingRequestId;
     protected static String userReceivingRequestName;
+
+
+    @AfterClass
+    public  static void dleteUser() throws SQLException {
+        deleteUserById();
+        userId=null;
+    }
 
 
     protected String timeStamp() {
@@ -47,7 +57,6 @@ public class BaseTest {
         return timestamp;
     }
 
-
     protected Cookies getAuthCookie(String username, String password) {
         return cookies = given().queryParam("username", username).
                 queryParam("password", password).
@@ -57,6 +66,7 @@ public class BaseTest {
                 extract().response().
                 getDetailedCookies();
     }
+
 
 
     protected RequestSpecification requestSpecificationWithoutAuthentication() {
@@ -91,6 +101,9 @@ public class BaseTest {
         String[] responseBody = response.asString().split(" ");
         userId = responseBody[6];
         registeredUsername = responseBody[3];
+
+        freshUsernames.add(registeredUsername);
+        freshUsersIds.add(Integer.parseInt(userId));
     }
 
     protected void registerAnotherUser() {
@@ -108,6 +121,9 @@ public class BaseTest {
         String[] responseBody = response.asString().split(" ");
         userReceivingRequestId = responseBody[6];
         userReceivingRequestName = responseBody[3];
+
+        freshUsernames.add(registeredUsername);
+        freshUsersIds.add(Integer.parseInt(userId));
 
     }
 
