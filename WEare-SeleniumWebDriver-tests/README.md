@@ -99,6 +99,25 @@ The API documentation for the WEare Social Network is accessible via Swagger, bu
 
 ## Prerequisites
 
+### Database Configuration
+Before running tests, navigate to the following path in the project directory to configure your database credentials:
+
+```plaintext
+src
+|-- test
+|   |-- resources
+|       |-- config.properties
+```
+
+In the `config.properties` file, provide the details for your database connection:
+
+```plaintext
+# Database connection
+database.url= [Your Database URL]
+database.username= [Your Database Username]
+database.password= [Your Database Password]
+```
+
 ### Maven Setup
 Before running tests, make sure you have Maven installed on your system. If it is not installed, you can download it from the [official Maven website](https://maven.apache.org/download.cgi) and follow the installation instructions. Verify the installation by running the following command in the terminal:
 
