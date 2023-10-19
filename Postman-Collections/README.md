@@ -3,66 +3,60 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Test Scenarios](#test-scenarios)
-3. [Environment and Preconditions](#environment-and-preconditions)
-4. [Newman Reports](#newman-reports)
-5. [API Documentation](#api-documentation)
-6. [Repository Structure](#repository-structure)
+3. [Pre-Request Scripts](#pre-request-scripts)
+4. [Environment and Preconditions](#environment-and-preconditions)
+5. [Newman Reports](#newman-reports)
+6. [API Documentation](#api-documentation)
+7. [Repository Structure](#repository-structure)
 
 ---
 
 ## Overview
 This folder contains the Postman collection and environment files for API testing of the WEare Social Network. These tests validate the backend functionality and are crucial for ensuring the robustness of the application.
 
+### Note on Request Independence
+All API requests in this collection are designed to work independently. However, to ensure 100% individual operability, it's recommended to run the 'User registration (FPW-233)' request at least once. If this condition is met, each request in the collection can be executed individually without any dependencies.
+
 ---
 
 ## Test Scenarios
 
 ### Happy Path
-- POST - User registration
-- POST - Get Authorized
-- PUT - Edit a post
-- POST - Create a comment
-- PUT - Edit a comment
-- GET - Get all comments by post
-- DEL - Delete a post
+Covers basic user flows for authorization, post creation, and commenting.
 
 ### User Controllers
-- GET - Show User Post by ID
-- GET - Get User by ID
-- POST - Upgrade Expertise Profile
-- POST - Upgrade Personal Profile
-- POST - Admin registration
+Focuses on user management, including registration and profile upgrades.
 
 ### Post Controllers
-- POST - Create a post
-- GET - Find All posts
-- PUT - Edit a post
-- POST - Like a post
-- POST - Unlike a post
-- GET - Show comments on post
-- DEL - Delete a post
+Handles all post-related activities, such as creation, editing, and deletion.
 
 ### Comment Controllers
-- POST - Create a post
-- POST - Create a comment
-- GET - Find all comments
-- PUT - Edit a comment
-- POST - Like a comment
-- POST - Unlike a comment
-- GET - Get all comments by post
-- GET - Get one comment by post
-- DEL - Delete a comment
+Tests functionalities around comments, including creation, editing, and retrieval.
 
 ### Skill Controllers
-- GET - Find all skills
-- POST - Create skill
-- PUT - Edit skill
-- GET - Get one skill
-- PUT - Delete skill
+Involves operations for skills management, like creation and editing.
 
-### Connection Controllers
-- POST - User One sends connect request to user Two
-- POST - User Two accepts the request
+### Connection Controllers - Happy Path
+Addresses the sending and accepting of connection requests between users.
+
+### Unhappy Paths
+Tests edge cases and expected failures, such as invalid inputs and unauthorized actions.
+
+---
+
+## Pre-Request Scripts
+
+### Main Folder
+
+The main folder contains a pre-request script that sets up several variables used across tests:
+
+- `CurrentDate`: Sets the current date using Moment.js.
+- `random_memberDate`: Generates a random past date in "DD/MM/YYYY" format.
+- `random_birthDate`: Generates a random past date in "YYYY-MM-DD" format.
+- `random_city`: Generates a random number between 1 and 25.
+- `random_number`: Generates a random number between 1 and 10.
+
+These variables are used to generate dynamic data for tests and to simulate different scenarios.
 
 ---
 
