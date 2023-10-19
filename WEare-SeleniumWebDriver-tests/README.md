@@ -115,6 +115,11 @@ mvn -v
    Or you can use the provided BAT files:
     - `RunAndReport_Selenium_UI-Tests_HappyPath.bat`
     - `RunAndReport_Selenium_UI-Tests_UnhappyPath.bat`
+   
+#### The BAT Files Will:
+- Run the tests using Maven.
+- Generate an HTML report.
+- Display the HTML report using the system's default program for viewing HTML files once the tests are completed.
 
 ---
 
