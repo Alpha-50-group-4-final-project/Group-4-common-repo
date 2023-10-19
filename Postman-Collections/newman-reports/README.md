@@ -2,6 +2,7 @@
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Running Tests](#running-tests)
+4. [Repository Structure](#repository-structure)
 
 ## Overview
 This folder contains reports generated using Newman for the Postman collections. Newman is a command-line runner for Postman that allows us to run and test a Postman collection directly from the command line.
@@ -45,3 +46,13 @@ To run the Postman collection and generate reports, execute the provided BAT fil
 - Run the tests using Newman.
 - Generate an HTML report.
 - Display the HTML report using the system's default program for viewing HTML files once the tests are completed.
+
+---
+
+## Repository Structure
+
+- [Main Repository](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main) - The main part of the repository.
+- [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation) - Contains test plans, test cases, and other QA-related documents.
+- [WEare Selenium WebDriver Tests](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/WEare-SeleniumWebDriver-tests) - Holds our Java-based test automation framework for UI testing.
+   - [Postman Collections](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections) - Includes Postman collections for API testing.
+- [REST Assured WEare](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare) - Contains REST Assured tests for API validation.

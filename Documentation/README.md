@@ -1,12 +1,13 @@
 # Documentation for WEare Social Network QA
 
 ## Table of Contents
-1. [Test Plan](./Test-Plan.md)
-2. [Template Test Cases](./Template-Test-Cases.md)
-3. [Template Bug Reports](./Template-Bug-Reports.md)
-4. [Social Network Test Requirements](./Social-Network-Test-Requirements.md)
-5. [Social Network Project Specification](./Social-Network-Project-Specification.md)
-6. [Jira Boards](#jira-boards)
+1. [Test Plan](#test-plan)
+2. [Template Test Cases](#template-test-cases)
+3. [Template Bug Reports](#template-bug-reports)
+4. [Social Network Test Requirements](#social-network-test-requirements)
+5. [Social Network Project Specification](#social-network-project-specification)
+6. [Jira Dashboard](#jira-dashboard)
+7. [Repository Structure](#repository-structure)
 
 ---
 
@@ -35,9 +36,16 @@ The application specifications are available [here](./Team4{win}-Social_Network_
 
 ---
 
-## Jira Boards
-- [Task Management](https://team4tests.atlassian.net/jira/software/projects/FPT/boards/3)
-- [Bug Tracking](https://team4tests.atlassian.net/jira/software/c/projects/WA/issues)
-- [Test Cases](https://team4tests.atlassian.net/jira/software/c/projects/FPW/boards/4)
+## Jira Dashboard
+- [QA Management](https://team4tests.atlassian.net/jira/software/c/projects/FPW/boards/4) - This Jira dashboard is where we manage individual test plans, track issues, and monitor test runs.
+
 
 ---
+
+## Repository Structure
+
+- [Main Repository](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main) - The main part of the repository.
+  - [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation) - Contains test plans, test cases, and other QA-related documents.
+- [WEare Selenium WebDriver Tests](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/WEare-SeleniumWebDriver-tests) - Holds our Java-based test automation framework for UI testing.
+- [Postman Collections](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections) - Includes Postman collections for API testing.
+- [REST Assured WEare](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare) - Contains REST Assured tests for API validation.

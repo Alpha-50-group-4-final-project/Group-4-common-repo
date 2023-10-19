@@ -117,6 +117,7 @@ public class PostsPage extends WEareBasePage {
         } catch (AssertionFailedError e) {
             Assertions.fail("Post was not edited.");
         }
+        actions.waitForElementPresent("homepage.latestPostsButton");
     }
 
     public void validatePostLiked() {
@@ -126,6 +127,7 @@ public class PostsPage extends WEareBasePage {
         } catch (AssertionFailedError e) {
             Assertions.fail("Post was not liked.");
         }
+        actions.waitForElementPresent("homepage.latestPostsButton");
     }
 
     public void validatePostDeleted() {
@@ -150,5 +152,6 @@ public class PostsPage extends WEareBasePage {
         } catch (AssertionFailedError e) {
             Assertions.fail("Post was not disliked.");
         }
+        actions.waitForElementPresent("homepage.latestPostsButton");
     }
 }
