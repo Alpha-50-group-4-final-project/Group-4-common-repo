@@ -80,7 +80,7 @@ public class BaseTest {
     }
 
     public static void logout() {
-        homePage.navigateToHomePage();
+        homePage.navigateToPage();
         loginPage.clickOnLogOutButton();
     }
 }
