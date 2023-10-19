@@ -67,7 +67,7 @@ This folder contains the Postman collection and environment files for API testin
 ---
 
 ## Environment and Preconditions
-The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the [Test Plan](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/blob/main/Documentation/Test-Plan.md).
+The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the [Test Plan](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/blob/main/Documentation/Team4%7Bwin%7D-TEST_PLAN_WEare%20social%20network_v4.docx).
 
 ---
 
