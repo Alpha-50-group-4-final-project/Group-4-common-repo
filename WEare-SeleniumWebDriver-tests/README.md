@@ -92,6 +92,7 @@ In this Selenium WebDriver framework, we incorporate API calls to make UI testin
 
 - **`WEareApi.java`**: Acts as an API client within the framework, providing methods for making API calls. This abstraction simplifies the process of incorporating API calls into UI tests.
 
+**Swagger**: The API documentation for the WEare Social Network is accessible via Swagger, but only when the application is actively running. You can view it [here](http://localhost:8081/swagger-ui.html#/).
 
 
 ---
