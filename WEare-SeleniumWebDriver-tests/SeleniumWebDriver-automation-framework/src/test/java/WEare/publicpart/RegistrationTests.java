@@ -12,11 +12,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static com.telerikacademy.testframework.Utils.LOGGER;
 @DisplayName("RegistrationTests")
 public class RegistrationTests extends BaseTest {
-    @Tag("Happypath")
-    @Tag("SmokeTest")
-    @DisplayName("User registration with valid email, username, password (letters)")
-    @Label("Jira FPW-4")
     @Test
+    @Label("Jira FPW-4")
+    @Tag("HappyPath")
+    @DisplayName("User registration with valid email, username, password (letters)")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUserTest_when_validCredentialsPassed() {
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -29,9 +29,10 @@ public class RegistrationTests extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({ "а", "''"})
+    @Label("Jira FPW-6, Jira FPW-10")
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid username")
-    @Label("Jira FPW-4, Jira FPW-10")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(username);
@@ -44,9 +45,10 @@ public class RegistrationTests extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({ "anna@sd.comsa", "''"})
+    @Label("Jira FPW-11, Jira FPW-13")
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid email")
-    @Label("Jira FPW-11, Jira FPW-13")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUser_when_invalidEmailPassed(String email){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -60,9 +62,10 @@ public class RegistrationTests extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({ "12345", "''"})
+    @Label("Jira FPW-14, Jira FPW-18")
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid password")
-    @Label("Jira FPW-14, Jira FPW-15")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
         registrationPage.fillUsernameField(usernameRandom);
@@ -73,9 +76,10 @@ public class RegistrationTests extends BaseTest {
         registrationPage.validateRegistryNotSuccessful();
     }
     @Test
+    @Label("Jira FPW-19")
     @Tag("UnHappyPath")
     @DisplayName("Register new user without choosing option.")
-    @Label("Jira FPW-14, Jira FPW-15")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         String name=faker.name().firstName();
         homePage.navigateToRegisterPage();
@@ -87,9 +91,10 @@ public class RegistrationTests extends BaseTest {
         LOGGER.info("User was successfully registered.");
     }
     @Test
+    @Label("Jira FPW-9")
     @Tag("UnHappyPath")
     @DisplayName("User registration with invalid credentials -username already used for registration")
-    @Label("Jira FPW-9")
+    @Description("As a user I want to register to use app's full list of features")
     public void registerNewUser_when_usernameAlreadyExist(){
         api.registerUser(usernameRandom,passwordRandom);
         homePage.navigateToRegisterPage();

@@ -9,7 +9,7 @@ import jdk.jfr.Label;
 import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 @DisplayName("UnregisteredUserTests")
-public class AnonymousUserTests extends BaseTest {
+public class SearchPublicContent extends BaseTest {
     private static final String firstNameUpdate = getUIMappingByKey("personalProfilePage.firstName");
 
     @Test

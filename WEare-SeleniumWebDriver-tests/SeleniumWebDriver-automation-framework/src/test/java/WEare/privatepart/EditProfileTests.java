@@ -33,7 +33,7 @@ public class EditProfileTests extends BaseTest {
     @Test
     @Label("Jira FPW-46")
     @Tag("UnHappyPath")
-    @DisplayName("Edit pofile of registered user without last name, only valid first name and birthday are provided")
+    @DisplayName("Edit profile of registered user without last name, only valid first name and birthday are provided")
     public void editFirstnameLastNameBirthdayFails_when_emptyLastNameIsProvided() {
         editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
         editProfilePage.fillUpLastNameField("");
