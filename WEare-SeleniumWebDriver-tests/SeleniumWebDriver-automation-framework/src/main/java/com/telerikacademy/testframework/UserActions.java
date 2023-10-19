@@ -105,10 +105,6 @@ public class UserActions {
         Assertions.assertEquals(value, attributeValue, "Attribute value is not corresponding with expected.");
     }
 
-    private String getLocatorValueByKey(String locator) {
-        return format(getUIMappingByKey(locator));
-    }
-
     private String getLocatorValueByKey(String locator, Object[] arguments) {
         return format(getUIMappingByKey(locator), arguments);
     }

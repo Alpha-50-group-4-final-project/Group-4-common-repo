@@ -10,6 +10,8 @@ import io.restassured.specification.RequestSpecification;
 import static com.telerikacademy.testframework.api.Constants.*;
 import static com.telerikacademy.testframework.api.EndPoints.*;
 import static com.telerikacademy.testframework.api.JsonBodies.*;
+import static weare.database.manipulation.BaseSetup.freshUsernames;
+import static weare.database.manipulation.BaseSetup.freshUsersIds;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
@@ -47,6 +49,8 @@ public class WEareApi {
         Response response = requestSpecificationWithoutAuthentication().body(requestBody).post(baseURI);
         String[] responseBody = response.asString().split(" ");
         USER_ID = responseBody[6];
+        freshUsersIds.add(Integer.parseInt(USER_ID));
+        freshUsernames.add(responseBody[3]);
     }
 
     public Response updateUserProfile(String username, String password, String firstName, String lastName) {

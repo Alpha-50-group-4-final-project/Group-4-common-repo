@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SelectAllUsers extends BaseSetup {
 
-    public static List<String> selectAllUsers() {
+    public static void selectAllUsers() {
         try {
             String maxExistingExpertiseId = "SELECT * FROM users";
             rs = statement.executeQuery(maxExistingExpertiseId);
@@ -14,10 +14,9 @@ public class SelectAllUsers extends BaseSetup {
                 usernames.add(names);
                 usersIds.add(rs.getInt("user_id"));
             }
-            return usernames;
+
         } catch (SQLException e) {
 
         }
-        return usernames;
     }
 }

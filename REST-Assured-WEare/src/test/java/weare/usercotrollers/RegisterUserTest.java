@@ -84,7 +84,6 @@ public class RegisterUserTest extends BaseTest {
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
 
         userReceivingRequestId = responseBody[6];
-        String adminName = responseBody[3];
 
         freshUsernames.add(ADMIN_USERNAME);
         freshUsersIds.add(Integer.parseInt(adminUserId));
@@ -114,6 +113,7 @@ public class RegisterUserTest extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 400, format("Incorrect status code. Expected: %s.", 400));
+
 
     }
 

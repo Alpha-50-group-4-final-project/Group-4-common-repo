@@ -1,6 +1,5 @@
 package base;
 
-import dataBaseManipulations.UserManipulation.DeleteCurrentUserById;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 
@@ -8,7 +7,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 
-import java.sql.SQLException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
@@ -43,14 +41,13 @@ public class BaseTest {
 
 
     @AfterClass
-    public  static void deleteUser() throws SQLException {
+    public  static void deleteUser()  {
         deleteUserById();
         userId=null;
         commentId=null;
         postId=null;
         expertiseProfileId=null;
     }
-
 
     protected String timeStamp() {
         String timestamp;

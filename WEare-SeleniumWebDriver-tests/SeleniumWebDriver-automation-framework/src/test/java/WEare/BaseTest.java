@@ -8,10 +8,13 @@ import com.telerikacademy.testframework.api.WEareApi;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.WEare.*;
+import weare.pages.*;
 
 import java.text.SimpleDateFormat;
 import static com.telerikacademy.testframework.Utils.LOGGER;
+import static com.telerikacademy.testframework.api.Constants.generateUsername;
+import static weare.database.manipulation.SelectAllUsers.selectAllUsers;
+import static weare.database.manipulation.UserManipulation.DeleteCurrentUserById.deleteUserById;
 
 
 @ExtendWith(MyTestWatcher.class)
@@ -21,7 +24,6 @@ public class BaseTest {
     public static String lastNameRandom;
     public static String passwordRandom;
     public static HomePage homePage;
-    protected static UserActions actions;
 
     protected static WEareApi api;
     protected static PostModel apiPost;
@@ -44,6 +46,7 @@ public class BaseTest {
         UserActions actions = new UserActions();
         UserActions.loadBrowser("homePage");
         faker = new Faker();
+        selectAllUsers();
         homePage = new HomePage(actions.getDriver());
         registrationPage = new UserRegistrationPage(actions.getDriver());
         loginPage = new LoginPage(actions.getDriver());
@@ -55,7 +58,7 @@ public class BaseTest {
         api = new WEareApi();
         apiPost = new PostModel();
         apiComment=new CommentModel();
-        usernameRandom = faker.name().firstName();
+        usernameRandom = generateUsername();
         lastNameRandom = faker.name().lastName();
         adminUsername = faker.name().firstName() + "admin";
         adminPassword = "12345678";
@@ -68,6 +71,7 @@ public class BaseTest {
     @AfterAll
     public static void logOutFromAccount() {
         logout();
+        deleteUserById();
         UserActions.quitDriver();
     }
 

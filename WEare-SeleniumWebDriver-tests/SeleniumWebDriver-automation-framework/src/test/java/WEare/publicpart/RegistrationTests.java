@@ -58,6 +58,7 @@ public class RegistrationTests extends BaseTest {
         registrationPage.selectCategoryField();
         registrationPage.clickRegistryButton();
         registrationPage.validateRegistryNotSuccessful();
+
     }
 
     @ParameterizedTest

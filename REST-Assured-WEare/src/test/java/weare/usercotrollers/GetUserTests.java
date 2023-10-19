@@ -55,7 +55,6 @@ public class GetUserTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
-//        assertNotNull(response.getBody().jsonPath().get("[0].postId"), "Post id is empty.");
         assertNotNull(response.getBody().jsonPath().get("[0].content"), "Post content is empty.");
         assertNotNull(response.getBody().jsonPath().get("[0].date"), "Post Date is empty.");
         assertNotNull(response.getBody().jsonPath().get("[0].rank"), "Rank is empty.");

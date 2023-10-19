@@ -3,6 +3,11 @@ package com.telerikacademy.testframework.api;
 import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import static com.telerikacademy.testframework.api.ValidationHelpers.userName;
+import static weare.database.manipulation.BaseSetup.usernames;
+import static weare.database.manipulation.SelectAllUsers.selectAllUsers;
 
 public class Constants {
 
@@ -21,5 +26,18 @@ public class Constants {
         public static String PUBLIC_CONTENT = "true";
 
         public static final String NO_PICTURE = "No picture";
+
+
+
+        public static String generateUsername()  {
+                String generatedName = faker.name().firstName();
+                while (!userName(generatedName, 2, 31, "Username should be between 2 and 31 symbols.") && usernames.contains(generatedName)) {
+                        generatedName = faker.name().firstName();
+                }
+                usernames.add(generatedName);
+                return generatedName;
+        }
+
+
 
     }
