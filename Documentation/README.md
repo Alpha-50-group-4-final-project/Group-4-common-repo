@@ -6,7 +6,7 @@
 3. [Template Bug Reports](#template-bug-reports)
 4. [Social Network Test Requirements](#social-network-test-requirements)
 5. [Social Network Project Specification](#social-network-project-specification)
-6. [Jira Boards](#jira-boards)
+6. [Jira Boards](#jira-dashboard)
 7. [Repository Structure](#repository-structure)
 
 ---
