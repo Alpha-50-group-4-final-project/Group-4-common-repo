@@ -778,10 +778,6 @@
 											"    console.log(\"Response message\", jsonData.message);\r",
 											"}\r",
 											"\r",
-											"\r",
-											"\r",
-											"//console.log(jsonData[0].userId);\r",
-											"//console.log(pm.collectionVariables.get(\"user_id\"));\r",
 											""
 										],
 										"type": "text/javascript"
@@ -1150,6 +1146,71 @@
 					"name": "Get User by ID (FPW-235)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get User by ID (FPW-235)",
 							"event": [
 								{
@@ -1483,6 +1544,71 @@
 					"name": "Upgrade Personal Profile (FPW-237)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Upgrade Personal Profile (FPW-237)",
 							"event": [
 								{
@@ -1669,6 +1795,71 @@
 					"name": "Create a public post(FPW-247)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Create a public post(FPW-247)",
 							"event": [
 								{
@@ -1766,6 +1957,71 @@
 					"name": "Find All posts (FPW-246)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Find All posts (FPW-246)",
 							"event": [
 								{
@@ -1824,6 +2080,71 @@
 				{
 					"name": "Edit a post (FPW-248)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Edit a post (FPW-248)",
 							"event": [
@@ -1946,6 +2267,71 @@
 				{
 					"name": "Like a post (FPW-249)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Like a post (FPW-249)",
 							"event": [
@@ -2189,6 +2575,71 @@
 				{
 					"name": "Delete a post (FPW-251)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Delete a post (FPW-251)",
 							"event": [
@@ -2489,71 +2940,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "User registration (FPW-233)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text()\r",
-									"\r",
-									" pm.test(\"Response body contains id\", ()=>{\r",
-									"     pm.expect(resp).to.include(\"id\");\r",
-									" })\r",
-									"\r",
-									"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
-									"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
-									"\r",
-									"console.log(resp.split(\" \")[3]); //username\r",
-									"console.log(resp.split(\" \")[6]); //id\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}/users/",
-							"host": [
-								"{{base_URL}}{{api}}"
-							],
-							"path": [
-								"users",
-								""
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"event": [
@@ -2650,6 +3036,71 @@
 				{
 					"name": "Create a comment (FPW-254)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Create a comment (FPW-254)",
 							"event": [
@@ -2782,6 +3233,71 @@
 					"name": "Edit a comment (FPW-255)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Edit a comment (FPW-255)",
 							"event": [
 								{
@@ -2862,7 +3378,7 @@
 											"    else{\r",
 											"\r",
 											"        console.log(response.json());\r",
-											"        //pm.collectionVariables.set(\"comment_id\", response.json().co);\r",
+											"        pm.collectionVariables.set(\"comment_id\", response.json().commentId);\r",
 											"    }\r",
 											"});\r",
 											"});\r",
@@ -2932,6 +3448,71 @@
 				{
 					"name": "Like a comment (FPW-256)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Like a comment (FPW-256)",
 							"event": [
@@ -3150,6 +3731,71 @@
 					"name": "Delete a comment (FPW-258)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Delete a comment (FPW-258)",
 							"event": [
 								{
@@ -3294,6 +3940,71 @@
 					"name": "Get all comments by post (FPW-259)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get all comments by post (FPW-259)",
 							"event": [
 								{
@@ -3323,6 +4034,61 @@
 											"}\r",
 											"\r",
 											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var user=pm.collectionVariables.get(\"username\");\r",
+											"var pass=pm.collectionVariables.get(\"password\");\r",
+											"\r",
+											"var login = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/authenticate', \r",
+											"    header: {\r",
+											"        'Content-Type': 'multipart/form-data', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'formdata',\r",
+											"        formdata: [\r",
+											"            { key: 'username', value: user },\r",
+											"            { key: 'password', value: pass },\r",
+											"            \r",
+											"        ]\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(login, function(err, res){\r",
+											"    var createPost = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/api/post/auth/creator', \r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"    raw:  JSON.stringify(\r",
+											"        {\r",
+											"            \"content\": pm.collectionVariables.get(\"post_content\"),\r",
+											"            \"picture\": pm.collectionVariables.get(\"picture_content\"),\r",
+											"            \"public\": true\r",
+											"        })\r",
+											"\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(createPost, function (err, response){\r",
+											"    if (err) {\r",
+											"        console.log(err);\r",
+											"    }\r",
+											"    else{\r",
+											"\r",
+											"        console.log(response.json());\r",
+											"        pm.collectionVariables.set(\"postId\", response.json().postId);\r",
+											"    }\r",
+											"});\r",
+											"    });"
 										],
 										"type": "text/javascript"
 									}
@@ -3400,6 +4166,71 @@
 				{
 					"name": "Get one comments by post (FPW-260)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Get one comments by post (FPW-260)",
 							"event": [
@@ -3571,71 +4402,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "User registration (FPW-233)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text()\r",
-									"\r",
-									" pm.test(\"Response body contains id\", ()=>{\r",
-									"     pm.expect(resp).to.include(\"id\");\r",
-									" })\r",
-									"\r",
-									"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
-									"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
-									"\r",
-									"console.log(resp.split(\" \")[3]); //username\r",
-									"console.log(resp.split(\" \")[6]); //id\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}/users/",
-							"host": [
-								"{{base_URL}}{{api}}"
-							],
-							"path": [
-								"users",
-								""
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"event": [
@@ -3667,6 +4433,71 @@
 				{
 					"name": "Create skill (FPW-239)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Create skill (FPW-239)",
 							"event": [
@@ -3766,6 +4597,71 @@
 					"name": "Find all skills (FPW-238)",
 					"item": [
 						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Find all skills (FPW-238)",
 							"event": [
 								{
@@ -3828,6 +4724,71 @@
 				{
 					"name": "Edit skill (FPW-241)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Edit skill (FPW-241)",
 							"event": [
@@ -3965,6 +4926,71 @@
 				{
 					"name": "Get one skill (FPW-242)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Get one skill (FPW-242)",
 							"event": [
@@ -4125,6 +5151,71 @@
 				{
 					"name": "Delete skill (FPW-240)",
 					"item": [
+						{
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Delete skill (FPW-240)",
 							"event": [
@@ -5063,680 +6154,905 @@
 					]
 				},
 				{
-					"name": "User registration - password too short (FPW-262)",
-					"event": [
+					"name": "User registration - username already exists (FPW-263)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text()\r",
-									"var jsonData = pm.response.json();\r",
-									"//pm.collectionVariables.set(\"pass-error_msg\", \"password must be minimum 6 characters\");\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(400);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"pass-error_msg\"));\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"function randomPassTooShort(minValue, maxValue, dataSet = '0123456789') {\r",
-									"    if (!minValue) {\r",
-									"        minValue = 0;\r",
-									"        maxValue = 5;\r",
-									"    }\r",
-									"    if (!maxValue) {\r",
-									"        maxValue = minValue;\r",
-									"    }\r",
-									"    let length = _.random(minValue, maxValue),\r",
-									"        randomString = \"\";\r",
-									"    for (let i = 0; i < length; i++)\r",
-									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
-									"    return randomString;\r",
-									"}\r",
-									"pm.collectionVariables.set('randomPassTooShort', randomPassTooShort());\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n   \"password\": \"{{randomPassTooShort}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "User registration - username already exists (FPW-263)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"var jsonData = pm.response.json();\r",
+											"//pm.collectionVariables.set(\"username_duplicate_error\", \"User with this username already exist\");\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(409);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Conflict\");\r",
+											"});\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"username_duplicate_error\"));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var registerUser = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/api/users/', \r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"    raw:  JSON.stringify(\r",
+											"        {\r",
+											"  \"authorities\": [\r",
+											"    \"ROLE_USER\"\r",
+											"  ],\r",
+											"  \"category\": {\r",
+											"    \"id\": pm.collectionVariables.get(\"category_id\"),\r",
+											"    \"name\": pm.collectionVariables.get(\"category_name\")\r",
+											"  },\r",
+											"  \"confirmPassword\": pm.collectionVariables.get(\"password\"),\r",
+											"  \"email\": pm.collectionVariables.get(\"email_random\"),\r",
+											"  \"password\": pm.collectionVariables.get(\"password\"),\r",
+											"  \"username\": \"{{$randomFirstName}}\"\r",
+											"})\r",
+											"\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(registerUser);"
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}/users/",
-							"host": [
-								"{{base_URL}}{{api}}"
 							],
-							"path": [
-								"users",
-								""
-							]
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{username}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "User registration - username already exists (FPW-263)",
-					"event": [
+					"name": "User registration - password too short (FPW-262)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text()\r",
-									"var jsonData = pm.response.json();\r",
-									"//pm.collectionVariables.set(\"username_duplicate_error\", \"User with this username already exist\");\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(409);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Conflict\");\r",
-									"});\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"username_duplicate_error\"));\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var registerUser = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/api/users/', \r",
-									"    header: {\r",
-									"        'Content-Type': 'application/json', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"    raw:  JSON.stringify(\r",
-									"        {\r",
-									"  \"authorities\": [\r",
-									"    \"ROLE_USER\"\r",
-									"  ],\r",
-									"  \"category\": {\r",
-									"    \"id\": pm.collectionVariables.get(\"category_id\"),\r",
-									"    \"name\": pm.collectionVariables.get(\"category_name\")\r",
-									"  },\r",
-									"  \"confirmPassword\": pm.collectionVariables.get(\"password\"),\r",
-									"  \"email\": pm.collectionVariables.get(\"email_random\"),\r",
-									"  \"password\": pm.collectionVariables.get(\"password\"),\r",
-									"  \"username\": \"Dumbo\"\r",
-									"})\r",
-									"\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(registerUser);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"Dumbo\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "User registration - password too short (FPW-262)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"var jsonData = pm.response.json();\r",
+											"//pm.collectionVariables.set(\"pass-error_msg\", \"password must be minimum 6 characters\");\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(400);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"pass-error_msg\"));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function randomPassTooShort(minValue, maxValue, dataSet = '0123456789') {\r",
+											"    if (!minValue) {\r",
+											"        minValue = 0;\r",
+											"        maxValue = 5;\r",
+											"    }\r",
+											"    if (!maxValue) {\r",
+											"        maxValue = minValue;\r",
+											"    }\r",
+											"    let length = _.random(minValue, maxValue),\r",
+											"        randomString = \"\";\r",
+											"    for (let i = 0; i < length; i++)\r",
+											"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+											"    return randomString;\r",
+											"}\r",
+											"pm.collectionVariables.set('randomPassTooShort', randomPassTooShort());\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}/users/",
-							"host": [
-								"{{base_URL}}{{api}}"
 							],
-							"path": [
-								"users",
-								""
-							]
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n   \"password\": \"{{randomPassTooShort}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "User registration - username numeric (FPW-264)",
-					"event": [
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text()\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"username_error\", \"username requires no whitespaces, only character\");\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(400);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
-									"});\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"username_error\"));\r",
-									"});\r",
-									"\r",
-									"\r",
-									"//console.log(jsonData.errors[0].defaultMessage);\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"function randomIntNameEdgeCase(minValue, maxValue, dataSet = '0123456789') {\r",
-									"    if (!minValue) {\r",
-									"        minValue =2;\r",
-									"        maxValue = 30;\r",
-									"    }\r",
-									"    if (!maxValue) {\r",
-									"        maxValue = minValue;\r",
-									"    }\r",
-									"    let length = _.random(minValue, maxValue),\r",
-									"        randomString = \"\";\r",
-									"    for (let i = 0; i < length; i++)\r",
-									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
-									"    return randomString;\r",
-									"}\r",
-									"pm.collectionVariables.set('randomIntNameEdgeCase', randomIntNameEdgeCase());\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{randomIntNameEdgeCase}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "User registration - username numeric (FPW-264)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"username_error\", \"username requires no whitespaces, only character\");\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(400);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
+											"});\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"username_error\"));\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//console.log(jsonData.errors[0].defaultMessage);\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function randomIntNameEdgeCase(minValue, maxValue, dataSet = '0123456789') {\r",
+											"    if (!minValue) {\r",
+											"        minValue =2;\r",
+											"        maxValue = 30;\r",
+											"    }\r",
+											"    if (!maxValue) {\r",
+											"        maxValue = minValue;\r",
+											"    }\r",
+											"    let length = _.random(minValue, maxValue),\r",
+											"        randomString = \"\";\r",
+											"    for (let i = 0; i < length; i++)\r",
+											"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+											"    return randomString;\r",
+											"}\r",
+											"pm.collectionVariables.set('randomIntNameEdgeCase', randomIntNameEdgeCase());\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}/users/",
-							"host": [
-								"{{base_URL}}{{api}}"
 							],
-							"path": [
-								"users",
-								""
-							]
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{randomIntNameEdgeCase}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Create a post - content length too long (FPW-266)",
-					"event": [
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var user=pm.collectionVariables.get(\"username\");\r",
-									"var pass=pm.collectionVariables.get(\"password\");\r",
-									"\r",
-									"var requestOptions = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/authenticate', \r",
-									"    header: {\r",
-									"        'Content-Type': 'multipart/form-data', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'formdata',\r",
-									"        formdata: [\r",
-									"            { key: 'username', value: user },\r",
-									"            { key: 'password', value: pass },\r",
-									"            \r",
-									"        ]\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(requestOptions);\r",
-									"\r",
-									"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
-									"    if (!minValue) {\r",
-									"        minValue =1001;\r",
-									"        maxValue = 1001;\r",
-									"    }\r",
-									"\r",
-									"    if (!maxValue) {\r",
-									"        maxValue = minValue;\r",
-									"    }\r",
-									"\r",
-									"    let length = _.random(minValue, maxValue),\r",
-									"        randomString = \"\";\r",
-									"\r",
-									"    for (let i = 0; i < length; i++)\r",
-									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
-									"    return randomString;\r",
-									"}\r",
-									"\r",
-									"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text();\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"content_length_error\", \"Content size must be up to 1000 symbols\");\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(400);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}{{post}}/auth/creator",
-							"host": [
-								"{{base_URL}}{{api}}{{post}}"
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"auth",
-								"creator"
-							]
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a post - content length too long (FPW-266)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var user=pm.collectionVariables.get(\"username\");\r",
+											"var pass=pm.collectionVariables.get(\"password\");\r",
+											"\r",
+											"var requestOptions = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/authenticate', \r",
+											"    header: {\r",
+											"        'Content-Type': 'multipart/form-data', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'formdata',\r",
+											"        formdata: [\r",
+											"            { key: 'username', value: user },\r",
+											"            { key: 'password', value: pass },\r",
+											"            \r",
+											"        ]\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(requestOptions);\r",
+											"\r",
+											"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+											"    if (!minValue) {\r",
+											"        minValue =1001;\r",
+											"        maxValue = 1001;\r",
+											"    }\r",
+											"\r",
+											"    if (!maxValue) {\r",
+											"        maxValue = minValue;\r",
+											"    }\r",
+											"\r",
+											"    let length = _.random(minValue, maxValue),\r",
+											"        randomString = \"\";\r",
+											"\r",
+											"    for (let i = 0; i < length; i++)\r",
+											"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+											"    return randomString;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text();\r",
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"content_length_error\", \"Content size must be up to 1000 symbols\");\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(400);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}{{post}}/auth/creator",
+									"host": [
+										"{{base_URL}}{{api}}{{post}}"
+									],
+									"path": [
+										"auth",
+										"creator"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Edit a post - content length too long (FPW-267)",
-					"event": [
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text();\r",
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(400);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var user=pm.collectionVariables.get(\"username\");\r",
-									"var pass=pm.collectionVariables.get(\"password\");\r",
-									"\r",
-									"var login = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/authenticate', \r",
-									"    header: {\r",
-									"        'Content-Type': 'multipart/form-data', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'formdata',\r",
-									"        formdata: [\r",
-									"            { key: 'username', value: user },\r",
-									"            { key: 'password', value: pass },\r",
-									"            \r",
-									"        ]\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(login, function(err, res){\r",
-									"    var createPost = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/api/post/auth/creator', \r",
-									"    header: {\r",
-									"        'Content-Type': 'application/json', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"    raw:  JSON.stringify(\r",
-									"        {\r",
-									"            \"content\": pm.collectionVariables.get(\"post_content\"),\r",
-									"            \"picture\": pm.collectionVariables.get(\"picture_content\"),\r",
-									"            \"public\": true\r",
-									"        })\r",
-									"\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(createPost, function (err, response){\r",
-									"    if (err) {\r",
-									"        console.log(err);\r",
-									"    }\r",
-									"    else{\r",
-									"\r",
-									"        console.log(response.json());\r",
-									"        pm.collectionVariables.set(\"postId\", response.json().postId);\r",
-									"    }\r",
-									"});\r",
-									"    });\r",
-									"\r",
-									"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
-									"    if (!minValue) {\r",
-									"        minValue =1001;\r",
-									"        maxValue = 1001;\r",
-									"    }\r",
-									"\r",
-									"    if (!maxValue) {\r",
-									"        maxValue = minValue;\r",
-									"    }\r",
-									"\r",
-									"    let length = _.random(minValue, maxValue),\r",
-									"        randomString = \"\";\r",
-									"\r",
-									"    for (let i = 0; i < length; i++)\r",
-									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
-									"    return randomString;\r",
-									"}\r",
-									"\r",
-									"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true,
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}{{post}}/auth/editor?postId={{postId}}",
-							"host": [
-								"{{base_URL}}{{api}}{{post}}"
-							],
-							"path": [
-								"auth",
-								"editor"
-							],
-							"query": [
+							"name": "User registration (FPW-233)",
+							"event": [
 								{
-									"key": "postId",
-									"value": "{{postId}}"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit a post - content length too long (FPW-267)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text();\r",
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(400);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var user=pm.collectionVariables.get(\"username\");\r",
+											"var pass=pm.collectionVariables.get(\"password\");\r",
+											"\r",
+											"var login = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/authenticate', \r",
+											"    header: {\r",
+											"        'Content-Type': 'multipart/form-data', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'formdata',\r",
+											"        formdata: [\r",
+											"            { key: 'username', value: user },\r",
+											"            { key: 'password', value: pass },\r",
+											"            \r",
+											"        ]\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(login, function(err, res){\r",
+											"    var createPost = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/api/post/auth/creator', \r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"    raw:  JSON.stringify(\r",
+											"        {\r",
+											"            \"content\": pm.collectionVariables.get(\"post_content\"),\r",
+											"            \"picture\": pm.collectionVariables.get(\"picture_content\"),\r",
+											"            \"public\": true\r",
+											"        })\r",
+											"\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(createPost, function (err, response){\r",
+											"    if (err) {\r",
+											"        console.log(err);\r",
+											"    }\r",
+											"    else{\r",
+											"\r",
+											"        console.log(response.json());\r",
+											"        pm.collectionVariables.set(\"postId\", response.json().postId);\r",
+											"    }\r",
+											"});\r",
+											"    });\r",
+											"\r",
+											"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+											"    if (!minValue) {\r",
+											"        minValue =1001;\r",
+											"        maxValue = 1001;\r",
+											"    }\r",
+											"\r",
+											"    if (!maxValue) {\r",
+											"        maxValue = minValue;\r",
+											"    }\r",
+											"\r",
+											"    let length = _.random(minValue, maxValue),\r",
+											"        randomString = \"\";\r",
+											"\r",
+											"    for (let i = 0; i < length; i++)\r",
+											"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+											"    return randomString;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true,
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"picture\": {{picture_content}},\r\n  \"public\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}{{post}}/auth/editor?postId={{postId}}",
+									"host": [
+										"{{base_URL}}{{api}}{{post}}"
+									],
+									"path": [
+										"auth",
+										"editor"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "{{postId}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Create a comment - content length too long (FPW-268)",
-					"event": [
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var resp = pm.response.text();\r",
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Proper Error Status appears\", function () {\r",
-									"    pm.expect(jsonData.status).eqls(400);\r",
-									"});\r",
-									"pm.test(\"Proper Error appears\", function () {\r",
-									"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Proper Error Message appears\", function () {\r",
-									"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var user=pm.collectionVariables.get(\"username\");\r",
-									"var pass=pm.collectionVariables.get(\"password\");\r",
-									"\r",
-									"var login = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/authenticate', \r",
-									"    header: {\r",
-									"        'Content-Type': 'multipart/form-data', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'formdata',\r",
-									"        formdata: [\r",
-									"            { key: 'username', value: user },\r",
-									"            { key: 'password', value: pass },\r",
-									"            \r",
-									"        ]\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(login, function(err, res){\r",
-									"    var createPost = {\r",
-									"    method: 'POST', \r",
-									"    url: 'http://localhost:8081/api/post/auth/creator', \r",
-									"    header: {\r",
-									"        'Content-Type': 'application/json', \r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"    raw:  JSON.stringify(\r",
-									"        {\r",
-									"            \"content\": pm.collectionVariables.get(\"post_content\"),\r",
-									"            \"picture\": pm.collectionVariables.get(\"picture_content\"),\r",
-									"            \"public\": true\r",
-									"        })\r",
-									"\r",
-									"    }\r",
-									"};\r",
-									"pm.sendRequest(createPost, function (err, response){\r",
-									"    if (err) {\r",
-									"        console.log(err);\r",
-									"    }\r",
-									"    else{\r",
-									"\r",
-									"        console.log(response.json());\r",
-									"        pm.collectionVariables.set(\"postId\", response.json().postId);\r",
-									"    }\r",
-									"});\r",
-									"    });\r",
-									"\r",
-									"\r",
-									"\r",
-									"\r",
-									"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
-									"    if (!minValue) {\r",
-									"        minValue =1001;\r",
-									"        maxValue = 1001;\r",
-									"    }\r",
-									"\r",
-									"    if (!maxValue) {\r",
-									"        maxValue = minValue;\r",
-									"    }\r",
-									"\r",
-									"    let length = _.random(minValue, maxValue),\r",
-									"        randomString = \"\";\r",
-									"\r",
-									"    for (let i = 0; i < length; i++)\r",
-									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
-									"    return randomString;\r",
-									"}\r",
-									"\r",
-									"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"commentId\": 0,\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"deletedConfirmed\": true,\r\n  \"postId\": {{postId}},\r\n  \"userId\": {{user_id}}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "User registration (FPW-233)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text()\r",
+											"\r",
+											" pm.test(\"Response body contains id\", ()=>{\r",
+											"     pm.expect(resp).to.include(\"id\");\r",
+											" })\r",
+											"\r",
+											"pm.collectionVariables.set(\"username\", resp.split(\" \")[3]);\r",
+											"pm.collectionVariables.set(\"user_id\", resp.split(\" \")[6]);\r",
+											"\r",
+											"console.log(resp.split(\" \")[3]); //username\r",
+											"console.log(resp.split(\" \")[6]); //id\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{base_URL}}{{api}}{{comment}}/auth/creator",
-							"host": [
-								"{{base_URL}}{{api}}{{comment}}"
 							],
-							"path": [
-								"auth",
-								"creator"
-							]
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{$randomFirstName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}/users/",
+									"host": [
+										"{{base_URL}}{{api}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a comment - content length too long (FPW-268)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var resp = pm.response.text();\r",
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Proper Error Status appears\", function () {\r",
+											"    pm.expect(jsonData.status).eqls(400);\r",
+											"});\r",
+											"pm.test(\"Proper Error appears\", function () {\r",
+											"    pm.expect(jsonData.error).eqls(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Proper Error Message appears\", function () {\r",
+											"    pm.expect(resp).contains(pm.collectionVariables.get(\"content_length_error\"));\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var user=pm.collectionVariables.get(\"username\");\r",
+											"var pass=pm.collectionVariables.get(\"password\");\r",
+											"\r",
+											"var login = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/authenticate', \r",
+											"    header: {\r",
+											"        'Content-Type': 'multipart/form-data', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'formdata',\r",
+											"        formdata: [\r",
+											"            { key: 'username', value: user },\r",
+											"            { key: 'password', value: pass },\r",
+											"            \r",
+											"        ]\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(login, function(err, res){\r",
+											"    var createPost = {\r",
+											"    method: 'POST', \r",
+											"    url: 'http://localhost:8081/api/post/auth/creator', \r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json', \r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"    raw:  JSON.stringify(\r",
+											"        {\r",
+											"            \"content\": pm.collectionVariables.get(\"post_content\"),\r",
+											"            \"picture\": pm.collectionVariables.get(\"picture_content\"),\r",
+											"            \"public\": true\r",
+											"        })\r",
+											"\r",
+											"    }\r",
+											"};\r",
+											"pm.sendRequest(createPost, function (err, response){\r",
+											"    if (err) {\r",
+											"        console.log(err);\r",
+											"    }\r",
+											"    else{\r",
+											"\r",
+											"        console.log(response.json());\r",
+											"        pm.collectionVariables.set(\"postId\", response.json().postId);\r",
+											"    }\r",
+											"});\r",
+											"    });\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"function randomContentEdgeLimit(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+											"    if (!minValue) {\r",
+											"        minValue =1001;\r",
+											"        maxValue = 1001;\r",
+											"    }\r",
+											"\r",
+											"    if (!maxValue) {\r",
+											"        maxValue = minValue;\r",
+											"    }\r",
+											"\r",
+											"    let length = _.random(minValue, maxValue),\r",
+											"        randomString = \"\";\r",
+											"\r",
+											"    for (let i = 0; i < length; i++)\r",
+											"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+											"    return randomString;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set('randomContentEdgeLimit', randomContentEdgeLimit());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"commentId\": 0,\r\n  \"content\": \"{{randomContentEdgeLimit}}\",\r\n  \"deletedConfirmed\": true,\r\n  \"postId\": {{postId}},\r\n  \"userId\": {{user_id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_URL}}{{api}}{{comment}}/auth/creator",
+									"host": [
+										"{{base_URL}}{{api}}{{comment}}"
+									],
+									"path": [
+										"auth",
+										"creator"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			],
 			"event": [
