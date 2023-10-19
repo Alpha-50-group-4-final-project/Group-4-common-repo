@@ -61,7 +61,7 @@ These variables are used to generate dynamic data for tests and to simulate diff
 ---
 
 ## Environment and Preconditions
-The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the [Test Plan](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/blob/main/Documentation/Team4%7Bwin%7D-TEST_PLAN_WEare%20social%20network_v4.docx).
+To execute the Postman tests successfully, make sure you are connected to the database and that the WEare Social Network application is actively running. If the application is not running, the Postman tests will not be able to interact with the API endpoints.
 
 ---
 
