@@ -6,6 +6,7 @@
 3. [Environment and Preconditions](#environment-and-preconditions)
 4. [Newman Reports](#newman-reports)
 5. [API Documentation](#api-documentation)
+6. [Repository Structure](#repository-structure)
 
 ---
 
@@ -80,3 +81,11 @@ For a detailed guide on how to run Postman collections using Newman and generate
 - **Swagger**: The API documentation for the WEare Social Network is available [here](http://localhost:8081/swagger-ui.html#/).
 
 ---
+
+## Repository Structure
+
+- [Main Repository](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main) - The main part of the repository.
+- [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation) - Contains test plans, test cases, and other QA-related documents.
+- [WEare Selenium WebDriver Tests](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/WEare-SeleniumWebDriver-tests) - Holds our Java-based test automation framework for UI testing.
+  - [Postman Collections](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections) - Includes Postman collections for API testing.
+- [REST Assured WEare](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare) - Contains REST Assured tests for API validation.
