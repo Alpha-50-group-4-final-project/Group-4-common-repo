@@ -21,9 +21,8 @@ public class LikeAndUnlikePostTest extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-249")
     public void postLiked_When_ValidRequestSent() {
-        if (isNull(postId)) {
-            createPost();
-        }
+        createPost();
+
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
         response = requestSpecificationWithAuthentication()
@@ -32,7 +31,8 @@ public class LikeAndUnlikePostTest extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
-        assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
+        assertEquals(response.getBody().jsonPath().get("postId").toString(), postId, "Post is not liked.");
+        deletePost(postId);
     }
 
     @Test(priority = 2)
@@ -48,7 +48,7 @@ public class LikeAndUnlikePostTest extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
-        assertEquals(response.getBody().jsonPath().get("postId").toString(),postId, "Post is not liked.");
+        assertEquals(response.getBody().jsonPath().get("postId").toString(), postId, "Post is not liked.");
     }
 }
 

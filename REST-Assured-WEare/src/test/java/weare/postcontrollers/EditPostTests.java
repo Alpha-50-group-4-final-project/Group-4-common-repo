@@ -20,7 +20,7 @@ public class EditPostTests extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-248")
     public void postEdited_When_ValidDataProvided() {
-            createPost();
+        createPost();
 
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
 
@@ -32,18 +32,18 @@ public class EditPostTests extends BaseTest {
                 .put(baseURI);
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.",HttpStatus.SC_OK));
+        assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertEquals(response.body().asString(), "", "Response body isn't empty as expected.");
 
         System.out.printf("Post with id %s was successfully edited.", postId);
-        deletePost();
+        deletePost(postId);
     }
+
     @Test(priority = 2)
     @Label("Jira - FPW-267")
     public void postNotEdited_When_ContentProvidedIsTooLong() {
-        if (isNull(postId)) {
-            createPost();
-        }
+        createPost();
+
         baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
 
         String requestBody = format(EDIT_POST_BODY, POST_CONTENT_1001_CHARS, NO_PICTURE, PUBLIC_CONTENT);
@@ -59,6 +59,7 @@ public class EditPostTests extends BaseTest {
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
         assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
                 format("Incorrect response error. Expected: %s.", BAD_REQUEST_ERROR));
+        deletePost(postId);
 
     }
 }

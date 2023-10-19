@@ -8,13 +8,10 @@ import io.restassured.response.Response;
 import jdk.jfr.Label;
 import org.testng.annotations.Test;
 
-import java.sql.SQLException;
-
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
-import static com.api.utils.UniqueUserName.nameUnique;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -26,12 +23,8 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-233")
     public void newUserRegistered_When_ValidDataProvided() {
-//        USERNAME = letsTryIt();
-        try {
-            USERNAME = nameUnique();
-        } catch (SQLException e) {
-            USERNAME=faker.name().firstName();
-        }
+        USERNAME = generateUsername();
+
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -53,10 +46,10 @@ public class RegisterUserTest extends BaseTest {
         assertTrue(responseBodyText.matches("User with name .* and id \\d+ was created"));
         String[] responseBody = response.asString().split(" ");
 
-        regularUserId = responseBody[6];
+        userId = responseBody[6];
         registeredUsername = responseBody[3];
-        usernames.add(registeredUsername);
-        System.out.printf("User named %s with id %s created.", registeredUsername, regularUserId);
+
+        System.out.printf("User named %s with id %s created.", registeredUsername, userId);
     }
 
     @Test(priority = 2)
@@ -90,9 +83,7 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-268")
     public void newUserRegistered_When_UsernameNumeric() {
-        String name= "12345678";
-        System.out.println(USERNAME.length());
-        System.out.println(USERNAME);
+        String name = "12345678";
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -118,12 +109,7 @@ public class RegisterUserTest extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-263")
     public void newUserRegistered_When_UserWithThatUserNameAlreadyExist() {
-//        USERNAME = letsTryIt();
-        try {
-            USERNAME = nameUnique();
-        } catch (SQLException e) {
-            USERNAME=faker.name().firstName();
-        }
+        USERNAME = generateUsername();
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
@@ -144,15 +130,15 @@ public class RegisterUserTest extends BaseTest {
                 .body(requestBody)
                 .post();
 
-        String responseBodyText = response.asString();
+
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 409, format("Incorrect status code. Expected: %s.", 409));
 
-        assertEquals(response.getBody().jsonPath().get("error"),"Conflict",
+        assertEquals(response.getBody().jsonPath().get("error"), "Conflict",
                 format("Incorrect response message. Expected: %s.", "Conflict"));
         assertEquals(response.getBody().jsonPath().get("message"), "User with this username already exist",
-                format("Incorrect response error. Expected: %s.","User with this username already exist"));
-        assertNotNull(response.getBody().jsonPath().get("timestamp"),"Empty timestamp field.");
+                format("Incorrect response error. Expected: %s.", "User with this username already exist"));
+        assertNotNull(response.getBody().jsonPath().get("timestamp"), "Empty timestamp field.");
     }
 
 

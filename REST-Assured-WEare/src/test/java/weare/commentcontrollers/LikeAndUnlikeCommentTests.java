@@ -17,9 +17,8 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-256")
     public void commentLiked_When_ValidRequestSent() {
-        if (isNull(commentId)) {
-            createComment();
-        }
+        createComment();
+
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
@@ -29,14 +28,14 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
+        deleteComment(commentId);
     }
 
     @Test(priority = 2)
     @Label("Jira - FPW-257")
     public void commentUnliked_When_ValidRequestSent() {
-        if (isNull(commentId)) {
-            likeComment();
-        }
+        likeComment();
+
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
@@ -45,5 +44,6 @@ public class LikeAndUnlikeCommentTests extends BaseTest {
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");
+        deleteComment(commentId);
     }
 }

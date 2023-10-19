@@ -38,7 +38,7 @@ public class GetConnectionRequestTest extends BaseTest {
                 "Connection request missing or already approved.");
         assertEquals(response.getBody().jsonPath().getString("[0].seen"), "false",
                 "This connection request have been already seen.");
-        System.out.printf("Connection request with id: %s received.",connectionId);
+        System.out.printf("Connection request with id: %s received.", connectionId);
     }
 
 

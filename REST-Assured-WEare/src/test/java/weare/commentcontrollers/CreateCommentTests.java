@@ -24,7 +24,7 @@ public class CreateCommentTests extends BaseTest {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
-        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, regularUserId);
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, userId);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
@@ -40,6 +40,7 @@ public class CreateCommentTests extends BaseTest {
 
         commentId = response.getBody().jsonPath().get("commentId").toString();
         System.out.printf("\nComment with id %s was created.\n", commentId);
+        deleteComment(commentId);
     }
     @Test(priority = 2)
     @Label("Jira - FPW-268")
@@ -48,7 +49,7 @@ public class CreateCommentTests extends BaseTest {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
-        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT_1001_CHARS, postId, regularUserId);
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT_1001_CHARS, postId, userId);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)

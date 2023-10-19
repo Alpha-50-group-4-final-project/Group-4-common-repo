@@ -3,6 +3,7 @@ package weare.skillcontrollers;
 import base.BaseTest;
 import jdk.jfr.Label;
 import org.testng.annotations.Test;
+
 import static com.api.utils.Constants.BASE_URL;
 import static com.api.utils.Endpoints.SKILLS_DELETE;
 import static io.restassured.RestAssured.baseURI;

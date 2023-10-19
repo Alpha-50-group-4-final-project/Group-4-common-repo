@@ -21,7 +21,7 @@ public class CreatePostsTests extends BaseTest {
     @Test(priority = 1)
     @Label("Jira - FPW-247")
     public void postCreated_When_ValidDataProvided() {
-        if (isNull(regularUserId)) {
+        if (isNull(userId)) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -45,17 +45,18 @@ public class CreatePostsTests extends BaseTest {
         postId = response.getBody().jsonPath().get("postId").toString();
 
         System.out.printf("New post with id: %s was successfully created.", postId);
-        deletePost();
+        deletePost(postId);
     }
+
     @Test(priority = 2)
     @Label("Jira - FPW-266")
     public void postNotCreated_When_ContentProvidedIsTooLong() {
-        if (isNull(regularUserId)) {
+        if (isNull(userId)) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
 
-        String requestBody = format(CREATE_POST_BODY,POST_CONTENT_1001_CHARS, NO_PICTURE, PUBLIC_CONTENT);
+        String requestBody = format(CREATE_POST_BODY, POST_CONTENT_1001_CHARS, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()

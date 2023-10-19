@@ -17,9 +17,8 @@ public class GetCommentTests extends BaseTest {
     @Test
     @Label("Jira - FPW-253")
     public void getAllComments_When_SearchedForAllComments() {
-        if (isNull(commentId)) {
-            createComment();
-        }
+        createComment();
+
         baseURI = format("%s%s", BASE_URL, API_COMMENTS);
 
         response = requestSpecificationWithAuthentication().
@@ -32,15 +31,15 @@ public class GetCommentTests extends BaseTest {
         assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
         assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("All existing comments below: %s", response.getBody().asPrettyString());
+        deleteComment(commentId);
     }
 
     @Test
     @Label("Jira - FPW-259")
     public void getCommentsByPost_When_SearchedForCommentsByPost() {
-        if (isNull(postId) || isNull(commentId)) {
-            createPost();
-            createComment();
-        }
+        createPost();
+        createComment();
+
         baseURI = format("%s%s", BASE_URL, GET_COMMENTS_BY_POST);
 
         response = requestSpecificationWithAuthentication().
@@ -55,6 +54,7 @@ public class GetCommentTests extends BaseTest {
         assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
         assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("All comments on post: %s below: %s", postId, response.getBody().asPrettyString());
+        deleteComment(commentId);
     }
 
     @Test
@@ -73,15 +73,14 @@ public class GetCommentTests extends BaseTest {
         assertEquals(response.getBody().jsonPath().getList("comments").size(), 0,
                 "There is no comment content field in response body.");
         System.out.printf("No comments on post with id %s", postId);
-
+        deletePost(postId);
     }
 
     @Test
     @Label("Jira - FPW-260")
     public void getComment_When_SearchedByCommentId() {
-        if (commentId==null) {
-            createComment();
-        }
+        createComment();
+
         baseURI = format("%s%s", BASE_URL, GET_ONE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
@@ -96,5 +95,6 @@ public class GetCommentTests extends BaseTest {
         assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
         assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("Content on comment with id: %s below: %s", commentId, response.getBody().asPrettyString());
+        deleteComment(commentId);
     }
 }

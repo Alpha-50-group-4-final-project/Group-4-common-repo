@@ -15,7 +15,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CreateSkillTest extends BaseTest {
-    String skillContent=SKILL+timeStamp();
+ private String skillContent = SKILL + timeStamp();
+
     @Test
     @Label("Jira - FPW-239")
     public void skillCreated_When_ValidDataProvided() {

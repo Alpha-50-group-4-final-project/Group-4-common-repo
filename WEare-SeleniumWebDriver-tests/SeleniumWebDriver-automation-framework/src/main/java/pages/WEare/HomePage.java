@@ -37,7 +37,7 @@ public class HomePage extends WEareBasePage {
     }
 
     public void navigateToLatestPosts(){
-        actions.waitForElementPresent("homepage.latestPostsButton");
+        actions.waitForElementVisible("homepage.latestPostsButton");
         actions.waitForElementClickable("homepage.latestPostsButton");
         actions.assertElementPresent("homepage.latestPostsButton");
         actions.clickElement("homepage.latestPostsButton");

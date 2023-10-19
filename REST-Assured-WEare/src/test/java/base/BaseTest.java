@@ -6,30 +6,25 @@ import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import java.sql.SQLException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
-import static com.api.utils.UniqueUserName.nameUnique;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
 import static org.testng.Assert.assertTrue;
 
 public class BaseTest {
-    protected static String regularUserId;
+    protected static String userId;
     protected static String adminUserId;
     protected static String expertiseProfileId;
-
     protected static String postId;
     protected static String commentId;
     protected static Cookies cookies;
-    protected static List<String> usernames = new ArrayList<>();
+
     protected static String skillId;
     protected static String connectionId;
 
@@ -82,12 +77,8 @@ public class BaseTest {
     }
 
     protected void registerNewUser() {
-//        USERNAME = faker.name().firstName();
-            try {
-                USERNAME = nameUnique();
-            } catch (SQLException e) {
-               USERNAME=faker.name().firstName();
-            }
+        USERNAME = generateUsername();
+
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID, CATEGORY_NAME,
@@ -98,22 +89,18 @@ public class BaseTest {
                 .post();
 
         String[] responseBody = response.asString().split(" ");
-        regularUserId = responseBody[6];
+        userId = responseBody[6];
         registeredUsername = responseBody[3];
-        usernames.add(registeredUsername);
     }
+
     protected void registerAnotherUser() {
-//        USERNAME = faker.name().firstName();
-        try {
-            USERNAME = nameUnique();
-        } catch (SQLException e) {
-            USERNAME=faker.name().firstName();
-        }
+        USERNAME = generateUsername();
+
         baseURI = format("%s%s", BASE_URL, REGISTER_USER);
 
         String requestBody = (format(REGISTER_USER_BODY, ROLE_USER,
                 CATEGORY_ID, CATEGORY_NAME,
-                PASSWORD, EMAIL,PASSWORD,
+                PASSWORD, EMAIL, PASSWORD,
                 USERNAME));
         response = requestSpecificationWithoutAuthentication().body(requestBody)
                 .post();
@@ -121,11 +108,11 @@ public class BaseTest {
         String[] responseBody = response.asString().split(" ");
         userReceivingRequestId = responseBody[6];
         userReceivingRequestName = responseBody[3];
-        usernames.add(userReceivingRequestName);
+
     }
 
     protected void createPost() {
-        if (regularUserId==null) {
+        if (userId == null) {
             registerNewUser();
         }
         baseURI = format("%s%s", BASE_URL, CREATE_POST);
@@ -136,19 +123,18 @@ public class BaseTest {
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post(baseURI);
-       // System.out.println(response.getBody().asPrettyString());
 
         postId = response.getBody().jsonPath().get("postId").toString();
         System.out.printf("New post with id: %s was successfully created.", postId);
     }
 
     protected void createComment() {
-        if (postId==null) {
+        if (postId == null) {
             createPost();
         }
         baseURI = format("%s%s%s", BASE_URL, API_COMMENTS, CREATE_COMMENTS);
 
-        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, regularUserId);
+        String requestBody = format(COMMENT_BODY, COMMENT_CONTENT, postId, userId);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
@@ -160,7 +146,7 @@ public class BaseTest {
 
     protected void createSkill() {
         baseURI = format("%s%s", BASE_URL, SKILLS_CREATE);
-        String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, format(SKILL+timeStamp()), SKILL_ID);
+        String requestBody = format(SKILL_BODY, CATEGORY_ID_SKILL, CATEGORY_NAME, format(SKILL + timeStamp()), SKILL_ID);
 
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
@@ -184,8 +170,8 @@ public class BaseTest {
         expertiseUpdateUsername = response.getBody().jsonPath().getString("username[0]");
     }
 
-    protected void deletePost() {
-        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
+    protected void deletePost(String postIds) {
+        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postIds));
 
         response = requestSpecificationWithAuthentication()
                 .delete(baseURI);
@@ -193,11 +179,11 @@ public class BaseTest {
         postId = null;
     }
 
-    protected void deleteComment() {
+    protected void deleteComment(String commentIds) {
         baseURI = format("%s%s", BASE_URL, DELETE_COMMENT);
 
         response = requestSpecificationWithAuthentication().
-                queryParam("commentId", commentId).
+                queryParam("commentId", commentIds).
                 delete(baseURI);
 
         commentId = null;
@@ -212,6 +198,7 @@ public class BaseTest {
                 .put(baseURI);
         skillId = null;
     }
+
     protected void sendConnectionRequest() {
         registerNewUser();
         registerAnotherUser();
@@ -222,9 +209,10 @@ public class BaseTest {
         response = requestSpecificationWithAuthentication()
                 .body(requestBody)
                 .post();
-        isConnectionSend=true;
+        isConnectionSend = true;
         System.out.println("Connection request was successfully sent.");
     }
+
     protected void getConnectionRequest() {
         sendConnectionRequest();
         baseURI = format("%s%s", BASE_URL, format(GET_REQUEST, userReceivingRequestId));
@@ -234,8 +222,9 @@ public class BaseTest {
                 .when()
                 .get(baseURI);
         connectionId = response.getBody().jsonPath().getString("[0].id");
-        System.out.printf("Connection request with id: %s received.\n",connectionId);
+        System.out.printf("Connection request with id: %s received.\n", connectionId);
     }
+
     protected void likeComment() {
         createComment();
         baseURI = format("%s%s", BASE_URL, LIKE_COMMENT);
@@ -244,13 +233,13 @@ public class BaseTest {
                 queryParam("commentId", commentId).
                 post(baseURI);
     }
+
     protected void likeExistingPost() {
         createPost();
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
         response = requestSpecificationWithAuthentication()
                 .post(baseURI);
-
     }
 }
 

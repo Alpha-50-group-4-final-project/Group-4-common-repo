@@ -1,7 +1,6 @@
 package com.api.utils;
 
 public class RequestJSON {
-
     public static final String REGISTER_USER_BODY = "{  \n" +
             "    \"authorities\": [\n" +
             "    \"%s\"\n" +
@@ -54,7 +53,6 @@ public class RequestJSON {
             "    \"%s\"\n" +
             "  ]\n" +
             "}";
-
     public static final String SHOW_USER_BY_ID_BODY="{\n" +
             "  \"index\": 0,\n" +
             "  \"next\": true,\n" +
@@ -67,7 +65,6 @@ public class RequestJSON {
             "  \"picture\": \"%s\",\n" +
             "  \"public\": \"%s\"\n" +
             "}";
-
     public static final String EDIT_POST_BODY="{\n" +
             "  \"content\": \"%s\",\n" +
             "  \"picture\": \"%s\",\n" +
@@ -80,7 +77,6 @@ public class RequestJSON {
             "  \"postId\": \"%s\",\n" +
             "  \"userId\": \"%s\"\n" +
             "}";
-
     public static final String SKILL_BODY = "{\n" +
             "  \"category\": {\n" +
             "    \"id\": %d,\n" +
@@ -89,7 +85,6 @@ public class RequestJSON {
             "  \"skill\": \"%s\",\n" +
             "  \"skillId\": \"%s\"\n" +
             "}";
-
     public static final String SEND_CONNECTION_REQ_BODY = "{\n" +
             "  \"id\": \"%s\",\n" +
             "  \"username\": \"%s\"\n" +

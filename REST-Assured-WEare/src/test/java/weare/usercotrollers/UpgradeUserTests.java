@@ -22,14 +22,14 @@ public class UpgradeUserTests extends BaseTest {
     @Test
     @Label("Jira - FPW-237")
     public void personalProfileUpgraded_When_ValidDataProvided() {
-        if (isNull(regularUserId)) {
+        if (isNull(userId)) {
             registerNewUser();
         }
-        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_PERSONAL_PROFILE, regularUserId)));
+        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_PERSONAL_PROFILE, userId)));
         String requestBody = format(UPGRADE_PERSONAL_PROFILE_BODY,
                 TODAY_DATE,
                 FIRSTNAME,
-                regularUserId,
+                userId,
                 LAST_NAME,
                 CITY_ID,
                 PERSONAL_REVIEW, NO_PICTURE);
@@ -49,7 +49,7 @@ public class UpgradeUserTests extends BaseTest {
                 "Provided city id is not equal to response.");
         assertEquals(response.getBody().jsonPath().get("personalReview"), PERSONAL_REVIEW,
                 "Provided personal review is not equal to response.");
-        System.out.printf("\nPersonal profile of user with id %s was updated successfully\n", regularUserId);
+        System.out.printf("\nPersonal profile of user with id %s was updated successfully\n", userId);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class UpgradeUserTests extends BaseTest {
         String secondRowKill = faker.lorem().word() + timeStamp();
         String skill = faker.lorem().word() + timeStamp();
 
-        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_EXPERTISE_PROFILE, regularUserId)));
+        baseURI = (format("%s%s", BASE_URL, format(UPGRADE_EXPERTISE_PROFILE, userId)));
 
         String requestBody = format(UPGRADE_EXPERTISE_PROFILE_BODY,
                 AVAILABILITY,

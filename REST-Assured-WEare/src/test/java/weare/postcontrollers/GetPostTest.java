@@ -30,18 +30,18 @@ public class GetPostTest extends BaseTest {
             assertNotNull(response.getBody().jsonPath().get("[0].content"), "Post content is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].category"), "Category is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].picture"), "Picture is empty.");
-            System.out.printf("List of all existing posts below: %s",response.getBody().asPrettyString() );
-        }else {
+            System.out.printf("List of all existing posts below: %s", response.getBody().asPrettyString());
+        } else {
             assertEquals(response.body().asString(), "[]", "Response body isn't empty.");
             System.out.println("No posts created yet.");
         }
     }
+
     @Test
     @Label("Jira - FPW-252")
     public void getCommentsOnPost_When_SearchedForComments() {
-        if (isNull(postId)) {
-            createPost();
-        }
+        createPost();
+
         baseURI = format("%s%s", BASE_URL, format(SHOW_COMMENTS, postId));
 
         response = getRequest(baseURI);
@@ -54,10 +54,11 @@ public class GetPostTest extends BaseTest {
             assertNotNull(response.getBody().jsonPath().get("[0].content"), "Comment content is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].postId"), "Post id is empty.");
             assertNotNull(response.getBody().jsonPath().get("[0].userId"), "User id is empty.");
-            System.out.printf("List of all existing comments below: %s",response.getBody().asPrettyString());
-        }else {
+            System.out.printf("List of all existing comments below: %s", response.getBody().asPrettyString());
+        } else {
             assertEquals(response.body().asString(), "[]", "Response body isn't empty.");
             System.out.println("No comments added yet.");
         }
+        deletePost(postId);
     }
 }

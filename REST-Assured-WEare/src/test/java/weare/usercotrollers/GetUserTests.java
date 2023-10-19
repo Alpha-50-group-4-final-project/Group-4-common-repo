@@ -13,7 +13,6 @@ import static com.api.utils.RequestJSON.GET_ALL_REGISTER_USERS_BODY;
 import static com.api.utils.RequestJSON.SHOW_USER_BY_ID_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.testng.Assert.*;
 import static org.testng.Assert.assertNotNull;
@@ -21,7 +20,7 @@ import static org.testng.Assert.assertNotNull;
 public class GetUserTests extends BaseTest {
     @Test
     @Label("Jira - FPW-232")
-    public  void getAllUsers_When_SearchedForAllUsers() {
+    public void getAllUsers_When_SearchedForAllUsers() {
         baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
 
         String requestBody = (format(GET_ALL_REGISTER_USERS_BODY));
@@ -41,13 +40,14 @@ public class GetUserTests extends BaseTest {
         expertiseProfileId = response.getBody().jsonPath().get("expertiseProfile[0].id").toString();
         expertiseUpdateUsername = response.getBody().jsonPath().getString("username[0]");
     }
+
     @Test
     @Label("Jira - FPW-234")
     public void getUsersPostById_When_SearchedForPost() {
-            registerNewUser();
-            createPost();
+        registerNewUser();
+        createPost();
 
-        baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, regularUserId)));
+        baseURI = (format("%s%s", BASE_URL, format(SHOW_USER_POSTS_BY_ID, userId)));
 
         response = requestSpecificationWithAuthentication()
                 .body(SHOW_USER_BY_ID_BODY)
@@ -59,15 +59,16 @@ public class GetUserTests extends BaseTest {
         assertNotNull(response.getBody().jsonPath().get("[0].content"), "Post content is empty.");
         assertNotNull(response.getBody().jsonPath().get("[0].date"), "Post Date is empty.");
         assertNotNull(response.getBody().jsonPath().get("[0].rank"), "Rank is empty.");
-        System.out.printf("List of user %s posts below: %s ", regularUserId, response.getBody().asPrettyString());
+        System.out.printf("List of user %s posts below: %s ", userId, response.getBody().asPrettyString());
     }
+
     @Test
     @Label("Jira - FPW-235")
     public void getUserById_When_SearchedForUserById() {
-        if (regularUserId == null) {
+        if (userId == null) {
             registerNewUser();
         }
-        baseURI = (format("%s%s", BASE_URL, format(GET_USER_BY_ID, regularUserId)));
+        baseURI = (format("%s%s", BASE_URL, format(GET_USER_BY_ID, userId)));
 
         response = requestSpecificationWithAuthentication()
                 .queryParam("principal", registeredUsername)
@@ -75,12 +76,12 @@ public class GetUserTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
-        assertEquals(response.getBody().jsonPath().get("id").toString(), regularUserId,
+        assertEquals(response.getBody().jsonPath().get("id").toString(), userId,
                 "User id is not correct.");
         assertEquals(response.getBody().jsonPath().get("username"), registeredUsername,
                 "Username is not correct.");
         assertEquals(response.getBody().jsonPath().get("email"), EMAIL,
                 "Email is not correct.");
-        System.out.printf("User with id: %s below: %s", regularUserId, response.getBody().asPrettyString());
+        System.out.printf("User with id: %s below: %s", userId, response.getBody().asPrettyString());
     }
 }
