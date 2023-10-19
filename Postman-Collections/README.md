@@ -13,6 +13,9 @@
 ## Overview
 This folder contains the Postman collection and environment files for API testing of the WEare Social Network. These tests validate the backend functionality and are crucial for ensuring the robustness of the application.
 
+### Note on Request Independence
+All API requests in this collection are designed to work independently. However, to ensure 100% individual operability, it's recommended to run the 'User registration (FPW-233)' request at least once. If this condition is met, each request in the collection can be executed individually without any dependencies.
+
 ---
 
 ## Test Scenarios
