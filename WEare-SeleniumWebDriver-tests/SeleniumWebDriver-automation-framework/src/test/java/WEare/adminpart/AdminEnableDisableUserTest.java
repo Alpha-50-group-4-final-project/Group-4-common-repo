@@ -28,7 +28,6 @@ public class AdminEnableDisableUserTest extends BaseTest {
         adminPage.clickDisableButton();
         adminPage.validateProfileDisabled();
     }
-
     @Test
     @Label("Jira FPW-147")
     @Tag("HappyPath")

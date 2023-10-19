@@ -33,7 +33,6 @@ public class AdminCommentTest extends BaseTest {
     }
 
     @Test
-    @Order(1)
     @Label("Jira FPW-151")
     @Tag("HappyPath")
     @DisplayName("Edit Comment with valid data provided")
@@ -47,7 +46,6 @@ public class AdminCommentTest extends BaseTest {
     }
 
     @Test
-    @Order(2)
     @Label("Jira FPW-153")
     @Tag("HappyPath")
     @DisplayName("Delete Comment")
@@ -59,5 +57,4 @@ public class AdminCommentTest extends BaseTest {
         commentsPage.deleteCommentConfirmation();
         commentsPage.validateCommentDeleted();
     }
-
 }

@@ -15,7 +15,6 @@ public class RegistrationTests extends BaseTest {
     @Tag("Happypath")
     @Tag("SmokeTest")
     @DisplayName("User registration with valid email, username, password (letters)")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-4")
     @Test
     public void registerNewUserTest_when_validCredentialsPassed() {
@@ -32,7 +31,6 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "а", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid username")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-4, Jira FPW-10")
     public void registerNewUser_when_invalidUsernamePassed(String username){
         homePage.navigateToRegisterPage();
@@ -48,7 +46,6 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "anna@sd.comsa", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid email")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-11, Jira FPW-13")
     public void registerNewUser_when_invalidEmailPassed(String email){
         homePage.navigateToRegisterPage();
@@ -65,7 +62,6 @@ public class RegistrationTests extends BaseTest {
     @CsvSource({ "12345", "''"})
     @Tag("UnHappyPath")
     @DisplayName("Register new user with invalid password")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-14, Jira FPW-15")
     public void registerNewUser_when_invalidPasswordPassed(String password){
         homePage.navigateToRegisterPage();
@@ -79,7 +75,6 @@ public class RegistrationTests extends BaseTest {
     @Test
     @Tag("UnHappyPath")
     @DisplayName("Register new user without choosing option.")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-14, Jira FPW-15")
     public void registerNewUser_when_optionalField_emptyDropdownPassed(){
         String name=faker.name().firstName();
@@ -94,7 +89,6 @@ public class RegistrationTests extends BaseTest {
     @Test
     @Tag("UnHappyPath")
     @DisplayName("User registration with invalid credentials -username already used for registration")
-    @Description("As a user I want to register to use app's full list of features")
     @Label("Jira FPW-9")
     public void registerNewUser_when_usernameAlreadyExist(){
         api.registerUser(usernameRandom,passwordRandom);

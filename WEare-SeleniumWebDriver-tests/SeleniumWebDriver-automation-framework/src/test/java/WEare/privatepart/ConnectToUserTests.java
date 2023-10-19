@@ -27,18 +27,15 @@ public class ConnectToUserTests extends BaseTest {
         recipientID=USER_ID;
         api.registerUser(SECOND_USER, PASSWORD);
         api.updateUserProfile(SECOND_USER,PASSWORD, secondUserFirstName, lastNameSecondUser);
-
     }
     @BeforeEach
     protected void usersFirstNameSetUps() {
         login(SECOND_USER, PASSWORD);
     }
-
     @AfterEach
     protected void logOut() {
         loginPage.clickOnLogOutButton();
     }
-
     @Test
     @Label("Jira FPW-140")
     @Tag("HappyPath")
@@ -48,7 +45,6 @@ public class ConnectToUserTests extends BaseTest {
         searchPage.clickConnectButton();
         searchPage.validateConnectionRequestSend();
     }
-
     @Test
     @Label("Jira FPW-141")
     @Tag("HappyPath")
@@ -58,7 +54,6 @@ public class ConnectToUserTests extends BaseTest {
         loginSendsApproveRequests(usernameRandom, secondUserFirstName);
         searchPage.validateRequestAccepted(USER_ID);
     }
-
     @Test
     @Label("Jira FPW-142")
     @Tag("HappyPath")
@@ -79,12 +74,10 @@ public class ConnectToUserTests extends BaseTest {
         searchPage.clickOnNewFriendRequestButton();
         searchPage.approveRequestByUserFirstName(userFirstName);
     }
-
     private static void searchAndFindCurrentProfileByName(String userName) {
         homePage.navigateToPage();
         homePage.typeIntoNameSearchBox(userName);
         homePage.clickOnSearchButton();
         homePage.searchUserByName(userName);
     }
-
 }

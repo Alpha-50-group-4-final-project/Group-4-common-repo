@@ -16,10 +16,10 @@ public class PostsTests extends BaseTest {
         login(usernameRandom, passwordRandom);
     }
 
-    @AfterAll
-    public static void returnHome() {
-        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
-    }
+//    @AfterAll
+//    public static void returnHome() {
+//        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
+//    }
 
     @Test
     @Label("Jira FPW-70")
@@ -33,7 +33,6 @@ public class PostsTests extends BaseTest {
         postsPage.submitPost();
         postsPage.validatePostCreated();
     }
-
     @Test
     @Label("Jira FPW-83")
     @Tag("HappyPath")
@@ -49,7 +48,6 @@ public class PostsTests extends BaseTest {
         postsPage.validatePostEdited();
         api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
     }
-
     @Test
     @Label("Jira FPW-94")
     @Tag("HappyPath")
