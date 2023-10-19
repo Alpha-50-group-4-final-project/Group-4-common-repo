@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "740509e6-f84e-4816-9e9d-59c5b6f87aa3",
+		"name": "connection-controllers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register users One and Two",
+			"item": [
+				{
+					"name": "User One registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5a56c46-c18e-49cc-888c-8c1be8fe53ef",
+								"exec": [
+									"var resp = pm.response.text()\r",
+									"\r",
+									" pm.test(\"Response body contains id\", ()=>{\r",
+									"     pm.expect(resp).to.include(\"id\");\r",
+									" })\r",
+									"\r",
+									"pm.globals.set(\"usernameOne\", resp.split(\" \")[3]);\r",
+									"pm.globals.set(\"userOne_id\", resp.split(\" \")[6]);\r",
+									"\r",
+									"console.log(resp.split(\" \")[3]); //username\r",
+									"console.log(resp.split(\" \")[6]); //id\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "94b32dbe-13e0-4e0a-8f37-771792930332",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{username_random}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_URL}}{{api}}users/"
+					},
+					"response": []
+				},
+				{
+					"name": "User Two registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5a56c46-c18e-49cc-888c-8c1be8fe53ef",
+								"exec": [
+									"var resp = pm.response.text()\r",
+									"\r",
+									" pm.test(\"Response body contains id\", ()=>{\r",
+									"     pm.expect(resp).to.include(\"id\");\r",
+									" })\r",
+									"\r",
+									"pm.globals.set(\"usernameTwo\", resp.split(\" \")[3]);\r",
+									"pm.globals.set(\"userTwo_id\", resp.split(\" \")[6]);\r",
+									"\r",
+									"console.log(resp.split(\" \")[3]); //username\r",
+									"console.log(resp.split(\" \")[6]); //id\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "24020f4c-ef06-4e28-be8c-909e289ee799",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"authorities\": [\r\n    \"ROLE_USER\"\r\n  ],\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"confirmPassword\": \"{{password}}\",\r\n  \"email\": \"{{email_random}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"username\": \"{{username_random}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_URL}}{{api}}users/"
+					},
+					"response": []
+				}
+			],
+			"id": "dce8c459-6399-48c3-9ada-2150aafbe5c1"
+		},
+		{
+			"name": "User One connects to user Two",
+			"item": [
+				{
+					"name": "Login user One",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4670ca28-a70b-460a-ae84-643b898913ee",
+								"exec": [
+									"pm.collectionVariables.set(\"login_cookie\", pm.cookies.get('JSESSIONID'));\r",
+									"console.log(pm.cookies.get('JSESSIONID'));\r",
+									"\r",
+									"pm.test(\"Validate HTML response values after login\",function(){\r",
+									"const $ = cheerio.load(pm.response.text());\r",
+									"link = $('a');\r",
+									"pm.expect($(link).attr('href').includes('LOGOUT')).not.to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The username and password are correct\", function () {\r",
+									"   pm.expect(pm.response.text()).not.to.include(\"Wrong username or password.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8986d806-6f5d-4b3c-a41e-ec760e220d6d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{usernameOne}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_URL}}authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "User One send connect request to user Two",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0a6ca27-8423-490b-86e5-744cbcfa3f1a",
+								"exec": [
+									"const html = cheerio(responseBody);\r",
+									"pm.test(\"Response has succefull message for sending connection- Good job! You have send friend request\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"Good job! You have send friend request!\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "10ce874a-3753-4b7c-aaf9-cd400bb6abd4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}auth/connection/request?id={{userTwo_id}}&username={{usernameTwo}}",
+							"host": [
+								"{{base_URL}}auth"
+							],
+							"path": [
+								"connection",
+								"request"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userTwo_id}}"
+								},
+								{
+									"key": "username",
+									"value": "{{usernameTwo}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user One",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81b476b1-c2bd-4e2a-8453-2bc92cd8855f",
+								"exec": [
+									"pm.test(\"Validate HTML response values after logout\",function(){\r",
+									"const $ = cheerio.load(pm.response.text());\r",
+									"link = $('a');\r",
+									"pm.expect($(link).attr('href').includes('Sign In')).not.to.be.null;\r",
+									"pm.expect($(link).attr('href').includes('Create Account')).not.to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6e1311d3-53b0-43f9-99c0-40680e8cd045",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_URL}}logout"
+					},
+					"response": []
+				}
+			],
+			"id": "5eab4e84-7f2c-4600-8a1b-3fd1939dea4b"
+		},
+		{
+			"name": "User Two connects to user One",
+			"item": [
+				{
+					"name": "Login user Two",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6407c20a-d184-487f-aa9e-8107106495ee",
+								"exec": [
+									"pm.collectionVariables.set(\"login_cookie\", pm.cookies.get('JSESSIONID'));\r",
+									"console.log(pm.cookies.get('JSESSIONID'));\r",
+									"\r",
+									"pm.test(\"Validate HTML response values after login\",function(){\r",
+									"const $ = cheerio.load(pm.response.text());\r",
+									"link = $('a');\r",
+									"pm.expect($(link).attr('href').includes('LOGOUT')).not.to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The username and password are correct\", function () {\r",
+									"   pm.expect(pm.response.text()).not.to.include(\"Wrong username or password.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "fe7067ef-e143-4792-8aea-90d74da36baa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{usernameTwo}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_URL}}authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "Get connection requests",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f906b473-2d24-4875-8beb-43168188a1dd",
+								"exec": [
+									"var jsonRes = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"connectID\", jsonRes[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "92ccf217-38aa-4af0-ab02-d24f4dc8f8f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_URL}}api/auth/users/{{userTwo_id}}/request/"
+					},
+					"response": []
+				},
+				{
+					"name": "Accept connection request from user One",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b475054-50ae-4294-abe3-5f2801271329",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate response has same content\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"approved request\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "7c7c2fc3-1962-437b-91b2-c0ea6f880251",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}api/auth/users/{{userTwo_id}}/request/approve?name={{usernameTwo}}&requestId={{connectID}}",
+							"host": [
+								"{{base_URL}}api"
+							],
+							"path": [
+								"auth",
+								"users",
+								"{{userTwo_id}}",
+								"request",
+								"approve"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{usernameTwo}}"
+								},
+								{
+									"key": "requestId",
+									"value": "{{connectID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user Two",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31562d94-b144-4b9f-b1b3-c26e9cdba54b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate HTML response values after logout\",function(){\r",
+									"const $ = cheerio.load(pm.response.text());\r",
+									"link = $('a');\r",
+									"pm.expect($(link).attr('href').includes('Sign In')).not.to.be.null;\r",
+									"pm.expect($(link).attr('href').includes('Create Account')).not.to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "72b3c98a-cb7f-4314-8e8a-a44facde2fe2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_URL}}logout"
+					},
+					"response": []
+				}
+			],
+			"id": "ea80fefb-91e1-48b6-ae1a-1da84926faef"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6616c980-4e75-4da4-9116-be06db5d4bd4",
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"var pastDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+					"pastDate = moment(pastDate).format((\"YYYY-MM-DD\"));",
+					"",
+					"var moment = require('moment');",
+					"var memberDate = pm.variables.replaceIn(\"{{$randomDatePast}}\")",
+					"memberDate = moment(memberDate).format((\"DD/MM/YYYY\"));",
+					"",
+					"pm.collectionVariables.set(\"random_memberDate\", memberDate)",
+					"pm.collectionVariables.set(\"random_pastDate\", pastDate)",
+					"pm.collectionVariables.set(\"random_city\", _.random(1,25))",
+					"pm.collectionVariables.set(\"random_number\", _.random(1,10))"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "97f200b7-0b53-4128-b9b4-49fe0bf565c7",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"var user=pm.collectionVariables.get(\"username\");",
+					"var pass=pm.collectionVariables.get(\"password\");"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username_random",
+			"value": "{{$randomFirstName}}",
+			"type": "string"
+		},
+		{
+			"key": "email_random",
+			"value": "{{$randomEmail}}",
+			"type": "string"
+		},
+		{
+			"key": "category_name",
+			"value": "All",
+			"type": "string"
+		},
+		{
+			"key": "category_id",
+			"value": "100",
+			"type": "string"
+		},
+		{
+			"key": "random_number",
+			"value": ""
+		},
+		{
+			"key": "random_year",
+			"value": ""
+		},
+		{
+			"key": "random_city",
+			"value": ""
+		},
+		{
+			"key": "random_pastDate",
+			"value": ""
+		},
+		{
+			"key": "random_memberDate",
+			"value": ""
+		},
+		{
+			"key": "login_cookie",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "login_cookie",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "login_cookie",
+			"value": ""
+		}
+	]
+}
