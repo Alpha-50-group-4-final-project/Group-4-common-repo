@@ -22,12 +22,13 @@ public class EditPostTests extends BaseTest {
     public void postEdited_When_ValidDataProvided() {
         createPost();
 
-        baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
+        baseURI = format("%s%s", BASE_URL,EDIT_POST);
 
         String requestBody = format(EDIT_POST_BODY, EDITED_POST_CONTENT, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
+                .queryParam("postId",postId)
                 .body(requestBody)
                 .put(baseURI);
 
@@ -44,14 +45,15 @@ public class EditPostTests extends BaseTest {
     public void postNotEdited_When_ContentProvidedIsTooLong() {
         createPost();
 
-        baseURI = format("%s%s", BASE_URL, format(EDIT_POST, postId));
+        baseURI = format("%s%s", BASE_URL,EDIT_POST);
 
         String requestBody = format(EDIT_POST_BODY, POST_CONTENT_1001_CHARS, NO_PICTURE, PUBLIC_CONTENT);
         assertTrue(isValid(requestBody), "Body is not a valid JSON");
 
         response = requestSpecificationWithAuthentication()
+                .queryParam("postId",postId)
                 .body(requestBody)
-                .put(baseURI);
+                .put(baseURI);;
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected: %s.", HttpStatus.SC_BAD_REQUEST));

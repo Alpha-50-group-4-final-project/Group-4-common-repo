@@ -4,10 +4,10 @@ import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.api.utils.ValidationHelpers.*;
+import static dataBaseManipulations.SelectAllUsers.selectAllUsers;
 
 public class Constants {
     public static final String ROLE_USER = "ROLE_USER";
@@ -42,13 +42,15 @@ public class Constants {
     public static final String CONTENT_SIZE_ERROR = "Content size must be up to 1000 symbols";
     public static final String BAD_REQUEST_ERROR = "Bad Request";
     public static final String NO_PICTURE = "No picture";
-    private static final List<String> usedUsernamesOnRun = new ArrayList<>();
-    public static String generateUsername() {
+
+    private static List<String>existingUsersInDataBase=selectAllUsers();
+
+    public static String generateUsername()  {
         String generatedName = faker.name().firstName();
-        while (!userName(generatedName, 2, 31, "Username should be between 2 and 31 symbols.") && usedUsernamesOnRun.contains(generatedName)) {
+        while (!userName(generatedName, 2, 31, "Username should be between 2 and 31 symbols.") && existingUsersInDataBase.contains(generatedName)) {
             generatedName = faker.name().firstName();
         }
-        usedUsernamesOnRun.add(generatedName);
+        existingUsersInDataBase.add(generatedName);
         return generatedName;
     }
 }

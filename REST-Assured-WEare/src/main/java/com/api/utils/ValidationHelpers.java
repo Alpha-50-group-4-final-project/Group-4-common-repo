@@ -37,7 +37,6 @@ public class ValidationHelpers {
         return true;
     }
 
-
     public static boolean userName(String value, int minLenght, int maxLenght, String errorMessage) {
         if (!validateString(value, minLenght, maxLenght, errorMessage) || !validatePattern(value, "^[a-zA-Z]+$")) {
             return false;

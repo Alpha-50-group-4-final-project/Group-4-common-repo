@@ -12,6 +12,8 @@ import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.*;
+import static dataBaseManipulations.BaseSetup.freshUsernames;
+import static dataBaseManipulations.BaseSetup.freshUsersIds;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -50,6 +52,8 @@ public class RegisterUserTest extends BaseTest {
         registeredUsername = responseBody[3];
 
         System.out.printf("User named %s with id %s created.", registeredUsername, userId);
+        freshUsernames.add(registeredUsername);
+        freshUsersIds.add(Integer.parseInt(userId));
     }
 
     @Test(priority = 2)
@@ -78,6 +82,13 @@ public class RegisterUserTest extends BaseTest {
         String[] responseBody = response.asString().split(" ");
         adminUserId = responseBody[6];
         System.out.printf("Admin user %s was registered successfully.%n", ADMIN_USERNAME);
+
+        userReceivingRequestId = responseBody[6];
+        String adminName = responseBody[3];
+
+        freshUsernames.add(ADMIN_USERNAME);
+        freshUsersIds.add(Integer.parseInt(adminUserId));
+
     }
 
     @Test(priority = 1)
@@ -124,12 +135,16 @@ public class RegisterUserTest extends BaseTest {
         response = requestSpecificationWithoutAuthentication()
                 .body(requestBody)
                 .post();
+        String[] responseBody = response.asString().split(" ");
+        userId = responseBody[6];
+        registeredUsername = responseBody[3];
+        freshUsernames.add(registeredUsername);
+        freshUsersIds.add(Integer.parseInt(userId));
 
 
         response = requestSpecificationWithoutAuthentication()
                 .body(requestBody)
                 .post();
-
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 409, format("Incorrect status code. Expected: %s.", 409));
@@ -139,6 +154,7 @@ public class RegisterUserTest extends BaseTest {
         assertEquals(response.getBody().jsonPath().get("message"), "User with this username already exist",
                 format("Incorrect response error. Expected: %s.", "User with this username already exist"));
         assertNotNull(response.getBody().jsonPath().get("timestamp"), "Empty timestamp field.");
+
     }
 
 

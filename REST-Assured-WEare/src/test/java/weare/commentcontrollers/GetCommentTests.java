@@ -23,7 +23,9 @@ public class GetCommentTests extends BaseTest {
 
         response = requestSpecificationWithAuthentication().
                 get(baseURI);
+
         int statusCode = response.getStatusCode();
+
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertNotNull(response.getBody().jsonPath().get("commentId").toString(), "Comment id is empty.");
         assertNotNull(response.getBody().jsonPath().get("content").toString(), "Comment content field is empty.");
@@ -31,6 +33,7 @@ public class GetCommentTests extends BaseTest {
         assertNotNull(response.getBody().jsonPath().get("date").toString(), "Comment date field is empty.");
         assertNotNull(response.getBody().jsonPath().get("liked").toString(), "Comment liked field is empty.");
         System.out.printf("All existing comments below: %s", response.getBody().asPrettyString());
+
         deleteComment(commentId);
     }
 

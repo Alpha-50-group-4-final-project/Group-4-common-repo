@@ -26,6 +26,7 @@ public class LikeAndUnlikePostTest extends BaseTest {
         baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
 
         response = requestSpecificationWithAuthentication()
+                .queryParam("postId",postId)
                 .post(baseURI);
 
         int statusCode = response.getStatusCode();
@@ -41,9 +42,9 @@ public class LikeAndUnlikePostTest extends BaseTest {
         if (isNull(postId)) {
             likeExistingPost();
         }
-        baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
+        baseURI = format("%s%s", BASE_URL,LIKE_POST);
 
-        response = requestSpecificationWithAuthentication()
+        response = requestSpecificationWithAuthentication().queryParam("postId",postId)
                 .post(baseURI);
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));

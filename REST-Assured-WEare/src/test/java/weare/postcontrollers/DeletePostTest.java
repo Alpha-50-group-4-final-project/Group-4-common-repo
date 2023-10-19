@@ -18,9 +18,10 @@ public class DeletePostTest extends BaseTest {
     @Label("Jira - FPW-251")
     public void postDeleted_When_DeleteRequestSent() {
         createPost();
-        baseURI = format("%s%s", BASE_URL, format(DELETE_POST, postId));
+        baseURI = format("%s%s", BASE_URL,DELETE_POST);
 
         response = requestSpecificationWithAuthentication()
+                .queryParam("postId",postId)
                 .delete(baseURI);
         int statusCode = response.getStatusCode();
 

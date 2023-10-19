@@ -10,17 +10,16 @@ import static com.api.utils.Endpoints.GET_POSTS;
 import static com.api.utils.Endpoints.SHOW_COMMENTS;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class GetPostTest extends BaseTest {
     @Test
     @Label("Jira - FPW-246")
-    public static void getAllPost_When_SearchedForAllPosts() {
+    public  void getAllPost_When_SearchedForAllPosts() {
         baseURI = format("%s%s", BASE_URL, GET_POSTS);
 
-        response = getRequest(baseURI);
+        response = requestSpecificationWithoutAuthentication().get(baseURI);
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
@@ -42,9 +41,12 @@ public class GetPostTest extends BaseTest {
     public void getCommentsOnPost_When_SearchedForComments() {
         createPost();
 
-        baseURI = format("%s%s", BASE_URL, format(SHOW_COMMENTS, postId));
+        baseURI = format("%s%s", BASE_URL, SHOW_COMMENTS);
 
-        response = getRequest(baseURI);
+        response = requestSpecificationWithAuthentication()
+                .queryParam("postId",postId)
+                .get(baseURI);
+
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
 

@@ -81,7 +81,7 @@ public class UpgradeUserTests extends BaseTest {
 
         int statusCode = response.getStatusCode();
 
-        assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
+       assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected: %s.", SC_OK));
         assertEquals(response.getBody().jsonPath().get("category.id").toString(), CATEGORY_ID,
                 "Provided category id is not equal to response.");
         assertEquals(response.getBody().jsonPath().get("category.name"), CATEGORY_NAME,
