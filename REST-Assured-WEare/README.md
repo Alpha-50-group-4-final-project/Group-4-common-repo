@@ -2,16 +2,49 @@
 
 ## Table of Contents
 1. [Overview](#overview)
-2. [Dependencies](#dependencies)
-3. [Project Structure](#project-structure)
-4. [REST Assured WEare Reports](#rest-assured-weare-reports)
-5. [API Documentation](#api-documentation)
-6. [Repository Structure](#repository-structure)
+2. [Database Configuration](#database-configuration)
+3. [Dependencies](#dependencies)
+4. [Project Structure](#project-structure)
+5. [REST Assured WEare Reports](#rest-assured-weare-reports)
+6. [API Documentation](#api-documentation)
+7. [Repository Structure](#repository-structure)
 
 ---
 
 ## Overview
 This folder contains the REST-Assured framework used for API testing of the WEare Social Network. The tests are written in Java and make use of REST-Assured for sending HTTP requests and receiving responses.
+
+---
+
+## Database Configuration
+Before running tests, navigate to the following path in the project directory to configure your database credentials:
+
+```plaintext
+src
+|-- main
+|   |-- java
+|       |-- dataBaseManipulations
+|           |-- BaseSetup.java
+```
+
+In the `BaseSetup.java` file, locate the following lines and replace them with your actual database credentials:
+
+```plaintext
+// Example lines in BaseSetup.java
+static String jdbcUrl;
+static String dataBaseUsername;
+static String dataBasePassword;
+```
+
+Replace them like so:
+
+```plaintext
+static String jdbcUrl = "Your JDBC URL";
+static String dataBaseUsername = "Your Database Username";
+static String dataBasePassword = "Your Database Password";
+```
+
+This step is essential to enable the framework to interact with the database for test setup and verification.
 
 ---
 
