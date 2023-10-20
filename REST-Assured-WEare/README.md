@@ -21,27 +21,18 @@ Before running tests, navigate to the following path in the project directory to
 
 ```plaintext
 src
-|-- main
-|   |-- java
-|       |-- dataBaseManipulations
-|           |-- BaseSetup.java
+|-- test
+|   |-- resources
+|       |-- configuration.properties
 ```
 
-In the `BaseSetup.java` file, locate the following lines and replace them with your actual database credentials:
+In the `configuration.properties` file, provide the details for your database connection:
 
 ```plaintext
-// Example lines in BaseSetup.java
-static String jdbcUrl;
-static String dataBaseUsername;
-static String dataBasePassword;
-```
-
-Replace them like so:
-
-```plaintext
-static String jdbcUrl = "Your JDBC URL";
-static String dataBaseUsername = "Your Database Username";
-static String dataBasePassword = "Your Database Password";
+# Database connection
+database.url= [Your Database URL]
+database.username= [Your Database Username]
+database.password= [Your Database Password]
 ```
 
 This step is essential to enable the framework to interact with the database for test setup and verification.
