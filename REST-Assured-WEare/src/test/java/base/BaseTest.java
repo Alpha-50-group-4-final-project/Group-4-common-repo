@@ -39,7 +39,6 @@ public class BaseTest {
     protected static String userReceivingRequestId;
     protected static String userReceivingRequestName;
 
-
     @AfterClass
     public  static void deleteUser()  {
         deleteUserById();

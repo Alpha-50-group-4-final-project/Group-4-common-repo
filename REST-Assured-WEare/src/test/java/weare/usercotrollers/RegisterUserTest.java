@@ -108,7 +108,8 @@ public class RegisterUserTest extends BaseTest {
         response = requestSpecificationWithoutAuthentication()
                 .body(requestBody)
                 .post();
-        
+        System.out.println(response.getBody().asPrettyString());
+
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 400, format("Incorrect status code. Expected: %s.", 400));
 

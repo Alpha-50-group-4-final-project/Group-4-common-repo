@@ -21,6 +21,7 @@ public class GetUserTests extends BaseTest {
     @Test
     @Label("Jira - FPW-232")
     public void getAllUsers_When_SearchedForAllUsers() {
+        registerNewUser();
         baseURI = format("%s%s", BASE_URL, GET_REGISTER_USERS);
 
         String requestBody = (format(GET_ALL_REGISTER_USERS_BODY));

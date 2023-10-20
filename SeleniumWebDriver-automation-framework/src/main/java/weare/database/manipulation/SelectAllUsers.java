@@ -1,7 +1,6 @@
-package dataBaseManipulations;
+package weare.database.manipulation;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class SelectAllUsers extends BaseSetup {
 

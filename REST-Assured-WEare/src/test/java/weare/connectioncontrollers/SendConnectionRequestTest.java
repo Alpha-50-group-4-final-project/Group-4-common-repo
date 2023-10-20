@@ -18,9 +18,7 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-
 public class SendConnectionRequestTest extends BaseTest {
-
     @BeforeClass
     public void userSetUp() {
         registerNewUser();

@@ -46,9 +46,9 @@ public class Constants {
 
 
     public static String generateUsername()  {
-        selectAllUsers();
-        String generatedName = faker.name().firstName();
 
+        String generatedName = faker.name().firstName();
+        selectAllUsers();
         while (!userName(generatedName, 2, 31, "Username should be between 2 and 31 symbols.") && usernames.contains(generatedName)) {
             generatedName = faker.name().firstName();
         }

@@ -5,7 +5,6 @@ import jdk.jfr.Label;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
-
 import static com.api.utils.Constants.*;
 import static com.api.utils.Endpoints.*;
 import static io.restassured.RestAssured.*;
@@ -15,15 +14,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
 
-
 public class LikeAndUnlikePostTest extends BaseTest {
-
     @Test(priority = 1)
     @Label("Jira - FPW-249")
     public void postLiked_When_ValidRequestSent() {
         createPost();
 
-        baseURI = format("%s%s", BASE_URL, format(LIKE_POST, postId));
+        baseURI = format("%s%s", BASE_URL,LIKE_POST);
 
         response = requestSpecificationWithAuthentication()
                 .queryParam("postId",postId)
@@ -33,6 +30,7 @@ public class LikeAndUnlikePostTest extends BaseTest {
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertTrue(response.getBody().jsonPath().get("liked"), "Post is not liked.");
         assertEquals(response.getBody().jsonPath().get("postId").toString(), postId, "Post is not liked.");
+
         deletePost(postId);
     }
 
@@ -46,6 +44,7 @@ public class LikeAndUnlikePostTest extends BaseTest {
 
         response = requestSpecificationWithAuthentication().queryParam("postId",postId)
                 .post(baseURI);
+
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_OK, format("Incorrect status code. Expected %s.", HttpStatus.SC_OK));
         assertFalse(response.getBody().jsonPath().get("liked"), "Post is not unliked.");

@@ -11,7 +11,6 @@ import static com.api.utils.Helper.isValid;
 import static com.api.utils.RequestJSON.EDIT_POST_BODY;
 import static io.restassured.RestAssured.baseURI;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -53,7 +52,7 @@ public class EditPostTests extends BaseTest {
         response = requestSpecificationWithAuthentication()
                 .queryParam("postId",postId)
                 .body(requestBody)
-                .put(baseURI);;
+                .put(baseURI);
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST, format("Incorrect status code. Expected: %s.", HttpStatus.SC_BAD_REQUEST));
@@ -61,7 +60,7 @@ public class EditPostTests extends BaseTest {
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
         assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
                 format("Incorrect response error. Expected: %s.", BAD_REQUEST_ERROR));
-        deletePost(postId);
 
+        deletePost(postId);
     }
 }

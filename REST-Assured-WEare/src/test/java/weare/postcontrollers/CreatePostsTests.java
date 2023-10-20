@@ -17,7 +17,6 @@ import static org.testng.Assert.*;
 
 public class CreatePostsTests extends BaseTest {
 
-
     @Test(priority = 1)
     @Label("Jira - FPW-247")
     public void postCreated_When_ValidDataProvided() {
@@ -69,6 +68,5 @@ public class CreatePostsTests extends BaseTest {
                 format("Incorrect response message. Expected: %s.", CONTENT_SIZE_ERROR));
         assertEquals(response.getBody().jsonPath().get("error"), BAD_REQUEST_ERROR,
                 format("Incorrect response error. Expected: %s.", BAD_REQUEST_ERROR));
-
     }
 }

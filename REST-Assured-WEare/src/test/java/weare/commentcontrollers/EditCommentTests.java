@@ -2,7 +2,6 @@ package weare.commentcontrollers;
 
 import base.BaseTest;
 
-import static java.util.Objects.isNull;
 import static org.apache.http.HttpStatus.*;
 
 import jdk.jfr.Label;
