@@ -25,9 +25,7 @@ public class BaseSetup {
 
     static {
         try {
-            System.out.println(jdbcUrl);
             connection = DriverManager.getConnection(jdbcUrl, dataBaseUsername, dataBasePassword);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

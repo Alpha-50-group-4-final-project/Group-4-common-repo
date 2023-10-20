@@ -52,6 +52,7 @@ public class DeleteCurrentUserById extends BaseSetup {
                 String deleteAuthorities = format("DELETE FROM `authorities` WHERE `username` = '%s'", name);
                 statement.executeUpdate(deleteAuthorities);
                 System.out.printf("\nUser %s was deleted from database", name);
+                usernames.remove(name);
             }
 
         } catch (SQLException e) {

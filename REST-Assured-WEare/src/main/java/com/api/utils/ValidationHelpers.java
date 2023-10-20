@@ -3,6 +3,10 @@ package com.api.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.api.utils.Constants.faker;
+import static com.api.utils.Constants.generateUsername;
+import static dataBaseManipulations.BaseSetup.usernames;
+
 public class ValidationHelpers {
 
     public static boolean validateIntRange(int value, int min, int max, String message) {
@@ -32,6 +36,7 @@ public class ValidationHelpers {
 
     public static boolean validateString(String value, int minLenght, int maxLenght, String errorMessage) {
         if (!validateIntRange(value.length(), minLenght, maxLenght, errorMessage)) {
+
             return false;
         }
         return true;
@@ -43,6 +48,7 @@ public class ValidationHelpers {
         }
         return true;
     }
+
 
 }
 
