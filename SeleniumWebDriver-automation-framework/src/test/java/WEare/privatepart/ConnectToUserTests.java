@@ -69,7 +69,6 @@ public class ConnectToUserTests extends BaseTest {
     private static void loginSendsApproveRequests(String username, String userFirstName) {
         loginPage.clickOnLogOutButton();
         login(username, PASSWORD);
-
         homePage.navigateToPersonalProfileButton();
         searchPage.clickOnNewFriendRequestButton();
         searchPage.approveRequestByUserFirstName(userFirstName);

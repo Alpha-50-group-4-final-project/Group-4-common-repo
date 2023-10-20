@@ -3,7 +3,8 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Testing Strategy](#testing-strategy)
-3. [Repository Structure](#repository-structure)
+3. [Environment Requirements](#environment-requirements)
+4. [Repository Structure](#repository-structure)
 
 ---
 
@@ -14,6 +15,11 @@ This repository is dedicated to Quality Assurance (QA) activities for the WEare 
 
 ## Testing Strategy
 Our team employs an Agile Scrumban methodology, and our activities are organized into sprints. For more information, visit our [Documentation](./Documentation/README.md).
+
+---
+
+## Environment Requirements
+Before running any tests or executing any code from this repository, make sure you have the 'WEare' Social Network application up and running, and that you are connected to the appropriate database. This is a prerequisite for all the testing frameworks and collections included in this repository. Failure to do so may result in incomplete or unsuccessful test runs.
 
 ---
 

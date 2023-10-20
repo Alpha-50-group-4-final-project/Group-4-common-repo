@@ -61,7 +61,7 @@ These variables are used to generate dynamic data for tests and to simulate diff
 ---
 
 ## Environment and Preconditions
-The application is Dockerized and runs through IntelliJ with a shared database. Further environment setup and preconditions are documented in the [Test Plan](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/blob/main/Documentation/Team4%7Bwin%7D-TEST_PLAN_WEare%20social%20network_v4.docx).
+To execute the Postman tests successfully, make sure you are connected to the database and that the WEare Social Network application is actively running. If the application is not running, the Postman tests will not be able to interact with the API endpoints.
 
 ---
 
@@ -80,6 +80,7 @@ For a detailed guide on how to run Postman collections using Newman and generate
 
 - [Main Repository](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main) - The main part of the repository.
 - [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation) - Contains test plans, test cases, and other QA-related documents.
+- [Performance Testing](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Performance-Testing) - Houses the JMeter test plan.
 - [WEare Selenium WebDriver Tests](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/WEare-SeleniumWebDriver-tests) - Holds our Java-based test automation framework for UI testing.
   - [Postman Collections](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Postman-Collections) - Includes Postman collections for API testing.
 - [REST Assured WEare](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/REST-Assured-WEare) - Contains REST Assured tests for API validation.
