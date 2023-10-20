@@ -27,7 +27,7 @@ public class AdminPostTest extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Edit Post with valid data provided")
     public void editOtherUsersPost_when_editPostClicked() {
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         adminPage.clickEditButton();
         adminPage.editPostInformation();
@@ -39,7 +39,7 @@ public class AdminPostTest extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Delete Post")
     public void deleteOtherUsersPost_when_deletePostClicked() {
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         adminPage.clickDeleteButton();
         adminPage.deletePost();
