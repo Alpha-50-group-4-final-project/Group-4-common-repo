@@ -1,9 +1,9 @@
 WEare\publicpart\LoginTests.class
+WEare\publicpart\SearchPublicContent.class
 WEare\TestSuites.class
 WEare\adminpart\AdminPostTest.class
 WEare\adminpart\AdminEnableDisableUserTest.class
 WEare\privatepart\ConnectToUserTests.class
-WEare\publicpart\AnonymousUserTests.class
 WEare\privatepart\CommentsTests.class
 WEare\privatepart\EditProfileTests.class
 WEare\privatepart\PostsTests.class

@@ -1,33 +1,33 @@
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\WEareApi.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\CommentModel.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteCurrentUserById.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\WEareBasePage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\HomePage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\Constants.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\PersonalProfilePage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\SearchingPage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\skillsManipulations\DeleteAllAddedSkills.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\SelectAllUsers.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\InsertNewUser.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\ValidationHelpers.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\Driver.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\LoginPage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\UserActions.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\PostManipulation\DeleteAllExistingCommentsAndPosts.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\UserRegistrationPage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeletePersonalProfileTable.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\pages\BasePage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteAllExistingUsers.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteExpertiseProfileTable.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\EndPoints.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\JsonBodies.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\Utils.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\BaseSetup.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\PostManipulation\DeletePostsOfCurrentUser.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\CustomWebDriverManager.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\AdminPage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\PostModel.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\PropertiesManager.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\enums\BrowserTypes.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\CommentsPage.java
-K:\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\PostsPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\Constants.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\PersonalProfilePage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\AdminPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\BaseSetup.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\SelectAllUsers.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\HomePage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\CommentModel.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\InsertNewUser.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\PropertiesManager.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\PostManipulation\DeleteAllExistingCommentsAndPosts.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\CommentsPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\LoginPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\Driver.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\skillsManipulations\DeleteAllAddedSkills.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\UserActions.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\UserRegistrationPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\EndPoints.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\JsonBodies.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteExpertiseProfileTable.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\Utils.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\PostManipulation\DeletePostsOfCurrentUser.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\PostModel.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\ValidationHelpers.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\api\WEareApi.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\enums\BrowserTypes.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeletePersonalProfileTable.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\pages\BasePage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\com\telerikacademy\testframework\CustomWebDriverManager.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\PostsPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\SearchingPage.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteCurrentUserById.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\database\manipulation\UserManipulation\DeleteAllExistingUsers.java
+C:\Users\Ani\IdeaProjects\REPOS\QA Track - Final Project\Group-4-common-repo\WEare-SeleniumWebDriver-tests\SeleniumWebDriver-automation-framework\src\main\java\weare\pages\WEareBasePage.java
