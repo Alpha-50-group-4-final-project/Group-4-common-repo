@@ -36,7 +36,6 @@ public class BaseSetup {
         }
     }
 
-
     static {
         try {
             statement = connection.createStatement();

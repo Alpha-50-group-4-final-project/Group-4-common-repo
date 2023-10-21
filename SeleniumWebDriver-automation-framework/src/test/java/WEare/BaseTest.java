@@ -13,7 +13,6 @@ import weare.pages.*;
 import java.text.SimpleDateFormat;
 import static com.telerikacademy.testframework.Utils.LOGGER;
 import static com.telerikacademy.testframework.api.Constants.generateUsername;
-import static weare.database.manipulation.SelectAllUsers.selectAllUsers;
 import static weare.database.manipulation.UserManipulation.DeleteCurrentUserById.deleteUserById;
 
 
@@ -46,7 +45,6 @@ public class BaseTest {
         UserActions actions = new UserActions();
         UserActions.loadBrowser("homePage");
         faker = new Faker();
-        selectAllUsers();
         homePage = new HomePage(actions.getDriver());
         registrationPage = new UserRegistrationPage(actions.getDriver());
         loginPage = new LoginPage(actions.getDriver());

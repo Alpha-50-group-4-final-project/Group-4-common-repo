@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import static com.api.utils.ValidationHelpers.*;
 import static dataBaseManipulations.BaseSetup.usernames;
-import static dataBaseManipulations.SelectAllUsers.selectAllUsers;
+import static dataBaseManipulations.FindCurrentUser.checkForUser;
 
 public class Constants {
     public static final String ROLE_USER = "ROLE_USER";
@@ -47,20 +47,17 @@ public class Constants {
 
     public static String generateUsername() {
         generatedName = faker.name().firstName();
-        if (usernames.size() == 0) {
-            selectAllUsers();
-        }
+
         checkUsername(generatedName);
         System.out.println("Username  passed validation and was generated.");
         usernames.add(generatedName);
-
         return generatedName;
     }
     protected static void checkUsername(String name) {
-        if (usernames.contains(name) || userName(name, 2, 31, "Username should be between 2 and 31 symbols.") == false) {
+        if (checkForUser(name) != null || userName(name, 2, 31, "Username should be between 2 and 31 symbols.") == false) {
             System.out.println("Username is incorrect or already exist");
             generatedName = faker.name().firstName();
-            checkUsername(generateUsername());
+            checkUsername(generatedName);
         }
     }
 }

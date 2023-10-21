@@ -36,6 +36,5 @@ public class PropertiesManager {
             return value != null ? value : key;
         }
 
-
     }
 }
