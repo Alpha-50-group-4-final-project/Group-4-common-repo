@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Unhappy suite -WE are social network API testing">
+<suite name="Unhappy path suite -WE are social network API testing">
     <test name="User Controllers ">
         <classes>
             <class name="weare.usercotrollers.RegisterUserTest">

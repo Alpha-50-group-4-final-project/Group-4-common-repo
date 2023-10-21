@@ -39,7 +39,7 @@ public class SendConnectionRequestTest extends BaseTest {
                 .when()
                 .body(requestBody)
                 .post();
-        System.out.println("Tova e resposna \n" + response.getBody().asPrettyString());
+
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, format("Incorrect status code. Expected %s.", SC_OK));
         assertTrue(response.asString().matches(".* send friend request to .*"),
