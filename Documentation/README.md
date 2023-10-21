@@ -12,7 +12,7 @@
 ---
 
 ## Test Plan
-For details, please refer to the [Test Plan document](./Team4{win}-TEST_PLAN_WEare social network_v4.docx).
+For details, please refer to the [Test Plan document](./Team4{win}-TEST_PLAN_WEare social_network_v4.docx).
 
 ---
 
