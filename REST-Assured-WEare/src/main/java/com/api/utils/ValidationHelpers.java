@@ -3,9 +3,9 @@ package com.api.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.api.utils.Constants.faker;
-import static com.api.utils.Constants.generateUsername;
+import static com.api.utils.Constants.*;
 import static dataBaseManipulations.BaseSetup.usernames;
+import static dataBaseManipulations.FindCurrentUser.checkForUser;
 
 public class ValidationHelpers {
 
@@ -48,7 +48,13 @@ public class ValidationHelpers {
         }
         return true;
     }
-
+    protected static void checkUsername(String name) {
+        if (checkForUser(name) != null || userName(name, 2, 31, "Username should be between 2 and 31 symbols.") == false) {
+            System.out.println("Username is incorrect or already exist");
+            generatedName = faker.name().firstName();
+            checkUsername(generatedName);
+        }
+    }
 
 }
 

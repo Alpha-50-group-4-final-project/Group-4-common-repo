@@ -4,9 +4,9 @@ import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
 
-import static com.telerikacademy.testframework.api.ValidationHelpers.userName;
+
+import static com.telerikacademy.testframework.api.ValidationHelpers.checkUsername;
 import static weare.database.manipulation.BaseSetup.usernames;
-import static weare.database.manipulation.FindCurrentUser.checkForUser;
 
 public class Constants {
 
@@ -27,7 +27,7 @@ public class Constants {
         public static final String NO_PICTURE = "No picture";
 
 
-        private static String generatedName;
+        protected static String generatedName;
 
         public static String generateUsername() {
                 generatedName = faker.name().firstName();
@@ -36,13 +36,6 @@ public class Constants {
                 System.out.println("Username  passed validation and was generated.");
                 usernames.add(generatedName);
                 return generatedName;
-        }
-        protected static void checkUsername(String name) {
-                if (checkForUser(name) != null || userName(name, 2, 31, "Username should be between 2 and 31 symbols.") == false) {
-                        System.out.println("Username is incorrect or already exist");
-                        generatedName = faker.name().firstName();
-                        checkUsername(generatedName);
-                }
         }
 
     }

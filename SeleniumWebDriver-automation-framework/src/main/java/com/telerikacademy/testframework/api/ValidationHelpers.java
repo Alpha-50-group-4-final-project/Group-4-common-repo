@@ -3,6 +3,10 @@ package com.telerikacademy.testframework.api;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.telerikacademy.testframework.api.Constants.faker;
+import static com.telerikacademy.testframework.api.Constants.generatedName;
+import static weare.database.manipulation.FindCurrentUser.checkForUser;
+
 public class ValidationHelpers {
 
     public static boolean validateIntRange(int value, int min, int max, String message) {
@@ -42,6 +46,13 @@ public class ValidationHelpers {
             return false;
         }
         return true;
+    }
+    protected static void checkUsername(String name) {
+        if (checkForUser(name) != null || userName(name, 2, 31, "Username should be between 2 and 31 symbols.") == false) {
+            System.out.println("Username is incorrect or already exist");
+            generatedName = faker.name().firstName();
+            checkUsername(generatedName);
+        }
     }
 
 }
