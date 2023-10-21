@@ -14,7 +14,7 @@ This repository is dedicated to Quality Assurance (QA) activities for the WEare 
 ---
 
 ## Testing Strategy
-Our team employs an Agile Scrumban methodology, and our activities are organized into sprints. For more information, visit our [Documentation](./Documentation/README.md).
+Our team employs an Agile Scrumban methodology, and our activities are organized into sprints. For more information, visit our [Documentation](https://github.com/Alpha-50-group-4-final-project/Group-4-common-repo/tree/main/Documentation).
 
 ---
 
