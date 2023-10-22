@@ -26,10 +26,21 @@ This directory contains Selenium WebDriver UI tests for the WEare Social Network
 ---
 
 ## Browser Support
-The framework supports multiple browsers:
-- Google Chrome
-- Mozilla Firefox
-- Microsoft Edge
+To run tests on a specific browser, navigate to the following path in the project directory:
+
+```plaintext
+src
+|-- test
+|   |-- resources
+|       |-- config.properties
+```
+
+In the `config.properties` file, you can specify the browser you'd like to use for testing by setting the `browserType` property. The supported browser types and their respective spelling to be used in `config.properties` are as follows:
+
+- Google Chrome: `CHROME`
+- Microsoft Edge: `EDGE`
+- Google Chrome (Headless): `CHROME_HEADLESS`
+- Microsoft Edge (Headless): `EDGE_HEADLESS`
 
 ---
 
