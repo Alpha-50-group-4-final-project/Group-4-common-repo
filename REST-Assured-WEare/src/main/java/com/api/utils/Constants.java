@@ -6,8 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import static com.api.utils.ValidationHelpers.*;
-import static dataBaseManipulations.BaseSetup.usernames;
-import static dataBaseManipulations.FindCurrentUser.checkForUser;
+import static weare.database.manipulation.BaseSetup.usernames;
 
 public class Constants {
     public static final String ROLE_USER = "ROLE_USER";

@@ -6,27 +6,22 @@ import java.sql.SQLException;
 
 import static java.lang.String.format;
 
-
 public class DeleteCurrentUserById extends BaseSetup {
-
 
     public static void deleteUserById() {
         try {
 
 
             for (int id : freshUsersIds) {
-//            int locationId=0;
-//
-//
-//
-//            String getLocationIdByUserId = format("SELECT * FROM personal_profile WHERE id IN (SELECT perosnal_profile_id FROM users WHERE user_id =%d)",id);
-//            rs = statement.executeQuery(getLocationIdByUserId);
-//            while (rs.next()) {
-//                locationId=rs.getInt("location_id");
-//            }
-//            String sqlDeleteLocation = format("DELETE FROM `locations` WHERE location_id=%d", locationId);
-//            System.out.println(sqlDeleteLocation);
-//            statement.executeUpdate(sqlDeleteLocation);
+                int locationId;
+                String getLocationIdByUserId = format("SELECT * FROM personal_profile WHERE id IN (SELECT perosnal_profile_id FROM users WHERE user_id =%d)",id);
+                rs = statement.executeQuery(getLocationIdByUserId);
+                while (rs.next()) {
+                    locationId=rs.getInt("location_id");
+                    String sqlDeleteLocation = format("DELETE FROM `locations` WHERE location_id=%d", locationId);
+                    System.out.println(sqlDeleteLocation);
+                    statement.executeUpdate(sqlDeleteLocation);
+                }
 
                 String sqlDeleteConnections = format("DELETE FROM `requests` WHERE `requests`.`sender_user_id` = %d OR `requests`.`receiver_user_id`=%d", id, id);
                 statement.executeUpdate(sqlDeleteConnections);
@@ -53,11 +48,12 @@ public class DeleteCurrentUserById extends BaseSetup {
             for (String name : freshUsernames) {
                 String deleteAuthorities = format("DELETE FROM `authorities` WHERE `username` = '%s'", name);
                 statement.executeUpdate(deleteAuthorities);
-                usernames.remove(name);
                 System.out.printf("\nUser %s was deleted from database", name);
+                usernames.remove(name);
             }
-        }catch (SQLException ignored){
 
+        } catch (SQLException e) {
+            System.out.println("Couldn't delete users.");
         }
     }
 }

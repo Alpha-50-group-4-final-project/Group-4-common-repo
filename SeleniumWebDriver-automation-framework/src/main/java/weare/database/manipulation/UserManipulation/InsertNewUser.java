@@ -1,14 +1,15 @@
 package weare.database.manipulation.UserManipulation;
 
-import weare.database.manipulation.BaseSetup;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import weare.database.manipulation.BaseSetup;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static java.lang.String.format;
+
 
 public class InsertNewUser extends BaseSetup {
 
@@ -44,12 +45,13 @@ public class InsertNewUser extends BaseSetup {
     public void insertNewUser() {
         try {
             String encodedPassword = getEncodedPassword(getPassword());
-            int newExpertiseId = getNewExpertiseId();
-            int newPersonalProfileId = getNewPersonalProfileId();
+
 
             insertIntoAuthoritiesTable(getUsername(),getRole());
-            insertIDIntoPersonalProfileTable(newPersonalProfileId, timeStamp);
-            insertExpertiseProfileId(newExpertiseId);
+            insertIDIntoPersonalProfileTable(timeStamp);
+            insertExpertiseProfileId();
+            int newExpertiseId = getNewExpertiseId();
+            int newPersonalProfileId = getNewPersonalProfileId();
             insertUserIntoUsersTable(getEmail(), encodedPassword, getUsername(), newExpertiseId, newPersonalProfileId);
             System.out.println("User " + getUsername() + " was  added to database.");
         } catch (SQLException e) {
@@ -70,15 +72,8 @@ public class InsertNewUser extends BaseSetup {
         rs = statement.executeQuery(getMaxExistingPersonalProfileId);
         int newPersonalProfileId = 0;
         while (rs.next()) {
-            int personalId = rs.getInt("MAX(id)");
-            System.out.println(personalId);
-            if (personalId > maxPersonalProfileId) {
-                newPersonalProfileId = personalId + 1;
-            } else {
-                newPersonalProfileId = maxPersonalProfileId + 1;
-            }
-            maxPersonalProfileId = newPersonalProfileId;
-            System.out.println(maxPersonalProfileId);
+            newPersonalProfileId= rs.getInt("MAX(id)");
+            System.out.println(newPersonalProfileId);
         }
         return newPersonalProfileId;
     }
@@ -90,17 +85,8 @@ public class InsertNewUser extends BaseSetup {
         rs = statement.executeQuery(maxExistingExpertiseId);
         int newExpertiseId = 0;
         while (rs.next()) {
-            int expertiseId = rs.getInt("MAX(id)");
-            System.out.println(expertiseId);
-            if (expertiseId > maxExpertiseProfileId) {
-                newExpertiseId = expertiseId + 1;
-
-            } else {
-                newExpertiseId = maxExpertiseProfileId + 1;
-            }
-            maxExpertiseProfileId = newExpertiseId;
+            newExpertiseId= rs.getInt("MAX(id)");
             System.out.println(newExpertiseId);
-            System.out.println(maxExpertiseProfileId);
         }
         return newExpertiseId;
     }
@@ -121,15 +107,15 @@ public class InsertNewUser extends BaseSetup {
         }
     }
 
-    private void insertIDIntoPersonalProfileTable(int newPersonalProfileId, String timeStamp) throws SQLException {
-        String sql = format("INSERT INTO personal_profile (id,member_since,picture_privacy) VALUES(%d,'%s',0)", newPersonalProfileId, timeStamp);
+    private void insertIDIntoPersonalProfileTable(String timeStamp) throws SQLException {
+        String sql = format("INSERT INTO personal_profile (member_since,picture_privacy) VALUES('%s',0)", timeStamp);
         statement.executeUpdate(sql);
         System.out.println(sql);
     }
 
 
-    private void insertExpertiseProfileId(int newExpertiseId) throws SQLException {
-        String insert = format("INSERT INTO expertise_profile (id,category_skill_category_id,availability) VALUES(%s,100,0)", newExpertiseId);
+    private void insertExpertiseProfileId() throws SQLException {
+        String insert = format("INSERT INTO expertise_profile (category_skill_category_id,availability) VALUES(100,0)");
         System.out.println(insert);
         statement.executeUpdate(insert);
 

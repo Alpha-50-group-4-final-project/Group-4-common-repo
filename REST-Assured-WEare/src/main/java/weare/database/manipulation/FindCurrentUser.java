@@ -1,4 +1,4 @@
-package dataBaseManipulations;
+package weare.database.manipulation;
 
 import java.sql.SQLException;
 
@@ -8,8 +8,8 @@ public class FindCurrentUser extends BaseSetup {
     public static String checkForUser(String user) {
         String name=null;
         try {
-            String maxExistingExpertiseId = format("SELECT * FROM users WHERE users.username='%s'",user);
-            rs = statement.executeQuery(maxExistingExpertiseId);
+            String selectEverythingFromUsersTableByName= format("SELECT * FROM users WHERE users.username='%s'",user);
+            rs = statement.executeQuery(selectEverythingFromUsersTableByName);
             while (rs.next()) {
                 name = rs.getString("username");
                 usernames.add(name);

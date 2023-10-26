@@ -4,8 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.api.utils.Constants.*;
-import static dataBaseManipulations.BaseSetup.usernames;
-import static dataBaseManipulations.FindCurrentUser.checkForUser;
+import static weare.database.manipulation.FindCurrentUser.checkForUser;
 
 public class ValidationHelpers {
 

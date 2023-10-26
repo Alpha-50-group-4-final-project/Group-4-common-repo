@@ -1,4 +1,4 @@
-package dataBaseManipulations;
+package weare.database.manipulation;
 
 import java.sql.*;
 import java.util.ArrayList;

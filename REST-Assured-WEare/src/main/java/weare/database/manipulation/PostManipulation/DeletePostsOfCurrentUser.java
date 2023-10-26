@@ -1,13 +1,12 @@
-package dataBaseManipulations.PostManipulation;
+package weare.database.manipulation.PostManipulation;
 
 
-import dataBaseManipulations.BaseSetup;
+import weare.database.manipulation.BaseSetup;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dataBaseManipulations.PostManipulation.DeleteAllExistingCommentsAndPosts.*;
 import static java.lang.String.format;
 
 
@@ -40,21 +39,21 @@ public class DeletePostsOfCurrentUser extends BaseSetup {
 
 
         for (int comment_id : comments_id) {
-            deleteCommentLikeById(comment_id);
+            DeleteAllExistingCommentsAndPosts.deleteCommentLikeById(comment_id);
             System.out.printf("Comment like with id=%d was deelted",comment_id);
         }
 
         for (int comment_id : comments_id) {
-            deleteCommentById(comment_id);
+            DeleteAllExistingCommentsAndPosts.deleteCommentById(comment_id);
             System.out.printf("Comment with %s was deleted", comment_id);
         }
 
         for (int postid:posts_id) {
-            deletePostLikeById(postid);
+            DeleteAllExistingCommentsAndPosts.deletePostLikeById(postid);
             System.out.printf("\nPost like  with id= %d was deleted\n", postid);
         }
         for (int postid:posts_id) {
-            deletePostById(postid);
+            DeleteAllExistingCommentsAndPosts.deletePostById(postid);
             System.out.printf("\nPost with id= %d was deleted\n", postid);
         }
 

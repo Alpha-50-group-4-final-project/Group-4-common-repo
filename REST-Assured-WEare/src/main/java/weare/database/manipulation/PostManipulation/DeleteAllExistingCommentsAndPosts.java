@@ -1,7 +1,7 @@
-package dataBaseManipulations.PostManipulation;
+package weare.database.manipulation.PostManipulation;
 
 
-import dataBaseManipulations.BaseSetup;
+import weare.database.manipulation.BaseSetup;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

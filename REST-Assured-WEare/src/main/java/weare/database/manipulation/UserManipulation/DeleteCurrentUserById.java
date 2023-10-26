@@ -1,6 +1,6 @@
-package dataBaseManipulations.UserManipulation;
+package weare.database.manipulation.UserManipulation;
 
-import dataBaseManipulations.BaseSetup;
+import weare.database.manipulation.BaseSetup;
 
 import java.sql.SQLException;
 
@@ -13,18 +13,15 @@ public class DeleteCurrentUserById extends BaseSetup {
 
 
             for (int id : freshUsersIds) {
-//            int locationId=0;
-//
-//
-//
-//            String getLocationIdByUserId = format("SELECT * FROM personal_profile WHERE id IN (SELECT perosnal_profile_id FROM users WHERE user_id =%d)",id);
-//            rs = statement.executeQuery(getLocationIdByUserId);
-//            while (rs.next()) {
-//                locationId=rs.getInt("location_id");
-//            }
-//            String sqlDeleteLocation = format("DELETE FROM `locations` WHERE location_id=%d", locationId);
-//            System.out.println(sqlDeleteLocation);
-//            statement.executeUpdate(sqlDeleteLocation);
+                int locationId;
+                String getLocationIdByUserId = format("SELECT * FROM personal_profile WHERE id IN (SELECT perosnal_profile_id FROM users WHERE user_id =%d)",id);
+                rs = statement.executeQuery(getLocationIdByUserId);
+                while (rs.next()) {
+                    locationId=rs.getInt("location_id");
+                    String sqlDeleteLocation = format("DELETE FROM `locations` WHERE location_id=%d", locationId);
+                    System.out.println(sqlDeleteLocation);
+                    statement.executeUpdate(sqlDeleteLocation);
+                }
 
                 String sqlDeleteConnections = format("DELETE FROM `requests` WHERE `requests`.`sender_user_id` = %d OR `requests`.`receiver_user_id`=%d", id, id);
                 statement.executeUpdate(sqlDeleteConnections);

@@ -1,13 +1,13 @@
-package dataBaseManipulations.UserManipulation;
+package weare.database.manipulation.UserManipulation;
 
-import dataBaseManipulations.BaseSetup;
+import weare.database.manipulation.BaseSetup;
+import weare.database.manipulation.PostManipulation.DeleteAllExistingCommentsAndPosts;
+import weare.database.manipulation.skillsManipulations.DeleteAllAddedSkills;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dataBaseManipulations.skillsManipulations.DeleteAllAddedSkills.deleteAllAddedSkills;
-import static dataBaseManipulations.PostManipulation.DeleteAllExistingCommentsAndPosts.deleteAllCommentsAndPostsRequest;
 import static java.lang.String.format;
 
 
@@ -20,8 +20,8 @@ public class DeleteAllExistingUsers extends BaseSetup {
             System.out.println(name);
         }
         System.out.println(usernames.size());
-        deleteAllCommentsAndPostsRequest();
-        deleteAllAddedSkills();
+        DeleteAllExistingCommentsAndPosts.deleteAllCommentsAndPostsRequest();
+        DeleteAllAddedSkills.deleteAllAddedSkills();
 
 
         List<Integer> locationsIds = new ArrayList<>();

@@ -1,7 +1,7 @@
-package dataBaseManipulations.skillsManipulations;
+package weare.database.manipulation.skillsManipulations;
 
 
-import dataBaseManipulations.BaseSetup;
+import weare.database.manipulation.BaseSetup;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
