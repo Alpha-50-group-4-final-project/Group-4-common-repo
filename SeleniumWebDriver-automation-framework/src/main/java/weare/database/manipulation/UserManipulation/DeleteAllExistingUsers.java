@@ -30,6 +30,7 @@ public class DeleteAllExistingUsers extends BaseSetup {
         rs = statement.executeQuery(getExpertiseProfileTable);
         while (rs.next()) {
             locationsIds.add(rs.getInt("location_id"));
+
         }
 
 
