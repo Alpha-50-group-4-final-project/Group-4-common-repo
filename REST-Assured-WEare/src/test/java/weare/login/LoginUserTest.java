@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import jdk.jfr.Label;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import static org.apache.http.HttpStatus.*;
 import static com.api.utils.Constants.PASSWORD;
 import static com.api.utils.Endpoints.LOGIN_USER;
 import static io.restassured.RestAssured.baseURI;
@@ -34,7 +34,8 @@ public class LoginUserTest extends BaseTest {
                 .post(baseURI);
 
         System.out.println(response.getStatusCode());
-        Assert.assertEquals(response.getStatusCode(), 302, "Incorrect status code. Expected 302.");
+        Assert.assertEquals(response.getStatusCode(),
+                SC_MOVED_TEMPORARILY, format("Incorrect status code. Expected %s.", SC_MOVED_TEMPORARILY));
     }
 }
 

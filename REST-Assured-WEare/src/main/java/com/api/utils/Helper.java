@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 public class Helper {
 
-    // Checks if the given string is a valid JSON object
     public static boolean isValid(String json) {
         try {
             new JSONObject(json);

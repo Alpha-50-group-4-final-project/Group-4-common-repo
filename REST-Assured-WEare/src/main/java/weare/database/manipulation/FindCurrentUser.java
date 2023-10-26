@@ -10,6 +10,8 @@ public class FindCurrentUser extends BaseSetup {
         try {
             String selectEverythingFromUsersTableByName= format("SELECT * FROM users WHERE users.username='%s'",user);
             rs = statement.executeQuery(selectEverythingFromUsersTableByName);
+            String getEverythingForUserByUsername = format("SELECT * FROM users WHERE users.username='%s'",user);
+            rs = statement.executeQuery(getEverythingForUserByUsername);
             while (rs.next()) {
                 name = rs.getString("username");
                 usernames.add(name);

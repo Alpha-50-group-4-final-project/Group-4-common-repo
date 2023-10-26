@@ -19,6 +19,7 @@ import static weare.database.manipulation.BaseSetup.freshUsersIds;
 import static weare.database.manipulation.UserManipulation.DeleteCurrentUserById.deleteUserById;
 import static io.restassured.RestAssured.*;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_MOVED_TEMPORARILY;
 import static org.testng.Assert.assertTrue;
 
 public class BaseTest {
@@ -46,6 +47,7 @@ public class BaseTest {
         commentId=null;
         postId=null;
         expertiseProfileId=null;
+        System.gc();
     }
 
     protected String timeStamp() {
@@ -61,12 +63,10 @@ public class BaseTest {
                 queryParam("password", password).
                 when().
                 post(authenticate).
-                then().statusCode(302).
+                then().statusCode(SC_MOVED_TEMPORARILY).
                 extract().response().
                 getDetailedCookies();
     }
-
-
 
     protected RequestSpecification requestSpecificationWithoutAuthentication() {
         return given().
