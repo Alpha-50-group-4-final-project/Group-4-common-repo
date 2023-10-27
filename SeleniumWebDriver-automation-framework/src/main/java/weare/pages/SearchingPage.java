@@ -52,7 +52,12 @@ public class SearchingPage extends WEareBasePage{
     }
     
     public void validateRequestAccepted(String approverID){
+        try{
         actions.navigateToPage("personalProfilePageById",approverID);
         assertElementPresent("PersonalProfilePageDisconnectButton");
+        LOGGER.info("Connection request was accepted.");
+        } catch (AssertionFailedError e) {
+            Assertions.fail("Connection request was not accepted.");
+        }
     }
 }
