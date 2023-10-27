@@ -6,8 +6,12 @@
 3. [Template Bug Reports](#template-bug-reports)
 4. [Social Network Test Requirements](#social-network-test-requirements)
 5. [Social Network Project Specification](#social-network-project-specification)
-6. [Jira Dashboard](#jira-dashboard)
-7. [Repository Structure](#repository-structure)
+6. [Time Schedule]
+7. [Presentation Final Project WEare]
+8. [Jira Test Case Management]
+9. [Testing Results - report]
+10. [Jira Dashboard](#jira-dashboard)
+11. [Repository Structure](#repository-structure)
 
 ---
 
