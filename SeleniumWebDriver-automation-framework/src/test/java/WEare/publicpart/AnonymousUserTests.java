@@ -37,7 +37,7 @@ public class AnonymousUserTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Validate Latests posts button works")
     public void viewPublicPosts_when_latestPostsClicked() {
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.assertPageNavigated();
         postsPage.validateHeader(getUIMappingByKey("postPage.header"));
     }

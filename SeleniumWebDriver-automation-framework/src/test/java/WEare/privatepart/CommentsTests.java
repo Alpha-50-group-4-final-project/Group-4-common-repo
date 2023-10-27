@@ -28,7 +28,7 @@ public class CommentsTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Validate User Can Comment on a Public Post")
     public void addValidComment_when_postCommentButtonClicked() {
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         commentsPage.writeComment();
         commentsPage.submitComment();
@@ -41,7 +41,7 @@ public class CommentsTests extends BaseTest {
     @DisplayName("Validate User Can Edit His Comment on a Public Post")
     public void editComment_when_validTextAdded() {
         apiComment = api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);apiComment = api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         commentsPage.showComments();
         commentsPage.clickEditCommentButton();
@@ -56,7 +56,7 @@ public class CommentsTests extends BaseTest {
     @DisplayName("Validate User Can Like a Comment on public post")
     public void likeComment_when_likedButtonClicked() {
         apiComment = api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         commentsPage.showComments();
         commentsPage.likeComment();
@@ -70,7 +70,7 @@ public class CommentsTests extends BaseTest {
     @DisplayName("Validate User Can Unlike a Comment on public post")
     public void unlikeComment_when_unlikedButtonClicked() {
         apiComment = api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         commentsPage.showComments();
         commentsPage.unlikeComment();
@@ -84,7 +84,7 @@ public class CommentsTests extends BaseTest {
     @DisplayName("Validate User Can Delete His Comment on a Public Post")
     public void deleteComment_when_deleteButtonClicked() {
         api.createComment(usernameRandom, passwordRandom, commentBody, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         commentsPage.showComments();
         commentsPage.deleteComment();

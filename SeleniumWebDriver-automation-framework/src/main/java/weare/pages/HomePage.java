@@ -36,14 +36,6 @@ public class HomePage extends WEareBasePage {
         validateHeader("Login Page");
     }
 
-    public void navigateToLatestPosts(){
-        actions.waitForElementVisible("homepage.latestPostsButton");
-        actions.waitForElementClickable("homepage.latestPostsButton");
-        actions.assertElementPresent("homepage.latestPostsButton");
-        actions.clickElement("homepage.latestPostsButton");
-        validateHeader("Explore all posts");
-    }
-
     public  void typeIntoNameSearchBox(String name){
         actions.waitForElementVisible("homePage.NameField");
         actions.assertElementPresent("homePage.NameField");

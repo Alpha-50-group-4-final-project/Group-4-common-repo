@@ -30,7 +30,7 @@ public class AdminCommentTest extends BaseTest {
     @DisplayName("Edit Comment with valid data provided")
     public void editOtherUsersComment_when_editCommentClicked() {
         api.createComment(usernameRandom, passwordRandom, commentMessage, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         postsPage.clickShowComments();
         commentsPage.clickEditCommentButton();
@@ -45,7 +45,7 @@ public class AdminCommentTest extends BaseTest {
     @DisplayName("Delete Comment")
     public void deleteOtherUsersComment_when_deleteCommentClicked() {
         api.createComment(usernameRandom, passwordRandom, commentMessage, apiPost.postId);
-        homePage.navigateToLatestPosts();
+        postsPage.navigateToPage();
         postsPage.explorePost(usernameRandom);
         postsPage.clickShowComments();
         commentsPage.deleteComment();
