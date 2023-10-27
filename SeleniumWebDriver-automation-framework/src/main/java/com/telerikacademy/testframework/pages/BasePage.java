@@ -24,6 +24,7 @@ public abstract class BasePage {
 
     public void navigateToPage() {
         this.driver.get(url);
+        assertPageNavigated();
     }
 
     public void assertPageNavigated() {

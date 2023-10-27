@@ -3,21 +3,13 @@ package WEare.privatepart;
 import WEare.BaseTest;
 import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
+import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
+
 @DisplayName("EditUserProfileTests")
 public class EditProfileTests extends BaseTest {
 
-    public static final String SELF_DESCRIPTION = "Hello its my first time here.Im trying to be smart but im not.";
-    public static final String CITY = "Burgas";
-    public static final String SET_UP_FIRSTNAME = "Jon";
-    public static final String SET_UP_LASTNAME = "Snow";
-    public static final String SET_UP_BIRTHDAY_DATE = "07/05/1970";
-    public static final String PROFESSION = "Doctor";
-
-    public static final String NEW_EMAIL = "peshakaa@abv.bg";
-    public static final String GENDER_TYPE = "FEMALE";
-    public static final String VALID_FIRST_NAME = "Patkan";
-    public static final String VALID_LAST_NAME = "Patkanov";
-
+    public static final String SET_UP_FIRSTNAME = getUIMappingByKey("personalProfileUpdatePage.firstName");
+    public static final String SET_UP_LASTNAME = getUIMappingByKey("personalProfileUpdatePage.lastName");
 
     @BeforeAll
     public static void testSetup() {
@@ -35,9 +27,9 @@ public class EditProfileTests extends BaseTest {
     @Tag("UnHappyPath")
     @DisplayName("Edit profile of registered user without last name, only valid first name and birthday are provided")
     public void editFirstnameLastNameBirthdayFails_when_emptyLastNameIsProvided() {
-        editProfilePage.fillUpFirstNameField(VALID_FIRST_NAME);
+        editProfilePage.fillUpFirstNameField(getUIMappingByKey("personalProfileUpdatePage.firstNameUpdate"));
         editProfilePage.fillUpLastNameField("");
-        editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
+        editProfilePage.fillBirthdayField(getUIMappingByKey("personalProfileUpdatePage.birthDate"));
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.validateEditFailed();
         editProfilePage.assertLastNameErrorMessage();
@@ -48,9 +40,9 @@ public class EditProfileTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Edit profile by adding valid self description.")
     public void addSelfDescription_when_validDataIsProvided() {
-        editProfilePage.fillSelfDescriptionField(SELF_DESCRIPTION);
+        editProfilePage.fillSelfDescriptionField(getUIMappingByKey("personalProfileUpdatePage.selfDescription"));
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.validateSelfDescriptionUpdated(SELF_DESCRIPTION);
+        editProfilePage.validateSelfDescriptionUpdated(getUIMappingByKey("personalProfileUpdatePage.selfDescription"));
     }
 
     @Test
@@ -58,9 +50,9 @@ public class EditProfileTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Edit profile by changing gender from MALE to FEMALE")
     public void changeGender_when_validDataProvided() {
-        editProfilePage.changeGender(GENDER_TYPE);
+        editProfilePage.changeGender(getUIMappingByKey("personalProfileUpdatePage.gender"));
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.validateGenderUpdated(GENDER_TYPE);
+        editProfilePage.validateGenderUpdated(getUIMappingByKey("personalProfileUpdatePage.gender"));
     }
 
     @Test
@@ -69,9 +61,9 @@ public class EditProfileTests extends BaseTest {
     @DisplayName("Edit profile by changing existing  email")
     public void changeEmail_when_validNewEmailIsProvided() {
         editProfilePage.navigateToEditProfileMenu();
-        editProfilePage.changeEmail(NEW_EMAIL);
+        editProfilePage.changeEmail(getUIMappingByKey("personalProfileUpdatePage.email"));
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.validateEmailUpdated(NEW_EMAIL);
+        editProfilePage.validateEmailUpdated(getUIMappingByKey("personalProfileUpdatePage.email"));
        }
     @Test
     @Label("Jira FPW-45")
@@ -79,8 +71,8 @@ public class EditProfileTests extends BaseTest {
     @DisplayName("Edit profile of registered user without a first name, only valid last name and birthday are provided")
     public void editFirstnameLastNameBirthdayFail_when_invalidFirstNameIsProvided() {
         editProfilePage.fillUpFirstNameField("");
-        editProfilePage.fillUpLastNameField(VALID_LAST_NAME);
-        editProfilePage.fillBirthdayField(SET_UP_BIRTHDAY_DATE);
+        editProfilePage.fillUpLastNameField(getUIMappingByKey("personalProfileUpdatePage.lastNameUpdate"));
+        editProfilePage.fillBirthdayField(getUIMappingByKey("personalProfileUpdatePage.birthDate"));
         editProfilePage.clickPersonalInformationUpdateButton();
         editProfilePage.validateEditFailed();
         editProfilePage.assertFirstNameErrorMessage();
@@ -92,9 +84,9 @@ public class EditProfileTests extends BaseTest {
     @DisplayName("Edit profile by changing city")
     public void changeCity_when_differentCityIsChosen() {
         editProfilePage.clickOnCityButton();
-        editProfilePage.selectCity(CITY);
+        editProfilePage.selectCity(getUIMappingByKey("personalProfileUpdatePage.city"));
         editProfilePage.clickPersonalInformationUpdateButton();
-        editProfilePage.validateCityUpdated(CITY);
+        editProfilePage.validateCityUpdated(getUIMappingByKey("personalProfileUpdatePage.city"));
     }
 
     @Test
@@ -102,7 +94,7 @@ public class EditProfileTests extends BaseTest {
     @Tag("HappyPath")
     @DisplayName("Edit profile by changing industry/workspace category")
     public void changeProfessionalCategory_when_validProfessionProvided() {
-        editProfilePage.changeProfessionalCategory(PROFESSION);
-        editProfilePage.validateCategoryUpdated(PROFESSION);
+        editProfilePage.changeProfessionalCategory(getUIMappingByKey("personalProfileUpdatePage.profession"));
+        editProfilePage.validateCategoryUpdated(getUIMappingByKey("personalProfileUpdatePage.profession"));
     }
 }
