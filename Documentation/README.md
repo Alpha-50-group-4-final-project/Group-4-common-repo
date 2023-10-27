@@ -6,10 +6,10 @@
 3. [Template Bug Reports](#template-bug-reports)
 4. [Social Network Test Requirements](#social-network-test-requirements)
 5. [Social Network Project Specification](#social-network-project-specification)
-6. [Time Schedule]
-7. [Presentation Final Project WEare]
-8. [Jira Test Case Management]
-9. [Testing Results - report]
+6. [Time Schedule](#time-schedule)
+7. [Presentation Final Project WEare](#presentation-final-project-weare)
+8. [Jira Test Case Management](#jira-test-case-management)
+9. [Testing Results - report](#testing-results---report)
 10. [Jira Dashboard](#jira-dashboard)
 11. [Repository Structure](#repository-structure)
 
@@ -37,6 +37,24 @@ The document outlining the specific requirements for QA can be found [here](./Te
 
 ## Social Network Project Specification
 The application specifications are available [here](./Team4{win}-Social_Network_Project_Specification.docx).
+
+## Time Schedule
+For a detailed breakdown of the project timeline, milestones, and sprints, refer to the [Time Schedule document](./Team4{win}-Time-Schedule.xlsx).
+
+---
+
+## Presentation Final Project WEare
+The final project presentation slides can be accessed [here](./Team4{win}-Presentation-Final-Project-WEare.pptx). This presentation provides an overview of the entire project, including key achievements and challenges.
+
+---
+
+## Jira Test Case Management
+Our test cases are managed in Jira, providing a centralized location for test planning and execution. A document containing all of our labeled and exported issues is available [here](./Team4{win}-Jira-Test-Case-Management.doc).
+
+---
+
+## Testing Results - Report
+The final test results, including test execution summaries and defect metrics, are compiled in a comprehensive report. You can view this report [here](./Team4{win}-Testing-results-report.xlsx).
 
 ---
 
