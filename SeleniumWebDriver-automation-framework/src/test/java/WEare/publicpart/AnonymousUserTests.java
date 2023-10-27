@@ -10,7 +10,9 @@ import static com.telerikacademy.testframework.Utils.getUIMappingByKey;
 
 @DisplayName("UnregisteredUserTests")
 public class AnonymousUserTests extends BaseTest {
-    private static final String firstNameUpdate = getUIMappingByKey("personalProfilePage.firstName");
+    private static final String firstNameUpdate = getUIMappingByKey("personalProfileUpdatePage.firstName");
+    private static final String lastNameUpdate = getUIMappingByKey("personalProfileUpdatePage.lastName");
+    private static final String name = firstNameUpdate+" "+lastNameUpdate;
 
     @Test
     @Label("Jira FPW-32")
@@ -48,10 +50,10 @@ public class AnonymousUserTests extends BaseTest {
     @DisplayName("Search public user's profile as non-registered user")
     public void viewPublicProfiles_when_searchByNamePerformed() {
         api.registerUser(usernameRandom, passwordRandom);
-        api.updateUserProfile(usernameRandom, passwordRandom, firstNameUpdate, lastNameRandom);
+        api.updateUserProfile(usernameRandom, passwordRandom, firstNameUpdate, lastNameUpdate);
         homePage.navigateToPage();
         homePage.typeIntoNameSearchBox(firstNameUpdate);
         homePage.clickOnSearchButton();
-        homePage.validateSearchResult(firstNameUpdate);
+        homePage.validateSearchResult(name);
     }
 }

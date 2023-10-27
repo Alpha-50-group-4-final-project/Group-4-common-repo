@@ -56,8 +56,8 @@ public class HomePage extends WEareBasePage {
     public void validateSearchResult(String name){
 
         try {
-            actions.waitForElementVisible("homePage.nameInputField");
-            actions.assertElementAttribute("homePage.nameInputField", "value", name);
+            actions.waitForElementVisible("homePage.nameValidation");
+            actions.assertElementAttribute("homePage.nameValidation", "innerText", name);
             LOGGER.info("Search result validated.");
         } catch (AssertionFailedError e) {
             Assertions.fail("Search was unsuccessful.");

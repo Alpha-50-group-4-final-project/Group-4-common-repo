@@ -16,11 +16,6 @@ public class PostsTests extends BaseTest {
         login(usernameRandom, passwordRandom);
     }
 
-//    @AfterAll
-//    public static void returnHome() {
-//        api.deletePost(usernameRandom, passwordRandom, apiPost.postId);
-//    }
-
     @Test
     @Label("Jira FPW-70")
     @Tag("HappyPath")
